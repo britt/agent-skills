@@ -127,6 +127,13 @@ Why this matters:
 - Regular commits force you to think in small, testable increments
 ```
 
+### Pull Request Rules
+YOU MUST follow these rules when creating a pull request. 
+
+- Use a merge commit do not squash commits. 
+- If you are working on an issue make sure to note in the PR description that this PR closes the issue number.
+
+
 ### Verification Plan
 
 Use the `britt/writing-verification-plans` skill to create a verification plan. 

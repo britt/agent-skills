@@ -24,7 +24,7 @@ This is a conversational ritual that takes 5-10 minutes:
 1. **Calendar events** for today using `list_gcal_events`
 2. **iOS Reminders** - Use `reminder_search_v0` to get incomplete reminders, focusing on the "today" list or items due today
 3. **Recent emails** (last 24 hours) using `search_gmail_messages` with `newer_than:1d` - look for urgencies
-4. **Static sections** by reading `references/static-sections-template.md` - contains Climbing Goals, Life Projects, Work Priorities, Work/Life Questions
+4. **Static sections** by reading a Google Doc named `Daily Planning Notes` - This document contains other goals, questions, and useful information. If you cannot find it mention that and why its useful and proceed.
 5. **Relevant Drive docs** if calendar shows meetings today - use `google_drive_search` to find related materials
 
 Keep this context in mind but don't present it yet - it informs the questions you'll ask.
@@ -153,7 +153,3 @@ When the user indicates they're satisfied, create the final plan as a **markdown
 - The poetic opening is key - take time to craft something meaningful
 - Static sections should be copied exactly as-is from the template
 - Total process should feel contemplative, not rushed, but stay within 5-10 minutes
-
-## Updating Static Sections
-
-When the user wants to update Climbing Goals, Life Projects, Work Priorities, or Work/Life Questions, edit `references/static-sections-template.md` directly. These changes will persist across all future planning sessions.

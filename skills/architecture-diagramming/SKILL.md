@@ -2,7 +2,6 @@
 name: architecture-diagramming
 description: "Generate Mermaid architecture diagrams showing system components, layers, and data flows"
 instructions: "When visualizing system architecture, component relationships, layers, or data flows as diagrams"
-allowed-tools: "read_project_file get_project_scan add_note list_project_directory"
 ---
 
 # Architecture Diagramming Skill
@@ -16,15 +15,6 @@ Activate this skill when:
 - User says "show me the system architecture", "diagram the components"
 - During project planning to visualize the system design
 - When explaining how components interact
-
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `read_project_file` | Read existing code to understand structure |
-| `get_project_scan` | Get cached project scan with structure and language data |
-| `add_note` | Save diagram to project notes |
-| `list_project_directory` | Explore project structure |
 
 ## CRITICAL: Mermaid Syntax Rules
 
@@ -281,7 +271,7 @@ flowchart TB
 
 ## After Generating Diagram
 
-- Offer to save the diagram to project notes
-- Suggest adding to planning document
+- Offer to save the diagram to an appropriate location in the project
+- Suggest adding to a planning or design document
 - Ask if user wants more detail in any area
 - Recommend `dependency-mapping` for issue visualization

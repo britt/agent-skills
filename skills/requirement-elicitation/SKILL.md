@@ -7,7 +7,6 @@ tags:
   - planning
   - wizard
   - product-management
-allowed-tools: "add_note update_note search_notes ask_user read_project_file"
 ---
 
 # Requirement Elicitation Wizard
@@ -23,22 +22,12 @@ You are guiding the user through a comprehensive requirement elicitation process
 5. **Refinement**: Allow revisiting any section
 6. **Output**: Generate a comprehensive requirements document saved to notes
 
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `ask_user` | Ask the user questions to gather requirements |
-| `add_note` | Save captured requirements and the final document |
-| `update_note` | Update previously saved requirements |
-| `search_notes` | Find past requirements or related notes |
-| `read_project_file` | Read existing project files for context |
-
 ## Conversation Flow
 
 ### Starting the Session
 
 When the user wants to define requirements:
-1. Use `ask_user` to determine what type of project they're building
+1. Ask the user to determine what type of project they're building
 2. Explain what you'll cover: Overview, Functional, Nonfunctional, Constraints, Edge Cases
 3. Ask the first question
 
@@ -55,18 +44,18 @@ Walk through these five sections in order:
 ### Asking Questions
 
 For each question:
-1. Ask clearly and conversationally using `ask_user` (not robotically)
+1. Ask clearly and conversationally (not robotically)
 2. Include context explaining why you're asking
 3. Indicate if it's required or optional
 4. After the user answers, mentally note the response and continue
-5. Periodically save captured requirements using `add_note`
+5. Periodically save captured requirements
 
 ### Section Transitions
 
 When a section is complete:
 1. Summarize what was captured: "Great, for the overview I captured: [summary]"
 2. Ask if they want to add anything else to this section
-3. Save the section's requirements to notes using `add_note`
+3. Save the section's requirements to notes
 4. Introduce the next section briefly
 
 ### Tracking Progress
@@ -82,10 +71,10 @@ Periodically save progress to notes so nothing is lost.
 
 Handle these natural language requests:
 - "Skip this section" - Move to next section, note it was skipped
-- "Let's revisit [section]" - Use `search_notes` to find saved requirements, then update
+- "Let's revisit [section]" - Search existing notes to find saved requirements, then update
 - "What have we captured?" - Summarize all captured requirements from notes
 - "Generate the document" - Compile all notes into a requirements document
-- "Save this" - Use `add_note` to persist current state
+- "Save this" - Save current state
 
 ## Question Style
 
@@ -189,7 +178,7 @@ Use notes to persist all captured requirements:
 - **Section notes**: Save each completed section as a separate note with a clear title (e.g., "Requirements: Project Overview")
 - **Final document**: Compile all sections into a single comprehensive note
 - **Key decisions**: If the user makes important architectural decisions during elicitation, save them as separate notes with relevant tags
-- **Searching past requirements**: Use `search_notes` if the user asks about previous requirements
+- **Searching past requirements**: Search existing notes if the user asks about previous requirements
 
 After generating the requirements document, offer to save it:
 > "I've compiled your requirements document. Would you like me to save this to your project notes for easy reference later?"

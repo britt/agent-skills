@@ -7,9 +7,6 @@ tags:
   - requirements
   - agile
   - planning
-allowed_tools:
-  - github
-  - notes
 ---
 
 # User Story Template Skill
@@ -117,11 +114,11 @@ Stories without clear acceptance criteria lead to:
 
 When creating user stories:
 
-1. **Search notes first** - Check if similar features have been discussed
+1. **Check for prior art** - Search existing issues and documents for similar features
 2. **Write the story** - Follow the template above
 3. **Add to project board** - Link to appropriate milestone/epic
 4. **Tag appropriately** - Use labels like 'feature', 'enhancement', 'user-story'
-5. **Save insights** - Record decisions and rationale in notes
+5. **Save insights** - Record decisions and rationale for future reference
 
 ## Example: Complete User Story
 

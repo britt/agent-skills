@@ -2,7 +2,6 @@
 name: issue-decomposition
 description: "Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, dependencies, and estimates"
 instructions: "When breaking down a project or feature into GitHub issues, decomposing work into tasks, or creating structured issues from a description"
-allowed-tools: "create_github_issue list_github_issues search_github_issues add_note"
 ---
 
 # Issue Decomposition Skill
@@ -16,15 +15,6 @@ Activate this skill when:
 - User says "create issues for...", "break this into tasks", "decompose this feature"
 - During project planning to generate actionable work items
 - When converting requirements into GitHub issues
-
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `create_github_issue` | Create individual issues with full details |
-| `list_github_issues` | Check existing issues to avoid duplicates |
-| `search_github_issues` | Find related issues for dependencies |
-| `add_note` | Save decomposition summary to project notes |
 
 ## Issue Template
 
@@ -186,4 +176,4 @@ Proceed with creation? (y/n)
 Once issues are created:
 - Suggest running `dependency-mapping` skill to visualize relationships
 - Suggest running `timeline-planning` skill to create a Gantt chart
-- Offer to save the decomposition summary to project notes
+- Offer to save the decomposition summary for future reference

@@ -7,10 +7,6 @@ tags:
   - stakeholders
   - updates
   - reporting
-allowed_tools:
-  - github
-  - notes
-  - search_notes
 ---
 
 # Stakeholder Updates Skill
@@ -201,7 +197,7 @@ Example:
 
 ## Workflow Tips
 
-1. **Search notes for context** before writing updates
+1. **Gather context** before writing updates
 2. **Save templates** for recurring updates (weekly status, launch announcements, etc.)
 3. **Draft important messages** and sleep on them before sending
 4. **Get feedback** from peers on sensitive communications

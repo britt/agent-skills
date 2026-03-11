@@ -7,7 +7,6 @@ tags:
   - goals
   - planning
   - requirements
-allowed-tools: "add_note update_note search_notes list_notes delete_note get_note list_github_issues"
 ---
 
 # Stakeholder Tracking
@@ -23,18 +22,6 @@ Help users define stakeholder personas and track their goals, ensuring all persp
 - Reviewing a plan to check stakeholder coverage
 - Resolving conflicts between different stakeholder needs
 - Linking GitHub issues to stakeholder goals
-
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `add_note` | Create new stakeholder profiles as notes |
-| `update_note` | Modify existing stakeholder profiles |
-| `search_notes` | Find stakeholders by name, role, or goal |
-| `list_notes` | List all stakeholder profiles |
-| `get_note` | Retrieve a specific stakeholder profile |
-| `delete_note` | Remove a stakeholder profile |
-| `list_github_issues` | Fetch issues to check goal-issue linkage |
 
 ## Stakeholder Note Format
 
@@ -71,53 +58,53 @@ When a user wants to add a stakeholder, engage conversationally:
 3. Ask about their goals (what do they want to achieve?)
 4. Ask about pain points (what frustrates them currently?)
 5. Ask about priorities (what matters most, in order?)
-6. Confirm the profile and save using `add_note` with the YAML format above
+6. Confirm the profile and save using the YAML format above
 
 ### Listing Stakeholders
 
 When asked to list stakeholders:
 
-1. Use `search_notes` with query "type: stakeholder" to find all stakeholder notes
+1. Search for all stakeholder profiles (e.g., by "type: stakeholder")
 2. Present a summary table with name, role, and top goals
 
 ### Viewing Stakeholder Details
 
 When asked about a specific stakeholder:
 
-1. Use `search_notes` with the stakeholder name
+1. Search for the stakeholder by name
 2. Present the full profile with goals, pain points, and linked issues
 
 ### Updating Stakeholders
 
 When asked to update a stakeholder:
 
-1. Use `search_notes` to find the stakeholder note
-2. Use `get_note` to retrieve the full content
+1. Find the stakeholder profile
+2. Retrieve the full content
 3. Make the requested changes
-4. Use `update_note` to save the updated profile
+4. Save the updated profile
 
 ### Removing Stakeholders
 
 When asked to remove a stakeholder:
 
-1. Use `search_notes` to find the stakeholder note
+1. Find the stakeholder profile
 2. Confirm deletion with the user
-3. Use `delete_note` to remove the profile
+3. Remove the profile
 
 ### Linking Issues to Goals
 
 When an issue addresses a stakeholder goal:
 
-1. Use `search_notes` to find the stakeholder
+1. Find the stakeholder profile
 2. Add the issue number to the `linkedIssues` section under the matching goal
-3. Use `update_note` to save the updated profile
+3. Save the updated profile
 
 ### Checking Coverage
 
 When asked about stakeholder coverage:
 
-1. Use `search_notes` to find all stakeholder notes
-2. Use `list_github_issues` to fetch open issues
+1. Find all stakeholder profiles
+2. Fetch open issues to check goal-issue linkage
 3. For each stakeholder, check which goals have linked issues and which don't
 4. Calculate coverage percentages
 5. Present a coverage report highlighting gaps
@@ -156,12 +143,12 @@ Respond to these types of questions:
 
 | Question Type | Action |
 |--------------|--------|
-| "Who are the stakeholders?" | Search notes and list all stakeholder profiles |
+| "Who are the stakeholders?" | Find and list all stakeholder profiles |
 | "Add a stakeholder" | Start conversational profile creation |
 | "What are [Name]'s goals?" | Find and show specific stakeholder's goals |
 | "Does this address stakeholder concerns?" | Generate coverage report |
 | "Show me stakeholder coverage" | Generate coverage report |
-| "Link issue #X to [goal]" | Update stakeholder note with issue link |
+| "Link issue #X to [goal]" | Update stakeholder profile with issue link |
 | "Are there any conflicts?" | Compare stakeholder priorities for conflicts |
 
 ## Best Practices

@@ -2,7 +2,6 @@
 name: dependency-mapping
 description: "Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths"
 instructions: "When mapping issue dependencies, visualizing blocking chains, or identifying the critical path through project work"
-allowed-tools: "list_github_issues get_github_issue_with_comments add_note search_github_issues"
 ---
 
 # Dependency Mapping Skill
@@ -16,15 +15,6 @@ Activate this skill when:
 - User wants to see which issues block others
 - During sprint planning to identify critical path
 - After issue decomposition to visualize relationships
-
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `list_github_issues` | Get all open issues with labels and state |
-| `get_github_issue_with_comments` | Get full issue details with body text |
-| `search_github_issues` | Find specific issues by criteria |
-| `add_note` | Save dependency graph to project notes |
 
 ## CRITICAL: Mermaid Syntax Rules
 
@@ -143,7 +133,7 @@ flowchart LR
 
 ### Step 1: Gather Issues
 
-Use `list_github_issues` to get all open issues:
+Gather all open issues:
 - Note issue numbers and titles
 - Check for "blocked by" or "depends on" in labels
 - Look for dependency keywords in descriptions

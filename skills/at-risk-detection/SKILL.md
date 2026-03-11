@@ -9,7 +9,6 @@ tags:
   - blocked
   - deadline
   - project-management
-allowed-tools: "list_github_issues get_github_issue_with_comments"
 ---
 
 # At-Risk Detection Skill
@@ -26,25 +25,18 @@ Activate when:
 - Before milestone deadlines
 - When triaging backlog items
 
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `list_github_issues` | Fetch open issues and PRs for analysis |
-| `get_github_issue_with_comments` | Deep-dive into specific issues for detailed risk signals |
-
 ## Analysis Approach
 
 ### Quick Mode (Default)
 
-Fetch the 30 most recent open issues using `list_github_issues`:
+Fetch the 30 most recent open issues:
 - Fast (seconds)
 - Good for daily checks
 - May miss older stale items
 
 ### Comprehensive Mode
 
-Fetch ALL open issues by paginating through `list_github_issues`:
+Fetch ALL open issues by paginating:
 - Thorough analysis
 - Slower for large repositories
 - Best for milestone reviews
@@ -162,14 +154,14 @@ Track issue counts per assignee:
 
 ### Morning Health Check
 
-1. Use `list_github_issues` to fetch recent open issues
+1. Fetch recent open issues
 2. Apply all heuristics to each issue
 3. Present health summary with risk breakdown
 4. Highlight any critical items requiring immediate attention
 
 ### Individual Issue Assessment
 
-1. Use `get_github_issue_with_comments` for the specific issue
+1. Fetch the specific issue with all comments
 2. Apply all heuristic checks
 3. Present detailed risk analysis with signals and suggestions
 

@@ -8,7 +8,6 @@ tags:
   - requirements
   - analysis
   - documentation
-allowed-tools: "list_github_issues get_github_issue_with_comments read_project_file get_project_scan"
 ---
 
 # Context-Aware Question Generator Skill
@@ -24,24 +23,15 @@ Activate when:
 - Preparing a draft (issue, PR, document) for submission
 - During project planning or kickoff
 
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `list_github_issues` | Fetch open issues for project-wide gap analysis |
-| `get_github_issue_with_comments` | Deep-dive into specific issues for detailed analysis |
-| `read_project_file` | Read README, docs, and config files for documentation gaps |
-| `get_project_scan` | Get project structure and language data for architecture analysis |
-
 ## Analysis Modes
 
 ### 1. Project-Wide Review
 
 When asked "what am I missing?" or "what questions should I be asking?":
 
-1. Use `list_github_issues` to fetch all open issues
-2. Use `get_project_scan` to understand project structure
-3. Use `read_project_file` to check README and documentation
+1. Fetch all open issues
+2. Analyze project structure
+3. Check README and documentation
 4. Analyze all gathered data for information gaps
 5. Generate prioritized questions
 
@@ -49,7 +39,7 @@ When asked "what am I missing?" or "what questions should I be asking?":
 
 When asked to review a specific issue:
 
-1. Use `get_github_issue_with_comments` to fetch the issue and all comments
+1. Fetch the issue and all comments
 2. Analyze for missing requirements, unclear specs, and gaps
 3. Generate targeted questions for that issue
 
@@ -65,8 +55,8 @@ When reviewing a draft (issue, PR, note) before submission:
 
 When asked about documentation completeness:
 
-1. Use `read_project_file` to read README.md and files in docs/
-2. Use `get_project_scan` to understand what the project contains
+1. Read README.md and files in docs/
+2. Analyze what the project contains
 3. Identify missing documentation by comparing project content to docs
 
 ## Gap Detection Heuristics
@@ -89,7 +79,7 @@ When asked about documentation completeness:
 - **Inconsistencies between issues and notes**: Conflicting descriptions
 - **Missing architecture documentation**: No system overview for complex projects
 - **Undocumented key files**: Entry points without explaining comments
-- **No project scan available**: Suggest running a scan first
+- **No project overview available**: Suggest analyzing the project structure first
 
 ## Output Structure
 
@@ -147,4 +137,4 @@ Questions are categorized and prioritized:
 ### When Analyzing Documentation
 1. Check against industry standards
 2. Consider the project type (CLI needs different docs than library)
-3. Leverage project scan data when available
+3. Leverage project structure analysis when available

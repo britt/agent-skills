@@ -2,7 +2,6 @@
 name: project-planning
 description: "Orchestrate comprehensive project planning - decompose projects into issues, generate architecture diagrams, map dependencies, and create timelines"
 instructions: "When planning a new project end-to-end, orchestrating issue creation with architecture diagrams, dependency maps, and timelines"
-allowed-tools: "create_github_issue list_github_issues add_note search_notes read_project_file list_project_directory get_project_scan load_skills"
 ---
 
 # Project Planning Skill
@@ -19,31 +18,16 @@ Activate this skill when user says:
 - "Help me scope out..."
 - "Plan the implementation of..."
 
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `create_github_issue` | Create individual issues |
-| `list_github_issues` | Check existing issues |
-| `add_note` | Save planning artifacts |
-| `search_notes` | Find existing plans |
-| `read_project_file` | Analyze existing codebase |
-| `list_project_directory` | Explore project structure |
-| `get_project_scan` | Get project analysis |
-| `load_skills` | Load sub-skills for specific tasks |
-
 ## Sub-Skills
 
 This skill coordinates four specialized sub-skills:
 
 | Skill | Purpose |
 |-------|---------|
-| `issue-decomposition` | Break down into GitHub issues |
-| `architecture-diagramming` | Generate architecture diagrams |
-| `dependency-mapping` | Map issue dependencies |
-| `timeline-planning` | Create Gantt charts |
-
-Load these skills as needed during the planning workflow.
+| issue-decomposition | Break down into GitHub issues |
+| architecture-diagramming | Generate architecture diagrams |
+| dependency-mapping | Map issue dependencies |
+| timeline-planning | Create Gantt charts |
 
 ## Planning Workflow
 
@@ -103,18 +87,13 @@ Ask key questions to scope the work:
 ### Step 2: Analyze Existing Codebase
 
 If working in an existing project:
-- Use `get_project_scan` to understand structure
-- Use `read_project_file` to check existing patterns
-- Use `list_project_directory` to explore organization
+- Analyze the project structure
+- Review existing code patterns
+- Explore the project organization
 
 ### Step 3: Decompose into Issues
 
-Load `issue-decomposition` skill:
-```
-load_skills(['issue-decomposition'])
-```
-
-Generate 5-15 well-structured issues with:
+Use the issue-decomposition skill to generate 5-15 well-structured issues with:
 - User stories
 - Acceptance criteria
 - Dependencies
@@ -123,12 +102,7 @@ Generate 5-15 well-structured issues with:
 
 ### Step 4: Generate Architecture Diagram
 
-Load `architecture-diagramming` skill:
-```
-load_skills(['architecture-diagramming'])
-```
-
-Create a Mermaid diagram showing:
+Use the architecture-diagramming skill to create a Mermaid diagram showing:
 - Major components
 - Data flow
 - External integrations
@@ -136,24 +110,14 @@ Create a Mermaid diagram showing:
 
 ### Step 5: Map Dependencies
 
-Load `dependency-mapping` skill:
-```
-load_skills(['dependency-mapping'])
-```
-
-Generate a dependency graph showing:
+Use the dependency-mapping skill to generate a dependency graph showing:
 - Blocking relationships
 - Parallel opportunities
 - Critical path
 
 ### Step 6: Create Timeline
 
-Load `timeline-planning` skill:
-```
-load_skills(['timeline-planning'])
-```
-
-Create a Gantt chart with:
+Use the timeline-planning skill to create a Gantt chart with:
 - Phases and milestones
 - Task durations
 - Dependencies
@@ -188,9 +152,9 @@ Create these issues and save the plan? (y/n)
 ### Step 8: Create and Save
 
 On confirmation:
-1. Create all issues using `create_github_issue`
+1. Create all issues
 2. Save planning document to `docs/plans/<slug>-plan.md`
-3. Save summary to project notes using `add_note`
+3. Save summary to project notes
 
 ## Planning Document Format
 
@@ -253,10 +217,10 @@ Save to `docs/plans/<project-slug>-plan.md`:
 
 **Assistant**:
 1. Asks clarifying questions about auth approach, storage, etc.
-2. Loads `issue-decomposition` → generates 7 issues
-3. Loads `architecture-diagramming` → creates system diagram
-4. Loads `dependency-mapping` → maps issue relationships
-5. Loads `timeline-planning` → creates 2-week Gantt chart
+2. Uses issue-decomposition to generate 7 issues
+3. Uses architecture-diagramming to create system diagram
+4. Uses dependency-mapping to map issue relationships
+5. Uses timeline-planning to create 2-week Gantt chart
 6. Shows full preview to user
 7. On approval: creates issues, saves plan document
 

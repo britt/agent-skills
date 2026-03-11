@@ -2,7 +2,6 @@
 name: timeline-planning
 description: "Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones"
 instructions: "When creating a project timeline, generating a Gantt chart, or planning phases and milestones for scheduled work"
-allowed-tools: "list_github_issues add_note search_github_issues"
 ---
 
 # Timeline Planning Skill
@@ -16,14 +15,6 @@ Activate this skill when:
 - User says "create a Gantt chart", "show me the project schedule"
 - After issue decomposition to visualize scheduling
 - During sprint planning to allocate work
-
-## Available Tools
-
-| Tool | Purpose |
-|------|---------|
-| `list_github_issues` | Get issues with estimates and dependencies |
-| `add_note` | Save timeline to project notes |
-| `search_github_issues` | Find specific issues for timeline |
 
 ## Mermaid Gantt Syntax
 
@@ -157,7 +148,7 @@ gantt
 
 ### Step 1: Gather Issues
 
-Use `list_github_issues` to get:
+Gather the following from project issues:
 - Issue titles
 - Estimates or labels indicating size
 - Dependencies or blocking relationships

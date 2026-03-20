@@ -8,6 +8,7 @@ A collection of skills for Claude to enhance AI-assisted development workflows.
 
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
+| **sgai-goal** | Compose GOAL.md files for SGAI workspaces through interactive conversation | * | |
 | **setting-up-a-project** | Author CLAUDE.md with project purpose, tech stack, and development practices | * | |
 | **working-on-an-issue** | Work on, read, or implement a GitHub issue | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
@@ -92,6 +93,7 @@ Add this repository as a plugin marketplace:
 /plugin install britt/project-planning
 /plugin install britt/requirement-elicitation
 /plugin install britt/research-topic-summarize
+/plugin install britt/sgai-goal
 /plugin install britt/setting-up-a-project
 /plugin install britt/stakeholder-tracking
 /plugin install britt/stakeholder-updates

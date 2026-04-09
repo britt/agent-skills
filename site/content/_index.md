@@ -10,7 +10,6 @@ description: "Claude Skills are reusable instruction sets that give Claude struc
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | [Setting Up a Project](./skills/setting-up-a-project/) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. | ✓ | |
-| [Working on an Issue](./skills/working-on-an-issue/) | A structured workflow for implementing GitHub issues with verification, following an Understand → Plan → Verify → Implement → Verify Again loop. | ✓ | |
 | [Project Analysis](./skills/project-analysis/) | Analyze a project's codebase structure, architecture, key files, and dependencies. | ✓ | ✓ |
 | [Project Planning](./skills/project-planning/) | Orchestrate end-to-end project planning with issues, architecture diagrams, dependency maps, and timelines. | ✓ | ✓ |
 | [Issue Decomposition](./skills/issue-decomposition/) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. | ✓ | ✓ |

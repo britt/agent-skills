@@ -54,6 +54,17 @@
       "tags": ["faq", "issues", "documentation", "support"]
     },
     {
+      "name": "changelog-generation",
+      "description": "Generate a changelog from git history using conventional commit messages, grouped by release type",
+      "version": "1.0.0",
+      "author": {
+        "name": "Britt Crawford"
+      },
+      "source": "./skills/changelog-generation",
+      "category": "documentation",
+      "tags": ["changelog", "releases", "conventional-commits", "git"]
+    },
+    {
       "name": "consolidate-notes-summary",
       "description": "Search project notes by topic, synthesize findings into a consolidated summary with cross-references",
       "version": "1.0.0",

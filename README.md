@@ -44,6 +44,7 @@ A collection of skills for Claude to enhance AI-assisted development workflows.
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | **architecture-diagramming** | Generate Mermaid architecture diagrams showing system components and data flows | * | * |
+| **changelog-generation** | Generate a changelog from git history using conventional commit messages | * | * |
 | **mermaid-diagrams** | Guide for creating syntactically correct Mermaid diagrams for GitHub | * | * |
 | **markdown-formatting** | Format AI outputs into consistent, readable Markdown | * | * |
 | **build-faq-from-issues** | Extract common questions from closed issues and generate an FAQ document | * | * |

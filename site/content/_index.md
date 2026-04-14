@@ -43,6 +43,7 @@ description: "Claude Skills are reusable instruction sets that give Claude struc
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | [Architecture Diagramming](./skills/architecture-diagramming/) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. | ✓ | ✓ |
+| [Changelog Generation](./skills/changelog-generation/) | Generate a changelog from git history using conventional commit messages, grouped by release type. | ✓ | ✓ |
 | [Mermaid Diagrams](./skills/mermaid-diagrams/) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. | ✓ | ✓ |
 | [Markdown Formatting](./skills/markdown-formatting/) | Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes. | ✓ | ✓ |
 | [Build FAQ from Issues](./skills/build-faq-from-issues/) | Extract common questions from closed GitHub issues and generate an FAQ document with answers. | ✓ | ✓ |

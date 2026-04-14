@@ -75,39 +75,7 @@ Add this repository as a plugin marketplace:
 /plugin install britt/claude-code-skills
 ```
 
-**Install individual skills:**
-
-```bash
-/plugin install britt/architecture-diagramming
-/plugin install britt/at-risk-detection
-/plugin install britt/build-faq-from-issues
-/plugin install britt/consolidate-notes-summary
-/plugin install britt/context-aware-questions
-/plugin install britt/daily-planning-ritual
-/plugin install britt/dependency-mapping
-/plugin install britt/idea-to-design
-/plugin install britt/issue-decomposition
-/plugin install britt/markdown-formatting
-/plugin install britt/mermaid-diagrams
-/plugin install britt/prepare-meeting-agenda
-/plugin install britt/project-analysis
-/plugin install britt/project-planning
-/plugin install britt/requirement-elicitation
-/plugin install britt/research-topic-summarize
-/plugin install britt/sgai-goal
-/plugin install britt/setting-up-a-project
-/plugin install britt/stakeholder-tracking
-/plugin install britt/stakeholder-updates
-/plugin install britt/summarize-conversation-thread
-/plugin install britt/summoning-the-user
-/plugin install britt/timeline-planning
-/plugin install britt/triage-new-issues
-/plugin install britt/user-story-template
-/plugin install britt/working-on-an-issue
-/plugin install britt/writing-product-specs
-/plugin install britt/writing-user-stories
-/plugin install britt/writing-verification-plans
-```
+**Note:** Individual skill installation has been removed. Install the full bundle above.
 
 ### Claude Code: Manual Installation
 

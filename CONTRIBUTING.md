@@ -11,7 +11,6 @@ claude-code-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
 ├── LICENSE                   # MIT license
-├── package.sh                # Build skill zip archives for distribution
 ├── .claude-plugin/
 │   └── marketplace.json      # Plugin marketplace configuration
 ├── docs/
@@ -107,16 +106,6 @@ Add the new skill to `.claude-plugin/marketplace.json`:
   "tags": ["tag1", "tag2"]
 }
 ```
-
-## Building Skill Archives
-
-To create zip archives of all skills for distribution:
-
-```bash
-./package.sh
-```
-
-This creates a `dist/` directory containing zip files for each skill (e.g., `dist/summoning-the-user.zip`).
 
 ## Testing Skills
 

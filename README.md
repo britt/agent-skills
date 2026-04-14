@@ -99,22 +99,7 @@ Restart Claude Code after installation to load new skills.
 
 ### Claude.ai (Web and iOS)
 
-Skills can be added to Claude.ai projects as project knowledge:
-
-1. **Download the skill zip file**
-   - Go to the [Releases page](https://github.com/britt/claude-code-skills/releases/)
-   - Download the zip file for the skill you want (e.g., `writing-product-specs.zip`)
-
-2. **Add to your Claude.ai project**
-   - Open [claude.ai](https://claude.ai) and go to your project
-   - Click on **Project knowledge** in the sidebar
-   - Upload the zip file
-
-3. **Use the skill**
-   - The skill will be available in all conversations within that project
-   - Claude will automatically use it when the context matches the skill's description
-
-**Note:** Some skills (like `summoning-the-user`) require Claude Code-specific features and won't work in Claude.ai.
+Skills can be added to Claude.ai projects as project knowledge by cloning the repository and uploading individual skill directories to your project's knowledge base.
 
 ## Rules
 

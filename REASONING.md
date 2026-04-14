@@ -1,6 +1,6 @@
 # Reasoning for PR #36
 
-PR #36 is a documentation PR created in response to issue #35. It documents the changes introduced by PR #34, and it adds a new companion document because the repository did not already include a `REASONING.md` file.
+PR #36 is a documentation PR created in response to issue #35. Its purpose is to document the changes introduced by PR #34, and it adds a new companion document because the repository did not already include a `REASONING.md` file.
 
 ## Changes made in this PR
 
@@ -8,7 +8,7 @@ PR #36 is a documentation PR created in response to issue #35. It documents the 
 
 What changed
 
-PR #36 added a new top level `RELEASE_NOTES.md` file. That file introduces release notes for version `2.0.0` and summarizes the release in sections for breaking changes, additions, changes, and fixes. It calls out the new `changelog-generation` skill, the shift to the full `britt/claude-code-skills` marketplace bundle, the move away from zip downloads for Claude.ai setup, refreshed contributor and installation documentation, and packaging safety and cleanup updates.
+PR #36 added a new top level `RELEASE_NOTES.md` file. That file introduces release notes for version `2.0.0` and summarizes the release in sections for breaking changes, additions, changes, and fixes. It covers the new `changelog-generation` skill, the shift to the full `britt/claude-code-skills` marketplace bundle, the move away from zip downloads for Claude.ai setup, refreshed contributor and installation documentation, and packaging safety and cleanup updates.
 
 Reasoning
 
@@ -21,7 +21,7 @@ Reasoning
 
 What changed
 
-PR #36 added `site/content/docs/release-notes.md` to the documentation site area. That page carries the same release note subject matter into the `site/content/docs` section so the release information appears alongside the rest of the published documentation.
+PR #36 added `site/content/docs/release-notes.md` in the documentation site section. That page brings the same release note coverage into the site docs area so the release information appears alongside the rest of the documentation published from the repository.
 
 Reasoning
 

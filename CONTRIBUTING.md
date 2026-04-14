@@ -10,21 +10,31 @@ Guidelines for contributing to this skills repository.
 claude-code-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
+├── LICENSE                   # MIT license
+├── package.sh                # Build skill zip archives for distribution
 ├── .claude-plugin/
 │   └── marketplace.json      # Plugin marketplace configuration
 ├── docs/
+│   ├── examples/             # Semantic release commit examples
 │   └── plans/                # Design documents for skills
-│       └── 2025-11-09-summoning-user-design.md
-└── skills/
+├── rules/
+│   └── TDD.rules.md         # Reusable TDD rules for CLAUDE.md
+├── site/                     # Hugo documentation site
+│   ├── hugo.toml
+│   └── content/
+└── skills/                   # One directory per skill
     ├── daily-planning-ritual/
     │   ├── README.md         # Customization guide
-    │   └── SKILL.md          # Skill implementation
+    │   ├── SKILL.md          # Skill implementation
+    │   └── .claude-plugin/
+    │       └── plugin.json   # Plugin metadata
+    ├── sgai-goal/
+    │   └── SKILL.md
     ├── summoning-the-user/
     │   └── SKILL.md
     ├── writing-product-specs/
     │   └── SKILL.md
-    └── writing-user-stories/
-        └── SKILL.md
+    └── ...                   # 25+ additional skills
 ```
 
 ## Creating a New Skill

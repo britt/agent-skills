@@ -1,6 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
+# Parse flags
+if [ "${1:-}" = "--clean" ]; then
+  echo "Cleaning dist/ directory..."
+  rm -rf dist
+fi
+
 # Create dist directory if it doesn't exist
 mkdir -p dist
 

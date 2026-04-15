@@ -13,10 +13,13 @@ This release expands release guidance, adds the changelog generation skill, refr
 
 * Added the `changelog-generation` skill and documented it across the marketplace, README, and site.
 
-### Docs
+### Changed
 
 * Clarified release commit examples for `fix`, `feat`, `perf`, and `BREAKING CHANGE` formats.
 * Refreshed the contributing guide so the documented repository structure matches the current layout.
+
+### Chore
+
 * Streamlined the packaging transition with a `--clean` option that removed stale archives before rebuilding.
 
 ### Fixed

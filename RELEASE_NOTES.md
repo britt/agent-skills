@@ -2,7 +2,7 @@
 
 ## 2.0.0
 
-This release consolidates installation and distribution around the `britt/claude-code-skills` bundle, removes the older zip download path, adds the `changelog-generation` skill, and refreshes published guidance so installation and repository documentation reflect the 2.0.0 model.
+This release standardizes installation around the `britt/claude-code-skills` bundle, removes zip download distribution, adds the `changelog-generation` skill, and refreshes published guidance so installation and repository documentation reflect the 2.0.0 model.
 
 ### Breaking Changes
 
@@ -20,5 +20,5 @@ This release consolidates installation and distribution around the `britt/claude
 
 ### Fixed
 
-* Hardened the transitional archive packaging script so it failed fast when required skill directories were missing instead of producing incomplete output.
-* Added a `--clean` option during the transition away from archive packaging so stale build artifacts could be removed before rebuilding; archive packaging is not part of 2.0.0.
+* Hardened the transitional archive packaging flow so missing skill directories stopped a build early instead of producing incomplete downloads before that distribution path was removed.
+* Added a `--clean` option during the transition away from archive packaging so stale archive files could be cleared before rebuilding; archive packaging is not part of 2.0.0.

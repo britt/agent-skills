@@ -8,3 +8,8 @@ This release introduces the 2.0.0 bundle update, clarifies installation around t
 
 * Removed individual marketplace entries, so the `/plugin install britt/<skill-name>` flow no longer works and installation now happens through the full `britt/claude-code-skills` bundle.
 * Retired zip archive downloads and removed `package.sh`, so Claude.ai installations now use a cloned repository with uploaded skill directories instead of downloaded archives.
+
+### Added
+
+* Introduced the `changelog-generation` skill to expand the bundled documentation workflow.
+* Provided semantic release example documents that show feature, fix, performance, and breaking change commit formats.

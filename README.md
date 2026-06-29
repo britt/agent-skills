@@ -71,41 +71,41 @@ Add this repository as a plugin marketplace:
 **Install all skills:**
 
 ```bash
-/plugin install britt/claude-code-skills
+/plugin install claude-code-skills@britt
 ```
 
 **Install individual skills:**
 
 ```bash
-/plugin install britt/architecture-diagramming
-/plugin install britt/at-risk-detection
-/plugin install britt/build-faq-from-issues
-/plugin install britt/consolidate-notes-summary
-/plugin install britt/context-aware-questions
-/plugin install britt/daily-planning-ritual
-/plugin install britt/dependency-mapping
-/plugin install britt/idea-to-design
-/plugin install britt/issue-decomposition
-/plugin install britt/markdown-formatting
-/plugin install britt/mermaid-diagrams
-/plugin install britt/prepare-meeting-agenda
-/plugin install britt/project-analysis
-/plugin install britt/project-planning
-/plugin install britt/requirement-elicitation
-/plugin install britt/research-topic-summarize
-/plugin install britt/sgai-goal
-/plugin install britt/setting-up-a-project
-/plugin install britt/stakeholder-tracking
-/plugin install britt/stakeholder-updates
-/plugin install britt/summarize-conversation-thread
-/plugin install britt/summoning-the-user
-/plugin install britt/timeline-planning
-/plugin install britt/triage-new-issues
-/plugin install britt/user-story-template
-/plugin install britt/working-on-an-issue
-/plugin install britt/writing-product-specs
-/plugin install britt/writing-user-stories
-/plugin install britt/writing-verification-plans
+/plugin install architecture-diagramming@britt
+/plugin install at-risk-detection@britt
+/plugin install build-faq-from-issues@britt
+/plugin install consolidate-notes-summary@britt
+/plugin install context-aware-questions@britt
+/plugin install daily-planning-ritual@britt
+/plugin install dependency-mapping@britt
+/plugin install idea-to-design@britt
+/plugin install issue-decomposition@britt
+/plugin install markdown-formatting@britt
+/plugin install mermaid-diagrams@britt
+/plugin install prepare-meeting-agenda@britt
+/plugin install project-analysis@britt
+/plugin install project-planning@britt
+/plugin install requirement-elicitation@britt
+/plugin install research-topic-summarize@britt
+/plugin install sgai-goal@britt
+/plugin install setting-up-a-project@britt
+/plugin install stakeholder-tracking@britt
+/plugin install stakeholder-updates@britt
+/plugin install summarize-conversation-thread@britt
+/plugin install summoning-the-user@britt
+/plugin install timeline-planning@britt
+/plugin install triage-new-issues@britt
+/plugin install user-story-template@britt
+/plugin install working-on-an-issue@britt
+/plugin install writing-product-specs@britt
+/plugin install writing-user-stories@britt
+/plugin install writing-verification-plans@britt
 ```
 
 ### Claude Code: Manual Installation

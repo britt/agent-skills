@@ -1,7 +1,7 @@
 {
   "name": "claude-code-skills",
   "description": "Skills for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"

@@ -11,13 +11,13 @@ Add the marketplace and install this skill:
 
 ```bash
 /plugin marketplace add britt/claude-code-skills
-/plugin install britt/context-aware-questions
+/plugin install context-aware-questions@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install britt/claude-code-skills
+/plugin install claude-code-skills@britt
 ```
 
 ## Compatibility

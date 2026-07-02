@@ -74,6 +74,14 @@ Add this repository as a plugin marketplace:
 /plugin install claude-code-skills@britt
 ```
 
+**Install a curated bundle:**
+
+```bash
+# project-foundations: setup, issue decomposition, user stories,
+# verification plans, and architecture/dependency/Mermaid diagrams
+/plugin install project-foundations@britt
+```
+
 **Install individual skills:**
 
 ```bash

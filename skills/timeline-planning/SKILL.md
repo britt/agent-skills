@@ -1,7 +1,6 @@
 ---
 name: timeline-planning
-description: "Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones"
-instructions: "When creating a project timeline, generating a Gantt chart, or planning phases and milestones for scheduled work"
+description: Use when asked for a project timeline, schedule, sprint plan, or Gantt chart, or after breaking work into issues - converts issue estimates and dependencies into a Mermaid Gantt chart with phases, milestones, and critical path
 ---
 
 # Timeline Planning Skill
@@ -13,7 +12,7 @@ Generate Mermaid Gantt charts that visualize project timelines, task scheduling,
 Activate this skill when:
 - User asks "what would the timeline look like?"
 - User says "create a Gantt chart", "show me the project schedule"
-- After issue decomposition to visualize scheduling
+- After running the `issue-decomposition` skill, to visualize scheduling of the resulting issues
 - During sprint planning to allocate work
 
 ## Mermaid Gantt Syntax
@@ -51,10 +50,7 @@ Convert T-shirt size estimates to days:
 | Large | 5d | Almost a week |
 | XL | 8d | Full week+ |
 
-Adjust based on:
-- Team velocity
-- Complexity indicators
-- Buffer for unknowns
+Adjust based on team velocity, complexity indicators, and buffer for unknowns.
 
 ## Task States
 
@@ -67,86 +63,13 @@ Adjust based on:
 
 ## Timeline Patterns
 
-### Linear Project
-
-```mermaid
-gantt
-    title API Development
-    dateFormat YYYY-MM-DD
-
-    section Setup
-    Project initialization    :a, 2025-01-15, 1d
-    Database setup           :b, after a, 2d
-
-    section Development
-    User endpoints           :c, after b, 3d
-    Auth endpoints           :d, after c, 3d
-
-    section Testing
-    Unit tests               :e, after d, 2d
-    Integration tests        :f, after e, 2d
-```
-
-### Parallel Workstreams
-
-```mermaid
-gantt
-    title Full Stack Development
-    dateFormat YYYY-MM-DD
-
-    section Backend
-    API Design              :a, 2025-01-15, 2d
-    API Implementation      :b, after a, 5d
-
-    section Frontend
-    UI Design               :c, 2025-01-15, 3d
-    UI Implementation       :d, after c, 5d
-
-    section Integration
-    Connect Frontend-Backend :e, after b d, 3d
-    End-to-end tests        :f, after e, 2d
-```
-
-### With Milestones
-
-```mermaid
-gantt
-    title Release Timeline
-    dateFormat YYYY-MM-DD
-
-    section Phase 1
-    Core features           :a, 2025-01-15, 10d
-    Alpha Release           :milestone, m1, after a, 0d
-
-    section Phase 2
-    Additional features     :b, after m1, 7d
-    Beta Release            :milestone, m2, after b, 0d
-
-    section Phase 3
-    Polish and fixes        :c, after m2, 5d
-    Production Release      :milestone, m3, after c, 0d
-```
-
-### With Critical Path
-
-```mermaid
-gantt
-    title Project with Critical Path
-    dateFormat YYYY-MM-DD
-
-    section Critical Path
-    Database design         :crit, a, 2025-01-15, 2d
-    Core API                :crit, b, after a, 5d
-    Integration             :crit, c, after b, 3d
-
-    section Parallel Work
-    Documentation           :d, 2025-01-15, 10d
-    UI polish               :e, after a, 5d
-```
+Reusable Gantt patterns (linear project, parallel workstreams, milestones, critical path) are in [gantt-patterns.md](gantt-patterns.md).
 
 ## Timeline Generation Process
 
 ### Step 1: Gather Issues
+
+Prerequisite: fetch the open issues with `gh issue list --state open --json number,title,labels,body` (requires the `gh` CLI), or ask the user to paste the issue list.
 
 Gather the following from project issues:
 - Issue titles
@@ -179,11 +102,7 @@ Order tasks based on blocking:
 
 ### Step 5: Group into Phases
 
-Organize tasks into logical sections:
-- Setup/Foundation
-- Core Features
-- Testing
-- Polish
+Organize tasks into logical sections: Setup/Foundation, Core Features, Testing, Polish.
 
 ### Step 6: Generate Gantt Chart
 
@@ -261,5 +180,5 @@ If > 20 tasks:
 - Show total project duration
 - Identify the end date
 - Flag if timeline exceeds any stated deadlines
-- Offer to save to project notes
+- Offer to save the chart to a markdown file in the repo
 - Suggest adding milestones if missing

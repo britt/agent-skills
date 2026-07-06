@@ -1,7 +1,6 @@
 ---
 name: issue-decomposition
-description: "Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, dependencies, and estimates"
-instructions: "When breaking down a project or feature into GitHub issues, decomposing work into tasks, or creating structured issues from a description"
+description: "Use when the user says 'create issues for...', 'break this into tasks', or 'decompose this feature', or when converting a project description into GitHub issues - produces 5-15 INVEST-quality issues with user stories, acceptance criteria, dependencies, labels, and T-shirt estimates"
 ---
 
 # Issue Decomposition Skill
@@ -15,6 +14,8 @@ Activate this skill when:
 - User says "create issues for...", "break this into tasks", "decompose this feature"
 - During project planning to generate actionable work items
 - When converting requirements into GitHub issues
+
+**When NOT to use:** not for single bug reports or tasks already small enough to be one issue; not for dependency visualization (use the `dependency-mapping` skill).
 
 ## Issue Template
 
@@ -92,27 +93,16 @@ Always show the user a summary before creating issues:
 Proceed with creation? (y/n)
 ```
 
+### Step 6: Create the Issues
+On approval, create each issue with `gh issue create --title ... --body ... --label ...` (requires the gh CLI authenticated for the repo). If gh is unavailable, output the issue bodies for manual creation.
+
 ## Label Taxonomy
 
-### Type Labels
-- `feature` - New functionality
-- `enhancement` - Improvement to existing feature
-- `bug` - Defect fix
-- `chore` - Maintenance, dependencies, cleanup
-- `docs` - Documentation only
-- `test` - Test coverage
+Check existing repo labels first (`gh label list`) and prefer them over this default taxonomy.
 
-### Area Labels
-- `frontend` - UI/UX changes
-- `backend` - Server/API changes
-- `database` - Schema/data changes
-- `infrastructure` - DevOps/deployment
-- `security` - Security-related
-
-### Priority Labels
-- `priority:high` - Critical path, do first
-- `priority:medium` - Important, schedule soon
-- `priority:low` - Nice to have, backlog
+- **Type**: `feature`, `enhancement`, `bug`, `chore`, `docs`, `test`
+- **Area**: `frontend`, `backend`, `database`, `infrastructure`, `security`
+- **Priority**: `priority:high`, `priority:medium`, `priority:low`
 
 ## Estimation Guidelines
 
@@ -135,41 +125,7 @@ Proceed with creation? (y/n)
 
 ## Example Decomposition
 
-**User Request**: "Build a user authentication system"
-
-**Generated Issues**:
-
-1. **Set up auth module structure** (Small)
-   - Create directory structure
-   - Add base dependencies
-   - No blockers
-
-2. **Implement user registration endpoint** (Medium)
-   - POST /auth/register
-   - Email/password validation
-   - Blocked by: #1
-
-3. **Implement login endpoint with JWT** (Medium)
-   - POST /auth/login
-   - JWT generation
-   - Blocked by: #1
-
-4. **Add password reset flow** (Medium)
-   - Email token generation
-   - Reset endpoint
-   - Blocked by: #2
-
-5. **Implement logout and token invalidation** (Small)
-   - Token blacklist
-   - Blocked by: #3
-
-6. **Add authentication middleware** (Small)
-   - Protect routes
-   - Blocked by: #3
-
-7. **Write integration tests** (Medium)
-   - Test all auth endpoints
-   - Blocked by: #2, #3, #4, #5
+See [example.md](example.md) for a worked decomposition of "Build a user authentication system" into 7 issues.
 
 ## After Decomposition
 

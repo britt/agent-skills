@@ -1,12 +1,13 @@
 ---
 name: project-planning
-description: "Orchestrate comprehensive project planning - decompose projects into issues, generate architecture diagrams, map dependencies, and create timelines"
-instructions: "When planning a new project end-to-end, orchestrating issue creation with architecture diagrams, dependency maps, and timelines"
+description: "Use when the user says 'build a project plan', 'help me plan X', 'break down this project', or 'scope out this feature' - orchestrates issue-decomposition, architecture-diagramming, dependency-mapping, and timeline-planning to produce GitHub issues, diagrams, and a saved plan document"
 ---
 
 # Project Planning Skill
 
 Orchestrate a comprehensive project planning workflow that generates GitHub issues, architecture diagrams, dependency graphs, and timeline charts from a natural language project description.
+
+**Prerequisites:** Requires the issue-decomposition, architecture-diagramming, dependency-mapping, and timeline-planning skills (installed individually or via the project-foundations bundle). If a sub-skill is unavailable, perform that step inline.
 
 ## When to Use
 
@@ -30,41 +31,6 @@ This skill coordinates four specialized sub-skills:
 | timeline-planning | Create Gantt charts |
 
 ## Planning Workflow
-
-```mermaid
-flowchart TB
-    subgraph Input
-        A[User describes project]
-    end
-
-    subgraph Discovery
-        B[Ask clarifying questions]
-        C[Analyze existing codebase]
-    end
-
-    subgraph Generation
-        D[Decompose into issues]
-        E[Generate architecture diagram]
-        F[Map dependencies]
-        G[Create timeline]
-    end
-
-    subgraph Output
-        H[Preview with user]
-        I[Create issues in GitHub]
-        J[Save planning document]
-    end
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
-    H --> I
-    I --> J
-```
 
 ### Step 1: Understand the Project
 
@@ -152,9 +118,9 @@ Create these issues and save the plan? (y/n)
 ### Step 8: Create and Save
 
 On confirmation:
-1. Create all issues
+1. Create all issues using `gh issue create` (requires the gh CLI) or an available GitHub MCP tool; if neither is available, output the issue bodies for manual creation
 2. Save planning document to `docs/plans/<slug>-plan.md`
-3. Save summary to project notes
+3. Save the plan summary to a markdown file in the repo (e.g. docs/plans/)
 
 ## Planning Document Format
 
@@ -197,9 +163,6 @@ Save to `docs/plans/<project-slug>-plan.md`:
 | #201 | [Title] | Open | Small |
 | #202 | [Title] | Open | Medium |
 ...
-
----
-*Generated with LLPM project-planning skill*
 ```
 
 ## Best Practices
@@ -208,21 +171,8 @@ Save to `docs/plans/<project-slug>-plan.md`:
 2. **Preview before creating** - Show user the full plan first
 3. **Keep issues focused** - One concern per issue
 4. **Link everything** - Cross-reference issues, diagrams, notes
-5. **Save artifacts** - Store plans for future reference
+5. **Save outputs** - Store plan documents in the repo for future reference
 6. **Iterate if needed** - User can adjust before finalizing
-
-## Example Session
-
-**User**: Let's build a project plan for user authentication
-
-**Assistant**:
-1. Asks clarifying questions about auth approach, storage, etc.
-2. Uses issue-decomposition to generate 7 issues
-3. Uses architecture-diagramming to create system diagram
-4. Uses dependency-mapping to map issue relationships
-5. Uses timeline-planning to create 2-week Gantt chart
-6. Shows full preview to user
-7. On approval: creates issues, saves plan document
 
 ## After Planning
 

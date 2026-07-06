@@ -1,13 +1,6 @@
 ---
 name: markdown-formatting
-description: "Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes"
-instructions: "When formatting output as polished Markdown for pull requests, issues, documentation, or notes"
-tags:
-  - formatting
-  - markdown
-  - documentation
-  - pr-description
-  - issues
+description: "Use when writing PR descriptions, issue bodies, documentation, or notes - applies consistent Markdown conventions (heading levels, list markers, code-block languages, link text) and provides PR and issue templates"
 ---
 
 # Markdown Formatting Skill
@@ -20,7 +13,9 @@ Activate when producing:
 - PR descriptions and issue bodies
 - Documentation and guides
 - Notes and summaries
-- Any structured text output
+- Structured artifacts that will be saved or published (reports, READMEs, changelogs)
+
+**Not for** conversational chat replies — normal responses don't need templates or strict formatting rules.
 
 ## Core Principles
 
@@ -113,6 +108,27 @@ Content organized by topic...
 
 [What actually happens]
 ```
+
+## Example: Filled-in PR Description
+
+```markdown
+## Summary
+
+Add retry with exponential backoff to the `fetchUser` API client.
+
+## Changes
+
+- Wrap `fetchUser` in a retry helper (3 attempts, 200ms base delay)
+- Surface a `RetryExhaustedError` after the final attempt
+- Add unit tests covering success-after-retry and exhaustion paths
+
+## Test Plan
+
+- [x] `npm test` passes, including new `retry.test.ts` cases
+- [x] Manual check: killed the mock server mid-request, saw retries in logs (#87)
+```
+
+Note the applied rules: `##` headings, `-` list markers, backticks for code identifiers, `#87` issue reference, and a one-line summary leading the document.
 
 ## Anti-patterns
 

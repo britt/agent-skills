@@ -1,13 +1,6 @@
 ---
 name: context-aware-questions
-description: "Proactively identify information gaps in project context and generate actionable questions to surface missing requirements, unclear specifications, or documentation gaps"
-instructions: "When identifying gaps in project requirements, surfacing unclear specifications, or generating questions to fill missing context"
-tags:
-  - questions
-  - gaps
-  - requirements
-  - analysis
-  - documentation
+description: "Use when asked 'what am I missing?', reviewing an issue or draft before submission, or checking documentation completeness - detects requirement, spec, and doc gaps and generates prioritized actionable questions"
 ---
 
 # Context-Aware Question Generator Skill
@@ -23,13 +16,22 @@ Activate when:
 - Preparing a draft (issue, PR, document) for submission
 - During project planning or kickoff
 
+## Fetching Issues
+
+Where issues are needed, fetch them with the `gh` CLI (must be installed and authenticated):
+
+```bash
+gh issue list --state open --json number,title,body,labels,assignees
+gh issue view <n> --comments
+```
+
 ## Analysis Modes
 
 ### 1. Project-Wide Review
 
 When asked "what am I missing?" or "what questions should I be asking?":
 
-1. Fetch all open issues
+1. Fetch all open issues (see Fetching Issues)
 2. Analyze project structure
 3. Check README and documentation
 4. Analyze all gathered data for information gaps
@@ -39,7 +41,7 @@ When asked "what am I missing?" or "what questions should I be asking?":
 
 When asked to review a specific issue:
 
-1. Fetch the issue and all comments
+1. Fetch the issue and all comments (see Fetching Issues)
 2. Analyze for missing requirements, unclear specs, and gaps
 3. Generate targeted questions for that issue
 
@@ -76,10 +78,10 @@ When asked about documentation completeness:
 - **No inline documentation**: Missing JSDoc/docstrings in key files
 
 ### Project-Wide Analysis
-- **Inconsistencies between issues and notes**: Conflicting descriptions
+- **Conflicting descriptions across issues, README, and docs**
 - **Missing architecture documentation**: No system overview for complex projects
 - **Undocumented key files**: Entry points without explaining comments
-- **No project overview available**: Suggest analyzing the project structure first
+- **No project overview available**: Run the `project-analysis` skill first to map the project structure
 
 ## Output Structure
 
@@ -112,10 +114,6 @@ Questions are categorized and prioritized:
    - Context: Project has 15 endpoints but no API reference
    - Suggested Action: Create docs/api.md with endpoint documentation
 
-3. [requirements] Issue #38 has vague description
-   - Context: Description is only 20 characters
-   - Suggested Action: Expand with problem statement and expected behavior
-
 ### Medium Priority (5)
 ...
 ```
@@ -130,11 +128,9 @@ Questions are categorized and prioritized:
 
 ### When Reviewing Drafts
 1. Be constructive, not critical
-2. Suggest specific improvements
-3. Provide example text when helpful
-4. Acknowledge what's already good
+2. Suggest specific improvements with example text when helpful
+3. Acknowledge what's already good
 
 ### When Analyzing Documentation
 1. Check against industry standards
 2. Consider the project type (CLI needs different docs than library)
-3. Leverage project structure analysis when available

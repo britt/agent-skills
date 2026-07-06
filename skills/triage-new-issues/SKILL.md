@@ -1,13 +1,6 @@
 ---
 name: triage-new-issues
-description: "Review new GitHub issues, assess priority and urgency, suggest labels, and recommend assignees"
-instructions: "When triaging new GitHub issues, assessing priority and urgency, suggesting labels, or recommending assignees"
-tags:
-  - triage
-  - issues
-  - priority
-  - labels
-  - backlog
+description: "Use when processing new or untriaged GitHub issues - assesses urgency from keyword and label signals, assigns P0-P3 priority, suggests labels and assignees, and flags issues needing escalation or clarification"
 ---
 
 # Triage New Issues Skill
@@ -22,39 +15,16 @@ Activate when:
 - Assessing issue priority
 - Assigning issues to owners
 
-## Output Structure (per issue)
+## Fetching and Applying Triage
 
-```markdown
-## Triage: #[number] — [title]
+Use the `gh` CLI (must be installed and authenticated):
 
-### Priority Assessment
+```bash
+# Find untriaged issues
+gh issue list --search 'no:label' --json number,title,body,labels
 
-**Urgency**: [Critical | High | Medium | Low]
-**Impact**: [Wide | Moderate | Limited]
-**Recommended Priority**: P[0-3]
-
-| Signal | Indicator |
-|--------|-----------|
-| [Keyword/label found] | [What it suggests] |
-
-### Classification
-
-**Type**: [Bug | Feature | Question | Task]
-**Area**: [Component or area affected]
-**Suggested Labels**: `priority/high`, `bug`, `area/auth`
-**Suggested Assignee**: @username (owns this area)
-
-### Assessment
-
-[Summary of the issue and reasoning for priority assignment]
-
-### Clarifying Questions (if needed)
-
-- [ ] [Question to understand severity]
-
-### Recommendation
-
-[Immediate action | Next sprint | Backlog | Needs info | Duplicate of #X]
+# Apply labels after triage
+gh issue edit <n> --add-label <label>
 ```
 
 ## Priority Signals
@@ -89,6 +59,7 @@ Activate when:
 4. Assess impact (how many users affected)
 5. Look for workarounds mentioned
 6. Check if duplicate of existing issue
+7. Determine ownership: check CODEOWNERS, recent `git log` on affected paths, or past assignees of similar issues — omit the assignee suggestion if none found
 
 ### When to Escalate
 
@@ -109,3 +80,38 @@ Activate when:
 - Duplicate of closed/wontfix issue
 - Feature request disguised as bug
 - Missing required information from template
+
+## Output Structure (per issue)
+
+```markdown
+## Triage: #[number] — [title]
+
+### Priority Assessment
+
+**Urgency**: [Critical | High | Medium | Low]
+**Impact**: [Wide | Moderate | Limited]
+**Recommended Priority**: P[0-3]
+
+| Signal | Indicator |
+|--------|-----------|
+| [Keyword/label found] | [What it suggests] |
+
+### Classification
+
+**Type**: [Bug | Feature | Question | Task]
+**Area**: [Component or area affected]
+**Suggested Labels**: `priority/high`, `bug`, `area/auth`
+**Suggested Assignee**: @username — based on CODEOWNERS, git history, or similar past issues (omit if no owner found)
+
+### Assessment
+
+[Summary of the issue and reasoning for priority assignment]
+
+### Clarifying Questions (if needed)
+
+- [ ] [Question to understand severity]
+
+### Recommendation
+
+[Immediate action | Next sprint | Backlog | Needs info | Duplicate of #X]
+```

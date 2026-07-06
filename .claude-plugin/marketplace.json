@@ -253,17 +253,6 @@
       "tags": ["summary", "github", "discussions", "action-items"]
     },
     {
-      "name": "summoning-the-user",
-      "description": "Gets user attention when Claude needs input while running in background",
-      "version": "1.0.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/summoning-the-user",
-      "category": "productivity",
-      "tags": ["notification", "blocking", "user-input"]
-    },
-    {
       "name": "timeline-planning",
       "description": "Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones",
       "version": "1.0.0",
@@ -284,17 +273,6 @@
       "source": "./skills/triage-new-issues",
       "category": "productivity",
       "tags": ["triage", "issues", "priority", "labels"]
-    },
-    {
-      "name": "user-story-template",
-      "description": "Guide writing well-formed user stories with acceptance criteria following best practices",
-      "version": "1.0.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/user-story-template",
-      "category": "documentation",
-      "tags": ["user-stories", "acceptance-criteria", "agile", "templates"]
     },
     {
       "name": "working-on-an-issue",

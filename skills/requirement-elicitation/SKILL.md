@@ -1,12 +1,6 @@
 ---
 name: requirement-elicitation
-description: "Adaptive conversational wizard for eliciting project requirements. Guides users through functional, nonfunctional, and edge-case requirements with domain-specific questions for web apps, APIs, CLIs, mobile, data pipelines, and more."
-instructions: "When gathering project requirements, eliciting functional and nonfunctional needs, or guiding a user through a requirements conversation"
-tags:
-  - requirements
-  - planning
-  - wizard
-  - product-management
+description: Use when gathering project requirements, or when a user says 'help me define requirements' or 'figure out what to build' - adaptive wizard covering functional, nonfunctional, constraints, and edge cases with domain-specific questions for web apps, APIs, CLIs, mobile, and data pipelines
 ---
 
 # Requirement Elicitation Wizard
@@ -20,14 +14,14 @@ You are guiding the user through a comprehensive requirement elicitation process
 3. **Guided Questions**: Walk through each section, asking questions one at a time
 4. **Adaptive Flow**: Branch based on answers (e.g., if they mention integrations, ask which ones)
 5. **Refinement**: Allow revisiting any section
-6. **Output**: Generate a comprehensive requirements document saved to notes
+6. **Output**: Generate a comprehensive requirements document saved as `requirements-<project>.md` in the working directory
 
 ## Conversation Flow
 
 ### Starting the Session
 
 When the user wants to define requirements:
-1. Ask the user to determine what type of project they're building
+1. Ask the user what type of project they're building
 2. Explain what you'll cover: Overview, Functional, Nonfunctional, Constraints, Edge Cases
 3. Ask the first question
 
@@ -48,47 +42,29 @@ For each question:
 2. Include context explaining why you're asking
 3. Indicate if it's required or optional
 4. After the user answers, mentally note the response and continue
-5. Periodically save captured requirements
 
 ### Section Transitions
 
 When a section is complete:
 1. Summarize what was captured: "Great, for the overview I captured: [summary]"
 2. Ask if they want to add anything else to this section
-3. Save the section's requirements to notes
+3. Append the completed section to `requirements-<project>.md` in the working directory
 4. Introduce the next section briefly
-
-### Tracking Progress
-
-Keep mental track of:
-- Which sections are complete
-- How many questions answered per section
-- Current position in the flow
-
-Periodically save progress to notes so nothing is lost.
 
 ### User Commands
 
 Handle these natural language requests:
 - "Skip this section" - Move to next section, note it was skipped
-- "Let's revisit [section]" - Search existing notes to find saved requirements, then update
-- "What have we captured?" - Summarize all captured requirements from notes
-- "Generate the document" - Compile all notes into a requirements document
-- "Save this" - Save current state
+- "Let's revisit [section]" - Re-read `requirements-<project>.md` to find the saved section, then update it
+- "What have we captured?" - Summarize all captured requirements from `requirements-<project>.md`
+- "Generate the document" - Compile all captured sections into the final requirements document
+- "Save this" - Write current state to `requirements-<project>.md`
 
 ## Question Style
 
-### DO:
-- Ask one question at a time
-- Be conversational: "Tell me about..." rather than "INPUT:"
-- Provide context: "This helps us understand scale requirements"
-- Accept natural language answers (don't require specific formats)
+**DO:** Ask one question at a time; be conversational ("Tell me about..."); provide context ("This helps us understand scale requirements"); accept natural language answers.
 
-### DON'T:
-- Dump all questions at once
-- Be robotic or form-like
-- Require yes/no when open answers are better
-- Skip ahead without confirmation
+**DON'T:** Dump all questions at once; be robotic or form-like; require yes/no when open answers are better; skip ahead without confirmation.
 
 ## Domain Options
 
@@ -140,6 +116,8 @@ When asking the user what type of project they're building, present these option
 - Volume and frequency?
 - Error handling and retry strategy?
 
+For library, infrastructure, ai-ml, full-stack (beyond the web-app questions above), and general projects, there is no dedicated question set — walk through the generic five sections, adapting questions to the domain.
+
 ## Requirements Document Format
 
 When generating the final document, use this structure:
@@ -171,21 +149,13 @@ When generating the final document, use this structure:
 - [any unresolved items]
 ```
 
-## Saving to Notes
+## Persistence
 
-Use notes to persist all captured requirements:
-
-- **Section notes**: Save each completed section as a separate note with a clear title (e.g., "Requirements: Project Overview")
-- **Final document**: Compile all sections into a single comprehensive note
-- **Key decisions**: If the user makes important architectural decisions during elicitation, save them as separate notes with relevant tags
-- **Searching past requirements**: Search existing notes if the user asks about previous requirements
-
-After generating the requirements document, offer to save it:
-> "I've compiled your requirements document. Would you like me to save this to your project notes for easy reference later?"
+Append each completed section to `requirements-<project>.md` in the working directory so nothing is lost if the session ends. To revisit or summarize earlier work, re-read that file. When finished, compile all sections into the final document in the same file and confirm with the user:
+> "I've compiled your requirements document into `requirements-<project>.md`. Want to review or adjust anything?"
 
 ## After Completing Requirements
 
 Suggest natural next steps:
-- Project planning to break requirements into issues
-- Architecture diagramming to visualize the system
-- Issue decomposition to create actionable work items
+- `issue-decomposition` skill (if available) to break requirements into actionable work items
+- `architecture-diagramming` skill (if available) to visualize the system

@@ -19,8 +19,6 @@ claude-code-skills/
     ├── daily-planning-ritual/
     │   ├── README.md         # Customization guide
     │   └── SKILL.md          # Skill implementation
-    ├── summoning-the-user/
-    │   └── SKILL.md
     ├── writing-product-specs/
     │   └── SKILL.md
     └── writing-user-stories/
@@ -106,7 +104,7 @@ To create zip archives of all skills for distribution:
 ./package.sh
 ```
 
-This creates a `dist/` directory containing zip files for each skill (e.g., `dist/summoning-the-user.zip`).
+This creates a `dist/` directory containing zip files for each skill (e.g., `dist/writing-user-stories.zip`).
 
 ## Testing Skills
 

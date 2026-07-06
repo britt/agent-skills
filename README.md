@@ -24,8 +24,7 @@ A collection of skills for Claude to enhance AI-assisted development workflows.
 | **requirement-elicitation** | Conversational wizard for eliciting functional, nonfunctional, and edge-case requirements | * | * |
 | **idea-to-design** | Turn an idea note into a design document | * | * |
 | **writing-product-specs** | Write comprehensive product specification documents | * | * |
-| **writing-user-stories** | Write properly formatted user stories for task definition | * | * |
-| **user-story-template** | Guide writing well-formed user stories with acceptance criteria | * | * |
+| **writing-user-stories** | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist | * | * |
 | **writing-verification-plans** | Acceptance test verification plans (real-world testing, never mocks) | * | * |
 | **context-aware-questions** | Identify information gaps and generate questions to surface missing requirements | * | * |
 
@@ -56,7 +55,6 @@ A collection of skills for Claude to enhance AI-assisted development workflows.
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | **daily-planning-ritual** | Interactive daily planning across work and personal life dimensions | * | * |
-| **summoning-the-user** | Gets user's attention when Claude needs input while running in the background | * | |
 
 ## Installation
 
@@ -106,10 +104,8 @@ Add this repository as a plugin marketplace:
 /plugin install stakeholder-tracking@britt
 /plugin install stakeholder-updates@britt
 /plugin install summarize-conversation-thread@britt
-/plugin install summoning-the-user@britt
 /plugin install timeline-planning@britt
 /plugin install triage-new-issues@britt
-/plugin install user-story-template@britt
 /plugin install working-on-an-issue@britt
 /plugin install writing-product-specs@britt
 /plugin install writing-user-stories@britt
@@ -153,7 +149,7 @@ Skills can be added to Claude.ai projects as project knowledge:
    - The skill will be available in all conversations within that project
    - Claude will automatically use it when the context matches the skill's description
 
-**Note:** Some skills (like `summoning-the-user`) require Claude Code-specific features and won't work in Claude.ai.
+**Note:** Some skills (like `sgai-goal` and `setting-up-a-project`) require Claude Code-specific features and won't work in Claude.ai.
 
 ## Rules
 

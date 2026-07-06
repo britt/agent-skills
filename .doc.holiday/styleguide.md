@@ -41,7 +41,6 @@ claude-code-skills/
 ├── skills/                      # SKILL DEFINITIONS (source of truth)
 │   ├── daily-planning-ritual/
 │   ├── setting-up-a-project/
-│   ├── summoning-the-user/
 │   ├── writing-product-specs/
 │   ├── writing-user-stories/
 │   └── writing-verification-plans/
@@ -70,7 +69,6 @@ This is the **source of truth** for all skills. Each skill lives in its own subd
 |-------|---------|
 | `daily-planning-ritual` | Interactive morning planning across life dimensions |
 | `setting-up-a-project` | Authors CLAUDE.md project documentation |
-| `summoning-the-user` | Alerts users when agents need input |
 | `writing-product-specs` | Creates comprehensive product specifications |
 | `writing-user-stories` | Generates properly formatted user stories |
 | `writing-verification-plans` | Creates acceptance testing procedures |

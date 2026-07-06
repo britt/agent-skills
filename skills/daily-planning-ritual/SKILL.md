@@ -1,5 +1,5 @@
 ---
-name: day-planning
+name: daily-planning-ritual
 description: Interactive daily planning ritual that guides the user through a reflective conversation across all life dimensions (work, fitness, relationship, social, adventure) and produces a holistic day plan. Use when the user requests to plan their day with phrases like "plan the day", "plan my day", "plan today", or similar variations.
 ---
 
@@ -15,17 +15,19 @@ This is a conversational ritual that takes 5-10 minutes:
 2. **Reflective conversation** - Ask questions across life dimensions
 3. **Draft plan** - Create initial plan with poetic opening
 4. **Refine** - Iterate based on feedback
-5. **Finalize** - Create artifact when approved
+5. **Finalize** - Write or present the final plan when approved
 
 ## Step 1: Gather Context
 
+**Prerequisites**: Requires Google Calendar, Gmail, Google Drive, and Reminders MCP connectors; skip any source that is unavailable and note the gap in the plan.
+
 **Before asking any questions**, silently gather:
 
-1. **Calendar events** for today using `list_gcal_events`
-2. **iOS Reminders** - Use `reminder_search_v0` to get incomplete reminders, focusing on the "today" list or items due today
-3. **Recent emails** (last 24 hours) using `search_gmail_messages` with `newer_than:1d` - look for urgencies
+1. **Calendar events** - fetch today's calendar events (e.g. `list_gcal_events`)
+2. **Reminders** - fetch incomplete reminders, focusing on the "today" list or items due today (e.g. `reminder_search_v0`)
+3. **Recent emails** - search the last 24 hours of email for urgencies (e.g. `search_gmail_messages` with `newer_than:1d`)
 4. **Static sections** by reading a Google Doc named `Daily Planning Notes` - This document contains other goals, questions, and useful information. If you cannot find it mention that and why its useful and proceed.
-5. **Relevant Drive docs** if calendar shows meetings today - use `google_drive_search` to find related materials
+5. **Relevant Drive docs** if calendar shows meetings today - search Drive for related materials (e.g. `google_drive_search`)
 
 Keep this context in mind but don't present it yet - it informs the questions you'll ask.
 
@@ -64,7 +66,7 @@ For each area, ask 1-2 focused questions informed by the context you gathered:
 - "How's your energy level? Any recovery needs?"
 
 **Relationship**
-- "Any dedicated time for [girlfriend/child] today?"
+- "Any dedicated time for your partner or family today?"
 - "Anything they need from you?"
 
 **Social Life**
@@ -132,7 +134,7 @@ When presenting the draft plan, briefly explain why you chose this question (1-2
 
 ## Step 4: Refine
 
-Present the draft plan **in the chat** (not as an artifact yet).
+Present the draft plan **in the chat** (don't write the file yet).
 
 Ask: "How does this feel? Any adjustments?"
 
@@ -144,12 +146,12 @@ Iterate based on their feedback. Common refinements:
 
 ## Step 5: Finalize
 
-When the user indicates they're satisfied, create the final plan as a **markdown artifact** with the title "Daily Plan - [Today's Date]"
+When the user indicates they're satisfied, write the plan to a markdown file (e.g. `daily-plan-YYYY-MM-DD.md`) or present it directly, titled "Daily Plan - [Today's Date]"
 
 ## Important Notes
 
 - Keep the conversation flowing and natural - don't robotically go through every question
 - If a life dimension has nothing happening, acknowledge briefly and move on
 - The poetic opening is key - take time to craft something meaningful
-- Static sections should be copied exactly as-is from the template
+- Static sections should be copied exactly as-is from the `Daily Planning Notes` Google Doc
 - Total process should feel contemplative, not rushed, but stay within 5-10 minutes

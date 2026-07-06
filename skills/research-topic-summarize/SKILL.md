@@ -1,18 +1,16 @@
 ---
 name: research-topic-summarize
-description: "Research topics via web search, synthesize detailed summaries with sources and screenshots"
-instructions: "When researching a topic via web search, synthesizing findings into a summary with sources, or capturing screenshots of references"
-tags:
-  - research
-  - web-search
-  - summary
-  - analysis
-  - screenshots
+description: "Use when asked to research a technology, library, or concept via web search, compare options (X vs Y), or gather background for a decision - synthesizes findings into a cited summary with comparison tables, screenshots of key visuals, and a recommendation"
 ---
 
 # Research Topic and Summarize Skill
 
 Conduct thorough web research on a topic, synthesize findings into a detailed summary, and capture screenshots of key visuals.
+
+## Prerequisites
+
+- **Web search/fetch access** is required for the core research loop.
+- **Screenshots require a browser automation tool** (e.g. Playwright MCP). If none is available, do not fake images — link to the visual's source URL and describe it in text instead of embedding an image.
 
 ## When to Use
 
@@ -21,6 +19,8 @@ Activate when:
 - Learning about a new concept or pattern
 - Comparing options (X vs Y)
 - Gathering background for a decision
+
+**When NOT to use:** For deep, multi-source fact-checked reports, prefer a dedicated deep-research capability if one is available. Skip entirely for questions answerable from local docs or code — read those directly.
 
 ## Output Structure
 
@@ -53,8 +53,8 @@ Activate when:
 
 ### Visual References
 
-- ![Description](screenshot-1.png) — [what this shows]
-- ![Description](screenshot-2.png) — [what this shows]
+- ![Description](research-assets/screenshot-1.png) — [what this shows]
+- ![Description](research-assets/screenshot-2.png) — [what this shows]
 
 ### Sources
 
@@ -99,6 +99,8 @@ Capture screenshots when sources include:
 
 ### Screenshot Best Practices
 
+- Save screenshots to a `research-assets/` directory alongside the summary file
+- Reference images in the summary with relative paths into that directory, e.g. `![Comparison](research-assets/redis-vs-memcached-comparison.png)`
 - Use descriptive filenames: `redis-vs-memcached-comparison.png`
 - Always include alt text descriptions
 - Capture only relevant portions, not full pages

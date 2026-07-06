@@ -1,12 +1,6 @@
 ---
 name: stakeholder-updates
-description: "Craft clear, concise stakeholder communications with appropriate context and framing"
-instructions: "When writing status updates, communicating delays, sharing launch announcements, or crafting stakeholder communications"
-tags:
-  - communication
-  - stakeholders
-  - updates
-  - reporting
+description: Use when writing status updates, communicating delays or blockers, announcing launches, or requesting decisions and resources from stakeholders - structures the message by audience level (exec/management/peer/team) with lead-with-the-punchline framing
 ---
 
 # Stakeholder Updates Skill
@@ -21,6 +15,8 @@ Activate this skill when:
 - Sharing launch announcements
 - Requesting decisions or resources
 - Reporting on milestones or outcomes
+
+Do NOT use this skill for technical documentation or commit messages — it is for audience-facing status communication.
 
 ## Core Principles
 
@@ -70,36 +66,15 @@ Current status in plain language with key takeaway
 
 **Metrics/Impact:**
 - [Quantifiable results or leading indicators]
-- [Usage stats, customer feedback, etc.]
 
 **Blockers/Risks:**
 - [Issue]: Impact and proposed resolution
-- [Risk]: Likelihood, impact, mitigation plan
 
 **Decisions Needed:**
-- [Decision 1]: Context, options, recommendation, deadline
-- [Decision 2]: ...
+- [Decision]: Context, options, recommendation, deadline
 
 **Next Milestones:**
 - [Date]: [Milestone and success criteria]
-
-### Example: Executive Update (After Feature Launch)
-
-**Subject:** Payment Flow Redesign - Live with 23% Conversion Lift
-
-**TL;DR:** New checkout launched Tuesday. Conversion up 23%, support tickets down 15%. Monitoring for issues.
-
-**Impact:**
-- 23% increase in purchase conversion (baseline: 12% → current: 14.7%)
-- 15% reduction in payment-related support tickets
-- $47K additional revenue (3 days post-launch)
-
-**What's Next:**
-Rolling out to mobile apps next week. Full metrics report Friday.
-
-**FYI:** Minor bug in Safari addressed Wednesday. No customer impact.
-
----
 
 ### Example: Team Update (Project Delay)
 
@@ -129,8 +104,6 @@ The SDK update (required for PCI compliance) introduced breaking changes to the 
 
 **Lessons:**
 Adding "SDK update review" step to our release checklist to catch this earlier next time.
-
----
 
 ## Communication Best Practices
 
@@ -174,34 +147,13 @@ Don't just state what you decided—explain why:
 Example:
 "The feature we shipped yesterday caused a 30% increase in page load time. This affects all users on mobile devices. I approved the release without adequate performance testing—my mistake. We've rolled back the change and users should see normal performance within the hour. We're adding performance benchmarks to our release checklist."
 
-### Requesting Resources
-
-1. **State the need** (what you need)
-2. **Explain the why** (business justification)
-3. **Show the trade-off** (what happens if you don't get it)
-4. **Provide options** (full ask vs. minimum viable)
-5. **Make it easy to say yes** (clear next step)
-
-Example:
-"I'm requesting 1 additional engineer for Q3 to build the analytics dashboard. Without this, we'll miss the September board meeting commitment, and sales won't have the ROI metrics needed for enterprise deals (estimated $200K+ in lost pipeline). Alternative: we could descope real-time data and ship basic reporting in August, but this limits sales use cases."
-
-### Celebrating Wins
-
-- **Be specific** about what was accomplished
-- **Credit the team** by name when possible
-- **Tie to strategy** (how does this support larger goals?)
-- **Share learnings** (what made this successful?)
-
-Example:
-"Sarah and the eng team launched the SSO integration 2 weeks early, unlocking our first enterprise deal ($120K ARR). This validates our hypothesis that enterprise customers will pay 3x more for team features. Next up: audit logging, which is the #2 requested feature from this segment."
+The same structure adapts to requesting resources (need, justification, trade-off, options, clear next step) and celebrating wins (specific accomplishment, credit by name, tie to strategy).
 
 ## Workflow Tips
 
 1. **Gather context** before writing updates
-2. **Save templates** for recurring updates (weekly status, launch announcements, etc.)
-3. **Draft important messages** and sleep on them before sending
-4. **Get feedback** from peers on sensitive communications
-5. **Follow up** on action items and decisions requested
+2. **Offer the user a draft to review** before sending, especially for sensitive or high-stakes messages
+3. **Follow up** on action items and decisions requested
 
 ## Red Flags to Avoid
 

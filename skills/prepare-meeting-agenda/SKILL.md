@@ -1,14 +1,6 @@
 ---
 name: prepare-meeting-agenda
-description: "Generate meeting agendas from recent issues, PRs, and notes for sprint planning, retros, and standups"
-instructions: "When preparing a meeting agenda, planning a sprint review, organizing a retro, or setting up a standup"
-tags:
-  - meeting
-  - agenda
-  - planning
-  - sprint
-  - retro
-  - standup
+description: "Use when preparing an agenda for sprint planning, a retrospective, standup or sync, or a project check-in - gathers context from recent issues, PRs, and notes, groups topics, assigns owners and time boxes, and outputs a structured agenda"
 ---
 
 # Prepare Meeting Agenda Skill
@@ -24,12 +16,14 @@ Activate when preparing for:
 - Project check-ins
 - Any recurring team meeting
 
+**When NOT to use**: not for taking minutes during or after a meeting, or one-off external meetings with no project activity to mine.
+
 ## Workflow
 
 1. **Identify meeting type** - Determine format and focus areas
-2. **Gather context** - Search recent issues, PRs, and notes
+2. **Gather context** - Requires the `gh` CLI authenticated to the repo. Run `gh issue list --state open --json number,title,labels,updatedAt` and `gh pr list --state all --json number,title,updatedAt`, filtered to the meeting period (e.g. items updated since the last meeting), plus any project notes. If no repo is available, ask the user for topics.
 3. **Group by topic** - Organize items logically
-4. **Assign owners** - Note who should speak to each item
+4. **Assign owners** - Assign owners from issue/PR assignees when available; otherwise leave [Name] placeholders for the organizer
 5. **Estimate time** - Allocate realistic durations
 6. **Output agenda** - Format using template below
 
@@ -49,6 +43,11 @@ Activate when preparing for:
 - Focus: progress, blockers, today's priorities
 - Sources: in-progress issues, recent commits
 - Include: quick updates, blockers needing help
+
+### Project Check-in
+- Focus: overall status, risks, upcoming milestones
+- Sources: milestone progress, recently merged PRs, open blockers
+- Include: status summary, decisions needed, next steps
 
 ## Agenda Template
 
@@ -85,3 +84,6 @@ Activate when preparing for:
 - Put important items early
 - Include links to relevant issues/PRs
 - Send agenda ahead of meeting when possible
+- Carry over unfinished action items from the previous agenda so they are not lost
+- If gathered context surfaces more topics than fit the time box, list the overflow under a "Parking Lot" heading rather than dropping it
+- Match total topic time to the stated meeting duration; trim topics before trimming the buffer

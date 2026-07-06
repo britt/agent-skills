@@ -1,6 +1,6 @@
 ---
 name: working-on-an-issue
-description: Use when asked to work on, read, or implement a GitHub issue.
+description: Use when asked to work on, read, or implement a GitHub issue - structured understand, plan, verify, implement, verify workflow with developer approval gates and mandatory verification
 ---
 
 # Working on an Issue
@@ -45,7 +45,7 @@ Get the issue content via:
 
 ### 2. Write an Implementation Plan
 
-Use the `obra/writing-plans` skill (if available) or create a brief plan covering:
+Use the `superpowers:writing-plans` skill (if available) or create a brief plan covering:
 1. What changes are needed
 2. Which files will be modified/created
 3. Order of implementation
@@ -55,21 +55,21 @@ Save to `docs/plans/issue-<number>-plan.md` and get developer approval before pr
 
 ### 3. Write a Verification Plan
 
-Use the `britt/writing-verification-plans` skill to create acceptance tests for the issue.
+Use the `writing-verification-plans` skill to create acceptance tests for the issue.
 
 ### 4. Implement
 
-- Follow TDD practices if `TDD.rules.md` is present
+- Follow TDD practices if `TDD.rules.md` is present (a project-level TDD rules file, if the repo defines one)
 - Commit after each logical change
 - Pause and ask if you hit unexpected complexity
 
 ### 5. Execute Verification
 
-Run the verification plan. Report results using the verification log format from `britt/writing-verification-plans`.
+Run the verification plan. Report results using the verification log format from the `writing-verification-plans` skill.
 
 ## Absolute Rules
 
 - **No assumptions**: Ask if anything is unclear
 - **No scope creep**: Only implement what's specified
 - **Verification required**: Task is incomplete until verification passes or developer confirms manual verification
-- **Blocked = Stop**: If blocked, use `summoning-the-user` skill
+- **Blocked = Stop**: If blocked, stop and ask the developer — do not guess.

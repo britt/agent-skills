@@ -1,13 +1,6 @@
 ---
 name: summarize-conversation-thread
-description: "Summarize GitHub issue/PR threads into key decisions, action items, and next steps"
-instructions: "When summarizing a GitHub issue or PR discussion thread, extracting key decisions, or listing action items from a conversation"
-tags:
-  - summary
-  - issues
-  - discussion
-  - decisions
-  - action-items
+description: "Use when catching up on a long GitHub issue or PR discussion thread, or asked to summarize a thread, extract key decisions, or list action items - produces a structured summary with TL;DR, decisions, action items, open questions, and next steps"
 ---
 
 # Summarize Conversation Thread Skill
@@ -21,6 +14,16 @@ Activate when:
 - Preparing to contribute to an existing thread
 - Extracting decisions from a closed issue
 - Identifying action items from a discussion
+
+**When NOT to use:** Skip for short threads (fewer than ~5 comments) — just read them directly.
+
+## Getting the Thread
+
+First, obtain the full thread content:
+
+- **Issues**: `gh issue view <number> --comments` (requires the `gh` CLI, authenticated)
+- **PRs**: `gh pr view <number> --comments`
+- **No gh CLI or no repo access**: Ask the user to paste the thread content
 
 ## Output Structure
 

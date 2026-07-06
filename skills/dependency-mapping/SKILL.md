@@ -1,7 +1,6 @@
 ---
 name: dependency-mapping
-description: "Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths"
-instructions: "When mapping issue dependencies, visualizing blocking chains, or identifying the critical path through project work"
+description: "Use when asked to map issue dependencies, show what blocks what, or find the critical path through project work - reads GitHub issues for blocked-by/depends-on signals and generates Mermaid flowcharts of blocking chains"
 ---
 
 # Dependency Mapping Skill
@@ -133,6 +132,8 @@ flowchart LR
 
 ### Step 1: Gather Issues
 
+**Prerequisite**: Requires the `gh` CLI (e.g. `gh issue list --state open --json number,title,labels,body`) or an equivalent GitHub MCP server.
+
 Gather all open issues:
 - Note issue numbers and titles
 - Check for "blocked by" or "depends on" in labels
@@ -178,45 +179,6 @@ Look for these patterns in issue bodies:
 | "Blocks #X" | This issue must complete before #X |
 | "Required for #X" | This issue must complete before #X |
 | "Prerequisite: #X" | This issue depends on #X |
-
-## Output Format
-
-### Simple Graph
-
-```mermaid
-flowchart LR
-    I1[#1 Setup] --> I2[#2 Feature A]
-    I1 --> I3[#3 Feature B]
-    I2 --> I4[#4 Integration]
-    I3 --> I4
-```
-
-### With Phases
-
-```mermaid
-flowchart TB
-    subgraph Phase 1 - Foundation
-        I1[#1 Project setup]
-        I2[#2 Database design]
-    end
-
-    subgraph Phase 2 - Core Features
-        I3[#3 User management]
-        I4[#4 Authentication]
-    end
-
-    subgraph Phase 3 - Polish
-        I5[#5 Testing]
-        I6[#6 Documentation]
-    end
-
-    I1 --> I2
-    I2 --> I3
-    I2 --> I4
-    I3 --> I5
-    I4 --> I5
-    I5 --> I6
-```
 
 ## Arrow Types
 
@@ -273,8 +235,14 @@ flowchart TB
 
 ## After Generating Graph
 
-- Offer to save the graph to project notes
+- Offer to save the graph to a markdown file the user names
 - Identify the critical path length
 - Flag any circular dependencies as errors
-- Suggest `timeline-planning` skill for Gantt chart
+- Suggest `timeline-planning` skill (if available) for Gantt chart
 - Recommend addressing blockers first
+
+## Common Mistakes
+
+- **Parentheses in node labels** - breaks GitHub's Mermaid rendering. NEVER use parentheses in labels; use dashes instead (see the CRITICAL syntax rules above).
+- **Unflagged circular dependencies** - if #A blocks #B and #B blocks #A, the diagram may still render but the plan is impossible. Always call out cycles as errors.
+- **Inconsistent node IDs** - deviating from the `I<number>[#<number> <short title>]` convention silently creates duplicate nodes for the same issue.

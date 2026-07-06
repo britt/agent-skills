@@ -1,7 +1,6 @@
 ---
 name: architecture-diagramming
-description: "Generate Mermaid architecture diagrams showing system components, layers, and data flows"
-instructions: "When visualizing system architecture, component relationships, layers, or data flows as diagrams"
+description: "Use when the user asks for an architecture diagram, says 'show me the system architecture' or 'diagram the components', or during project planning - generates GitHub-compatible Mermaid flowcharts showing components, layers, subgraph boundaries, and data flows"
 ---
 
 # Architecture Diagramming Skill
@@ -15,6 +14,8 @@ Activate this skill when:
 - User says "show me the system architecture", "diagram the components"
 - During project planning to visualize the system design
 - When explaining how components interact
+
+**When NOT to use:** not for issue/task dependencies (use `dependency-mapping`) or API call sequences and process flows (use `mermaid-diagrams` sequence diagrams).
 
 ## CRITICAL: Mermaid Syntax Rules
 
@@ -56,6 +57,8 @@ flowchart TD
 flowchart TD
     A{Decision}
 ```
+
+For other syntax rules, see the `mermaid-diagrams` skill.
 
 ## Diagram Patterns
 
@@ -130,35 +133,6 @@ flowchart LR
     Worker --> DB[(Database)]
 ```
 
-### Microservices
-
-Show service boundaries and communication:
-
-```mermaid
-flowchart TB
-    subgraph Public
-        Gateway[API Gateway]
-    end
-
-    subgraph Services
-        UserSvc[User Service]
-        OrderSvc[Order Service]
-        PaymentSvc[Payment Service]
-    end
-
-    subgraph Infrastructure
-        MQ[(Message Queue)]
-        Cache[(Shared Cache)]
-    end
-
-    Gateway --> UserSvc
-    Gateway --> OrderSvc
-    OrderSvc --> PaymentSvc
-    OrderSvc --> MQ
-    PaymentSvc --> MQ
-    UserSvc --> Cache
-```
-
 ## Architecture Analysis Process
 
 ### Step 1: Identify Components
@@ -201,7 +175,7 @@ Use clear, abbreviated names:
 - `DB` or use `[(Name)]` for databases
 - `Queue` or `MQ` for message queues
 
-## Arrow Types
+## Arrow Semantics
 
 | Arrow | Meaning |
 |-------|---------|
@@ -235,39 +209,6 @@ flowchart TB
 4. **Label relationships** - When meaning isn't obvious
 5. **Avoid clutter** - Break complex systems into multiple diagrams
 6. **Be consistent** - Same naming conventions throughout
-
-## Example Output
-
-Given a description of a "REST API with authentication and database":
-
-```mermaid
-flowchart TB
-    subgraph Client Layer
-        Web[Web Client]
-        Mobile[Mobile Client]
-    end
-
-    subgraph API Layer
-        Gateway[API Gateway]
-        AuthSvc[Auth Service]
-        CoreAPI[Core API]
-    end
-
-    subgraph Data Layer
-        DB[(PostgreSQL)]
-        Cache[(Redis)]
-        Sessions[(Session Store)]
-    end
-
-    Web --> Gateway
-    Mobile --> Gateway
-    Gateway --> AuthSvc
-    Gateway --> CoreAPI
-    AuthSvc --> Sessions
-    AuthSvc --> Cache
-    CoreAPI --> DB
-    CoreAPI --> Cache
-```
 
 ## After Generating Diagram
 

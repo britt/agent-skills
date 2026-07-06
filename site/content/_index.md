@@ -23,8 +23,7 @@ description: "Claude Skills are reusable instruction sets that give Claude struc
 | [Requirement Elicitation](./skills/requirement-elicitation/) | Conversational wizard for eliciting functional, nonfunctional, and edge-case requirements with domain-specific questions. | ✓ | ✓ |
 | [Idea to Design](./skills/idea-to-design/) | Turn an idea note into a design document with clear goals, constraints, and implementation guidance. | ✓ | ✓ |
 | [Writing Product Specs](./skills/writing-product-specs/) | Write comprehensive product specification documents that explain what you are building, why, and how success will be measured. | ✓ | ✓ |
-| [Writing User Stories](./skills/writing-user-stories/) | Write properly formatted user stories that identify the persona, desired action, and expected benefit. | ✓ | ✓ |
-| [User Story Template](./skills/user-story-template/) | Guide writing well-formed user stories with acceptance criteria following best practices. | ✓ | ✓ |
+| [Writing User Stories](./skills/writing-user-stories/) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. | ✓ | ✓ |
 | [Writing Verification Plans](./skills/writing-verification-plans/) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. | ✓ | ✓ |
 | [Context-Aware Questions](./skills/context-aware-questions/) | Identify information gaps and generate prioritized questions to surface missing requirements or documentation gaps. | ✓ | ✓ |
 
@@ -55,7 +54,6 @@ description: "Claude Skills are reusable instruction sets that give Claude struc
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | [Daily Planning Ritual](./skills/daily-planning-ritual/) | An interactive morning practice that helps you plan your entire day through a reflective conversation across work and personal life dimensions. | ✓ | ✓ |
-| [Summoning the User](./skills/summoning-the-user/) | Gets your attention when Claude or background subagents reach a blocking decision and need your input to proceed. | ✓ | |
 
 ## Quick Start
 

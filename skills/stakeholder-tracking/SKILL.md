@@ -1,12 +1,6 @@
 ---
 name: stakeholder-tracking
-description: "Define stakeholder personas and track their goals to ensure all perspectives are addressed"
-instructions: "When defining stakeholder personas, tracking stakeholder goals, or ensuring all perspectives are represented in planning"
-tags:
-  - stakeholders
-  - goals
-  - planning
-  - requirements
+description: "Use when identifying project stakeholders, asked 'who are the stakeholders', checking whether a plan covers all stakeholder goals, or linking GitHub issues to stakeholder needs - maintains persona profiles (goals, pain points, priorities) and generates goal-to-issue coverage reports with gaps"
 ---
 
 # Stakeholder Tracking
@@ -18,20 +12,17 @@ Help users define stakeholder personas and track their goals, ensuring all persp
 ## When to Use This Skill
 
 - Starting a new project and need to identify stakeholders
-- Planning features and want to ensure all perspectives are covered
-- Reviewing a plan to check stakeholder coverage
-- Resolving conflicts between different stakeholder needs
-- Linking GitHub issues to stakeholder goals
+- Plus any of the triggers in the Natural Language Triggers table below
 
-## Stakeholder Note Format
+## Storage Format
 
-Each stakeholder is stored as a note with YAML content. Use the title format "Stakeholder: [Name]" for easy searching.
+Each stakeholder is a markdown file at `docs/stakeholders/<name>.md` containing a YAML block. List stakeholders with Glob over `docs/stakeholders/*.md`; search profile contents (a goal, role, or issue number) with Grep over that directory.
 
 ```yaml
 type: stakeholder
 name: End User
 role: Product manager
-description: Uses LLPM for specs and planning
+description: Plans features and writes specs for the engineering team
 goals:
   - Quickly create well-formed issues
   - AI assistance for gap analysis
@@ -49,62 +40,24 @@ linkedIssues:
 
 ## Workflow
 
-### Adding Stakeholders
+### Managing Profiles
 
-When a user wants to add a stakeholder, engage conversationally:
-
-1. Ask for the stakeholder's name and role
-2. Ask for a brief description
-3. Ask about their goals (what do they want to achieve?)
-4. Ask about pain points (what frustrates them currently?)
-5. Ask about priorities (what matters most, in order?)
-6. Confirm the profile and save using the YAML format above
-
-### Listing Stakeholders
-
-When asked to list stakeholders:
-
-1. Search for all stakeholder profiles (e.g., by "type: stakeholder")
-2. Present a summary table with name, role, and top goals
-
-### Viewing Stakeholder Details
-
-When asked about a specific stakeholder:
-
-1. Search for the stakeholder by name
-2. Present the full profile with goals, pain points, and linked issues
-
-### Updating Stakeholders
-
-When asked to update a stakeholder:
-
-1. Find the stakeholder profile
-2. Retrieve the full content
-3. Make the requested changes
-4. Save the updated profile
-
-### Removing Stakeholders
-
-When asked to remove a stakeholder:
-
-1. Find the stakeholder profile
-2. Confirm deletion with the user
-3. Remove the profile
+To add a stakeholder, ask conversationally for their name, role, description, goals (what they want to achieve), pain points (current frustrations), and priorities (in order); confirm the profile, then write it to `docs/stakeholders/<name>.md` in the YAML format above. To list, Glob the directory and present a summary table of name, role, and top goals. To view, update, or remove a stakeholder, Read their file and present it, apply the requested edits, or delete it (confirm before deleting).
 
 ### Linking Issues to Goals
 
 When an issue addresses a stakeholder goal:
 
-1. Find the stakeholder profile
+1. Read the stakeholder's file in `docs/stakeholders/`
 2. Add the issue number to the `linkedIssues` section under the matching goal
-3. Save the updated profile
+3. Save the updated file
 
 ### Checking Coverage
 
 When asked about stakeholder coverage:
 
-1. Find all stakeholder profiles
-2. Fetch open issues to check goal-issue linkage
+1. Read all profiles in `docs/stakeholders/`
+2. Fetch open issues with `gh issue list --state open --json number,title` (requires the gh CLI)
 3. For each stakeholder, check which goals have linked issues and which don't
 4. Calculate coverage percentages
 5. Present a coverage report highlighting gaps
@@ -129,13 +82,13 @@ Coverage report format:
 
 When stakeholder priorities might conflict:
 
-1. Identify the conflicting priorities by comparing stakeholder profiles
+1. Identify the conflicting priorities by comparing stakeholder files
 2. Present the conflict clearly to the user
 3. Offer resolution options:
    - Prioritize one stakeholder's needs
    - Find a compromise
    - Document as a known tradeoff
-4. Record the resolution by updating the relevant stakeholder notes
+4. Record the resolution by updating the relevant stakeholder files
 
 ## Natural Language Triggers
 
@@ -143,12 +96,12 @@ Respond to these types of questions:
 
 | Question Type | Action |
 |--------------|--------|
-| "Who are the stakeholders?" | Find and list all stakeholder profiles |
+| "Who are the stakeholders?" | List all profiles in `docs/stakeholders/` |
 | "Add a stakeholder" | Start conversational profile creation |
-| "What are [Name]'s goals?" | Find and show specific stakeholder's goals |
+| "What are [Name]'s goals?" | Read and show specific stakeholder's goals |
 | "Does this address stakeholder concerns?" | Generate coverage report |
 | "Show me stakeholder coverage" | Generate coverage report |
-| "Link issue #X to [goal]" | Update stakeholder profile with issue link |
+| "Link issue #X to [goal]" | Update stakeholder file with issue link |
 | "Are there any conflicts?" | Compare stakeholder priorities for conflicts |
 
 ## Best Practices

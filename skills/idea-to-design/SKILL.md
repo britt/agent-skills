@@ -1,11 +1,21 @@
 ---
 name: idea-to-design
-description: Use when asked to turn an idea note into a design document, plan an idea, or make an idea real
+description: Use when asked to turn an idea note into a design document, plan an idea, or make an idea real - autonomously researches the idea and produces Design.md, Decisions.md, and Research.md in an Ideas/<Idea Name>/ folder, asking zero questions
 ---
 
 # Idea to Design
 
 Transform raw idea notes into comprehensive design documents autonomously.
+
+**Prerequisites/Context:** Operates on an Obsidian vault (or any markdown folder) containing an `Ideas/` folder; if no Ideas/ folder is found, ask the user for the vault path.
+
+## When to Use
+
+Activate when asked to:
+- Turn an idea note into a design
+- Plan an idea or "make an idea real"
+
+**Not for** features in an existing codebase — use `writing-product-specs` or a brainstorming skill instead.
 
 ## Process
 
@@ -72,3 +82,7 @@ Never use ASCII art.
 **Alternatives:** What else was considered
 **Reasoning:** Why this choice was made
 ```
+
+## Common Mistakes
+
+- **Writing Design.md before Research.md**: Research must inform the design — complete and record the research first, then write the design document based on its findings.

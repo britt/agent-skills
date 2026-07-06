@@ -1,22 +1,22 @@
 # Customizing the Daily Planning Ritual
 
-The Daily Planning Ritual skill reads from a **static sections artifact** (`references/static-sections-template.md`) to include persistent content in every daily plan. Edit this file to customize what appears in your plans.
+The Daily Planning Ritual skill reads persistent content from a **Google Doc named `Daily Planning Notes`** in your Google Drive (fetched via the Google Drive connector during context gathering). Edit that document to customize what appears in your plans.
 
 ## How It Works
 
-The skill automatically copies these sections from the artifact into each daily plan:
+During Step 1 (Gather Context), the skill searches Google Drive for a document titled `Daily Planning Notes` and copies these sections into each daily plan:
 
 - **Climbing Goals** - Your ongoing climbing objectives
-- **Life Projects** - Personal projects and initiatives  
+- **Life Projects** - Personal projects and initiatives
 - **Work Priorities** - Current work focus areas
 - **Work Questions** - Reflective questions about work
 - **Life Questions** - Broader life reflection questions
 
-These sections are copied exactly as-is, so you can customize the skill's output by editing the artifact file.
+These sections are copied exactly as-is, so you can customize the skill's output by editing the Google Doc. If the document can't be found, the skill mentions the gap and proceeds without the static sections.
 
-## Creating the Static Sections Artifact
+## Creating the Daily Planning Notes Doc
 
-Create `references/static-sections-template.md` with this structure:
+Create a Google Doc named `Daily Planning Notes` with this structure:
 
 ```markdown
 Climbing Goals
@@ -39,7 +39,7 @@ Life Questions
 
 ### Change Section Names
 
-You can rename sections in the artifact to match your priorities:
+You can rename sections in the doc to match your priorities:
 
 ```markdown
 Fitness Goals
@@ -54,11 +54,10 @@ Career Priorities
 
 **Important:** If you change section names, you **must** also update `skills/daily-planning-ritual/SKILL.md`:
 
-1. Update **Step 1** - Change references to the section names when reading the artifact
-2. Update **Step 3** - Modify the plan format to use your new section names
-3. Update **Step 2** - If you renamed "Life Questions", update the reference in the closing questions section
+1. Update **Step 3** - Modify the plan format to use your new section names
+2. Update **Step 2** - If you renamed "Life Questions", update the reference in the closing questions section
 
-The skill looks for exact section headers, so both the artifact and SKILL.md must match. Alternatively, keep the original section names and customize only the content.
+The skill looks for exact section headers, so both the Google Doc and SKILL.md must match. Alternatively, keep the original section names and customize only the content.
 
 ### Customize Reflection Questions
 
@@ -76,7 +75,7 @@ Add, remove, or reorder questions to match your reflection style.
 
 ### Update Priorities Over Time
 
-Edit the artifact whenever your priorities change:
+Edit the Google Doc whenever your priorities change:
 
 - **Weekly:** Update Work Priorities as projects shift
 - **Monthly:** Refresh Life Projects as initiatives evolve
@@ -88,10 +87,8 @@ Changes take effect immediately—the next planning session will use the updated
 
 To include additional persistent sections in your plans:
 
-1. Add the section to `references/static-sections-template.md`
-2. Update `skills/daily-planning-ritual/SKILL.md`:
-   - **Step 1** - Add the new section name to the list of sections read from the artifact
-   - **Step 3** - Add the new section to the plan format template
+1. Add the section to the `Daily Planning Notes` Google Doc
+2. Update `skills/daily-planning-ritual/SKILL.md` **Step 3** to add the new section to the plan format template
 
 Example: Add a "Learning Goals" section:
 
@@ -100,14 +97,14 @@ Learning Goals
 [Your learning objectives]
 ```
 
-Then update SKILL.md to reference "Learning Goals" in both Step 1 and Step 3.
+Then update SKILL.md to reference "Learning Goals" in the Step 3 plan format.
 
 ## Relationship to the Skill
 
-The skill is **read-only** regarding static sections—it copies content but never modifies the artifact. However, if you change section names or add new sections, you must update the skill itself:
+The skill is **read-only** regarding static sections—it copies content from the Google Doc but never modifies it:
 
-- **Content changes** - Edit the artifact file directly (no skill changes needed)
-- **Section name changes** - Update both the artifact AND `SKILL.md` Step 1 and Step 3
-- **New sections** - Add to the artifact AND update `SKILL.md` Step 1 and Step 3
+- **Content changes** - Edit the Google Doc directly (no skill changes needed)
+- **Section name changes** - Update both the Google Doc AND `SKILL.md` Step 2/Step 3 references
+- **New sections** - Add to the Google Doc AND update `SKILL.md` Step 3
 
-The artifact acts as a configuration file, but the skill must know which sections to look for. Keep them in sync when customizing section structure.
+The Google Doc acts as a configuration file, but the skill must know which sections to look for. Keep them in sync when customizing section structure.

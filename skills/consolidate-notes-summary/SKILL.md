@@ -1,18 +1,13 @@
 ---
 name: consolidate-notes-summary
-description: "Search project notes by topic, synthesize findings into a consolidated summary with cross-references"
-instructions: "When consolidating notes on a topic, synthesizing findings across multiple notes, or creating a summary from scattered project notes"
-tags:
-  - notes
-  - consolidate
-  - summary
-  - synthesis
-  - knowledge
+description: "Use when knowledge on a topic is scattered across multiple project notes and someone asks to consolidate, synthesize, or summarize what has been documented - searches notes by topic and produces a single summary with key points, timeline, cross-references, and documentation gaps"
 ---
 
 # Consolidate Notes Summary Skill
 
 Search project notes by topic or tag and produce a consolidated summary that synthesizes information across multiple sources.
+
+Notes location: check for a `notes/` or `docs/notes/` directory, a vault path noted in CLAUDE.md, or ask the user; search with Grep across that directory.
 
 ## When to Use
 
@@ -21,6 +16,18 @@ Activate when:
 - Preparing a summary from multiple note sources
 - Reviewing what's been documented about a subject
 - Identifying gaps in documentation
+
+**When NOT to use**: single-note summarization (just read it), or consolidating code documentation rather than notes.
+
+## Workflow
+
+1. Locate the notes directory (see notes location above); confirm with the user if ambiguous.
+2. Search by topic or tag with Grep across the directory, including synonyms, abbreviations, and related terms (e.g. "auth" as well as "authentication", tag forms like `#auth`). Case-insensitive matching catches more hits.
+3. Read the matching notes, capturing dates, authors, and key claims from each.
+4. Synthesize the findings per the Synthesis vs. Aggregation guidelines below — combine, don't concatenate.
+5. Emit the output template, filling every section and flagging anything you could not determine.
+
+If the search returns nothing, widen terms once before reporting back; if it still finds nothing, say so plainly and list the terms tried rather than fabricating a summary.
 
 ## Output Structure
 

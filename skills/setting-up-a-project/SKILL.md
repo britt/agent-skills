@@ -1,6 +1,6 @@
 ---
 name: setting-up-a-project
-description: You MUST use this skill when the user asks you to setup a claude code project. You should also suggest it if there is no CLAUDE.md or when starting work on an empty codebase.
+description: Use when setting up a new Claude Code project, when a repo has no CLAUDE.md, or when starting work on an empty codebase - interviews the user and authors a CLAUDE.md covering project purpose, tech stack, TDD rules, and development practices
 ---
 
 # Setting up a Project
@@ -10,6 +10,8 @@ description: You MUST use this skill when the user asks you to setup a claude co
 Help Claude author a CLAUDE.md file that defines a project's purpose, development practices, and tech stack before writing code.
 
 **Core principle:** A well-configured project prevents rework and ensures consistency. Establishing guardrails upfront helps Claude Code work reliably, produce high-quality code, and avoid doom loops where code is written, broken, and rewritten repeatedly.
+
+**When NOT to use:** an established repo that already has a mature CLAUDE.md - review and refine the existing file instead.
 
 ## The Process
 
@@ -27,18 +29,15 @@ Here's a template:
 ```markdown
 ## Project Overview
 
-**Setting Up a Project Skill**: Helps Claude author a CLAUDE.md file that defines a project's purpose, development practices, and tech stack before writing code.
-
+**Pantry Pal**: A CLI tool that suggests weeknight dinner recipes from ingredients already in the user's pantry.
 
 ### Problem
 
-Claude Code often writes unreliable, inconsistent or low quality code.
-It can make errors like adding two different unit testing frameworks to a project.
-It can also get stuck in doom loops where code is written, broken, and rewritten repeatedly.
+Home cooks waste food and time deciding what to make. Existing recipe apps assume a shopping trip rather than working with what is already on hand.
 
 ### Approach
 
-A well-configured project prevents rework and ensures consistency. Establishing guardrails upfront helps Claude Code work reliably, produce high-quality code, and avoid doom loops where code is written, broken, and rewritten repeatedly.
+A local ingredient inventory is matched against a recipe index. The tool ranks recipes by pantry coverage and prints the top matches along with a shopping list for any missing ingredients.
 ```
 
 ## Define the Tech Stack
@@ -94,8 +93,8 @@ After defining the tech stack:
 ### TDD Rules (Mandatory)
 
 TDD is non-negotiable for all projects set up with this skill.
-Read the contents of `https://raw.githubusercontent.com/britt/claude-code-skills/refs/heads/main/rules/TDD.rules.md` 
-and copy it verbatim into `CLAUDE.md`. 
+Read the bundled `TDD.rules.md` file (in this skill's directory) and copy it verbatim into `CLAUDE.md`.
+If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/claude-code-skills/refs/heads/main/rules/TDD.rules.md`.
 
 ### Git Practices
 
@@ -107,25 +106,7 @@ Ask the user about their preferred git workflow, then document it in CLAUDE.md:
 
 ### Commit Early, Commit Often (CRITICAL)
 
-**This rule is non-negotiable.** Add the following to CLAUDE.md verbatim:
-
-```markdown
-## Git Commit Rules
-
-**COMMIT EARLY, COMMIT OFTEN** - This is mandatory.
-
-- Commit after every successful TDD cycle (RED-GREEN-REFACTOR)
-- Commit after completing any discrete unit of work
-- Commit before switching context or taking breaks
-- Never have more than 30 minutes of uncommitted work
-- Each commit should be atomic: one logical change per commit
-
-Why this matters:
-- Small commits are easier to review and revert
-- Frequent commits prevent loss of work
-- Atomic commits make git history useful for debugging
-- Regular commits force you to think in small, testable increments
-```
+**This rule is non-negotiable.** Read the bundled `git-commit-rules.md` file (in this skill's directory) and copy it verbatim into `CLAUDE.md`.
 
 ### Pull Request Rules
 YOU MUST follow these rules when creating a pull request. 
@@ -136,7 +117,7 @@ YOU MUST follow these rules when creating a pull request.
 
 ### Verification Plan
 
-Use the `britt/writing-verification-plans` skill to create a verification plan. 
+Use the `writing-verification-plans` skill (if available) to create a verification plan. 
 This produces a VERIFICATION_PLAN.md file that should be linked in CLAUDE.md as shown below:
 
 ```markdown
@@ -150,7 +131,7 @@ See @VERIFICATION_PLAN.md for acceptance testing procedures.
 * Write the `CLAUDE.md` file
 * Use elements-of-style:writing-clearly-and-concisely skill if available
 * Commit the `CLAUDE.md` to git
-* Ask if the user would like to start brainstorming requirements or an implementation plan. Use `obra/brainstorming` or `obra/writing-plans` if they say yes.
+* Ask if the user would like to start brainstorming requirements or an implementation plan. Use the `superpowers:brainstorming` skill (if available) or the `superpowers:writing-plans` skill (if available) if they say yes.
 
 ## Key Principles
 
@@ -159,3 +140,10 @@ See @VERIFICATION_PLAN.md for acceptance testing procedures.
 - **DRY ruthlessly** - Remove any repetition of instructions
 - **Incremental validation** - Present `CLAUDE.md` in sections, validate each
 - **Be flexible** - Go back and clarify when something doesn't make sense
+
+## Common Mistakes
+
+- Writing the whole CLAUDE.md at once instead of validating section by section with the user
+- Asking many questions in a single message and overwhelming the user
+- Paraphrasing the TDD rules or commit rules instead of copying them verbatim
+- Skipping the git commit after a section is confirmed

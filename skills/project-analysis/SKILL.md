@@ -1,12 +1,6 @@
 ---
 name: project-analysis
-description: "Analyze project codebase structure, architecture, key files, and dependencies using scan and filesystem tools"
-instructions: "When analyzing a project's codebase structure, understanding its architecture, or mapping key files and dependencies"
-tags:
-  - analysis
-  - architecture
-  - codebase
-  - project-management
+description: "Use when starting work on an unfamiliar codebase or asked to 'analyze this project' - maps structure, project type, architecture pattern, key files, and dependencies into a standard report"
 ---
 
 # Project Analysis Skill
@@ -22,21 +16,21 @@ Activate when:
 - Generating documentation about project structure
 - Understanding dependency landscape
 
+**When NOT to use**: For questions about a single file or feature, just read the relevant file directly — a full analysis is overkill.
+
 ## Analysis Workflow
 
-### Step 1: Initial Scan
+### Step 1: Survey the Codebase
 
-Scan the codebase to get a high-level overview:
-- Total files and lines of code
-- Languages detected and their distribution
-- File type breakdown
-- Directory structure overview
+Build a high-level overview using standard filesystem operations:
 
-If a recent scan exists, retrieve cached scan results instead of rescanning.
+1. List the directory tree with `ls` or Glob to see top-level structure
+2. Read manifest files to identify the stack: `package.json`, `go.mod`, `pyproject.toml`, `Cargo.toml`, `Gemfile`, `pom.xml`, etc.
+3. If useful, count files by extension to gauge language distribution, e.g. `find . -name '*.ts' -not -path '*/node_modules/*' | wc -l`
 
 ### Step 2: Understand Project Type
 
-Based on scan results, identify the project type:
+Based on what the survey found, identify the project type:
 
 | Indicator | Project Type |
 |-----------|-------------|
@@ -64,11 +58,7 @@ Examine critical files:
 
 ### Step 4: Explore Architecture
 
-Explore the directory layout:
-
-1. List the root directory to see top-level structure
-2. List key directories (src/, lib/, app/, etc.) to understand component organization
-3. Identify architectural patterns:
+List key directories (src/, lib/, app/, etc.) to understand component organization, then identify architectural patterns:
 
 | Pattern | Indicators |
 |---------|-----------|
@@ -86,6 +76,10 @@ Read the dependency file to understand:
 - **Package manager**: npm, yarn, pnpm, cargo, pip, etc.
 - **Dependency count**: Overall complexity indicator
 
+## Analysis Depth
+
+Scale depth to the request — quick = structure + project type only; deep = all steps plus reading entry points and core modules.
+
 ## Output Format
 
 Present analysis in this structure:
@@ -96,24 +90,19 @@ Present analysis in this structure:
 ### Overview
 - **Type**: [Web app / API / CLI / Library / etc.]
 - **Primary Language**: [language] (X%)
-- **Secondary Languages**: [languages]
 - **Total Files**: X
-- **Total Lines**: X
 
 ### Architecture
 - **Pattern**: [MVC / Layered / Feature-based / etc.]
 - **Key Directories**:
   - `src/commands/` - CLI command implementations
   - `src/services/` - Business logic layer
-  - `src/tools/` - AI tool definitions
-  - `src/utils/` - Shared utilities
 
 ### Key Files
 | File | Purpose |
 |------|---------|
 | `index.ts` | Application entry point |
 | `package.json` | Dependencies and scripts |
-| `tsconfig.json` | TypeScript configuration |
 
 ### Dependencies
 - **Package Manager**: [npm/yarn/pnpm]
@@ -125,29 +114,12 @@ Present analysis in this structure:
 - [Suggested improvements]
 ```
 
-## Analysis Depth Levels
-
-### Quick Overview
-1. Retrieve cached scan results, or perform a fresh scan
-2. Present file count, languages, and structure summary
-
-### Standard Analysis
-1. Scan project
-2. Read README and dependency file
-3. List key directories
-4. Present full analysis
-
-### Deep Dive
-1. Scan project
-2. Read all key configuration files
-3. Explore all major directories
-4. Read entry points and core modules
-5. Present comprehensive analysis with architecture diagram suggestions
-
 ## Best Practices
 
-1. **Start with cached data**: Check for cached scan results first; only perform a fresh scan if no cache exists
-2. **Read before concluding**: Don't guess architecture from file names alone; read key files
-3. **Be specific**: Name actual files and directories, don't generalize
-4. **Suggest next steps**: After analysis, recommend architecture diagramming or dependency mapping
-5. **Note concerns**: Flag large files, missing docs, or unusual patterns
+1. **Be specific**: Name actual files and directories, don't generalize
+2. **Note concerns**: Flag large files, missing docs, or unusual patterns
+
+## Common Mistakes
+
+- **Don't guess architecture from file names alone** — read key files before concluding
+- **Don't include vendored/generated directories** (node_modules, dist, target) in counts or structure

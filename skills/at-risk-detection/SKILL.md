@@ -1,14 +1,6 @@
 ---
 name: at-risk-detection
-description: "Proactively identify at-risk issues and PRs: stale items, blocked work, deadline risks, scope creep, and unassigned high-priority items"
-instructions: "When checking project health, finding stale or blocked issues, identifying deadline risks, or detecting scope creep"
-tags:
-  - risk
-  - health
-  - stale
-  - blocked
-  - deadline
-  - project-management
+description: "Use when asked about project health, stale or blocked issues, deadline risk, or scope creep - scans GitHub issues and PRs with heuristics (staleness, blocked labels, milestone dates, size, unassigned high-priority) and produces a severity-ranked at-risk report"
 ---
 
 # At-Risk Detection Skill
@@ -26,6 +18,13 @@ Activate when:
 - When triaging backlog items
 
 ## Analysis Approach
+
+**Prerequisite**: Requires the `gh` CLI. Fetch data with, e.g.:
+
+```bash
+gh issue list --state open --limit 30 --json number,title,updatedAt,labels,assignees,milestone,comments
+gh pr list --state open --json number,title,updatedAt,additions,deletions,isDraft,reviewRequests
+```
 
 ### Quick Mode (Default)
 
@@ -103,6 +102,8 @@ Fetch ALL open issues by paginating:
 - @username: N assigned issues
 ```
 
+Health Score = `100 × (1 − atRiskCount / totalOpenItems)`, rounded to the nearest integer.
+
 ### At-Risk Item Report
 
 ```markdown
@@ -173,10 +174,8 @@ Track issue counts per assignee:
 4. Present full at-risk report
 5. Suggest actions for each at-risk item
 
-## Best Practices
+## Common Mistakes
 
-1. **Daily Standups**: Run a quick health check to identify blockers
-2. **Sprint Planning**: Use comprehensive mode to review full backlog
-3. **Before Releases**: Check all deadline risks
-4. **Assign Owners**: Address unassigned high-priority items immediately
-5. **Break Down Scope**: Split large PRs (>500 lines) into smaller changes
+- **Flagging draft PRs as stale-awaiting-review** - a draft is not awaiting review; treat it as in-progress or blocked, not a stale review.
+- **Trusting Quick Mode for staleness** - it fetches the 30 most recent items sorted by recency, so it misses exactly the stalest items. Note this limitation in the report; use Comprehensive Mode to find them.
+- **Conflating parked and forgotten work** - items labeled `on-hold` are intentionally parked; report them separately from genuinely forgotten stale items.

@@ -1,15 +1,6 @@
 ---
 name: mermaid-diagrams
-description: "Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub"
-instructions: "When creating flowcharts, sequence diagrams, class diagrams, or any visual diagrams in markdown"
-tags:
-  - diagram
-  - visualization
-  - mermaid
-  - flowchart
-  - sequence
-  - architecture
-  - github
+description: "Use when creating any Mermaid diagram (flowchart, sequence, class, state, ER, Gantt) in markdown, or when a diagram fails to render on GitHub - covers the syntax rules that break GitHub rendering (parentheses in labels, mismatched brackets) plus per-type examples"
 ---
 
 # Mermaid Diagrams Skill
@@ -98,51 +89,9 @@ sequenceDiagram
     API-->>Client: Response
 ```
 
-### Class Diagram
-```mermaid
-classDiagram
-    class User {
-        +String name
-        +String email
-        +login()
-        +logout()
-    }
+Class, state, and entity relationship diagram examples: see [reference.md](reference.md).
 
-    class Post {
-        +String title
-        +String content
-        +publish()
-    }
-
-    User "1" --> "*" Post : creates
-```
-
-### State Diagram
-```mermaid
-stateDiagram-v2
-    [*] --> Draft
-    Draft --> Review: submit
-    Review --> Published: approve
-    Review --> Draft: reject
-    Published --> [*]
-```
-
-### Entity Relationship Diagram
-```mermaid
-erDiagram
-    USER ||--o{ POST : creates
-    USER {
-        int id PK
-        string name
-        string email
-    }
-    POST {
-        int id PK
-        int user_id FK
-        string title
-        text content
-    }
-```
+For system architecture diagrams (components, layers, data flows), use the `architecture-diagramming` skill.
 
 ## Best Practices
 
@@ -154,22 +103,6 @@ erDiagram
 
 ## Common Patterns
 
-### API Flow
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant A as API
-    participant D as Database
-
-    U->>F: Click button
-    F->>A: POST /api/resource
-    A->>D: INSERT data
-    D-->>A: Success
-    A-->>F: 201 Created
-    F-->>U: Show confirmation
-```
-
 ### Decision Flow
 ```mermaid
 flowchart TD
@@ -179,25 +112,6 @@ flowchart TD
     Valid -->|No| BadReq[Return 400]
     Valid -->|Yes| Process[Process Request]
     Process --> Success[Return 200]
-```
-
-### System Architecture
-```mermaid
-flowchart LR
-    Client[Client App]
-    LB[Load Balancer]
-    API1[API Server 1]
-    API2[API Server 2]
-    Cache[(Redis Cache)]
-    DB[(Database)]
-
-    Client --> LB
-    LB --> API1
-    LB --> API2
-    API1 --> Cache
-    API2 --> Cache
-    API1 --> DB
-    API2 --> DB
 ```
 
 ## Syntax Reference
@@ -227,27 +141,8 @@ flowchart TD
     style B fill:#f96,stroke:#333,stroke-width:4px
 ```
 
-## Tips for Documentation
-
-1. **Inline Diagrams**: Embed directly in documentation for context
-2. **Version Control**: Mermaid is text, so it diffs well in git
-3. **Collaboration**: Team members can edit without special tools
-4. **Automation**: Generate diagrams from code or data
-5. **Accessibility**: Add alt text descriptions for screen readers
-
 ## Resources
 
 - [Mermaid Official Docs](https://mermaid.js.org/)
 - [Live Editor](https://mermaid.live/)
 - GitHub/GitLab automatically render Mermaid in markdown
-
-## Tool Usage
-
-When asked to create diagrams:
-1. Choose the appropriate Mermaid diagram type
-2. **NEVER use parentheses inside labels** - use dashes or commas instead
-3. **ALWAYS ensure brackets match** - `[...]`, `{...}`, `(...)`, etc.
-4. Use clear, descriptive labels
-5. Keep complexity manageable
-6. Add a brief description above the diagram
-7. Verify syntax is correct (no trailing commas, proper formatting)

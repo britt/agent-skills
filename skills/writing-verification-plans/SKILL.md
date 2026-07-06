@@ -1,6 +1,6 @@
 ---
 name: writing-verification-plans
-description: Use when a project needs a verification plan for acceptance testing in real-world scenarios
+description: "Use when a project lacks VERIFICATION_PLAN.md, when finishing setting-up-a-project, or when asked how to prove a feature works end-to-end - writes real-system acceptance scenarios (no mocks) with success criteria and a pass/fail verification log"
 ---
 
 # Writing Verification Plans
@@ -21,6 +21,8 @@ Use this skill when:
 - The developer asks for a verification plan
 - Adding new features that require real-world validation
 
+**When NOT to use**: Not for writing automated test suites — this skill produces manual/agent-executed acceptance procedures, not unit or integration tests.
+
 ## Writing the Verification Plan
 
 Ask the user about the real-world scenarios that need to be validated. For each scenario, gather:
@@ -34,6 +36,8 @@ Ask the user about the real-world scenarios that need to be validated. For each 
 
 ```markdown
 # Verification Plan
+
+**Verification runs automatically after completing any task. Do not wait for the developer to request it.**
 
 ## Prerequisites
 
@@ -60,9 +64,7 @@ Ask the user about the real-world scenarios that need to be validated. For each 
 
 **If Blocked**: [When to stop and ask developer for help]
 
-### Scenario 2: [Name]
-
-[Repeat format for each scenario]
+[Add a section like Scenario 1 for each additional scenario]
 
 ## Verification Rules
 
@@ -74,16 +76,15 @@ Ask the user about the real-world scenarios that need to be validated. For each 
 
 ## Running Verification
 
-**Verification runs automatically after completing any task.** Do not wait for the developer to request it.
+Include the run-after-every-task rule in the generated plan; optionally suggest the user add it to CLAUDE.md so the rule is enforced in every session.
 
 ### Process
 
 1. Read VERIFICATION_PLAN.md
 2. Confirm prerequisites are met (ask developer if unsure)
-3. Execute each scenario in order
-4. For each step, document what was done and what was observed
-5. Check each success criterion
-6. Produce a detailed verification log
+3. Execute each scenario in order, documenting what was done and observed
+4. Check each success criterion
+5. Produce a detailed verification log
 
 ### Verification Log Format
 
@@ -102,16 +103,10 @@ After running verification, report results in this format:
 
 **Steps Executed**:
 1. [What was done] → [What was observed]
-2. [What was done] → [What was observed]
 
 **Success Criteria**:
 - [x] [Criterion] - PASSED: [evidence]
 - [ ] [Criterion] - FAILED: [what went wrong]
-
-**Notes**: [Any relevant observations]
-
-#### Scenario 2: [Name]
-[Repeat for each scenario]
 
 ### Summary
 - Scenarios: X passed, Y failed, Z blocked
@@ -123,7 +118,7 @@ After running verification, report results in this format:
 
 If verification cannot proceed:
 1. Document exactly what is blocking you
-2. Ask the developer for help using the `summoning-the-user` skill if installed
+2. Stop and ask the developer for help.
 3. Do not guess or skip scenarios
 4. Do not mark task as complete until verification passes
 

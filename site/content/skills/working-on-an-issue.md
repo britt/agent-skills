@@ -56,4 +56,4 @@ Creates a verification plan up front (via `writing-verification-plans`), then ex
 Requires clarification when requirements, acceptance criteria, or boundaries are ambiguous, and avoids inventing requirements that are not in the issue.
 
 **Clear stop conditions**
-When blocked, stops and uses `summoning-the-user` instead of guessing.
+When blocked, stops and asks the developer instead of guessing.

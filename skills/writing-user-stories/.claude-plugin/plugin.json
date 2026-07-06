@@ -1,7 +1,7 @@
 {
   "name": "writing-user-stories",
   "description": "Write properly formatted user stories that identify the persona, desired action, and expected benefit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"

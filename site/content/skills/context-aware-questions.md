@@ -38,7 +38,7 @@ Use this skill when:
 ## Features
 
 **Multiple analysis modes**
-Supports project-wide reviews, individual issue reviews, draft reviews before submission, and documentation gap analysis.
+Supports project-wide reviews, individual issue reviews, draft reviews before submission, and documentation gap analysis. Issue-based modes fetch data via the `gh` CLI, which must be installed and authenticated.
 
 **Gap detection heuristics**
 Automatically detects missing acceptance criteria, vague descriptions, missing labels or assignees, stale issues, bug reports without reproduction steps, and incomplete documentation.

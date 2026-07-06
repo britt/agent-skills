@@ -33,7 +33,9 @@ Use this skill when:
 - Writing PR descriptions or issue bodies
 - Producing documentation and guides
 - Creating notes and summaries
-- Formatting any structured text output for consistency
+- Producing structured artifacts that will be saved or published, such as reports, READMEs, or changelogs
+
+Not for conversational chat replies — normal responses don't need templates or strict formatting rules.
 
 ## Features
 
@@ -41,7 +43,7 @@ Use this skill when:
 Every document starts with a TL;DR or summary, followed by details. Headings, lists, and whitespace are used to aid scanning.
 
 **Context-aware templates**
-Provides ready-made templates for PR descriptions (with summary, changes, and test plan) and issue bodies (with problem, steps to reproduce, expected, and actual).
+Provides ready-made templates for PR descriptions (with summary, changes, and test plan) and issue bodies (with problem, steps to reproduce, expected, and actual), plus a filled-in example PR description showing the rules applied.
 
 **Consistent formatting rules**
 Enforces dash-style unordered lists, numbered ordered lists, language-identified code blocks, proper heading hierarchy, and descriptive link text.

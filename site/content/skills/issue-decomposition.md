@@ -48,3 +48,6 @@ Uses a consistent label system for type, area, and priority, with T-shirt sizing
 
 **Preview before creating**
 Always shows a summary table of proposed issues with titles, estimates, and dependencies before creating anything in GitHub.
+
+**Worked example included**
+Includes a sample decomposition of "Build a user authentication system" into 7 dependency-linked issues, showing exactly what the output looks like.

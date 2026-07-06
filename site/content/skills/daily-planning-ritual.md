@@ -37,7 +37,7 @@ You can trigger this skill with phrases like:
 ## Features
 
 **Context gathering across your life**
-Gathers context from your calendar, emails, and static sections so your plan reflects real constraints.
+Gathers context from your calendar, reminders, emails, and Drive docs, plus persistent sections from a `Daily Planning Notes` Google Doc, so your plan reflects real constraints. Requires Google Calendar, Gmail, Google Drive, and Reminders connectors; any unavailable source is skipped and noted in the plan.
 
 **Conversational planning workflow**
 Leads a reflective, conversational workflow across life dimensions including work, fitness, relationship, social, and adventure.

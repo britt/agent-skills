@@ -67,11 +67,35 @@ This is the **source of truth** for all skills. Each skill lives in its own subd
 **Available Skills:**
 | Skill | Purpose |
 |-------|---------|
-| `daily-planning-ritual` | Interactive morning planning across life dimensions |
+| `sgai-goal` | Composes GOAL.md files for SGAI workspaces |
 | `setting-up-a-project` | Authors CLAUDE.md project documentation |
+| `working-on-an-issue` | Implements a GitHub issue with a verification-driven approach |
+| `project-analysis` | Analyzes project codebase structure, architecture, and dependencies |
+| `project-planning` | Orchestrates end-to-end project planning |
+| `issue-decomposition` | Decomposes projects into well-structured GitHub issues |
+| `dependency-mapping` | Generates Mermaid dependency graphs for issues |
+| `timeline-planning` | Generates Mermaid Gantt charts for project timelines |
+| `requirement-elicitation` | Conversational wizard for eliciting requirements |
+| `idea-to-design` | Turns an idea note into a design document |
 | `writing-product-specs` | Creates comprehensive product specifications |
-| `writing-user-stories` | Generates properly formatted user stories |
+| `writing-user-stories` | Generates properly formatted user stories (INVEST, Given-When-Then) |
 | `writing-verification-plans` | Creates acceptance testing procedures |
+| `context-aware-questions` | Identifies information gaps and generates questions |
+| `at-risk-detection` | Identifies at-risk issues and PRs |
+| `triage-new-issues` | Reviews and prioritizes new GitHub issues |
+| `stakeholder-tracking` | Tracks stakeholder personas and goals |
+| `stakeholder-updates` | Crafts stakeholder communications |
+| `prepare-meeting-agenda` | Generates meeting agendas from issues and PRs |
+| `architecture-diagramming` | Generates Mermaid architecture diagrams |
+| `mermaid-diagrams` | Guide for syntactically correct Mermaid diagrams |
+| `markdown-formatting` | Formats AI outputs into consistent Markdown |
+| `build-faq-from-issues` | Extracts an FAQ from closed GitHub issues |
+| `summarize-conversation-thread` | Summarizes GitHub issue/PR threads |
+| `consolidate-notes-summary` | Synthesizes findings across multiple notes |
+| `research-topic-summarize` | Researches topics via web search |
+| `daily-planning-ritual` | Interactive morning planning across life dimensions |
+
+Also see `bundles/project-foundations/` — a curated bundle plugin that groups related skills (setup, issue decomposition, user stories, verification plans, and diagrams) via symlinks back to the canonical `skills/` directories.
 
 ### `/site/` - GitHub Pages Site
 

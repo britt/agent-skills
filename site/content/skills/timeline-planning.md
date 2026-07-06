@@ -48,3 +48,6 @@ Marks key deliverables as milestones and highlights the critical path using Merm
 
 **Parallel workstream visualization**
 Supports multiple concurrent workstreams with proper integration points, showing where parallel work converges and how it affects the overall timeline.
+
+**Reusable Gantt patterns**
+Ships with a library of ready-made chart templates — linear projects, parallel workstreams, milestone-driven releases, and critical-path layouts — so common timeline shapes don't need to be built from scratch.

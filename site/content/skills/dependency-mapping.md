@@ -48,3 +48,5 @@ Groups issues into logical phases using Mermaid subgraphs for clear visual separ
 
 **Multiple graph layouts**
 Supports linear dependencies (left-to-right), parallel work (top-to-bottom), and complex multi-branch layouts with consistent issue node naming conventions.
+
+Requires the `gh` CLI (or an equivalent GitHub MCP server) to gather issue data.

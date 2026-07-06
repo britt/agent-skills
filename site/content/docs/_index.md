@@ -17,6 +17,21 @@ The easiest way to install skills in Claude Code:
 /plugin marketplace add britt/claude-code-skills
 ```
 
+Once the marketplace is added, install everything, a curated bundle, or a single skill:
+
+```bash
+# Install all skills
+/plugin install claude-code-skills@britt
+
+# Install a curated bundle (e.g. project-foundations)
+/plugin install project-foundations@britt
+
+# Install a single skill
+/plugin install setting-up-a-project@britt
+```
+
+See the [Skills](../skills/) page for the full list of individual skills and bundles.
+
 ### Global Installation
 
 Install skills globally so they're available in all projects:

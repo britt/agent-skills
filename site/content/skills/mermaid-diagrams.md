@@ -31,9 +31,10 @@ Or install all skills at once:
 
 Use this skill when:
 - Creating flowcharts, sequence diagrams, or class diagrams
-- Visualizing API flows, decision trees, or system architecture
+- Visualizing API flows or decision trees
 - Building entity relationship diagrams or state machines
 - Adding any visual diagram to Markdown documentation
+- A Mermaid diagram fails to render on GitHub and needs its syntax fixed
 
 ## Features
 
@@ -44,7 +45,7 @@ Covers flowcharts, sequence diagrams, class diagrams, state diagrams, entity rel
 Strictly avoids parentheses inside labels and ensures matching brackets on all node shapes, preventing the most common Mermaid rendering errors.
 
 **Common pattern library**
-Includes ready-to-use patterns for API flows, decision flows, and system architecture diagrams that can be adapted to your specific needs.
+Includes ready-to-use patterns for API flows and decision flows that can be adapted to your specific needs. For system architecture diagrams (components, layers, data flows), use the `architecture-diagramming` skill instead.
 
 **Complete syntax reference**
 Provides a reference for node shapes, arrow types, and styling options so you can customize diagrams without consulting external documentation.

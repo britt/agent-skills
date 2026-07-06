@@ -29,11 +29,15 @@ Or install all skills at once:
 
 ## How to use it
 
+Requires the `gh` CLI authenticated to the target repository.
+
 Use this skill when:
 - Creating or updating a project FAQ
 - Documenting common support questions to reduce repeat issues
 - Onboarding new users or contributors
 - Building support documentation from past issues
+
+Not a fit for open-issue triage, changelogs or release notes, or repos with too few closed issues to reveal recurring patterns.
 
 ## Features
 

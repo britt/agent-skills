@@ -30,8 +30,9 @@ Or install all skills at once:
 ## How to use it
 
 Use this skill when:
-- Setting up a new project
-- A project needs acceptance testing procedures
+- A project lacks a VERIFICATION_PLAN.md
+- Finishing up after setting up a new project
+- You're asked how to prove a feature works end-to-end
 
 ## Features
 

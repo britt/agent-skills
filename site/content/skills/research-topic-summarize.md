@@ -35,6 +35,8 @@ Use this skill when:
 - Comparing options (X vs Y) to make a decision
 - Gathering background information for a technical or business decision
 
+Skip it for questions answerable directly from local docs or code, and prefer a dedicated deep-research capability (if available) for deep, multi-source fact-checked reports.
+
 ## Features
 
 **Structured research output**

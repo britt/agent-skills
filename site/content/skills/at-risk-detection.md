@@ -47,4 +47,7 @@ Produces a project health summary with total open items, at-risk counts, health 
 For each risk signal detected, provides specific recommendations such as commenting with status updates, resolving blocking dependencies, or redistributing overloaded assignees.
 
 **Quick and comprehensive modes**
-Quick mode scans the 30 most recent open issues for daily checks; comprehensive mode paginates through all open issues for thorough milestone reviews.
+Quick mode scans the 30 most recent open issues for daily checks; comprehensive mode paginates through all open issues for thorough milestone reviews. Because quick mode sorts by recency, it can miss the stalest items — the report calls this out, and comprehensive mode should be used to find them.
+
+**Common-mistake guardrails**
+Avoids known false positives: draft PRs aren't flagged as stale-awaiting-review, and issues intentionally parked with an `on-hold` label are reported separately from genuinely forgotten stale work.

@@ -17,9 +17,48 @@ Activate this skill when:
 
 **When NOT to use:** not for issue/task dependencies (use `dependency-mapping`) or API call sequences and process flows (use `mermaid-diagrams` sequence diagrams).
 
-## Syntax Rules
+## CRITICAL: Mermaid Syntax Rules
 
-Follow the `mermaid-diagrams` skill for syntax rules — in particular, never use parentheses inside node labels (they break GitHub rendering); use dashes or 'and' instead.
+### NEVER use parentheses inside labels
+
+Parentheses in Mermaid labels cause rendering errors on GitHub.
+
+**WRONG - Will break:**
+```mermaid
+flowchart TD
+    A[Component (main)]
+    B[Service (auth)]
+```
+
+**CORRECT - Use dashes or commas:**
+```mermaid
+flowchart TD
+    A[Component - main]
+    B[Service - auth]
+```
+
+### ALWAYS ensure matching brackets
+
+Each node shape uses specific brackets that must match:
+- `[Rectangle]` - Standard component
+- `{Diamond}` - Decision point
+- `([Stadium])` - Pill shape
+- `[(Database)]` - Cylinder for data stores
+- `((Circle))` - Circle node
+
+**WRONG:**
+```mermaid
+flowchart TD
+    A{Decision]
+```
+
+**CORRECT:**
+```mermaid
+flowchart TD
+    A{Decision}
+```
+
+For other syntax rules, see the `mermaid-diagrams` skill.
 
 ## Diagram Patterns
 

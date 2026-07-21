@@ -108,6 +108,20 @@ Ask the user about their preferred git workflow, then document it in CLAUDE.md:
 
 **This rule is non-negotiable.** Read the bundled `git-commit-rules.md` file (in this skill's directory) and copy it verbatim into `CLAUDE.md`.
 
+### GitHub Actions Rules (if the project uses GitHub Actions)
+
+If the project uses, or will use, GitHub Actions for CI/CD, apply this rule whenever authoring or editing workflow files:
+
+**Never use an action pinned to the deprecated Node 20 runtime.** GitHub Actions is moving off Node 20 in favor of Node 24. When adding or updating a `uses:` step, always pick the action's latest major version rather than an older major still pinned to Node 20, and check the action's release notes/changelog if unsure whether it has moved to the Node 24 runtime.
+
+Document this rule in CLAUDE.md under a `## CI/CD Practices` section (only if the project uses GitHub Actions):
+
+```markdown
+## CI/CD Practices
+
+- Never use GitHub Actions pinned to the deprecated Node 20 runtime. Always use the latest major version of each action.
+```
+
 ### Pull Request Rules
 YOU MUST follow these rules when creating a pull request. 
 

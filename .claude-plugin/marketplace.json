@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "britt",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A collection of skills for Claude Code to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
@@ -11,7 +11,7 @@
     {
       "name": "claude-code-skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "author": {
         "name": "Britt Crawford",
         "email": "britt@brittcrawford.com"
@@ -86,17 +86,6 @@
       "source": "./skills/context-aware-questions",
       "category": "productivity",
       "tags": ["requirements", "gaps", "questions", "context"]
-    },
-    {
-      "name": "daily-planning-ritual",
-      "description": "Interactive daily planning ritual across work and personal life dimensions",
-      "version": "1.1.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/daily-planning-ritual",
-      "category": "productivity",
-      "tags": ["planning", "daily", "ritual", "holistic"]
     },
     {
       "name": "dependency-mapping",
@@ -209,17 +198,6 @@
       "tags": ["research", "web-search", "summary", "sources"]
     },
     {
-      "name": "setting-up-a-project",
-      "description": "Author CLAUDE.md with project purpose, tech stack, and development practices",
-      "version": "1.1.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/setting-up-a-project",
-      "category": "development",
-      "tags": ["setup", "project", "claude-md", "tdd"]
-    },
-    {
       "name": "stakeholder-tracking",
       "description": "Define stakeholder personas and track their goals to ensure all perspectives are addressed",
       "version": "1.1.0",
@@ -284,39 +262,6 @@
       "source": "./skills/working-on-an-issue",
       "category": "development",
       "tags": ["issues", "implementation", "workflow", "github"]
-    },
-    {
-      "name": "writing-product-specs",
-      "description": "Write comprehensive product specification documents",
-      "version": "1.1.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/writing-product-specs",
-      "category": "documentation",
-      "tags": ["specs", "prd", "product", "requirements"]
-    },
-    {
-      "name": "writing-user-stories",
-      "description": "Write properly formatted user stories for task definition",
-      "version": "1.1.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/writing-user-stories",
-      "category": "documentation",
-      "tags": ["user-stories", "agile", "requirements"]
-    },
-    {
-      "name": "writing-verification-plans",
-      "description": "Create real-world acceptance testing procedures",
-      "version": "1.1.0",
-      "author": {
-        "name": "Britt Crawford"
-      },
-      "source": "./skills/writing-verification-plans",
-      "category": "testing",
-      "tags": ["verification", "testing", "acceptance"]
     }
   ]
 }

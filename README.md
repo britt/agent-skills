@@ -88,7 +88,6 @@ Add this repository as a plugin marketplace:
 /plugin install build-faq-from-issues@britt
 /plugin install consolidate-notes-summary@britt
 /plugin install context-aware-questions@britt
-/plugin install daily-planning-ritual@britt
 /plugin install dependency-mapping@britt
 /plugin install idea-to-design@britt
 /plugin install issue-decomposition@britt
@@ -99,18 +98,15 @@ Add this repository as a plugin marketplace:
 /plugin install project-planning@britt
 /plugin install requirement-elicitation@britt
 /plugin install research-topic-summarize@britt
-/plugin install sgai-goal@britt
-/plugin install setting-up-a-project@britt
 /plugin install stakeholder-tracking@britt
 /plugin install stakeholder-updates@britt
 /plugin install summarize-conversation-thread@britt
 /plugin install timeline-planning@britt
 /plugin install triage-new-issues@britt
 /plugin install working-on-an-issue@britt
-/plugin install writing-product-specs@britt
-/plugin install writing-user-stories@britt
-/plugin install writing-verification-plans@britt
 ```
+
+**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `claude-code-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
 
 ### Claude Code: Manual Installation
 

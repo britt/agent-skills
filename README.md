@@ -10,7 +10,7 @@ A collection of skills for Claude to enhance AI-assisted development workflows.
 |-------|-------------|:-----------:|:---------:|
 | **sgai-goal** | Compose GOAL.md files for SGAI workspaces through interactive conversation | * | |
 | **setting-up-a-project** | Author CLAUDE.md with project purpose, tech stack, and development practices | * | |
-| **working-on-an-issue** | Work on, read, or implement a GitHub issue | * | |
+| **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |

@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "britt",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A collection of skills for Claude Code to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
@@ -11,7 +11,7 @@
     {
       "name": "claude-code-skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "author": {
         "name": "Britt Crawford",
         "email": "britt@brittcrawford.com"
@@ -254,8 +254,8 @@
     },
     {
       "name": "working-on-an-issue",
-      "description": "Guided workflow for reading, understanding, and implementing GitHub issues",
-      "version": "1.1.0",
+      "description": "Hands-off workflow for implementing GitHub issues: scoped recon, verification-first planning, TDD implementation, and a PR that serves as the approval gate",
+      "version": "1.2.0",
       "author": {
         "name": "Britt Crawford"
       },

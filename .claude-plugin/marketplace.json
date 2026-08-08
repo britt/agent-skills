@@ -254,8 +254,8 @@
     },
     {
       "name": "working-on-an-issue",
-      "description": "Guided workflow for reading, understanding, and implementing GitHub issues",
-      "version": "1.1.0",
+      "description": "Hands-off workflow for implementing GitHub issues: scoped recon, verification-first planning, TDD implementation, and a PR that serves as the approval gate",
+      "version": "1.2.0",
       "author": {
         "name": "Britt Crawford"
       },

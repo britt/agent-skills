@@ -1,9 +1,9 @@
 ---
 title: "Working on an Issue"
-description: "Implement GitHub issues with verification"
+description: "Hands-off implementation of GitHub issues, reviewed at the PR"
 ---
 
-Implement a GitHub issue with a repeatable, verification-driven approach.
+Implement a GitHub issue end to end without mid-flow approval gates: scoped reconnaissance, verification-first planning, TDD implementation, and a pull request that serves as the single review point.
 
 ### Installation
 
@@ -31,29 +31,32 @@ Or install all skills at once:
 
 Use this skill when:
 
-- Asked to work on a GitHub issue
-- Asked to implement an issue
+- Asked to work on or implement a GitHub issue
 - Given an issue URL or issue number
 
 To start, provide the issue URL or number.
 
-Before proceeding, confirm the pre-flight checklist:
+Before proceeding, the agent confirms the pre-flight checklist:
 
 - Issue URL or number obtained
-- Repository cloned and on the correct branch
+- Repository cloned and a work branch created (`issue-<number>-<short-slug>`)
 - `CLAUDE.md` exists (or run `setting-up-a-project` first)
-- A developer is available for questions (or an async mode is explicitly agreed)
+
+Not every issue qualifies. Epic-sized issues that bundle independent changes are routed to `issue-decomposition` first, and issues too vague to restate as testable acceptance criteria are routed to `requirement-elicitation` instead of being implemented on guesswork.
 
 ## Features
 
-**A plan-first approach with explicit approval**
-Writes an implementation plan and saves it to `docs/plans/issue-<number>-plan.md`, then waits for approval before making changes.
+**Hands-off by default — the PR is the approval gate**
+There are no approval checkpoints during the work. Plans are saved to `docs/plans/issue-<number>-plan.md` and implementation proceeds immediately; the developer reviews the finished work on the pull request, where every assumption and verification result is recorded.
 
-**Verification is part of the process (twice)**
-Creates a verification plan up front (via `writing-verification-plans`), then executes the verification plan again after implementation.
+**Scoped reconnaissance with a hard budget**
+Exploration exists to locate the change, not to understand the codebase. The agent starts from identifiers the issue names, expands at most one hop, and stops as soon as it knows which files change, which pattern to follow, and which tests cover the area. If about ten targeted searches don't produce that list, the issue is treated as underspecified and sent back rather than explored harder.
 
-**Rules that reduce scope creep**
-Requires clarification when requirements, acceptance criteria, or boundaries are ambiguous, and avoids inventing requirements that are not in the issue.
+**Verification-first planning**
+The verification plan (via `writing-verification-plans`) is written before the implementation plan, because acceptance criteria define done. After implementation the plan is executed and the results are logged; a PR is never opened with failing verification, and failures are root-caused with systematic debugging rather than patched over.
+
+**Assumptions documented, scope protected**
+Ambiguity is resolved with the narrowest interpretation and recorded in the plan and PR — but assumptions may only resolve *how*, never shrink *what* the issue asks for. `Fixes #<number>` is used only when every named request is addressed; anything split out or deferred is flagged with `Refs #<number>` instead.
 
 **Clear stop conditions**
-When blocked, stops and asks the developer instead of guessing.
+When genuinely blocked — missing credentials, contradictory requirements — the agent comments on the issue and stops instead of guessing through it.

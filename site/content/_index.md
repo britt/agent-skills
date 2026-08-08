@@ -11,7 +11,7 @@ description: "Claude Skills are reusable instruction sets that give Claude struc
 |-------|-------------|:-----------:|:---------:|
 | [SGAI Goal Authoring](./skills/sgai-goal/) | Compose GOAL.md files for SGAI workspaces through interactive conversation. | ✓ | |
 | [Setting Up a Project](./skills/setting-up-a-project/) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. | ✓ | |
-| [Working on an Issue](./skills/working-on-an-issue/) | Implement a GitHub issue with a repeatable, verification-driven approach. | ✓ | |
+| [Working on an Issue](./skills/working-on-an-issue/) | Implement a GitHub issue hands-off — scoped recon, verification-first planning, and a PR as the single approval gate. | ✓ | |
 | [Project Analysis](./skills/project-analysis/) | Analyze a project's codebase structure, architecture, key files, and dependencies. | ✓ | ✓ |
 | [Project Planning](./skills/project-planning/) | Orchestrate end-to-end project planning with issues, architecture diagrams, dependency maps, and timelines. | ✓ | ✓ |
 | [Issue Decomposition](./skills/issue-decomposition/) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. | ✓ | ✓ |

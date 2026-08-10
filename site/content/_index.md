@@ -46,7 +46,7 @@ Codex CLI, OpenCode, and Cursor can also read a shared `.agents/skills/` directo
 ```bash
 git clone https://github.com/britt/agent-skills.git ~/.agent-skills-src
 mkdir -p ~/.agents/skills
-for dir in ~/.agents-skills-src/skills/*/; do
+for dir in ~/.agent-skills-src/skills/*/; do
   ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
 done
 ```

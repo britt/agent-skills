@@ -10,7 +10,7 @@ Review new or untriaged GitHub issues, assess priority based on urgency signals,
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install triage-new-issues@britt
 ```
 

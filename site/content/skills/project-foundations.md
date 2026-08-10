@@ -42,4 +42,4 @@ codex plugin install project-foundations@britt
 
 ## How to use it
 
-Install the bundle when you want the full concept-to-plan workflow in one step rather than installing each skill individually. Each skill in the bundle is single-sourced back to its canonical definition under `skills/`, so bundle and standalone installs always stay in sync.
+Install the bundle when the full concept-to-plan workflow belongs in one place rather than as separate skills. Each skill in the bundle points back to its canonical definition under `skills/`, so bundle and standalone installs stay in sync.

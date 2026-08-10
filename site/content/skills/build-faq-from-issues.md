@@ -10,22 +10,24 @@ Extract common questions from closed GitHub issues and generate a structured FAQ
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install build-faq-from-issues@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
-## Compatibility
+## Supported coding agents
 
-| Platform | Supported |
-|----------|:---------:|
+| Agent | Supported |
+|-------|:---------:|
 | Claude Code | ✓ |
-| Claude.ai | ✓ |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 
 ## How to use it
 

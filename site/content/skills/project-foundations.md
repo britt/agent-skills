@@ -1,19 +1,18 @@
 ---
 title: "Project Foundations (Bundle)"
-description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan across Claude Code, Codex CLI, OpenCode, and Cursor"
+description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan with supported coding agents"
 ---
 
 A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
 
-## Compatibility
+## Supported coding agents
 
-| Platform | Supported |
-|----------|:---------:|
+| Coding agent | Supported |
+|-------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
 | OpenCode | ✓ |
 | Cursor | ✓ |
-| Claude.ai | |
 
 ## Included Skills
 

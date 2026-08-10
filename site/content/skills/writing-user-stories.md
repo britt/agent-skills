@@ -10,22 +10,24 @@ Write properly formatted user stories that identify the persona, desired action,
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install writing-user-stories@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
-## Compatibility
+## Supported coding agents
 
-| Platform | Supported |
-|----------|:---------:|
+| Coding agent | Supported |
+|-------------|:---------:|
 | Claude Code | ✓ |
-| Claude.ai | ✓ |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 
 ## How to use it
 

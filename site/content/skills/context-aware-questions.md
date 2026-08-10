@@ -10,7 +10,7 @@ Analyze project context to surface information gaps and generate prioritized, ac
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install context-aware-questions@britt
 ```
 

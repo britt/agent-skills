@@ -59,6 +59,8 @@ Claude.ai uses project knowledge uploads.
 2. Open the target project in Claude.ai
 3. Upload the zip file under **Project knowledge**
 
+Browse the [Skills](../skills/) index to open any skill page directly.
+
 ## Creating Your Own Skills
 
 See the [Contributing Guide](https://github.com/britt/claude-code-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.

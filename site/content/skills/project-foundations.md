@@ -23,6 +23,9 @@ codex plugin install project-foundations@britt
 | Platform | Supported |
 |----------|:---------:|
 | Claude Code | ✓ |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 | Claude.ai | |
 
 ## Included Skills

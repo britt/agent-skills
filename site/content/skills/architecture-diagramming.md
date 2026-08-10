@@ -10,7 +10,7 @@ Create clear, GitHub-compatible Mermaid architecture diagrams that visualize sys
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install architecture-diagramming@britt
 ```
 

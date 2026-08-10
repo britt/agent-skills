@@ -10,7 +10,7 @@ Compose GOAL.md files for SGAI workspaces through interactive conversation. This
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install sgai-goal@britt
 ```
 

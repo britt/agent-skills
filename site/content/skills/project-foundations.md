@@ -18,13 +18,13 @@ A curated bundle for taking a new project from concept to a diagrammed, story-dr
 
 | Skill | Description |
 |-------|-------------|
-| [Setting Up a Project](./setting-up-a-project/) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. |
-| [Issue Decomposition](./issue-decomposition/) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
-| [Writing User Stories](./writing-user-stories/) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
-| [Writing Verification Plans](./writing-verification-plans/) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. |
-| [Architecture Diagramming](./architecture-diagramming/) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. |
-| [Dependency Mapping](./dependency-mapping/) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths. |
-| [Mermaid Diagrams](./mermaid-diagrams/) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. |
+| [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. |
+| [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
+| [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
+| [Writing Verification Plans]({{< relref "skills/writing-verification-plans.md" >}}) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. |
+| [Architecture Diagramming]({{< relref "skills/architecture-diagramming.md" >}}) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. |
+| [Dependency Mapping]({{< relref "skills/dependency-mapping.md" >}}) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths. |
+| [Mermaid Diagrams]({{< relref "skills/mermaid-diagrams.md" >}}) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. |
 
 ## How to use it
 

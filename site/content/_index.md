@@ -11,7 +11,7 @@ Skills are reusable instruction sets that extend supported coding agents for spe
 
 ### Claude Code
 
-Claude Code installs skills through the plugin marketplace and also supports manual cloning into the standard Claude Code skill folders.
+Claude Code installs skills through the plugin marketplace.
 
 ```bash
 /plugin marketplace add britt/agent-skills

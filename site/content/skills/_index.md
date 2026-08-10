@@ -1,11 +1,11 @@
 ---
 title: "Skills"
-description: "Browse the complete skills library and jump to each page directly"
+description: "Browse the complete skills library and open each page directly"
 ---
 
 ## Skills index
 
-This section maps the complete skills library. Each entry links to a dedicated page, and the `Project Foundations` bundle page joins the inventory alongside the individual skills.
+This page maps every skill page in the site. The `Project Foundations` bundle appears in its own section for quick access.
 
 ### Development Workflow
 

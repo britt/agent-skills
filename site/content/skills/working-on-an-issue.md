@@ -10,7 +10,7 @@ Implement a GitHub issue end to end without mid-flow approval gates: scoped reco
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install working-on-an-issue@britt
 ```
 

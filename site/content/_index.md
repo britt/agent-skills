@@ -57,7 +57,7 @@ Claude.ai uses project knowledge uploads.
 2. Open the target project in Claude.ai
 3. Upload the zip file under **Project knowledge**
 
-Browse the [Skills](../skills/) index for the full catalog.
+Browse the [Skills](../skill-list/) index for the full catalog.
 
 ## Rules
 

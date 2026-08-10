@@ -44,7 +44,7 @@ Cursor adds the repository through its dashboard based marketplace flow and inst
 Codex CLI, OpenCode, and Cursor can also read a shared `.agents/skills/` directory. Use this fallback when a marketplace flow is not available.
 
 ```bash
-git clone https://github.com/britt/claude-code-skills.git ~/.agents-skills-src
+git clone https://github.com/britt/agent-skills.git ~/.agents-skills-src
 mkdir -p ~/.agents/skills
 for dir in ~/.agents-skills-src/skills/*/; do
   ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"

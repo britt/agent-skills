@@ -1,6 +1,6 @@
-# Claude Skills
+# Agent Skills
 
-A collection of skills for Claude to enhance AI-assisted development workflows.
+A collection of skills for coding agents to enhance AI-assisted development workflows.
 
 ## Skills Included
 

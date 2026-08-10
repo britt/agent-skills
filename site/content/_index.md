@@ -1,89 +1,70 @@
 ---
-title: "Claude Skills"
-description: "Claude Skills are reusable instruction sets that give Claude structured workflows, best practices, and domain expertise for specific kinds of work. Instead of writing a new prompt every time, you install a skill once and reuse it whenever you need that capability. Each skill focuses on a concrete workflow, like planning your day, setting up a project, or writing specs and user stories."
+title: "Agent Skills"
+description: "Learn how to install and use Agent Skills across supported coding agents"
 ---
 
-## Available Skills
+## Getting Started
 
-### Development Workflow
+Skills are reusable instruction sets that extend supported coding agents for specific tasks. Choose the installation path that matches the tool in use.
 
-| Skill | Description | Claude Code | Claude.ai |
-|-------|-------------|:-----------:|:---------:|
-| [SGAI Goal Authoring](./skills/sgai-goal/) | Compose GOAL.md files for SGAI workspaces through interactive conversation. | ✓ | |
-| [Setting Up a Project](./skills/setting-up-a-project/) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. | ✓ | |
-| [Working on an Issue](./skills/working-on-an-issue/) | Implement a GitHub issue hands-off — scoped recon, verification-first planning, and a PR as the single approval gate. | ✓ | |
-| [Project Analysis](./skills/project-analysis/) | Analyze a project's codebase structure, architecture, key files, and dependencies. | ✓ | ✓ |
-| [Project Planning](./skills/project-planning/) | Orchestrate end-to-end project planning with issues, architecture diagrams, dependency maps, and timelines. | ✓ | ✓ |
-| [Issue Decomposition](./skills/issue-decomposition/) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. | ✓ | ✓ |
-| [Dependency Mapping](./skills/dependency-mapping/) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths. | ✓ | ✓ |
-| [Timeline Planning](./skills/timeline-planning/) | Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones. | ✓ | ✓ |
+## Installation Methods
 
-### Requirements & Planning
+### Claude Code
 
-| Skill | Description | Claude Code | Claude.ai |
-|-------|-------------|:-----------:|:---------:|
-| [Requirement Elicitation](./skills/requirement-elicitation/) | Conversational wizard for eliciting functional, nonfunctional, and edge-case requirements with domain-specific questions. | ✓ | ✓ |
-| [Idea to Design](./skills/idea-to-design/) | Turn an idea note into a design document with clear goals, constraints, and implementation guidance. | ✓ | ✓ |
-| [Writing Product Specs](./skills/writing-product-specs/) | Write comprehensive product specification documents that explain what you are building, why, and how success will be measured. | ✓ | ✓ |
-| [Writing User Stories](./skills/writing-user-stories/) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. | ✓ | ✓ |
-| [Writing Verification Plans](./skills/writing-verification-plans/) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. | ✓ | ✓ |
-| [Context-Aware Questions](./skills/context-aware-questions/) | Identify information gaps and generate prioritized questions to surface missing requirements or documentation gaps. | ✓ | ✓ |
-
-### Project Management
-
-| Skill | Description | Claude Code | Claude.ai |
-|-------|-------------|:-----------:|:---------:|
-| [At-Risk Detection](./skills/at-risk-detection/) | Identify at-risk issues and PRs: stale items, blocked work, deadline risks, scope creep, and unassigned high-priority items. | ✓ | ✓ |
-| [Triage New Issues](./skills/triage-new-issues/) | Review new GitHub issues, assess priority and urgency, suggest labels, and recommend assignees. | ✓ | ✓ |
-| [Stakeholder Tracking](./skills/stakeholder-tracking/) | Define stakeholder personas and track their goals to ensure all perspectives are addressed. | ✓ | ✓ |
-| [Stakeholder Updates](./skills/stakeholder-updates/) | Craft clear, concise stakeholder communications with appropriate context and framing. | ✓ | ✓ |
-| [Prepare Meeting Agenda](./skills/prepare-meeting-agenda/) | Generate meeting agendas from recent issues, PRs, and notes for sprint planning, retros, and standups. | ✓ | ✓ |
-
-### Documentation & Communication
-
-| Skill | Description | Claude Code | Claude.ai |
-|-------|-------------|:-----------:|:---------:|
-| [Architecture Diagramming](./skills/architecture-diagramming/) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. | ✓ | ✓ |
-| [Mermaid Diagrams](./skills/mermaid-diagrams/) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. | ✓ | ✓ |
-| [Markdown Formatting](./skills/markdown-formatting/) | Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes. | ✓ | ✓ |
-| [Build FAQ from Issues](./skills/build-faq-from-issues/) | Extract common questions from closed GitHub issues and generate an FAQ document with answers. | ✓ | ✓ |
-| [Summarize Conversation Thread](./skills/summarize-conversation-thread/) | Summarize GitHub issue/PR threads into key decisions, action items, and next steps. | ✓ | ✓ |
-| [Consolidate Notes Summary](./skills/consolidate-notes-summary/) | Synthesize findings across multiple notes into a consolidated summary with cross-references. | ✓ | ✓ |
-| [Research Topic Summarize](./skills/research-topic-summarize/) | Research topics via web search and synthesize detailed summaries with sources. | ✓ | ✓ |
-
-### Personal & Utilities
-
-| Skill | Description | Claude Code | Claude.ai |
-|-------|-------------|:-----------:|:---------:|
-| [Daily Planning Ritual](./skills/daily-planning-ritual/) | An interactive morning practice that helps you plan your entire day through a reflective conversation across work and personal life dimensions. | ✓ | ✓ |
-
-## Quick Start
-
-### Claude Code (Recommended)
+Claude Code installs skills through the plugin marketplace and also supports manual cloning into the standard Claude Code skill folders.
 
 ```bash
-# Add the marketplace
 /plugin marketplace add britt/claude-code-skills
-
-# Install everything
 /plugin install claude-code-skills@britt
+/plugin install project-foundations@britt
+git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
+git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-code-skills
 ```
 
-### Curated Bundles
+### Codex CLI
 
-Bundles group related skills for a common workflow instead of installing everything.
-
-| Bundle | Includes | Install |
-|--------|----------|---------|
-| [Project Foundations](./skills/project-foundations/) | Setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams | `/plugin install project-foundations@britt` |
-
-### Manual Installation
+Codex CLI installs the repository through its plugin marketplace.
 
 ```bash
-# Clone to global skills directory
-git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
+codex plugin marketplace add britt/claude-code-skills
+codex plugin install claude-code-skills@britt
+codex plugin install project-foundations@britt
+```
+
+### Cursor
+
+Cursor adds the repository through its dashboard based marketplace flow and installs the same bundles from there.
+
+1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
+2. Point it at `britt/claude-code-skills`
+3. Install `claude-code-skills` or `project-foundations` from **Customize**
+
+### Shared `.agents/skills/` Path
+
+Codex CLI, OpenCode, and Cursor can also read a shared `.agents/skills/` directory. Use this fallback when a marketplace flow is not available.
+
+```bash
+git clone https://github.com/britt/claude-code-skills.git ~/.agents-skills-src
+mkdir -p ~/.agents/skills
+for dir in ~/.agents-skills-src/skills/*/; do
+  ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
+done
 ```
 
 ### Claude.ai
 
-Download zip files from the [Releases page](https://github.com/britt/claude-code-skills/releases/) and upload them to your project's knowledge.
+Claude.ai uses project knowledge uploads.
+
+1. Download the skill zip from the [Releases page](https://github.com/britt/claude-code-skills/releases/)
+2. Open the target project in Claude.ai
+3. Upload the zip file under **Project knowledge**
+
+Browse the [Skills](../skills/) index for the full catalog.
+
+## Creating Your Own Skills
+
+See the [Contributing Guide](https://github.com/britt/claude-code-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.
+
+## Rules
+
+The repository also includes reusable rule sets in the `rules/` directory. The most notable is **TDD.rules.md** which enforces strict Test-Driven Development practices.

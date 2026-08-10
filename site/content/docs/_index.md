@@ -5,7 +5,7 @@ description: "Learn how to install and use Claude skills across supported coding
 
 ## Getting Started
 
-Claude skills are reusable instruction sets that extend supported coding agents for specific tasks. Choose the installation path that matches the tool in use.
+Skills are reusable instruction sets that extend supported coding agents for specific tasks. Choose the installation path that matches the tool in use.
 
 ## Installation Methods
 

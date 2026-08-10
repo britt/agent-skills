@@ -17,8 +17,6 @@ Claude Code installs skills through the plugin marketplace.
 /plugin marketplace add britt/agent-skills
 /plugin install agent-skills@britt
 /plugin install project-foundations@britt
-git clone https://github.com/britt/agent-skills.git ~/.claude/skills/agent-skills
-git clone https://github.com/britt/agent-skills.git .claude/skills/agent-skills
 ```
 
 ### Codex CLI

@@ -10,7 +10,7 @@ Transform high-level project descriptions into well-structured GitHub issues. Ea
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install issue-decomposition@britt
 ```
 

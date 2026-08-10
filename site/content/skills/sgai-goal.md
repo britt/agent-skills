@@ -20,12 +20,14 @@ Or install all skills at once:
 /plugin install claude-code-skills@britt
 ```
 
-## Compatibility
+## Supported coding agents
 
-| Platform | Supported |
-|----------|:---------:|
+| Coding agent | Supported |
+|--------------|:---------:|
 | Claude Code | ✓ |
-| Claude.ai | |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 
 ## How to use it
 

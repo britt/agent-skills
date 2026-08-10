@@ -5,32 +5,31 @@ description: "Learn how to install and use Claude skills across supported coding
 
 ## Getting Started
 
-Claude skills are reusable instruction sets that enhance Claude's capabilities for specific tasks. They work in both Claude Code and Claude.ai (with some limitations).
+Claude skills are reusable instruction sets that extend supported coding agents for specific tasks. Choose the installation path that matches the tool in use, then browse the [Skills](../skills/) page for the catalog of bundles and individual skills.
 
 ## Installation Methods
 
-### Claude Code Plugin Marketplace
+### Claude Code
 
-The easiest way to install skills in Claude Code:
+Claude Code installs skills through the plugin marketplace and also supports manual cloning into the standard Claude Code skill folders.
 
 ```bash
 /plugin marketplace add britt/claude-code-skills
+/plugin install claude-code-skills@britt
+/plugin install project-foundations@britt
+git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
+git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-code-skills
 ```
 
-Once the marketplace is added, install everything, a curated bundle, or a single skill:
+### Codex CLI
+
+Codex CLI installs the repository through its plugin marketplace.
 
 ```bash
-# Install all skills
-/plugin install claude-code-skills@britt
-
-# Install a curated bundle (e.g. project-foundations)
-/plugin install project-foundations@britt
-
-# Install a single skill
-/plugin install setting-up-a-project@britt
+codex plugin marketplace add britt/claude-code-skills
+codex plugin install claude-code-skills@britt
+codex plugin install project-foundations@britt
 ```
-
-See the [Skills](../skills/) page for the full list of individual skills and bundles.
 
 ### Global Installation
 

@@ -17,7 +17,7 @@ Add the marketplace and install this skill:
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+ /plugin install agent-skills@britt
 ```
 
 

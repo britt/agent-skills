@@ -63,7 +63,7 @@ Browse the [Skills](../skills/) index for the full catalog.
 
 ## Creating Your Own Skills
 
-See the [Contributing Guide](https://github.com/britt/claude-code-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.
+See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.
 
 ## Rules
 

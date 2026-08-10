@@ -10,14 +10,14 @@ Generate structured meeting agendas by gathering context from recent project act
 Add the marketplace and install this skill:
 
 ```bash
- /plugin marketplace add britt/agent-skills
+/plugin marketplace add britt/agent-skills
 /plugin install prepare-meeting-agenda@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
 ## Supported coding agents

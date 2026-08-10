@@ -10,7 +10,7 @@ Define stakeholder personas and track their goals to ensure all perspectives are
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install stakeholder-tracking@britt
 ```
 

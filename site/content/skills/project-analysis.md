@@ -10,7 +10,7 @@ Perform comprehensive analysis of a project codebase to understand its structure
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install project-analysis@britt
 ```
 

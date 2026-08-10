@@ -31,28 +31,33 @@ codex plugin install claude-code-skills@britt
 codex plugin install project-foundations@britt
 ```
 
-### Global Installation
+### Cursor
 
-Install skills globally so they're available in all projects:
+Cursor adds the repository through its dashboard based marketplace flow and installs the same bundles from there.
+
+1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
+2. Point it at `britt/claude-code-skills`
+3. Install `claude-code-skills` or `project-foundations` from **Customize**
+
+### Shared `.agents/skills/` Path
+
+Codex CLI, OpenCode, and Cursor can also read a shared `.agents/skills/` directory. Use this fallback when a marketplace flow is not available.
 
 ```bash
-git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
-```
-
-### Project-Specific Installation
-
-Install skills for a specific project:
-
-```bash
-# Clone the entire repository into the project
-git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-code-skills
+git clone https://github.com/britt/claude-code-skills.git ~/.agents-skills-src
+mkdir -p ~/.agents/skills
+for dir in ~/.agents-skills-src/skills/*/; do
+  ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
+done
 ```
 
 ### Claude.ai
 
+Claude.ai uses project knowledge uploads.
+
 1. Download the skill zip from the [Releases page](https://github.com/britt/claude-code-skills/releases/)
-2. Go to your Claude.ai project
-3. Click **Project knowledge** and upload the zip file
+2. Open the target project in Claude.ai
+3. Upload the zip file under **Project knowledge**
 
 ## Creating Your Own Skills
 

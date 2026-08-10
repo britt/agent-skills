@@ -14,11 +14,9 @@ Skills are reusable instruction sets that extend supported coding agents for spe
 Claude Code installs skills through the plugin marketplace and also supports manual cloning into the standard Claude Code skill folders.
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
-/plugin install claude-code-skills@britt
+/plugin marketplace add britt/agent-skills
+/plugin install agent-skills@britt
 /plugin install project-foundations@britt
-git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
-git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-code-skills
 ```
 
 ### Codex CLI

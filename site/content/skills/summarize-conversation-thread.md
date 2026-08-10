@@ -10,7 +10,7 @@ Read long GitHub issue or PR threads and produce concise summaries highlighting 
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install summarize-conversation-thread@britt
 ```
 

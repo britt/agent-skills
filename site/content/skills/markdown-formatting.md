@@ -10,7 +10,7 @@ Apply consistent Markdown formatting to all outputs, structuring content for rea
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install markdown-formatting@britt
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: "Documentation"
-description: "Learn how to use and create Claude skills"
+description: "Learn how to install and use Claude skills across supported coding agents"
 ---
 
 ## Getting Started

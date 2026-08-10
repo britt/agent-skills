@@ -1,6 +1,6 @@
 ---
 title: "Project Foundations (Bundle)"
-description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan for supported coding agents"
+description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan with supported coding agents"
 ---
 
 A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.

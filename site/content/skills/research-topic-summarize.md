@@ -10,7 +10,7 @@ Conduct thorough web research on a topic, synthesize findings into a detailed su
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install research-topic-summarize@britt
 ```
 

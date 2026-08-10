@@ -61,10 +61,10 @@ Claude.ai uses project knowledge uploads.
 
 Browse the [Skills](../skills/) index for the full catalog.
 
-## Creating Your Own Skills
-
-See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.
-
 ## Rules
 
 The repository also includes reusable rule sets in the `rules/` directory. The most notable is **TDD.rules.md** which enforces strict Test-Driven Development practices.
+
+## Creating Your Own Skills
+
+See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.

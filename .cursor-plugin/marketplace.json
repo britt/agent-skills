@@ -1,0 +1,22 @@
+{
+  "name": "britt",
+  "owner": {
+    "name": "Britt Crawford",
+    "email": "britt@brittcrawford.com"
+  },
+  "metadata": {
+    "description": "A collection of skills for Claude Code to enhance AI-assisted development workflows"
+  },
+  "plugins": [
+    {
+      "name": "claude-code-skills",
+      "source": "./",
+      "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more"
+    },
+    {
+      "name": "project-foundations",
+      "source": "./bundles/project-foundations",
+      "description": "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams"
+    }
+  ]
+}

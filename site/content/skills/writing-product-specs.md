@@ -20,7 +20,7 @@ Or install all skills at once:
 /plugin install claude-code-skills@britt
 ```
 
-## Supported coding agents
+## Supported agents
 
 | Agent | Supported |
 |-------|:---------:|

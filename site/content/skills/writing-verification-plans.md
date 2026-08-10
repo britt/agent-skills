@@ -10,7 +10,7 @@ Create verification plans for real-world acceptance testing. Verification uses a
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install writing-verification-plans@britt
 ```
 

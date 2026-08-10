@@ -5,9 +5,9 @@ description: "A curated bundle for taking a new project from concept to a diagra
 
 A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
 
-## Supported agents
+## Supported coding agents
 
-| Agent | Supported |
+| Coding agent | Supported |
 |-------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |

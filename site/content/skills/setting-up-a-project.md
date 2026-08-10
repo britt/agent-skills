@@ -20,10 +20,10 @@ Or install all skills at once:
 /plugin install claude-code-skills@britt
 ```
 
-## Supported agents
+## Supported coding agents
 
-| Agent | Supported |
-|-------|:---------:|
+| Coding agent | Supported |
+|--------------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
 | OpenCode | ✓ |

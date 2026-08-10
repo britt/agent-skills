@@ -10,14 +10,14 @@ Transform raw idea notes into comprehensive design documents autonomously. This 
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install idea-to-design@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
 ## Supported coding agents

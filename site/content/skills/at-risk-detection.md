@@ -10,7 +10,7 @@ Proactively scan GitHub issues and pull requests to identify at-risk items befor
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install at-risk-detection@britt
 ```
 

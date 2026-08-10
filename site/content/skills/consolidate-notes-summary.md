@@ -10,7 +10,7 @@ Search project notes by topic or tag and produce a consolidated summary that syn
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install consolidate-notes-summary@britt
 ```
 

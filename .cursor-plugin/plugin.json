@@ -1,14 +1,14 @@
 {
-  "name": "claude-code-skills",
-  "displayName": "Claude Code Skills",
+  "name": "agent-skills",
+  "displayName": "Agent Skills",
   "description": "Skills for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
   "version": "3.2.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"
   },
-  "homepage": "https://github.com/britt/claude-code-skills",
-  "repository": "https://github.com/britt/claude-code-skills",
+  "homepage": "https://github.com/britt/agent-skills",
+  "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
   "keywords": ["skills", "tdd", "project-setup", "product-specs", "user-stories", "verification", "planning"],
   "category": "productivity",

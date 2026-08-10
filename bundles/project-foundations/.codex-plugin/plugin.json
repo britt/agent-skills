@@ -6,8 +6,8 @@
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"
   },
-  "homepage": "https://github.com/britt/claude-code-skills",
-  "repository": "https://github.com/britt/claude-code-skills",
+  "homepage": "https://github.com/britt/agent-skills",
+  "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
   "keywords": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues"],
   "skills": "./skills/"

@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "claude-code-skills",
+      "name": "agent-skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
       "version": "3.2.0",
       "author": {

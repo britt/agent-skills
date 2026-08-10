@@ -26,8 +26,8 @@ git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-
 Codex CLI installs the repository through its plugin marketplace.
 
 ```bash
-codex plugin marketplace add britt/claude-code-skills
-codex plugin install claude-code-skills@britt
+codex plugin marketplace add britt/agent-skills
+codex plugin install agent-skills@britt
 codex plugin install project-foundations@britt
 ```
 

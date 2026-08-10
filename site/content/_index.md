@@ -36,8 +36,8 @@ codex plugin install project-foundations@britt
 Cursor adds the repository through its dashboard based marketplace flow and installs the same bundles from there.
 
 1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
-2. Point it at `britt/claude-code-skills`
-3. Install `claude-code-skills` or `project-foundations` from **Customize**
+2. Point it at `britt/agent-skills`
+3. Install `agent-skills` or `project-foundations` from **Customize**
 
 ### Shared `.agents/skills/` Path
 

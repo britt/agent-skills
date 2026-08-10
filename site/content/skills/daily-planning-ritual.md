@@ -10,14 +10,14 @@ Interactive morning practice that helps you plan your entire day holistically th
 Add the marketplace and install this skill:
 
 ```bash
- /plugin marketplace add britt/agent-skills
+/plugin marketplace add britt/agent-skills
 /plugin install daily-planning-ritual@britt
 ```
 
 Or install all skills at once:
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
 ## Supported coding agents

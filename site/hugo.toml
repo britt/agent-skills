@@ -1,4 +1,4 @@
-baseURL = 'https://britt.github.io/claude-code-skills/'
+baseURL = 'https://britt.github.io/agent-skills/'
 languageCode = 'en-us'
 title = 'Agent Skills'
 theme = 'paper'
@@ -6,7 +6,7 @@ copyright = '© 2026 Snugglebear Team Company'
 
 [params]
   color = 'linen'
-  github = 'britt/claude-code-skills'
+  github = 'britt/agent-skills'
   avatar = ''
   name = 'Agent Skills'
   bio = 'A collection of skills to enhance AI-assisted development workflows'

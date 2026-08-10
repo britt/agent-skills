@@ -22,7 +22,7 @@ Or install all skills at once:
 
 ## Supported agents
 
-| Agent | Supported |
+| Coding agent | Supported |
 |----------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |

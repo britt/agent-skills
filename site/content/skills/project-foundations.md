@@ -1,24 +1,18 @@
 ---
 title: "Project Foundations (Bundle)"
-description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan"
+description: "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan across Claude Code, Codex CLI, OpenCode, and Cursor"
 ---
 
 A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
-
-### Installation
-
-Add the marketplace and install the bundle:
-
-```bash
-/plugin marketplace add britt/claude-code-skills
-/plugin install project-foundations@britt
-```
 
 ## Compatibility
 
 | Platform | Supported |
 |----------|:---------:|
 | Claude Code | ✓ |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 | Claude.ai | |
 
 ## Included Skills
@@ -35,4 +29,4 @@ Add the marketplace and install the bundle:
 
 ## How to use it
 
-Install the bundle when you want the full concept-to-plan workflow in one step rather than installing each skill individually. Each skill in the bundle is single-sourced back to its canonical definition under `skills/`, so bundle and standalone installs always stay in sync.
+Install the bundle when the full concept-to-plan workflow belongs in one place rather than as separate skills. Each skill in the bundle points back to its canonical definition under `skills/`, so bundle and standalone installs stay in sync.

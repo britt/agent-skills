@@ -10,7 +10,7 @@ Craft effective stakeholder communications tailored to different audiences. This
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+ /plugin marketplace add britt/agent-skills
 /plugin install stakeholder-updates@britt
 ```
 

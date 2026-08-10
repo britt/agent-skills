@@ -1,0 +1,31 @@
+# Blocks PRs from unvouched or denounced authors. Bots and collaborators
+# with write access are always allowed through automatically.
+#
+# The vouched/denounced list lives in .github/VOUCHED.td. Maintainers can
+# add contributors with `vouch <username> --write` (see
+# https://github.com/mitchellh/vouch) or by editing the file directly.
+#
+# auto-close is off by default so this only reports status until the
+# VOUCHED.td list has been populated with real contributors. Flip it to
+# true once you're ready to have unvouched PRs closed automatically.
+
+name: Vouch check PR
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mitchellh/vouch/action/check-pr@v1
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          auto-close: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

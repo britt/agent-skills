@@ -10,7 +10,7 @@ Create clear, maintainable Mermaid diagrams directly in Markdown that render cor
 Add the marketplace and install this skill:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 /plugin install mermaid-diagrams@britt
 ```
 

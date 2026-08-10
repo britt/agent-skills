@@ -10,8 +10,19 @@ Guidelines for contributing to this skills repository.
 claude-code-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
+├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks in sync with skills/
 ├── .claude-plugin/
-│   └── marketplace.json      # Plugin marketplace configuration
+│   ├── marketplace.json      # Claude Code plugin marketplace configuration
+│   └── plugin.json           # Claude Code plugin manifest (full bundle)
+├── .codex-plugin/
+│   └── plugin.json           # Codex CLI plugin manifest (full bundle; reuses .claude-plugin/marketplace.json)
+├── .cursor-plugin/
+│   ├── marketplace.json      # Cursor plugin marketplace configuration
+│   └── plugin.json           # Cursor plugin manifest (full bundle)
+├── .agents/
+│   └── skills/                       # Symlinks only — read by Codex CLI, OpenCode, Cursor
+│       ├── daily-planning-ritual -> ../../skills/daily-planning-ritual
+│       └── ...
 ├── docs/
 │   └── plans/                # Design documents for skills
 │       └── 2025-11-09-summoning-user-design.md
@@ -24,6 +35,8 @@ claude-code-skills/
     └── writing-user-stories/
         └── SKILL.md
 ```
+
+`skills/` is the single canonical copy of every skill. `.agents/skills/` holds only symlinks back into it (read natively by Codex CLI, OpenCode, and Cursor) — never commit real files there.
 
 ## Creating a New Skill
 
@@ -75,7 +88,11 @@ Optional elements:
 - Anti-patterns
 - Examples
 
-### 3. Update Marketplace (Required)
+### 3. Link into .agents/skills/ (Required)
+
+Run `./sync-agents-skills.sh` to add the `.agents/skills/<name>` symlink for your new skill (and clean up any stale ones). This is what makes the skill discoverable by Codex CLI, OpenCode, and Cursor — commit the symlink, not a copy of the file.
+
+### 4. Update Marketplace (Required)
 
 Add the new skill to `.claude-plugin/marketplace.json`:
 
@@ -95,6 +112,12 @@ Add the new skill to `.claude-plugin/marketplace.json`:
   "tags": ["tag1", "tag2"]
 }
 ```
+
+New skills are picked up automatically by the Codex/Cursor full-bundle plugins (they reference the whole `skills/` directory) — no per-skill entry needed there. Granular per-skill installs are currently a Claude Code-only feature.
+
+### 5. Bumping the Bundle Version (Required when releasing)
+
+The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. The `project-foundations` bundle has the same set under `bundles/project-foundations/`.
 
 ## Building Skill Archives
 

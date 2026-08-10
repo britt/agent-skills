@@ -128,6 +128,40 @@ git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-
 
 Restart Claude Code after installation to load new skills.
 
+### Codex CLI
+
+This repo is a Codex plugin marketplace (`.codex-plugin/plugin.json` + the existing `.claude-plugin/marketplace.json`, which Codex also reads):
+
+```bash
+codex plugin marketplace add britt/claude-code-skills
+codex plugin install claude-code-skills@britt        # all skills
+codex plugin install project-foundations@britt       # curated bundle only
+```
+
+### Cursor
+
+This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/claude-code-skills`, then install `claude-code-skills` (or `project-foundations`) from **Customize** in the sidebar.
+
+### Codex CLI, OpenCode, and Cursor: Manual Installation
+
+All three also discover skills the same way Claude Code does — a `SKILL.md` with `name`/`description` frontmatter, auto-triggered by relevance — under the shared `.agents/skills/` path. This repo already exposes every skill there (`.agents/skills/<name>` symlinked to `skills/<name>`, so there's only ever one copy of each skill's content). This is the option to use for OpenCode, which has no marketplace, or if you'd rather not use Codex's/Cursor's plugin flow above.
+
+**Global installation** (available in all projects):
+
+```bash
+git clone https://github.com/britt/claude-code-skills.git ~/.agents-skills-src
+mkdir -p ~/.agents/skills
+for dir in ~/.agents-skills-src/skills/*/; do
+  ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
+done
+```
+
+**Project-specific installation**: clone into the project and symlink, or run `./sync-agents-skills.sh` after copying `skills/` into your project's own `.agents/skills/`.
+
+Codex CLI also reads `~/.codex/AGENTS.md` / project `AGENTS.md`, OpenCode reads `AGENTS.md` and natively falls back to `.claude/skills/`, and Cursor also reads `.cursor/skills/` — so a plain `git clone` into any of those tool-specific directories works too. Restart the tool after installation to load new skills.
+
+**Note:** Some skills (like `sgai-goal` and `setting-up-a-project`) reference Claude Code-specific tooling (e.g. `CLAUDE.md`, `TodoWrite`) and may need minor adaptation to work identically in other tools; most skills are plain instructional markdown and are unaffected. Granular per-skill plugin installs (like `/plugin install architecture-diagramming@britt` for Claude Code) aren't set up for Codex/Cursor yet — only the two bundles above; use the manual `.agents/skills/` installation for individual-skill granularity on those tools.
+
 ### Claude.ai (Web and iOS)
 
 Skills can be added to Claude.ai projects as project knowledge:

@@ -1,0 +1,17 @@
+{
+  "name": "project-foundations",
+  "displayName": "Project Foundations",
+  "description": "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams",
+  "version": "2.0.0",
+  "author": {
+    "name": "Britt Crawford",
+    "email": "britt@brittcrawford.com"
+  },
+  "homepage": "https://github.com/britt/claude-code-skills",
+  "repository": "https://github.com/britt/claude-code-skills",
+  "license": "MIT",
+  "keywords": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues"],
+  "category": "productivity",
+  "tags": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues"],
+  "skills": "./skills/"
+}

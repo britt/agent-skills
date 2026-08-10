@@ -5,19 +5,6 @@ description: "A curated bundle for taking a new project from concept to a diagra
 
 A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
 
-### Installation
-
-Add the bundle through the marketplace flow for Claude Code, Codex CLI, or Cursor, or discover it from the shared `.agents/skills/` path in Codex CLI, OpenCode, and Cursor:
-
-```bash
-/plugin marketplace add britt/claude-code-skills
-/plugin install project-foundations@britt
-
-# Codex CLI uses the same bundle name with its plugin marketplace flow.
-codex plugin marketplace add britt/claude-code-skills
-codex plugin install project-foundations@britt
-```
-
 ## Compatibility
 
 | Platform | Supported |

@@ -22,10 +22,14 @@ Or install all skills at once:
 
 ## Compatibility
 
-| Platform | Supported |
-|----------|:---------:|
+## Supported coding agents
+
+| Coding agent | Supported |
+|--------------|:---------:|
 | Claude Code | ✓ |
-| Claude.ai | ✓ |
+| Codex CLI | ✓ |
+| OpenCode | ✓ |
+| Cursor | ✓ |
 
 ## How to use it
 

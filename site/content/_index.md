@@ -55,7 +55,7 @@ done
 
 Claude.ai uses project knowledge uploads.
 
-1. Download the skill zip from the [Releases page](https://github.com/britt/claude-code-skills/releases/)
+1. Download the skill zip from the [Releases page](https://github.com/britt/agent-skills/releases/)
 2. Open the target project in Claude.ai
 3. Upload the zip file under **Project knowledge**
 

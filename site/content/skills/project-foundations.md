@@ -7,11 +7,15 @@ A curated bundle for taking a new project from concept to a diagrammed, story-dr
 
 ### Installation
 
-Add the marketplace and install the bundle:
+Add the bundle through the marketplace flow for Claude Code, Codex CLI, or Cursor, or discover it from the shared `.agents/skills/` path in Codex CLI, OpenCode, and Cursor:
 
 ```bash
 /plugin marketplace add britt/claude-code-skills
 /plugin install project-foundations@britt
+
+# Codex CLI uses the same bundle name with its plugin marketplace flow.
+codex plugin marketplace add britt/claude-code-skills
+codex plugin install project-foundations@britt
 ```
 
 ## Compatibility
@@ -35,4 +39,4 @@ Add the marketplace and install the bundle:
 
 ## How to use it
 
-Install the bundle when the full concept-to-plan workflow belongs in one place rather than as separate skills. Each skill in the bundle points back to its canonical definition under `skills/`, so bundle and standalone installs stay in sync.
+Install the bundle when you want the full concept-to-plan workflow in one step rather than installing each skill individually. Each skill in the bundle is single-sourced back to its canonical definition under `skills/`, so bundle and standalone installs always stay in sync.

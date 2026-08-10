@@ -28,7 +28,6 @@ Or install all skills at once:
 | Codex CLI | ✓ |
 | OpenCode | ✓ |
 | Cursor | ✓ |
-| Claude.ai | |
 
 ## How to use it
 

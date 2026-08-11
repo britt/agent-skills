@@ -63,13 +63,13 @@ A collection of skills for coding agents to enhance AI-assisted development work
 Add this repository as a plugin marketplace:
 
 ```bash
-/plugin marketplace add britt/claude-code-skills
+/plugin marketplace add britt/agent-skills
 ```
 
 **Install all skills:**
 
 ```bash
-/plugin install claude-code-skills@britt
+/plugin install agent-skills@britt
 ```
 
 **Install a curated bundle:**
@@ -106,7 +106,7 @@ Add this repository as a plugin marketplace:
 /plugin install working-on-an-issue@britt
 ```
 
-**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `claude-code-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
+**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
 
 ### Claude Code: Manual Installation
 
@@ -116,14 +116,14 @@ Skills can be installed globally or per-project.
 
 ```bash
 # Clone the entire repository
-git clone https://github.com/britt/claude-code-skills.git ~/.claude/skills/claude-code-skills
+git clone https://github.com/britt/agent-skills.git ~/.claude/skills/agent-skills
 ```
 
 **Project-specific installation**:
 
 ```bash
 # Clone the entire repository into the project
-git clone https://github.com/britt/claude-code-skills.git .claude/skills/claude-code-skills
+git clone https://github.com/britt/agent-skills.git .claude/skills/agent-skills
 ```
 
 Restart Claude Code after installation to load new skills.
@@ -133,14 +133,14 @@ Restart Claude Code after installation to load new skills.
 This repo is a Codex plugin marketplace (`.codex-plugin/plugin.json` + the existing `.claude-plugin/marketplace.json`, which Codex also reads):
 
 ```bash
-codex plugin marketplace add britt/claude-code-skills
-codex plugin install claude-code-skills@britt        # all skills
+codex plugin marketplace add britt/agent-skills
+codex plugin install agent-skills@britt        # all skills
 codex plugin install project-foundations@britt       # curated bundle only
 ```
 
 ### Cursor
 
-This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/claude-code-skills`, then install `claude-code-skills` (or `project-foundations`) from **Customize** in the sidebar.
+This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/agent-skills`, then install `agent-skills` (or `project-foundations`) from **Customize** in the sidebar.
 
 ### Codex CLI, OpenCode, and Cursor: Manual Installation
 
@@ -149,7 +149,7 @@ All three also discover skills the same way Claude Code does — a `SKILL.md` wi
 **Global installation** (available in all projects):
 
 ```bash
-git clone https://github.com/britt/claude-code-skills.git ~/.agents-skills-src
+git clone https://github.com/britt/agent-skills.git ~/.agents-skills-src
 mkdir -p ~/.agents/skills
 for dir in ~/.agents-skills-src/skills/*/; do
   ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
@@ -167,7 +167,7 @@ Codex CLI also reads `~/.codex/AGENTS.md` / project `AGENTS.md`, OpenCode reads 
 Skills can be added to Claude.ai projects as project knowledge:
 
 1. **Download the skill zip file**
-   - Go to the [Releases page](https://github.com/britt/claude-code-skills/releases/)
+   - Go to the [Releases page](https://github.com/britt/agent-skills/releases/)
    - Download the zip file for the skill you want (e.g., `writing-product-specs.zip`)
 
 2. **Add to your Claude.ai project**
@@ -200,7 +200,7 @@ Strict Test-Driven Development rules for Claude. Used by the `setting-up-a-proje
 
 ```bash
 curl -o CLAUDE.md \
-  https://raw.githubusercontent.com/britt/claude-code-skills/main/rules/TDD.rules.md
+  https://raw.githubusercontent.com/britt/agent-skills/main/rules/TDD.rules.md
 ```
 
 Fill in the placeholder commands (`<test command>`, `<build command>`, etc.) for your tech stack.

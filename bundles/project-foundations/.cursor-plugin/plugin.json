@@ -2,7 +2,7 @@
   "name": "project-foundations",
   "displayName": "Project Foundations",
   "description": "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"

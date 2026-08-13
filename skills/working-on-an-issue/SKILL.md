@@ -11,7 +11,7 @@ description: Use when asked to work on, read, or implement a GitHub issue - hand
 
 A hands-off workflow for implementing GitHub issues. There are no approval gates before the pull request: the developer reviews finished work on the PR, so every judgment call you make must be recorded where they will see it.
 
-**Core principle:** Understand → Recon → Plan verification → Plan implementation → Implement → Verify → PR
+**Core principle:** Understand → Update project status → Recon → Plan verification → Plan implementation → Implement → Verify → PR
 
 **Create TodoWrite todos for the pre-flight checklist and each numbered step below.**
 
@@ -44,7 +44,43 @@ Do not invent requirements. Where the issue is ambiguous, choose the narrowest i
 
 **Assumptions resolve ambiguity in *how*, never reduce *what* the issue asks for.** Dropping a named request ("deferred the tour") is not an assumption — it's a scope cut, and scope cuts go through `issue-decomposition`, not the assumptions list. Manufacturing acceptance criteria the issue never stated to pass the sizing check is the same violation.
 
-### 2. Scoped Reconnaissance
+### 2. Update Linked Project Status
+
+Check whether the issue belongs to any GitHub Projects (v2). If it does, move it to an "in progress" style status in **every** project it belongs to before starting recon — this is what signals to anyone watching a board that work has actually begun.
+
+Query the issue's project items via GraphQL (`gh issue view --json` does not expose Projects v2 membership):
+
+```bash
+gh api graphql -f query='
+  query($owner: String!, $repo: String!, $number: Int!) {
+    repository(owner: $owner, name: $repo) {
+      issue(number: $number) {
+        projectItems(first: 20) {
+          nodes {
+            id
+            project { id title number }
+          }
+        }
+      }
+    }
+  }' -F owner=<owner> -F repo=<repo> -F number=<number>
+```
+
+If `projectItems.nodes` is empty, the issue isn't tracked in any project — skip the rest of this step.
+
+For each project item returned, look up its status-like single-select field and options, then set it:
+
+```bash
+gh project field-list <project-number> --owner <owner> --format json   # locate the status field id + target option id
+gh project item-edit --id <item-id> --project-id <project-id> \
+  --field-id <status-field-id> --single-select-option-id <in-progress-option-id>
+```
+
+- Field and option names vary by project (`Status`/`In Progress`, `Doing`, `Started`, ...) — match case-insensitively on the option that most plausibly means "work has begun." If no such option exists, skip that project and note it rather than guessing.
+- Do this for every project item found, not just the first — an issue can belong to more than one project.
+- If the `gh` token lacks project scope or the update otherwise fails, don't block the workflow — record it as an assumption/caveat in the plan file and PR, and continue.
+
+### 3. Scoped Reconnaissance
 
 The issue bounds the exploration. Recon exists to *locate the change*, not to understand the codebase.
 
@@ -57,28 +93,28 @@ Stop exploring the moment you can answer all three:
 
 **Forbidden:** reading whole directories "for context", tracing beyond one hop, architecture surveys.
 
-### 3. Write the Verification Plan
+### 4. Write the Verification Plan
 
 Use the `writing-verification-plans` skill. This comes before the implementation plan because acceptance criteria define done and constrain the implementation.
 
-### 4. Write the Implementation Plan
+### 5. Write the Implementation Plan
 
 Use `superpowers:writing-plans` (if available) or write a brief plan covering: what changes, which files, order of implementation, risks, and the assumptions from step 1. Save to `docs/plans/issue-<number>-plan.md`, then proceed — do not wait for approval.
 
-### 5. Implement
+### 6. Implement
 
 - Follow TDD practices if `TDD.rules.md` is present (a project-level TDD rules file, if the repo defines one)
 - Commit after each logical change; reference the issue in commit messages (e.g. `fix: handle empty input (#123)`)
 - Unexpected complexity that invalidates the plan → update the plan file and note it for the PR description
 - Genuinely blocked (missing credentials, contradictory requirements) → comment on the issue and stop
 
-### 6. Execute Verification
+### 7. Execute Verification
 
 Run the verification plan and record results in the log format from `writing-verification-plans`.
 
 **If verification fails:** use `superpowers:systematic-debugging` to find the root cause — do not patch symptoms — then fix, re-run, and update the log. Never open the PR with failing verification (`superpowers:verification-before-completion` applies).
 
-### 7. Open the Pull Request
+### 8. Open the Pull Request
 
 Push the branch and create the PR: `gh pr create`. The PR body must include:
 

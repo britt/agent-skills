@@ -10,7 +10,7 @@ Guidelines for contributing to this skills repository.
 claude-code-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
-├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks in sync with skills/
+├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks and the rules/ mirror in sync with skills/
 ├── .claude-plugin/
 │   ├── marketplace.json      # Claude Code plugin marketplace configuration
 │   └── plugin.json           # Claude Code plugin manifest (full bundle)
@@ -91,6 +91,8 @@ Optional elements:
 ### 3. Link into .agents/skills/ (Required)
 
 Run `./sync-agents-skills.sh` to add the `.agents/skills/<name>` symlink for your new skill (and clean up any stale ones). This is what makes the skill discoverable by Codex CLI, OpenCode, and Cursor — commit the symlink, not a copy of the file.
+
+The same script refreshes `rules/`, which mirrors rule sets bundled inside skills so they stay fetchable by raw URL. Edit the copy inside the skill; never edit `rules/` directly. Skills must stay self-contained — single-skill installs use `"source": "./skills/<name>"`, so a symlink out of the skill directory would dangle.
 
 ### 4. Update Marketplace (Required)
 

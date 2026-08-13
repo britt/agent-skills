@@ -1,4 +1,10 @@
-# Rules for Claude
+# Rules for the Coding Agent
+
+> **This file is a template.** Every `{{PLACEHOLDER}}` must be replaced with a real
+> value before it lands in a project. A shipped `{{TEST_COMMAND}}` is a bug.
+>
+> Referenced by `CLAUDE.md` and `AGENTS.md`. It applies to every agent working in
+> the repo, whichever entry file brought you here.
 
 ## ABSOLUTE RULES - NO EXCEPTIONS
 
@@ -26,17 +32,17 @@ If ANY of these occur, you MUST delete the code and start over:
 
 ### 3. Test Coverage Requirements
 
-- **Minimum 90%** coverage on ALL metrics:
-  - Lines: 90%+
-  - Functions: 90%+
-  - Branches: 85%+
-  - Statements: 90%+
+- **Minimum {{COVERAGE_THRESHOLD}}%** coverage on ALL metrics:
+  - Lines: {{COVERAGE_THRESHOLD}}%+
+  - Functions: {{COVERAGE_THRESHOLD}}%+
+  - Branches: {{BRANCH_COVERAGE_THRESHOLD}}%+
+  - Statements: {{COVERAGE_THRESHOLD}}%+
 - Coverage below threshold = Implementation incomplete
 - Untested code = Code that shouldn't exist
 
 ### 4. Implementation Order
 
-Follow the plan tasks listed in @IMPLEMENTATION_PLAN.md in EXACT order.
+If the project has an `IMPLEMENTATION_PLAN.md`, follow its tasks in EXACT order.
 
 ### 5. Before Writing ANY Code
 
@@ -49,10 +55,10 @@ If ANY answer is "no" → STOP. Write the test first.
 
 ### 6. Test File Structure
 
-For every production file, there MUST be a corresponding test file:
-- `src/example.ts` → `src/__tests__/example.test.ts`
-- `src/another-example.ts` → `src/__tests__/another-example.test.ts`
-- `src/causes_edge_cases.ts` → `src/__tests__/causes_edge_cases.test.ts`
+For every production file, there MUST be a corresponding test file. This project's
+convention:
+
+{{TEST_FILE_CONVENTION}}
 
 ### 7. Task Completion Requirements
 
@@ -60,8 +66,9 @@ For every production file, there MUST be a corresponding test file:
 - ✅ ALL tests pass (100% green)
 - ✅ Build succeeds with ZERO errors
 - ✅ NO linter errors or warnings
-- ✅ Coverage meets minimum thresholds (90%+)
+- ✅ Coverage meets minimum thresholds ({{COVERAGE_THRESHOLD}}%+)
 - ✅ Progress documented in PROGRESS.md
+- ✅ Work committed, following the Git Commit Rules in CLAUDE.md / AGENTS.md
 
 A task with failing tests, build errors, or linter warnings is INCOMPLETE. Period.
 
@@ -90,82 +97,42 @@ Format:
 - Notes: [any relevant notes]
 ```
 
-### 9. Git Commits - Commit Early, Commit Often
-
-**MANDATORY RULE**: COMMIT EARLY, COMMIT OFTEN
-
-- **Commit after EACH successful TDD cycle**:
-  - ✅ After RED-GREEN-REFACTOR cycle completes
-  - ✅ After each test file is created
-  - ✅ After each module implementation
-  - ✅ After fixing bugs or issues
-  - ✅ After updating documentation
-
-- **Frequency Requirements**:
-  - Minimum: After each completed subtask
-  - Maximum: No more than 30 minutes without a commit
-  - Never have more than one feature in a single commit
-
-- **Each commit MUST**:
-  - Have failing tests written first
-  - Pass all tests
-  - Build successfully
-  - Have no linter errors
-  - Meet coverage requirements (if code was added)
-  - Have progress documented
-  - Include clear commit message mentioning TDD
-
-- **Commit Message Format**:
-  ```
-  type(scope): brief description
-
-  - RED: What tests were written first
-  - GREEN: What minimal code was added
-  - Status: X tests passing, build successful
-  - Coverage: X% (if applicable)
-  ```
-
-- **Benefits of Frequent Commits**:
-  - Easy rollback if something breaks
-  - Clear history of TDD progression
-  - Smaller, reviewable changes
-  - Proof of TDD discipline
-
 ## Development Workflow
 
 For EACH feature/function:
 
 ```
 1. Write test file or add test case
-2. Run: <test command>
+2. Run: {{TEST_COMMAND}}
 3. See RED (test fails)
 4. Understand WHY it fails
 5. Write minimal production code
-6. Run: <test command>
+6. Run: {{TEST_COMMAND}}
 7. See GREEN (test passes)
 8. Refactor if needed
-9. Run: <test command> (stays green)
-10. Check coverage: <coverage command>
-11. Repeat for next feature
+9. Run: {{TEST_COMMAND}} (stays green)
+10. Check coverage: {{COVERAGE_COMMAND}}
+11. Commit (see the Git Commit Rules in CLAUDE.md / AGENTS.md)
+12. Repeat for next feature
 ```
 
 ## Commands You'll Use Constantly
 
 ```bash
 # Watch mode - keep this running ALWAYS
-<test command>
+{{TEST_WATCH_COMMAND}}
 
 # Run once
-<test command>
+{{TEST_COMMAND}}
 
 # Check coverage
-<coverage command>
+{{COVERAGE_COMMAND}}
 
 # Build - MUST succeed before task is complete
-<build command>
+{{BUILD_COMMAND}}
 
 # Check for Linter errors
-<linter command>
+{{LINT_COMMAND}}
 ```
 
 ## Red Flags - STOP Immediately
@@ -187,7 +154,7 @@ If you catch yourself:
 - Tests are not added after
 - Tests DRIVE the implementation
 - If it's not tested, it doesn't exist
-- Coverage below 90% = unfinished work
+- Coverage below {{COVERAGE_THRESHOLD}}% = unfinished work
 
 ## Accountability Check
 
@@ -196,10 +163,11 @@ Before marking ANY task complete, verify:
 2. ✓ Test failed first?
 3. ✓ Minimal code to pass?
 4. ✓ All tests green?
-5. ✓ Coverage maintained (90%+)?
-6. ✓ Build succeeds (`<build command>`)?
+5. ✓ Coverage maintained ({{COVERAGE_THRESHOLD}}%+)?
+6. ✓ Build succeeds (`{{BUILD_COMMAND}}`)?
 7. ✓ No linter errors?
 8. ✓ Progress documented in PROGRESS.md?
+9. ✓ Work committed?
 
 Missing ANY ✓ = Task is NOT complete. Fix it first.
 

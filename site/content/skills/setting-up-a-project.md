@@ -1,6 +1,6 @@
 ---
 title: "Setting Up a Project"
-description: "Author CLAUDE.md with project purpose, tech stack, and development practices"
+description: "Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices"
 ---
 
 Author the instruction files that define your project's purpose, tech stack, and development practices before any code is written — CLAUDE.md for Claude Code and a separately tuned AGENTS.md for Codex CLI, OpenCode, and Cursor. It surveys the repository first, then interviews you one question at a time to fill the gaps and establish development conventions before scaffolding code.

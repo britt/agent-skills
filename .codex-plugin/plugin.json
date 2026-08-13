@@ -1,7 +1,7 @@
 {
   "name": "agent-skills",
   "description": "Skills for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"

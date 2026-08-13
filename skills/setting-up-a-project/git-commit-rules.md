@@ -7,6 +7,18 @@
 - Commit before switching context or taking breaks
 - Never have more than 30 minutes of uncommitted work
 - Each commit should be atomic: one logical change per commit
+- Never put more than one feature in a single commit
+
+Every commit must pass all tests, build cleanly, and have no linter errors.
+
+### Commit Message Format
+
+```
+type(scope): brief description
+
+- What changed and why
+- Status: X tests passing, build successful
+```
 
 Why this matters:
 - Small commits are easier to review and revert

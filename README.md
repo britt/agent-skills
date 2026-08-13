@@ -9,7 +9,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | Skill | Description | Claude Code | Claude.ai |
 |-------|-------------|:-----------:|:---------:|
 | **sgai-goal** | Compose GOAL.md files for SGAI workspaces through interactive conversation | * | |
-| **setting-up-a-project** | Author CLAUDE.md with project purpose, tech stack, and development practices | * | |
+| **setting-up-a-project** | Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
@@ -160,7 +160,7 @@ done
 
 Codex CLI also reads `~/.codex/AGENTS.md` / project `AGENTS.md`, OpenCode reads `AGENTS.md` and natively falls back to `.claude/skills/`, and Cursor also reads `.cursor/skills/` — so a plain `git clone` into any of those tool-specific directories works too. Restart the tool after installation to load new skills.
 
-**Note:** Some skills (like `sgai-goal` and `setting-up-a-project`) reference Claude Code-specific tooling (e.g. `CLAUDE.md`, `TodoWrite`) and may need minor adaptation to work identically in other tools; most skills are plain instructional markdown and are unaffected. Granular per-skill plugin installs (like `/plugin install architecture-diagramming@britt` for Claude Code) aren't set up for Codex/Cursor yet — only the two bundles above; use the manual `.agents/skills/` installation for individual-skill granularity on those tools.
+**Note:** Some skills (like `sgai-goal`) reference Claude Code-specific tooling (e.g. `CLAUDE.md`, `TodoWrite`) and may need minor adaptation to work identically in other tools; most skills are plain instructional markdown and are unaffected. `setting-up-a-project` is multi-agent aware — it writes both a `CLAUDE.md` and an `AGENTS.md` adapted for Codex CLI, OpenCode, and Cursor. Granular per-skill plugin installs (like `/plugin install architecture-diagramming@britt` for Claude Code) aren't set up for Codex/Cursor yet — only the two bundles above; use the manual `.agents/skills/` installation for individual-skill granularity on those tools.
 
 ### Claude.ai (Web and iOS)
 
@@ -183,27 +183,28 @@ Skills can be added to Claude.ai projects as project knowledge:
 
 ## Rules
 
-The `rules/` directory contains reusable rule sets that can be copied into your project's CLAUDE.md.
+The `rules/` directory contains reusable rule sets that can be dropped into your project.
 
 ### TDD.rules.md
 
-Strict Test-Driven Development rules for Claude. Used by the `setting-up-a-project` skill.
+Strict Test-Driven Development rules for coding agents. Used by the `setting-up-a-project` skill, which references them from both `CLAUDE.md` and `AGENTS.md`.
 
 **Key rules:**
 - No production code without a failing test first (RED-GREEN-REFACTOR)
-- 90%+ test coverage required on all metrics
+- 90%+ test coverage required on all metrics (configurable)
 - Violations mean delete and start over
-- Commit early, commit often (after every TDD cycle)
 - Tasks aren't complete until tests pass, build succeeds, and no linter errors
 
-**Usage:** The `setting-up-a-project` skill copies this file verbatim into your project's CLAUDE.md. You can also copy it manually:
+**Usage:** The `setting-up-a-project` skill copies this file to your project root and fills in its placeholders, then references it from CLAUDE.md as `@TDD.rules.md`. You can also copy it manually:
 
 ```bash
-curl -o CLAUDE.md \
+curl -o TDD.rules.md \
   https://raw.githubusercontent.com/britt/agent-skills/main/rules/TDD.rules.md
 ```
 
-Fill in the placeholder commands (`<test command>`, `<build command>`, etc.) for your tech stack.
+Replace every `{{PLACEHOLDER}}` (`{{TEST_COMMAND}}`, `{{BUILD_COMMAND}}`, coverage thresholds, test file convention) with values for your tech stack.
+
+`rules/TDD.rules.md` is a mirror. The canonical copy lives at `skills/setting-up-a-project/TDD.rules.md` so single-skill installs stay self-contained; `./sync-agents-skills.sh` refreshes the mirror.
 
 ## Documentation
 

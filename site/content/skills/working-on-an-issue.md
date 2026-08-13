@@ -48,6 +48,9 @@ Not every issue qualifies. Epic-sized issues that bundle independent changes are
 
 ## Features
 
+**Updates linked GitHub Projects automatically**
+Before recon starts, the agent checks whether the issue belongs to any GitHub Projects (v2) via the GraphQL API. If it's tracked in one or more, it moves the issue to an "in progress" style status in every one of them, so project boards reflect that work has begun. Missing project scope or an unmatched status option doesn't block the workflow — it's noted as a caveat and the agent moves on.
+
 **Hands-off by default — the PR is the approval gate**
 There are no approval checkpoints during the work. Plans are saved to `docs/plans/issue-<number>-plan.md` and implementation proceeds immediately; the developer reviews the finished work on the pull request, where every assumption and verification result is recorded.
 

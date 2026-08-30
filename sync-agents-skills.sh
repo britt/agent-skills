@@ -35,5 +35,7 @@ echo "Done! .agents/skills/ is in sync with skills/."
 # would dangle there, and raw.githubusercontent.com serves a symlink as its
 # target path rather than the file contents - so this is a real copy.
 mkdir -p rules
-cp skills/setting-up-a-project/TDD.rules.md rules/TDD.rules.md
-echo "Mirrored rules/TDD.rules.md from skills/setting-up-a-project/."
+for f in TDD.rules.md CLAUDE-specific-fuckups.md; do
+  cp "skills/setting-up-a-project/$f" "rules/$f"
+  echo "Mirrored rules/$f from skills/setting-up-a-project/."
+done

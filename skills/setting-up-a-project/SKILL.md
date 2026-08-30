@@ -175,6 +175,24 @@ If the bundled file is missing, fall back to fetching `https://raw.githubusercon
 
 **This rule is non-negotiable.** Read the bundled `git-commit-rules.md` file (in this skill's directory) and copy it verbatim into `CLAUDE.md`, and into `AGENTS.md` in step 7. It is short, and it is the single home for commit discipline - `TDD.rules.md` points here rather than restating it.
 
+#### Claude-Specific Failure Patterns
+
+Copy the bundled `CLAUDE-specific-fuckups.md` (in this skill's directory) to the **project root** verbatim - it has no placeholders to fill in.
+
+Reference it from CLAUDE.md under `## Development Practices`:
+
+```markdown
+### Known Failure Patterns
+
+Claude Code repeats certain mistakes because its training data lags the tools it uses. **Read `CLAUDE-specific-fuckups.md` before work that touches any of its entries.**
+
+@CLAUDE-specific-fuckups.md
+```
+
+This file is Claude Code-specific - do not reference it from `AGENTS.md`. The other agents don't share Claude's training data, so the entries would be dead text there.
+
+If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/rules/CLAUDE-specific-fuckups.md`.
+
 #### Git and Pull Request Workflow
 
 Ask about each, and offer the default:
@@ -372,7 +390,7 @@ AGENTS.md                 (Codex CLI, OpenCode, Cursor)
 ## Maintaining This File  (change one, change both, same commit)
 ```
 
-Alongside them: `TDD.rules.md`, `VERIFICATION_PLAN.md`, and optionally `.claude/settings.json`.
+Alongside them: `TDD.rules.md`, `CLAUDE-specific-fuckups.md`, `VERIFICATION_PLAN.md`, and optionally `.claude/settings.json`.
 
 ## Key Principles
 

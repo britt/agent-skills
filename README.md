@@ -206,6 +206,19 @@ Replace every `{{PLACEHOLDER}}` (`{{TEST_COMMAND}}`, `{{BUILD_COMMAND}}`, covera
 
 `rules/TDD.rules.md` is a mirror. The canonical copy lives at `skills/setting-up-a-project/TDD.rules.md` so single-skill installs stay self-contained; `./sync-agents-skills.sh` refreshes the mirror.
 
+### CLAUDE-specific-fuckups.md
+
+A running list of mistakes Claude Code makes repeatedly, tied to gaps in its training data rather than general project conventions. Grows over time as new patterns are found; entry 1 is checking for outdated GitHub Actions versions and deprecated runtimes before adding or editing a `uses:` step.
+
+**Usage:** The `setting-up-a-project` skill copies this file to your project root verbatim and references it from `CLAUDE.md` as `@CLAUDE-specific-fuckups.md`. It is Claude Code-specific and is not referenced from `AGENTS.md`. You can also copy it manually:
+
+```bash
+curl -o CLAUDE-specific-fuckups.md \
+  https://raw.githubusercontent.com/britt/agent-skills/main/rules/CLAUDE-specific-fuckups.md
+```
+
+`rules/CLAUDE-specific-fuckups.md` is a mirror. The canonical copy lives at `skills/setting-up-a-project/CLAUDE-specific-fuckups.md`; `./sync-agents-skills.sh` refreshes the mirror.
+
 ## Documentation
 
 - [Contributing Guide](CONTRIBUTING.md) - Repository structure, creating skills, and contribution guidelines

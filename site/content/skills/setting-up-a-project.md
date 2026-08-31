@@ -3,7 +3,7 @@ title: "Setting Up a Project"
 description: "Set up coding-agent instructions with project purpose, tech stack, runnable commands, development practices, separate CLAUDE.md and AGENTS.md files, and root rule files"
 ---
 
-Set up the project context that coding agents need before any code is written: its purpose, tech stack, runnable commands, development practices, environment, layout, and boundaries. The skill surveys the repository, interviews one question at a time to fill the gaps, and writes separate `CLAUDE.md` and `AGENTS.md` files plus the root rule files that those agents use.
+Set up the project context that coding agents need before any code is written: its purpose, tech stack, runnable commands, development practices, environment, layout, and boundaries. The skill surveys the repository, interviews one question at a time to fill the gaps, and writes separate `CLAUDE.md` and `AGENTS.md` files plus root `TDD.rules.md` and `CLAUDE-specific-fuckups.md` files for the agents to use.
 
 ### Installation
 
@@ -65,8 +65,8 @@ Writes a real, separate `AGENTS.md` for Codex CLI, OpenCode, and Cursor instead 
 **Claude-specific failure patterns**
 Copies `CLAUDE-specific-fuckups.md` verbatim to the project root and references it from `CLAUDE.md` under Development Practices with `@CLAUDE-specific-fuckups.md`. The file tells Claude Code to check current GitHub Actions releases and supported runtimes instead of relying on recalled versions; it never appears in `AGENTS.md`. If the bundled file is unavailable, the setup fetches it from the raw GitHub source.
 
-**Agent harness configuration**
-Optionally offers `.claude/settings.json` with an allowlist built from the project's read-only and build or test commands. It does not invent configuration files for Codex CLI, OpenCode, or Cursor; `AGENTS.md` states their permission rule in prose.
+**Optional Claude Code permissions**
+Optionally offers `.claude/settings.json` with an allowlist for the project's read-only and build or test commands. The other agents use an inline rule in `AGENTS.md` instead of invented configuration files.
 
 **Verification plan integration**
 Creates `VERIFICATION_PLAN.md` by invoking the Writing Verification Plans skill, or writes the plan when that skill is unavailable. Links the plan from `CLAUDE.md` with an `@` import and lists it as required reading in `AGENTS.md`.

@@ -87,3 +87,13 @@ Report each check as **before → action → after**, followed by every assumpti
 ## Availability
 
 `repairing-project-setup` ships through the full `agent-skills` bundle and the curated [Project Foundations bundle]({{< relref "skills/project-foundations.md" >}}). It is not a standalone marketplace installation. Use the repository's [installation guidance]({{< relref "_index.md" >}}) for the supported bundle and agent installation paths rather than installing this skill with a per-skill plugin command.
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

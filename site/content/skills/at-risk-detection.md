@@ -53,3 +53,14 @@ Quick mode scans the 30 most recent open issues for daily checks; comprehensive 
 
 **Common-mistake guardrails**
 Avoids known false positives: draft PRs aren't flagged as stale-awaiting-review, and issues intentionally parked with an `on-hold` label are reported separately from genuinely forgotten stale work.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

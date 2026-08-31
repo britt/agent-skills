@@ -52,3 +52,14 @@ Captures screenshots of architecture diagrams, comparison tables, pricing matric
 
 **Decision-ready analysis**
 Provides enough detail to make decisions without re-reading original sources, including specific numbers, versions, dates, and notes on conflicting information.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

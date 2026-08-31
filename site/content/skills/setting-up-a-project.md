@@ -70,3 +70,14 @@ Optionally offers `.claude/settings.json` with an allowlist for the project's re
 
 **Verification plan integration**
 Invokes the Writing Verification Plans skill to create `VERIFICATION_PLAN.md`, or writes the plan when that skill is unavailable. Links the plan from `CLAUDE.md` with an `@` import and lists it as required reading in `AGENTS.md`.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

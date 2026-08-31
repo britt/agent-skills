@@ -100,3 +100,13 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Writing Product Specs]({{< relref "skills/writing-product-specs.md" >}}) | Write comprehensive product specification documents |
 | [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories for task definition |
 | [Writing Verification Plans]({{< relref "skills/writing-verification-plans.md" >}}) | Create real-world acceptance testing procedures |
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

@@ -52,3 +52,14 @@ Groups issues into logical phases using Mermaid subgraphs for clear visual separ
 Supports linear dependencies (left-to-right), parallel work (top-to-bottom), and complex multi-branch layouts with consistent issue node naming conventions.
 
 Requires the `gh` CLI (or an equivalent GitHub MCP server) to gather issue data.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

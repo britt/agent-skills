@@ -30,3 +30,14 @@ A curated bundle that establishes project foundations, repairs drifted or incomp
 ## How to use it
 
 Install the bundle when the full concept-to-plan workflow and setup maintenance belong in one place. The curated bundle delivers the repair capability alongside setup and planning skills. Each skill points back to its canonical definition under `skills/`, keeping bundle content aligned as those definitions evolve.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

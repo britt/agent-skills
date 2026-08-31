@@ -53,3 +53,14 @@ Supports multiple concurrent workstreams with proper integration points, showing
 
 **Reusable Gantt patterns**
 Ships with a library of ready-made chart templates — linear projects, parallel workstreams, milestone-driven releases, and critical-path layouts — so common timeline shapes don't need to be built from scratch.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

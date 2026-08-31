@@ -65,3 +65,14 @@ Ambiguity is resolved with the narrowest interpretation and recorded in the plan
 
 **Clear stop conditions**
 When genuinely blocked — missing credentials, contradictory requirements — the agent comments on the issue and stops instead of guessing through it.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

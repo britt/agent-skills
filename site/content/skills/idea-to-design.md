@@ -49,3 +49,14 @@ The design document answers what it is, who it is for, how it works technically,
 
 **Mermaid diagrams included**
 Uses Mermaid for all visual elements including architecture diagrams, sequence diagrams, data flows, and state machines -- no ASCII art.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

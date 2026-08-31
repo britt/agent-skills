@@ -50,3 +50,14 @@ Each topic gets an assigned owner and time estimate, with buffer time built in, 
 
 **Carryover tracking**
 Includes incomplete action items from previous meetings so nothing falls through the cracks.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

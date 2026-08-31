@@ -52,3 +52,14 @@ Presents the full draft, then revises based on your feedback until you confirm t
 
 **Ready-to-save output**
 Saves the finished spec as a markdown file named `spec-<feature-name>-MM-DD-YYYY.md`, or wherever you'd like it.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

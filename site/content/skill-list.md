@@ -53,3 +53,14 @@ This page maps every skill page in the site, and each entry below includes a sho
 ### Bundle
 
 - [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle that establishes and repairs project foundations while guiding a project through a concept-to-plan workflow with diagrams and user stories.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

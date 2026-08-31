@@ -52,4 +52,4 @@ This page maps every skill page in the site, and each entry below includes a sho
 
 ### Bundle
 
-- [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle for establishing and repairing project foundations and guiding a project through a concept-to-plan workflow with diagrams and user stories.
+- [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle that establishes and repairs project foundations while guiding a project through a concept-to-plan workflow with diagrams and user stories.

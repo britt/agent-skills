@@ -10,8 +10,8 @@ This page maps every skill page in the site, and each entry below includes a sho
 ### Development Workflow
 
 - [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) — Compose GOAL.md files for SGAI workspaces through interactive conversation.
-- [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Set up distinct `CLAUDE.md` and `AGENTS.md` files, capture runnable commands, and install populated project rules before coding.
-- [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) — Audit an existing project setup, repair only the delta while preserving existing decisions, and re-audit the full setup before reporting.
+- [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Set up separate `CLAUDE.md` and `AGENTS.md` files, record runnable commands, and install populated project rules before coding.
+- [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) — Audit an existing project setup, repair only the delta while preserving existing decisions, then re-audit the full setup before reporting.
 - [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) — Hands-off implementation of GitHub issues, reviewed at the PR.
 - [Project Analysis]({{< relref "skills/project-analysis.md" >}}) — Analyze project codebase structure, architecture, key files, and dependencies.
 - [Project Planning]({{< relref "skills/project-planning.md" >}}) — Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines.

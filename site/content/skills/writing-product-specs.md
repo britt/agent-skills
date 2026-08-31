@@ -20,7 +20,7 @@ Or install all skills at once:
 /plugin install agent-skills@britt
 ```
 
-## Supported agents
+## Supported coding agents
 
 | Agent | Supported |
 |-------|:---------:|

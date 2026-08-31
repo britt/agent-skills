@@ -49,7 +49,7 @@ Not every issue qualifies. Epic-sized issues that bundle independent changes are
 ## Features
 
 **Updates linked GitHub Projects automatically**
-Before recon starts, the agent checks the issue's membership in every linked GitHub Project (v2) through the GraphQL API. For each linked project, it uses the most plausible in-progress-style status when one exists, so every project board reflects that work has begun. Missing project membership, unavailable membership data, missing project scope, an unmatched status option, or another update failure becomes a non-blocking caveat, and the agent continues.
+Before recon starts, the agent checks the issue's membership in every linked GitHub Project (v2) through the GraphQL API. For every linked project, it selects the most plausible in-progress-style status when one exists and updates the issue, so each board reflects that work has begun. If project membership is missing or cannot be read, the token lacks project scope, no status option matches, or an update fails, the agent records the condition as a caveat and continues without blocking work.
 
 **Hands-off by default — the PR is the approval gate**
 There are no approval checkpoints during the work. Plans are saved to `docs/plans/issue-<number>-plan.md` and implementation proceeds immediately; the developer reviews the finished work on the pull request, where every assumption and verification result is recorded.

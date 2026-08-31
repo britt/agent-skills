@@ -1,9 +1,9 @@
 ---
 title: "Setting Up a Project"
-description: "Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices"
+description: "Set up coding-agent instructions with project purpose, tech stack, runnable commands, development practices, separate CLAUDE.md and AGENTS.md files, and root rule files"
 ---
 
-Author the instruction files that define your project's purpose, tech stack, and development practices before any code is written — CLAUDE.md for Claude Code and a separately tuned AGENTS.md for Codex CLI, OpenCode, and Cursor. It surveys the repository first, then interviews you one question at a time to fill the gaps and establish development conventions before scaffolding code.
+Set up the project context that coding agents need before any code is written: its purpose, tech stack, runnable commands, development practices, environment, layout, and boundaries. The skill surveys the repository, interviews one question at a time to fill the gaps, and writes separate `CLAUDE.md` and `AGENTS.md` files plus the root rule files that those agents use.
 
 ### Installation
 
@@ -33,31 +33,40 @@ Or install all skills at once:
 
 Use this skill when:
 - Setting up a new project
-- No CLAUDE.md exists in the project
+- The project has no `CLAUDE.md` or `AGENTS.md`
 - Starting work on an empty codebase
+- An existing instruction file is thin and needs additional project context
+
+When an established project already has a mature `CLAUDE.md`, review and refine that file instead of rerunning setup.
 
 ## Features
 
 **Repository survey before the interview**
-Reads manifests, lockfiles, and CI workflows to detect your stack, then asks you to confirm instead of interrogating you about things the repo already answers. Merges into a thin existing CLAUDE.md rather than overwriting it.
+Reads manifests, lockfiles, and CI workflows to identify the stack and existing commands before asking questions. Confirms what the repository already shows, merges into thin instruction files, and preserves existing wording instead of overwriting unread files.
 
 **Guided interview for project definition**
-Asks one question at a time to define the project's purpose and align on what you are building, rather than dumping questions all at once.
+Asks one question at a time to define the project's purpose, problem, approach, environment, boundaries, and development conventions. Multiple choice questions keep the interview focused when possible.
 
-**Tech stack with sensible defaults**
-Establishes the tech stack with sensible defaults so you have a clear starting point.
+**Tech stack and project context**
+Confirms the language, runtime, deployment target, package manager, testing, build, linting, formatting, libraries, and other technical concerns that the survey cannot establish. Records the repository layout, environment requirements, generated or vendored content, and editing boundaries when they apply.
 
 **A commands section that actually runs**
-Records the exact install, test, coverage, build, lint, and run commands, then runs each one before committing so the documentation cannot drift from reality on day one.
+Records exact install, test, coverage, build, lint, format, typecheck, and local run commands when they apply. Runs every command in the `Commands` section before the final commit and fixes commands that fail or do not exist.
+
+**Project-root TDD rules**
+Copies `TDD.rules.md` to the project root, fills every placeholder with the interview results, and records the selected coverage thresholds and test-file convention. `CLAUDE.md` references the file instead of duplicating its rules, and the setup checks that no placeholder remains.
 
 **Development practices and git workflow**
-Installs test-driven development rules as a project-root `TDD.rules.md` with your commands and coverage thresholds filled in, referenced from CLAUDE.md so it stays short. Copies commit rules verbatim, and settles branching, merge style, and issue references with you rather than dictating them.
+Copies `git-commit-rules.md` verbatim into both instruction files. Records branching, branch naming, worktree, merge, and issue-reference conventions through the interview rather than imposing project-specific choices.
 
 **A CLAUDE.md and an AGENTS.md that are actually different**
-Writes both, rather than symlinking one to the other. CLAUDE.md uses Claude Code's `@` imports and tool names; AGENTS.md replaces them with an explicit required-reading list and a condensed inline set of non-negotiables, because nothing auto-loads in Codex CLI, OpenCode, or Cursor.
+Writes a real, separate `AGENTS.md` for Codex CLI, OpenCode, and Cursor instead of symlinking it to `CLAUDE.md`. `CLAUDE.md` uses Claude Code `@` imports and tool names; `AGENTS.md` uses an explicit required-reading list and condensed inline rules because those agents do not auto-load the referenced files. `AGENTS.md` contains no `@` imports and does not reference `CLAUDE-specific-fuckups.md`.
+
+**Claude-specific failure patterns**
+Copies `CLAUDE-specific-fuckups.md` verbatim to the project root and references it from `CLAUDE.md` under Development Practices with `@CLAUDE-specific-fuckups.md`. The file tells Claude Code to check current GitHub Actions releases and supported runtimes instead of relying on recalled versions; it never appears in `AGENTS.md`. If the bundled file is unavailable, the setup fetches it from the raw GitHub source.
 
 **Agent harness configuration**
-Offers a `.claude/settings.json` permission allowlist built from your project's own commands, and covers the other agents with an in-prose rule instead of inventing config for tools whose schemas move.
+Optionally offers `.claude/settings.json` with an allowlist built from the project's read-only and build or test commands. It does not invent configuration files for Codex CLI, OpenCode, or Cursor; `AGENTS.md` states their permission rule in prose.
 
 **Verification plan integration**
-Creates a verification plan by invoking the Writing Verification Plans skill.
+Creates `VERIFICATION_PLAN.md` by invoking the Writing Verification Plans skill, or writes the plan when that skill is unavailable. Links the plan from `CLAUDE.md` with an `@` import and lists it as required reading in `AGENTS.md`.

@@ -74,13 +74,13 @@ Repair the delta identified by the audit. Do not rebuild the setup.
 - Offer `.claude/settings.json` only with consent. In an autonomous session, recommend it in the report instead of creating it.
 - Commit after each repaired area according to the project's commit rules.
 
-> **Important:** Preserve user decisions and wording, never paraphrase canonical verbatim files, and never replace a merge with a clean rebuild. A repair that fixes only the obvious symptoms is incomplete.
+> **Repair boundary:** The audit decides what to change. A failed row permits a targeted repair; a passing row remains untouched.
 
 ### 4. Re-audit and verify before reporting
 
 Run the entire 15-check audit again after all repairs, including every check that passed before editing. Every row must now be `PASS` or `N-A`; a repair can introduce drift in a neighboring check.
 
-Then run the final verification from `setting-up-a-project`: run every documented command, check for placeholders and Claude Code specific content in `AGENTS.md`, confirm agreement between the instruction files, confirm that `AGENTS.md` is a real file, and reread both files for contradictions. Apply the available clear writing check when the setup skill calls for it, then commit as required.
+Then run the final verification from `setting-up-a-project`: run every documented command, check for placeholders and Claude Code specific content in `AGENTS.md`, confirm agreement between the instruction files, confirm that `AGENTS.md` is a real file, and reread both files for contradictions. Apply `elements-of-style:writing-clearly-and-concisely` when available, then commit as required.
 
 Report each check as **before → action → after**, followed by every assumption made. If the initial audit was clean, report that result and change nothing.
 

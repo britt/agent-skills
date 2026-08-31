@@ -46,21 +46,21 @@ Run and record all 15 checks before touching any file. Record each check as `PAS
 
 Check the following areas:
 
-1. `CLAUDE.md` exists and contains the applicable sections from the setup specification.
+1. `CLAUDE.md` exists with `Project Overview`, `Tech Stack`, `Commands`, and `Development Practices`, plus applicable `Repository Layout`, `Environment`, `Boundaries`, and `CI/CD Practices` sections.
 2. `AGENTS.md` exists as a real file.
 3. The project has no singular `AGENT.md` file.
 4. `AGENTS.md` contains `Required Reading`, `Non-Negotiables`, and `Maintaining This File` sections.
 5. `AGENTS.md` contains no Claude Code specific content that other agents cannot use.
 6. `CLAUDE.md`, `AGENTS.md`, and `TDD.rules.md` contain no unfilled placeholders.
-7. The root `TDD.rules.md` retains the canonical structure, with the template banner removed and only project specific placeholder values changed.
+7. The root `TDD.rules.md` matches the canonical structure; only the template banner removal and project specific placeholder values differ.
 8. `CLAUDE.md` points to `TDD.rules.md` in prose and through its `@TDD.rules.md` import.
 9. Both instruction files contain the canonical commit rules verbatim.
 10. The root `CLAUDE-specific-fuckups.md` matches the canonical file, `CLAUDE.md` references it, and `AGENTS.md` does not.
-11. `VERIFICATION_PLAN.md` exists and both instruction files refer to it in the required way.
+11. `VERIFICATION_PLAN.md` exists, `CLAUDE.md` has a `Verification` section with `@VERIFICATION_PLAN.md`, and `AGENTS.md` lists it under `Required Reading`.
 12. Every command in the `Commands` section runs successfully.
 13. `CLAUDE.md` and `AGENTS.md` agree about commands, the stack, the repository layout, and boundaries.
 14. `CI/CD Practices` appears exactly when the project uses GitHub Actions.
-15. The `.claude/settings.json` command allowlist receives a note without turning an optional consent decision into a required change.
+15. The optional `.claude/settings.json` command allowlist is recorded as a note without imposing a consent required change.
 
 ### 3. Repair only failed checks
 
@@ -80,7 +80,7 @@ Repair the delta identified by the audit. Do not rebuild the setup.
 
 Run the entire 15-check audit again after all repairs, including every check that passed before editing. Every row must now be `PASS` or `N-A`; a repair can introduce drift in a neighboring check.
 
-Then run the final verification from `setting-up-a-project`: run every documented command, check for placeholders and Claude Code specific content in `AGENTS.md`, confirm agreement between the instruction files, confirm that `AGENTS.md` is a real file, and reread both files for contradictions. Apply `elements-of-style:writing-clearly-and-concisely` when available, then commit as required.
+Then run the final verification from `setting-up-a-project`: run every documented command, check `CLAUDE.md`, `AGENTS.md`, and `TDD.rules.md` for placeholders, check `AGENTS.md` for Claude Code specific content, confirm agreement between the instruction files, confirm that `AGENTS.md` is a real file, and reread both files for contradictions. Apply `elements-of-style:writing-clearly-and-concisely` when available, then commit as required.
 
 Report each check as **before → action → after**, followed by every assumption made. If the initial audit was clean, report that result and change nothing.
 

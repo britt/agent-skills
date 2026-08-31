@@ -3,7 +3,7 @@ title: "Working on an Issue"
 description: "Hands-off implementation of GitHub issues, reviewed at the PR"
 ---
 
-Implement a GitHub issue end to end without mid-flow approval gates: scoped reconnaissance, verification-first planning, TDD implementation, and a pull request that serves as the single review point.
+Implement a GitHub issue end to end without mid-flow approval gates through this sequence: Understand → Update project status → Recon → Plan verification → Plan implementation → Implement → Verify → PR. The pull request serves as the single review point for the scoped reconnaissance, verification-first planning, TDD implementation, and verification results.
 
 ### Installation
 
@@ -49,7 +49,7 @@ Not every issue qualifies. Epic-sized issues that bundle independent changes are
 ## Features
 
 **Updates linked GitHub Projects automatically**
-Before recon starts, the agent checks whether the issue belongs to any GitHub Projects (v2) via the GraphQL API. If it's tracked in one or more, it moves the issue to an "in progress" style status in every one of them, so project boards reflect that work has begun. Missing project scope or an unmatched status option doesn't block the workflow — it's noted as a caveat and the agent moves on.
+Before recon starts, the agent checks the issue's membership in every linked GitHub Project (v2) through the GraphQL API. For each linked project, it uses the most plausible in-progress-style status when one exists, so every project board reflects that work has begun. Missing project membership, unavailable membership data, missing project scope, an unmatched status option, or another update failure becomes a non-blocking caveat, and the agent continues.
 
 **Hands-off by default — the PR is the approval gate**
 There are no approval checkpoints during the work. Plans are saved to `docs/plans/issue-<number>-plan.md` and implementation proceeds immediately; the developer reviews the finished work on the pull request, where every assumption and verification result is recorded.

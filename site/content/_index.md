@@ -84,7 +84,7 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Mermaid Diagrams]({{< relref "skills/mermaid-diagrams.md" >}}) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub |
 | [Prepare Meeting Agenda]({{< relref "skills/prepare-meeting-agenda.md" >}}) | Generate meeting agendas from recent issues, PRs, and notes for sprint planning, retros, and standups |
 | [Project Analysis]({{< relref "skills/project-analysis.md" >}}) | Analyze project codebase structure, architecture, key files, and dependencies |
-| [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) | A curated bundle for taking a new project from concept to a diagrammed, story-driven plan with supported coding agents |
+| [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) | Establish and repair project foundations, then take a project from concept to a diagrammed, story-driven plan with supported coding agents |
 | [Project Planning]({{< relref "skills/project-planning.md" >}}) | Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines |
 | [Requirement Elicitation]({{< relref "skills/requirement-elicitation.md" >}}) | Adaptive conversational wizard for eliciting project requirements across functional, nonfunctional, and edge-case dimensions |
 | [Research Topic and Summarize]({{< relref "skills/research-topic-summarize.md" >}}) | Research topics via web search, synthesize detailed summaries with sources and screenshots |

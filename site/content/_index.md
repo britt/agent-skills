@@ -89,7 +89,7 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Requirement Elicitation]({{< relref "skills/requirement-elicitation.md" >}}) | Adaptive conversational wizard for eliciting project requirements across functional, nonfunctional, and edge-case dimensions |
 | [Research Topic and Summarize]({{< relref "skills/research-topic-summarize.md" >}}) | Research topics via web search, synthesize detailed summaries with sources and screenshots |
 | [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) | Audit an existing project setup, repair only the gaps, and re-audit the complete result |
-| [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Survey the repository, record and verify its commands, and create distinct CLAUDE.md and AGENTS.md files with project-specific rules and verification guidance |
+| [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Survey the repository, record and run its commands, and create distinct CLAUDE.md and AGENTS.md files with project-specific rules, a populated root TDD.rules.md, and verification guidance |
 | [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) | Compose GOAL.md files for SGAI workspaces through interactive conversation |
 | [Stakeholder Tracking]({{< relref "skills/stakeholder-tracking.md" >}}) | Define stakeholder personas and track their goals to ensure all perspectives are addressed |
 | [Stakeholder Updates]({{< relref "skills/stakeholder-updates.md" >}}) | Craft clear, concise stakeholder communications with appropriate context and framing |

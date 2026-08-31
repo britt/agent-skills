@@ -52,7 +52,7 @@ Check the following areas:
 4. `AGENTS.md` contains `Required Reading`, `Non-Negotiables`, and `Maintaining This File` sections.
 5. `AGENTS.md` contains no Claude Code specific content that other agents cannot use.
 6. `CLAUDE.md`, `AGENTS.md`, and `TDD.rules.md` contain no unfilled placeholders.
-7. The root `TDD.rules.md` matches the canonical structure; only the template banner removal and project specific placeholder values differ.
+7. The root `TDD.rules.md` matches the canonical structure; only the template banner removal and project-specific placeholder values differ.
 8. `CLAUDE.md` points to `TDD.rules.md` in prose and through its `@TDD.rules.md` import.
 9. Both instruction files contain the canonical commit rules verbatim.
 10. The root `CLAUDE-specific-fuckups.md` matches the canonical file, `CLAUDE.md` references it, and `AGENTS.md` does not.
@@ -60,7 +60,7 @@ Check the following areas:
 12. Every command in the `Commands` section runs successfully.
 13. `CLAUDE.md` and `AGENTS.md` agree about commands, the stack, the repository layout, and boundaries.
 14. `CI/CD Practices` appears exactly when the project uses GitHub Actions.
-15. The optional `.claude/settings.json` command allowlist is recorded as a note without imposing a consent required change.
+15. The optional `.claude/settings.json` command allowlist is recorded as a note without imposing a change that requires consent.
 
 ### 3. Repair only failed checks
 

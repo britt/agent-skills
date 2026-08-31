@@ -22,7 +22,7 @@ Or install all skills at once:
 
 ## Supported coding agents
 
-| Agent | Supported |
+| Coding agent | Supported |
 |--------------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
@@ -50,3 +50,14 @@ Shows a complete preview of all proposed issues, architecture diagram, dependenc
 
 **Persistent planning documents**
 Saves a comprehensive planning document with overview, goals, architecture, dependency graph, timeline, risks, and issue listing to the project for future reference.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

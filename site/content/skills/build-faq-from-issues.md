@@ -22,7 +22,7 @@ Or install all skills at once:
 
 ## Supported coding agents
 
-| Agent | Supported |
+| Coding agent | Supported |
 |-------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
@@ -54,3 +54,14 @@ Writes clear, self-contained answers that do not require reading the original is
 
 **Deduplication of similar questions**
 Combines multiple issues asking the same thing into a single FAQ entry, referencing all related issues and using the clearest answer.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

@@ -3,7 +3,7 @@ title: "Working on an Issue"
 description: "Hands-off implementation of GitHub issues, reviewed at the PR"
 ---
 
-Implement a GitHub issue end to end without mid-flow approval gates: scoped reconnaissance, verification-first planning, TDD implementation, and a pull request that serves as the single review point.
+Implement a GitHub issue end to end through this hands-off sequence: Understand → Update project status → Recon → Plan verification → Plan implementation → Implement → Verify → PR. No mid-flow approval gates interrupt the sequence; the pull request is the single review point for the completed work, assumptions, and verification results.
 
 ### Installation
 
@@ -49,7 +49,7 @@ Not every issue qualifies. Epic-sized issues that bundle independent changes are
 ## Features
 
 **Updates linked GitHub Projects automatically**
-Before recon starts, the agent checks whether the issue belongs to any GitHub Projects (v2) via the GraphQL API. If it's tracked in one or more, it moves the issue to an "in progress" style status in every one of them, so project boards reflect that work has begun. Missing project scope or an unmatched status option doesn't block the workflow — it's noted as a caveat and the agent moves on.
+Before recon starts, the agent checks the issue's membership in every linked GitHub Project (v2) through the GraphQL API. For every linked project, it selects the most plausible in-progress-style status when one exists and updates the issue, so each board reflects that work has begun. If project membership is missing or cannot be read, the token lacks project scope, no status option matches, or an update fails, the agent records the condition as a caveat and continues without blocking work.
 
 **Hands-off by default — the PR is the approval gate**
 There are no approval checkpoints during the work. Plans are saved to `docs/plans/issue-<number>-plan.md` and implementation proceeds immediately; the developer reviews the finished work on the pull request, where every assumption and verification result is recorded.
@@ -65,3 +65,14 @@ Ambiguity is resolved with the narrowest interpretation and recorded in the plan
 
 **Clear stop conditions**
 When genuinely blocked — missing credentials, contradictory requirements — the agent comments on the issue and stops instead of guessing through it.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

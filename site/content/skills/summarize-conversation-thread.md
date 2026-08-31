@@ -22,7 +22,7 @@ Or install all skills at once:
 
 ## Supported coding agents
 
-| Platform | Supported |
+| Coding agent | Supported |
 |----------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
@@ -50,3 +50,14 @@ Flags stale threads where decisions may be outdated, presents heated discussions
 
 **Decision attribution**
 Links each key decision to who made it and provides context, making it easy to follow up or understand the reasoning behind choices.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

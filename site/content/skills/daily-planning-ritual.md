@@ -22,7 +22,7 @@ Or install all skills at once:
 
 ## Supported coding agents
 
-| Platform | Supported |
+| Coding agent | Supported |
 |-------|:---------:|
 | Claude Code | ✓ |
 | Codex CLI | ✓ |
@@ -49,3 +49,14 @@ Creates daily plans with a poetic opening statement to set the tone for your day
 
 **Iterative refinement before finalizing**
 Helps you iteratively refine the plan before finalizing, so you end up with a schedule that truly fits your day.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

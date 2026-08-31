@@ -10,7 +10,8 @@ This page maps every skill page in the site, and each entry below includes a sho
 ### Development Workflow
 
 - [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) — Compose GOAL.md files for SGAI workspaces through interactive conversation.
-- [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Author CLAUDE.md with project purpose, tech stack, and development practices.
+- [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Set up separate `CLAUDE.md` and `AGENTS.md` files, record runnable commands, and install populated project rules before coding.
+- [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) — Audit an existing project setup, repair only the delta while preserving existing decisions, then re-audit the full setup before reporting.
 - [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) — Hands-off implementation of GitHub issues, reviewed at the PR.
 - [Project Analysis]({{< relref "skills/project-analysis.md" >}}) — Analyze project codebase structure, architecture, key files, and dependencies.
 - [Project Planning]({{< relref "skills/project-planning.md" >}}) — Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines.
@@ -51,4 +52,15 @@ This page maps every skill page in the site, and each entry below includes a sho
 
 ### Bundle
 
-- [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle for taking a new project from concept to a diagrammed, story-driven plan.
+- [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle that establishes and repairs project foundations while guiding a project through a concept-to-plan workflow with diagrams and user stories.
+
+
+---
+
+<!-- doc-holiday-watermark -->
+<p align="center">
+  <a href="https://doc.holiday">
+    <img alt="Doc Holiday logo" src="https://doc.holiday/assets/docs-by-doc-holiday.png" width="200">
+  </a>
+</p>
+<p align="center">Docs authored by <a href="https://doc.holiday">Doc Holiday</a></p>

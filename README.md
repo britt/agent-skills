@@ -10,6 +10,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 |-------|-------------|:-----------:|:---------:|
 | **sgai-goal** | Compose GOAL.md files for SGAI workspaces through interactive conversation | * | |
 | **setting-up-a-project** | Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices | * | |
+| **repairing-project-setup** | Audit a repo against what setting-up-a-project would generate and repair only the gaps | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
@@ -106,7 +107,7 @@ Add this repository as a plugin marketplace:
 /plugin install working-on-an-issue@britt
 ```
 
-**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
+**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
 
 ### Claude Code: Manual Installation
 

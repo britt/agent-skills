@@ -3,7 +3,7 @@ title: "Working on an Issue"
 description: "Hands-off implementation of GitHub issues, reviewed at the PR"
 ---
 
-Implement a GitHub issue end to end without mid-flow approval gates through this sequence: Understand → Update project status → Recon → Plan verification → Plan implementation → Implement → Verify → PR. The pull request serves as the single review point for the scoped reconnaissance, verification-first planning, TDD implementation, and verification results.
+Implement a GitHub issue end to end through this hands-off sequence: Understand → Update project status → Recon → Plan verification → Plan implementation → Implement → Verify → PR. No mid-flow approval gates interrupt the sequence; the pull request is the single review point for the completed work, assumptions, and verification results.
 
 ### Installation
 

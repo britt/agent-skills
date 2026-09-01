@@ -1,0 +1,17 @@
+{
+  "name": "llpm",
+  "displayName": "LLPM",
+  "description": "LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning",
+  "version": "1.0.0",
+  "author": {
+    "name": "Britt Crawford",
+    "email": "britt@brittcrawford.com"
+  },
+  "homepage": "https://github.com/britt/agent-skills",
+  "repository": "https://github.com/britt/agent-skills",
+  "license": "MIT",
+  "keywords": ["bundle", "project-management", "product-management", "planning", "stakeholders", "requirements"],
+  "category": "productivity",
+  "tags": ["bundle", "project-management", "product-management", "planning", "stakeholders", "requirements"],
+  "skills": "./skills/"
+}

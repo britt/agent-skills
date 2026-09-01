@@ -79,6 +79,10 @@ Add this repository as a plugin marketplace:
 # project-foundations: setup, issue decomposition, user stories,
 # verification plans, and architecture/dependency/Mermaid diagrams
 /plugin install project-foundations@britt
+
+# llpm: product/project-management skills - requirements, specs, user
+# stories, stakeholders, meetings, triage, risk, and timeline/dependency planning
+/plugin install llpm@britt
 ```
 
 **Install individual skills:**
@@ -107,7 +111,7 @@ Add this repository as a plugin marketplace:
 /plugin install working-on-an-issue@britt
 ```
 
-**Some skills are only available via the full bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` (or `project-foundations@britt`, which includes the project-setup and user-story/verification skills) to get these.
+**Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, or `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`.
 
 ### Claude Code: Manual Installation
 

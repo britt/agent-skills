@@ -52,3 +52,4 @@ This page maps every skill page in the site, and each entry below includes a sho
 ### Bundle
 
 - [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle for taking a new project from concept to a diagrammed, story-driven plan.
+- [LLPM (Bundle)]({{< relref "skills/llpm.md" >}}) — A curated bundle of LLPM's product-management and project-management skills.

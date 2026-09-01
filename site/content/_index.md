@@ -17,6 +17,7 @@ Claude Code installs skills through the plugin marketplace.
 /plugin marketplace add britt/agent-skills
 /plugin install agent-skills@britt
 /plugin install project-foundations@britt
+/plugin install llpm@britt
 ```
 
 ### Codex CLI
@@ -27,6 +28,7 @@ Codex CLI installs the repository through its plugin marketplace.
 codex plugin marketplace add britt/agent-skills
 codex plugin install agent-skills@britt
 codex plugin install project-foundations@britt
+codex plugin install llpm@britt
 ```
 
 ### Cursor
@@ -35,7 +37,7 @@ Cursor adds the repository through its dashboard based marketplace flow and inst
 
 1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
 2. Point it at `britt/agent-skills`
-3. Install `agent-skills` or `project-foundations` from **Customize**
+3. Install `agent-skills`, `project-foundations`, or `llpm` from **Customize**
 
 ### Shared `.agents/skills/` Path
 
@@ -80,6 +82,7 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Dependency Mapping]({{< relref "skills/dependency-mapping.md" >}}) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths |
 | [Idea to Design]({{< relref "skills/idea-to-design.md" >}}) | Transform raw idea notes into comprehensive design documents with research and decisions |
 | [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates |
+| [LLPM (Bundle)]({{< relref "skills/llpm.md" >}}) | A curated bundle of LLPM's product-management and project-management skills |
 | [Markdown Formatting]({{< relref "skills/markdown-formatting.md" >}}) | Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes |
 | [Mermaid Diagrams]({{< relref "skills/mermaid-diagrams.md" >}}) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub |
 | [Prepare Meeting Agenda]({{< relref "skills/prepare-meeting-agenda.md" >}}) | Generate meeting agendas from recent issues, PRs, and notes for sprint planning, retros, and standups |

@@ -44,3 +44,21 @@ Playwright session.
    again."
 2. If a task fails partway through browser automation, still close the
    browser during cleanup rather than abandoning it.
+
+## 3. Watching CI/CD runs with a long-running monitor process
+
+After pushing a commit or opening a PR, Claude sometimes starts polling or
+watching the triggered CI/CD run (e.g. `gh run watch`) and blocks on it until
+completion. CI/CD systems already have their own alerting and notify the user
+directly on success or failure. A long-running watch adds no value and is
+fragile: if the network disconnects or the session is interrupted while
+waiting, Claude loses track of the run and leaves the task in limbo.
+
+**After triggering a CI/CD run:**
+
+1. Do not start a long-running watch/poll loop on the run. Report that it was
+   triggered and stop.
+2. Trust existing CI/CD notifications to inform the user of success or
+   failure - don't duplicate that alerting by babysitting the run yourself.
+3. If the user explicitly asks you to wait for a specific run to finish, that
+   overrides this default - but don't do it unprompted.

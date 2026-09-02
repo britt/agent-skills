@@ -28,3 +28,19 @@ workflows that were fine when written.
 
 A shipped workflow pinned to a version that was current during training is a
 bug, not a reasonable default.
+
+## 2. Leaving Playwright/Chrome instances running
+
+Claude often drives Playwright MCP tools (`browser_navigate`,
+`browser_click`, etc.) to test a change, then finishes the task without
+closing the browser. The launched Chrome instance is left running in the
+background, wasting memory and sometimes holding a lock that breaks the next
+Playwright session.
+
+**Before ending a task or turn that used Playwright:**
+
+1. If you opened a browser via Playwright MCP tools, call `browser_close`
+   once you're done driving it - don't leave it open "in case it's needed
+   again."
+2. If a task fails partway through browser automation, still close the
+   browser during cleanup rather than abandoning it.

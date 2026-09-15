@@ -20,13 +20,13 @@ None of these require touching `SKILL.md`. If the document can't be found, the s
 Create a Google Doc named `Daily Planning Notes`. Any set of sections works — this is one example layout, not a required one:
 
 ```markdown
-Fitness Goals
-[What you're training for right now]
+Training Goals
+[What you're working toward physically right now]
 
-Life Projects
-[Personal projects and initiatives]
+Studio Practice
+[The creative work you're keeping alive]
 
-Work Priorities
+This Quarter at Work
 [Current work focus areas]
 
 Open Questions
@@ -48,7 +48,7 @@ Edit, rename, add, remove, or reorder sections in the doc whenever your prioriti
 
 ### The Question of the Day
 
-Near the end of the conversation the skill poses one reflective question for you to sit with. It draws that question from any section of your doc that holds reflective questions — recognized by a heading such as `Open Questions`, `Work Questions`, or `Things to sit with`, or by a body that is simply a list of questions.
+Near the end of the conversation the skill poses one reflective question for you to sit with. It draws that question from any section of your doc that holds reflective questions — recognized by a heading such as `Open Questions`, `Reflections`, or `Things to sit with`, or by a body that is simply a list of questions.
 
 ```markdown
 Open Questions

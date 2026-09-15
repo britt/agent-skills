@@ -37,7 +37,7 @@ The notes doc is the user's configuration file for this ritual, so **read whatev
 
 - Capture every section: its heading exactly as written, its body exactly as written, and its position in the document.
 - Do not rename, merge, reorder, split, or skip sections, and do not expect any section to be present.
-- Note which sections (if any) hold reflective questions — headings like `Open Questions`, `Work Questions`, or `Things to sit with`, or bodies that are a list of questions. These are the pool for the Question of the Day in Step 2.
+- Note which sections (if any) hold reflective questions — headings like `Open Questions`, `Reflections`, or `Things to sit with`, or bodies that are a list of questions. These are the pool for the Question of the Day in Step 2.
 - If the document cannot be found, say so once, briefly explain that it is how the user customizes this ritual without editing the skill, and continue without it.
 
 Keep this context in mind but don't present it yet - it informs the questions you'll ask.

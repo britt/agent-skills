@@ -78,3 +78,30 @@ gantt
     Documentation           :d, 2025-01-15, 10d
     UI polish               :e, after a, 5d
 ```
+
+## From Real GitHub Issues
+
+Task names carry the issue number, ids are `i<number>`, and every colon from the original issue
+title has been replaced with ` -` so the label survives rendering. The tracking/epic parent issue
+is a `section` heading and the closing milestone — not a bar of its own.
+
+```mermaid
+gantt
+    title Skill library review - epic 44
+    dateFormat YYYY-MM-DD
+    axisFormat %b %d
+    excludes weekends
+
+    section Skill updates
+    #45 skill - consolidate-notes-summary deprecate :i45, 2026-09-15, 3d
+    #46 skill - daily-planning-ritual update        :i46, 2026-09-15, 3d
+    #47 skill - prepare-meeting-agenda update       :i47, 2026-09-15, 3d
+    #48 skill - project-planning update             :i48, 2026-09-15, 3d
+    #49 skill - timeline-planning update            :i49, 2026-09-15, 3d
+
+    section Milestone
+    Library review complete :milestone, m1, after i45 i46 i47 i48 i49, 0d
+```
+
+All five issues are unestimated, so each bar is the 3d Medium default — flag that when presenting
+a chart like this one.

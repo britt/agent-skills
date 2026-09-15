@@ -40,13 +40,13 @@ Use this skill when:
 ## Features
 
 **End-to-end planning orchestration**
-Coordinates issue decomposition, architecture diagramming, dependency mapping, and timeline planning into a single workflow from description to saved plan. These run as sub-skills (installed individually or via the project-foundations bundle); if one isn't available, this skill performs that step inline instead.
+Coordinates issue decomposition, architecture diagramming, dependency mapping, and timeline planning into a single workflow from description to saved plan. These run as sub-skills. The `llpm` bundle ships this skill with three of the four (architecture diagramming is installed separately), the full `agent-skills` bundle has all of them, and each is also installable standalone; if one isn't available, this skill performs that step inline instead.
 
 **Discovery-first approach**
 Starts by asking clarifying questions about project goals, technical context, and constraints, and analyzes the existing codebase before generating any artifacts.
 
 **Preview before creation**
-Shows a complete preview of all proposed issues, architecture diagram, dependency graph, and Gantt chart for review before creating anything in GitHub. Issues are created with the `gh` CLI or an available GitHub MCP tool; if neither is available, it outputs the issue bodies for manual creation instead.
+Shows a single complete preview of all proposed issues, architecture diagram, dependency graph, and Gantt chart for review before creating anything in GitHub. Repository labels are reconciled before the creation batch runs, and the plan's placeholder issue ids are rewritten to real issue numbers afterwards. Issues are created with the `gh` CLI or an available GitHub MCP tool; if neither is available, it outputs the issue bodies for manual creation instead.
 
 **Persistent planning documents**
 Saves a comprehensive planning document with overview, goals, architecture, dependency graph, timeline, risks, and issue listing to the project for future reference.

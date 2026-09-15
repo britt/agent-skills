@@ -82,7 +82,8 @@ Add this repository as a plugin marketplace:
 /plugin install project-foundations@britt
 
 # llpm: product/project-management skills - requirements, specs, user
-# stories, stakeholders, meetings, triage, risk, and timeline/dependency planning
+# stories, stakeholders, meetings, triage, risk, timeline/dependency planning,
+# and the project-planning orchestrator (add architecture-diagramming separately)
 /plugin install llpm@britt
 ```
 

@@ -1,12 +1,53 @@
 baseURL = 'https://britt.github.io/agent-skills/'
 languageCode = 'en-us'
 title = 'Agent Skills'
-theme = 'paper'
+theme = 're-terminal'
 copyright = '© 2026 Snugglebear Team Company'
 
+[pagination]
+  pagerSize = 10
+
 [params]
-  color = 'linen'
-  github = 'britt/agent-skills'
-  avatar = ''
-  name = 'Agent Skills'
-  bio = 'A collection of skills to enhance AI-assisted development workflows'
+  # re-terminal renders params.copyright in the footer; the root key feeds RSS
+  copyright = '© 2026 Snugglebear Team Company'
+  # re-terminal reads the homepage/OG description from subtitle
+  subtitle = 'A collection of skills to enhance AI-assisted development workflows'
+  keywords = 'agent skills, claude code, codex, cursor, hugo, ai coding agents'
+  themeColor = 'green'
+  contentTypeName = 'skills'
+  showMenuItems = 3
+  fullWidthTheme = false
+  centerTheme = true
+  oneHeadingSize = true
+  readingTime = false
+  showLanguageSelector = false
+  readMore = 'Read more'
+  readOtherPosts = 'Read other skills'
+  newerPosts = 'Newer skills'
+  olderPosts = 'Older skills'
+  menuMore = 'Show more'
+
+  [params.logo]
+    logoText = 'agent-skills'
+
+[[menu.main]]
+  identifier = 'skills'
+  name = 'Skills'
+  pageRef = '/skill-list'
+  weight = 10
+
+[[menu.main]]
+  identifier = 'github'
+  name = 'GitHub'
+  url = 'https://github.com/britt/agent-skills'
+  weight = 30
+  [menu.main.params]
+    newTab = true
+
+[[menu.main]]
+  identifier = 'contributing'
+  name = 'Contributing'
+  url = 'https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md'
+  weight = 40
+  [menu.main.params]
+    newTab = true

@@ -1,3 +1,3 @@
-[submodule "site/themes/paper"]
-	path = site/themes/paper
-	url = https://github.com/nanxiaobei/hugo-paper.git
+[submodule "site/themes/re-terminal"]
+	path = site/themes/re-terminal
+	url = https://github.com/mirus-ua/hugo-theme-re-terminal.git

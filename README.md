@@ -12,6 +12,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **setting-up-a-project** | Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices | * | |
 | **repairing-project-setup** | Audit a repo against what setting-up-a-project would generate and repair only the gaps | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
+| **working-on-an-epic** | Coordinate an epic from a Conductor session: child issues run in parallel Conductor workspaces, tracked to reviewable PRs | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |
@@ -109,6 +110,7 @@ Add this repository as a plugin marketplace:
 /plugin install timeline-planning@britt
 /plugin install triage-new-issues@britt
 /plugin install working-on-an-issue@britt
+/plugin install working-on-an-epic@britt
 ```
 
 **Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, or `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`.

@@ -12,6 +12,7 @@ This page maps every skill page in the site, and each entry below includes a sho
 - [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) — Compose GOAL.md files for SGAI workspaces through interactive conversation.
 - [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Author CLAUDE.md with project purpose, tech stack, and development practices.
 - [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) — Hands-off implementation of GitHub issues, reviewed at the PR.
+- [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) — Coordinate an epic through parallel Conductor workspaces, one per child issue.
 - [Project Analysis]({{< relref "skills/project-analysis.md" >}}) — Analyze project codebase structure, architecture, key files, and dependencies.
 - [Project Planning]({{< relref "skills/project-planning.md" >}}) — Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines.
 - [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) — Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates.

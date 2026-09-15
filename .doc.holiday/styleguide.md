@@ -70,6 +70,7 @@ This is the **source of truth** for all skills. Each skill lives in its own subd
 | `sgai-goal` | Composes GOAL.md files for SGAI workspaces |
 | `setting-up-a-project` | Authors CLAUDE.md project documentation |
 | `working-on-an-issue` | Implements a GitHub issue with a verification-driven approach |
+| `working-on-an-epic` | Coordinates an epic by fanning child issues out to Conductor workspaces |
 | `project-analysis` | Analyzes project codebase structure, architecture, and dependencies |
 | `project-planning` | Orchestrates end-to-end project planning |
 | `issue-decomposition` | Decomposes projects into well-structured GitHub issues |

@@ -99,6 +99,7 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Timeline Planning]({{< relref "skills/timeline-planning.md" >}}) | Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones |
 | [Triage New Issues]({{< relref "skills/triage-new-issues.md" >}}) | Review new GitHub issues, assess priority and urgency, suggest labels, and recommend assignees |
 | [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) | Hands-off implementation of GitHub issues, reviewed at the PR |
+| [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) | Coordinate an epic through parallel Conductor workspaces, one per child issue |
 | [Writing Product Specs]({{< relref "skills/writing-product-specs.md" >}}) | Write comprehensive product specification documents |
 | [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories for task definition |
 | [Writing Verification Plans]({{< relref "skills/writing-verification-plans.md" >}}) | Create real-world acceptance testing procedures |

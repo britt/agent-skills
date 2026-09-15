@@ -92,7 +92,6 @@ This is the **source of truth** for all skills. Each skill lives in its own subd
 | `markdown-formatting` | Formats AI outputs into consistent Markdown |
 | `build-faq-from-issues` | Extracts an FAQ from closed GitHub issues |
 | `summarize-conversation-thread` | Summarizes GitHub issue/PR threads |
-| `consolidate-notes-summary` | Synthesizes findings across multiple notes |
 | `research-topic-summarize` | Researches topics via web search |
 | `daily-planning-ritual` | Interactive morning planning across life dimensions |
 

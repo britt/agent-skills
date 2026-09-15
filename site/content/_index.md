@@ -76,7 +76,6 @@ See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CON
 | [Architecture Diagramming]({{< relref "skills/architecture-diagramming.md" >}}) | Generate Mermaid architecture diagrams showing system components, layers, and data flows |
 | [At-Risk Detection]({{< relref "skills/at-risk-detection.md" >}}) | Proactively identify at-risk issues and PRs: stale items, blocked work, deadline risks, scope creep, and unassigned high-priority items |
 | [Build FAQ from Issues]({{< relref "skills/build-faq-from-issues.md" >}}) | Extract common questions from closed GitHub issues and generate an FAQ document with answers |
-| [Consolidate Notes Summary]({{< relref "skills/consolidate-notes-summary.md" >}}) | Search project notes by topic, synthesize findings into a consolidated summary with cross-references |
 | [Context-Aware Questions]({{< relref "skills/context-aware-questions.md" >}}) | Identify information gaps in project context and generate actionable questions to surface missing requirements |
 | [Daily Planning Ritual]({{< relref "skills/daily-planning-ritual.md" >}}) | Interactive daily planning across work and personal life dimensions |
 | [Dependency Mapping]({{< relref "skills/dependency-mapping.md" >}}) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths |

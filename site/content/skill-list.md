@@ -43,7 +43,6 @@ This page maps every skill page in the site, and each entry below includes a sho
 - [Markdown Formatting]({{< relref "skills/markdown-formatting.md" >}}) — Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes.
 - [Build FAQ from Issues]({{< relref "skills/build-faq-from-issues.md" >}}) — Extract common questions from closed GitHub issues and generate an FAQ document with answers.
 - [Summarize Conversation Thread]({{< relref "skills/summarize-conversation-thread.md" >}}) — Summarize GitHub issue and PR threads into key decisions, action items, and next steps.
-- [Consolidate Notes Summary]({{< relref "skills/consolidate-notes-summary.md" >}}) — Search project notes by topic, synthesize findings into a consolidated summary with cross-references.
 - [Research Topic and Summarize]({{< relref "skills/research-topic-summarize.md" >}}) — Research topics via web search, synthesize detailed summaries with sources and screenshots.
 
 ### Personal & Utilities

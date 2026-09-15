@@ -49,7 +49,6 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **markdown-formatting** | Format AI outputs into consistent, readable Markdown | * | * |
 | **build-faq-from-issues** | Extract common questions from closed issues and generate an FAQ document | * | * |
 | **summarize-conversation-thread** | Summarize GitHub issue/PR threads into key decisions and action items | * | * |
-| **consolidate-notes-summary** | Synthesize findings across multiple notes into a consolidated summary | * | * |
 | **research-topic-summarize** | Research topics via web search and synthesize detailed summaries with sources | * | * |
 
 ### Personal & Utilities
@@ -93,7 +92,6 @@ Add this repository as a plugin marketplace:
 /plugin install architecture-diagramming@britt
 /plugin install at-risk-detection@britt
 /plugin install build-faq-from-issues@britt
-/plugin install consolidate-notes-summary@britt
 /plugin install context-aware-questions@britt
 /plugin install dependency-mapping@britt
 /plugin install idea-to-design@britt

@@ -1,110 +1,69 @@
 # Customizing the Daily Planning Ritual
 
-The Daily Planning Ritual skill reads persistent content from a **Google Doc named `Daily Planning Notes`** in your Google Drive (fetched via the Google Drive connector during context gathering). Edit that document to customize what appears in your plans.
+The Daily Planning Ritual skill reads persistent content from a **Google Doc named `Daily Planning Notes`** in your Google Drive (fetched via the Google Drive connector during context gathering). That document is the skill's configuration file: **edit the doc, never the skill.**
 
 ## How It Works
 
-During Step 1 (Gather Context), the skill searches Google Drive for a document titled `Daily Planning Notes` and copies these sections into each daily plan:
+During Step 1 (Gather Context), the skill finds the `Daily Planning Notes` doc and reads **whatever sections it contains** — it has no built-in list of section names. Every section is then reproduced in the day's plan under its own heading, in the document's own order, with its content copied exactly as written.
 
-- **Climbing Goals** - Your ongoing climbing objectives
-- **Life Projects** - Personal projects and initiatives
-- **Work Priorities** - Current work focus areas
-- **Work Questions** - Reflective questions about work
-- **Life Questions** - Broader life reflection questions
+That means:
 
-These sections are copied exactly as-is, so you can customize the skill's output by editing the Google Doc. If the document can't be found, the skill mentions the gap and proceeds without the static sections.
+- **Rename a section** → the new name shows up in your next plan.
+- **Add a section** → it appears in your next plan, in the position you put it.
+- **Remove a section** → it stops appearing.
+- **Reorder sections** → your plan follows the new order.
+
+None of these require touching `SKILL.md`. If the document can't be found, the skill says so once and proceeds without the persistent sections.
 
 ## Creating the Daily Planning Notes Doc
 
-Create a Google Doc named `Daily Planning Notes` with this structure:
+Create a Google Doc named `Daily Planning Notes`. Any set of sections works — this is one example layout, not a required one:
 
 ```markdown
-Climbing Goals
-[Your climbing goals here]
+Training Goals
+[What you're working toward physically right now]
 
-Life Projects
-[Your life projects here]
+Studio Practice
+[The creative work you're keeping alive]
 
-Work Priorities
-[Your work priorities here]
+This Quarter at Work
+[Current work focus areas]
 
-Work Questions
-[Your work reflection questions here]
-
-Life Questions
-[Your life reflection questions here]
+Open Questions
+- [A question worth sitting with]
+- [Another one]
 ```
 
-## Customization Examples
+Pick headings that mean something to you. `Studio Practice`, `Garden`, `Recovery`, `Money`, `Reading List`, `People to Check On` are all equally valid.
 
-### Change Section Names
+## Customization
 
-You can rename sections in the doc to match your priorities:
+### Sections
 
-```markdown
-Fitness Goals
-[Instead of Climbing Goals]
+Edit, rename, add, remove, or reorder sections in the doc whenever your priorities change. The next planning session picks the change up automatically — there is nothing to keep in sync.
 
-Creative Projects
-[Instead of Life Projects]
+- **Weekly:** refresh the section holding your current work focus
+- **Monthly:** revisit personal projects and initiatives
+- **Seasonally:** adjust fitness or training objectives
 
-Career Priorities
-[Instead of Work Priorities]
-```
+### The Question of the Day
 
-**Important:** If you change section names, you **must** also update `skills/daily-planning-ritual/SKILL.md`:
-
-1. Update **Step 3** - Modify the plan format to use your new section names
-2. Update **Step 2** - If you renamed "Life Questions", update the reference in the closing questions section
-
-The skill looks for exact section headers, so both the Google Doc and SKILL.md must match. Alternatively, keep the original section names and customize only the content.
-
-### Customize Reflection Questions
-
-The skill selects one question from your **Life Questions** section during the planning conversation. Customize this section to control what questions get asked:
+Near the end of the conversation the skill poses one reflective question for you to sit with. It draws that question from any section of your doc that holds reflective questions — recognized by a heading such as `Open Questions`, `Reflections`, or `Things to sit with`, or by a body that is simply a list of questions.
 
 ```markdown
-Life Questions
+Open Questions
 - What am I avoiding that needs attention?
 - Where am I creating unnecessary friction?
 - What would make today feel complete?
 - How can I be more present with others?
 ```
 
-Add, remove, or reorder questions to match your reflection style.
+Add, remove, or reorder questions to match your reflection style. Claude chooses which one to pose based on the shape of your day; you don't pick. If your doc has no question section at all, the skill simply skips this step rather than inventing a question.
 
-### Update Priorities Over Time
+### Life Dimensions
 
-Edit the Google Doc whenever your priorities change:
-
-- **Weekly:** Update Work Priorities as projects shift
-- **Monthly:** Refresh Life Projects as initiatives evolve
-- **Seasonally:** Adjust Climbing Goals or fitness objectives
-
-Changes take effect immediately—the next planning session will use the updated content.
-
-### Add New Sections
-
-To include additional persistent sections in your plans:
-
-1. Add the section to the `Daily Planning Notes` Google Doc
-2. Update `skills/daily-planning-ritual/SKILL.md` **Step 3** to add the new section to the plan format template
-
-Example: Add a "Learning Goals" section:
-
-```markdown
-Learning Goals
-[Your learning objectives]
-```
-
-Then update SKILL.md to reference "Learning Goals" in the Step 3 plan format.
+The conversation walks through life dimensions — **work, fitness, relationship, social, and adventure by default**. That set is a starting point, not a fixed taxonomy. To change it, either say so during the ritual ("skip social today, but ask me about studio time") or name your dimensions in your notes doc; the skill drops defaults that don't apply to you and picks up the ones you use instead. Keep the list short enough that the whole ritual still fits in 5-10 minutes.
 
 ## Relationship to the Skill
 
-The skill is **read-only** regarding static sections—it copies content from the Google Doc but never modifies it:
-
-- **Content changes** - Edit the Google Doc directly (no skill changes needed)
-- **Section name changes** - Update both the Google Doc AND `SKILL.md` Step 2/Step 3 references
-- **New sections** - Add to the Google Doc AND update `SKILL.md` Step 3
-
-The Google Doc acts as a configuration file, but the skill must know which sections to look for. Keep them in sync when customizing section structure.
+The skill is **read-only** regarding your notes doc — it copies content but never modifies it, and never summarizes or rewrites what you wrote. Because sections are discovered rather than hardcoded, the doc and the skill cannot drift out of sync: there is no list of section names in `SKILL.md` to keep matching.

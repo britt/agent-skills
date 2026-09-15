@@ -3,20 +3,14 @@ title: "Daily Planning Ritual"
 description: "Interactive daily planning across work and personal life dimensions"
 ---
 
-Interactive morning practice that helps you plan your entire day holistically through a reflective conversation across your work and personal life. It guides you through your calendar, email, and static commitments so you can create a realistic plan for the day.
+Interactive morning practice that helps you plan your entire day holistically through a reflective conversation across your work and personal life. It guides you through your calendar, email, and your own planning notes so you can create a realistic plan for the day.
 
 ### Installation
 
-Add the marketplace and install this skill:
+This skill is available through the full `agent-skills` bundle, not as a standalone plugin:
 
 ```bash
 /plugin marketplace add britt/agent-skills
-/plugin install daily-planning-ritual@britt
-```
-
-Or install all skills at once:
-
-```bash
 /plugin install agent-skills@britt
 ```
 
@@ -41,8 +35,11 @@ You can trigger this skill with phrases like:
 **Context gathering across your life**
 Gathers context from your calendar, reminders, emails, and Drive docs, plus persistent sections from a `Daily Planning Notes` Google Doc, so your plan reflects real constraints. Requires Google Calendar, Gmail, Google Drive, and Reminders connectors; any unavailable source is skipped and noted in the plan.
 
+**Customized by your notes doc, not by editing the skill**
+Reads whatever sections your `Daily Planning Notes` doc contains and reproduces them in the plan verbatim, in your order. Rename, add, remove, or reorder sections and the next plan follows along - there is nothing to keep in sync.
+
 **Conversational planning workflow**
-Leads a reflective, conversational workflow across life dimensions including work, fitness, relationship, social, and adventure.
+Leads a reflective, conversational workflow across your life dimensions - work, fitness, relationship, social, and adventure by default, swapped for your own when they fit better.
 
 **Poetic openings to each day**
 Creates daily plans with a poetic opening statement to set the tone for your day.

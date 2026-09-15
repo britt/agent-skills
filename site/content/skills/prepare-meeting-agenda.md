@@ -49,4 +49,7 @@ Pulls relevant topics from recent issues, PRs, and notes to ensure the agenda re
 Each topic gets an assigned owner and time estimate, with buffer time built in, keeping meetings focused and within schedule.
 
 **Carryover tracking**
-Includes incomplete action items from previous meetings so nothing falls through the cracks.
+Agendas are saved to a dated file per meeting type (`docs/meetings/YYYY-MM-DD-<meeting-type>.md`), so the next meeting can pull forward every unchecked action item automatically instead of relying on someone's memory.
+
+**Parking lot for overflow**
+Topics that don't fit the time box are listed explicitly rather than dropped, and the time boxes are totalled against the stated meeting duration so an over-stuffed agenda is visible before the meeting, not after.

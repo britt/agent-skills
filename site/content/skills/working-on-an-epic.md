@@ -29,7 +29,7 @@ Or install all skills at once:
 | OpenCode | ✓ |
 | Cursor | ✓ |
 
-The skill drives the `conductor` CLI, so it needs to run where that CLI is installed and authenticated: a Conductor cloud workspace, or a local session with a Conductor API token.
+The skill drives the `conductor` CLI and the `gh stack` extension, so it needs to run where both are installed and authenticated: a Conductor cloud workspace, or a local session with a Conductor API token.
 
 ## How to use it
 
@@ -54,8 +54,8 @@ An epic with no child issues is routed to `issue-decomposition` first. A single 
 **One workspace per child, never sessions sharing a checkout**
 Every child issue gets its own Conductor workspace, branch, and session, created with `conductor workspace create` and an opening message that tells it to use `working-on-an-issue`. Sessions inside one workspace would share a branch and clobber each other, so the skill forbids that topology.
 
-**Dependency waves and stacked PRs**
-`Blocked by` and `Depends on` signals in the child issues build waves. Independent children start immediately, up to a concurrency cap of four. A dependent child starts only when its blocker's PR is open and its branch is on origin, and it is created from that branch with a PR stacked on it, so the epic does not stall waiting for a human to merge.
+**Dependency waves and GitHub stacked PRs**
+`Blocked by` and `Depends on` signals in the child issues form chains. Standalone children start immediately, up to a concurrency cap of four. Each chain is built bottom-up: the next child starts only when the one below it has a verified PR and its branch is on origin, and it is created from that branch so the epic does not stall waiting for a human to merge. The coordinator links each chain with `gh stack link` into one GitHub stack that the reviewer can land atomically with `gh stack merge`. Standalone PRs are never stacked, a child with two blockers has its whole component linearised into one chain, and no child ever rebases onto a sibling.
 
 **Stopped is not done**
 Children end with a machine-readable `EPIC-CHILD-DONE` or `EPIC-CHILD-BLOCKED` line. A background poll loop watches `conductor session status`; when a session leaves `working`, the transcript tail is classified rather than assumed complete, and every `done` is cross-checked with `gh pr view`.
@@ -64,4 +64,4 @@ Children end with a machine-readable `EPIC-CHILD-DONE` or `EPIC-CHILD-BLOCKED` l
 When a child stops with a question, the coordinator answers "how" questions from the epic thread and repo conventions and logs the decision. Product or scope questions are never invented; the child is told to implement only what the issue states and list the open question in the PR.
 
 **Never merges, reports honestly**
-The PR is each child's approval gate, exactly as in `working-on-an-issue`. The final comment on the epic lists every child's PR, base branch, CI state, Conductor deep link, and required merge order, and names any child that was skipped, blocked, or failed instead of summarising it away. Child workspaces are left alive for reviewers.
+The PR is each child's approval gate, exactly as in `working-on-an-issue`. The final comment on the epic lists every child's PR, base branch, CI state, Conductor deep link, and stack number with the one-line `gh stack merge` instruction per chain, and names any child that was skipped, blocked, or failed instead of summarising it away. Child workspaces are left alive for reviewers.

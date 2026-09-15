@@ -18,11 +18,15 @@ for dir in skills/*/; do
   fi
 done
 
-# Remove symlinks for skills that no longer exist.
-for link in .agents/skills/*/; do
+# Remove symlinks for skills that no longer exist. Glob without a trailing slash:
+# once the target is deleted the symlink is broken, and a */ glob does not match a
+# broken symlink - so the stale link would survive the very cleanup it needs.
+for link in .agents/skills/*; do
+  # Skips the literal pattern when the directory is empty; -L keeps broken symlinks.
+  [ -e "$link" ] || [ -L "$link" ] || continue
   name=$(basename "$link")
   if [ ! -d "skills/$name" ]; then
-    rm "$link" 2>/dev/null || rm -rf "${link%/}"
+    rm -rf "$link"
     echo "Removed stale link .agents/skills/$name"
   fi
 done

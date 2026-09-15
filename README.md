@@ -38,7 +38,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **triage-new-issues** | Review new GitHub issues, assess priority, suggest labels, and recommend assignees | * | * |
 | **stakeholder-tracking** | Define stakeholder personas and track their goals | * | * |
 | **stakeholder-updates** | Craft clear, concise stakeholder communications | * | * |
-| **prepare-meeting-agenda** | Generate meeting agendas from recent issues, PRs, and notes | * | * |
+| **prepare-meeting-agenda** | Generate time-boxed meeting agendas from recent issues, PRs, and notes, saved as dated files so action items carry over | * | * |
 
 ### Documentation & Communication
 

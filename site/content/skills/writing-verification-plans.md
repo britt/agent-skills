@@ -5,21 +5,6 @@ description: "Create real-world acceptance testing procedures"
 
 Create verification plans for real-world acceptance testing. Verification uses actual systems, never mocks.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install writing-verification-plans@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

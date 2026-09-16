@@ -5,21 +5,6 @@ description: "Craft clear, concise stakeholder communications with appropriate c
 
 Craft effective stakeholder communications tailored to different audiences. This skill helps you write status updates, communicate delays, share launch announcements, request decisions or resources, and report on milestones with the right level of detail for executives, managers, peers, or team members.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install stakeholder-updates@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

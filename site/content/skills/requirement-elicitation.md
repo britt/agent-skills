@@ -5,21 +5,6 @@ description: "Adaptive conversational wizard for eliciting project requirements 
 
 Guide users through a comprehensive requirement elicitation process using an adaptive conversational wizard. This skill captures functional, nonfunctional, and edge-case requirements through a structured but natural conversation, with domain-specific questions for web apps, APIs, CLIs, mobile, data pipelines, and more.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install requirement-elicitation@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

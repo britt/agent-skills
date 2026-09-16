@@ -5,21 +5,6 @@ description: "Hands-off implementation of GitHub issues, reviewed at the PR"
 
 Implement a GitHub issue end to end without mid-flow approval gates: scoped reconnaissance, verification-first planning, TDD implementation, and a pull request that serves as the single review point.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install working-on-an-issue@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

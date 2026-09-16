@@ -5,21 +5,6 @@ description: "Generate Mermaid architecture diagrams showing system components, 
 
 Create clear, GitHub-compatible Mermaid architecture diagrams that visualize system components, layers, boundaries, and data flows. Whether you need a system overview, layered architecture, or request flow diagram, this skill produces well-structured Mermaid syntax that renders correctly on GitHub.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install architecture-diagramming@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

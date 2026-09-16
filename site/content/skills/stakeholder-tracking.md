@@ -5,21 +5,6 @@ description: "Define stakeholder personas and track their goals to ensure all pe
 
 Define stakeholder personas and track their goals to ensure all perspectives are addressed throughout the project lifecycle. This skill helps you create stakeholder profiles, link GitHub issues to stakeholder goals, check coverage, and resolve conflicts between competing priorities.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install stakeholder-tracking@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

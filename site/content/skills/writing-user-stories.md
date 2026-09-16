@@ -5,21 +5,6 @@ description: "Write properly formatted user stories for task definition"
 
 Write properly formatted user stories that identify the persona, desired action, and expected benefit, complete with Given-When-Then acceptance criteria and an INVEST quality check, so you can turn product ideas into clear, testable work items.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install writing-user-stories@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

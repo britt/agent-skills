@@ -5,21 +5,6 @@ description: "Transform raw idea notes into comprehensive design documents with 
 
 Transform raw idea notes into comprehensive design documents autonomously. This skill reads an idea note, researches unknowns, writes a full design document, and produces explicit decision logs and research references -- all without asking questions. Unclear areas are handled by stating assumptions and documenting them.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install idea-to-design@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

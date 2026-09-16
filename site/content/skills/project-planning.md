@@ -5,21 +5,6 @@ description: "Orchestrate comprehensive project planning with issues, architectu
 
 Orchestrate a comprehensive project planning workflow that generates GitHub issues, architecture diagrams, dependency graphs, and timeline charts from a natural language project description. This skill coordinates four sub-skills (issue decomposition, architecture diagramming, dependency mapping, and timeline planning) into a single end-to-end planning process.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install project-planning@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

@@ -5,21 +5,6 @@ description: "Identify information gaps in project context and generate actionab
 
 Analyze project context to surface information gaps and generate prioritized, actionable questions. This skill proactively identifies missing requirements, unclear specifications, and documentation gaps across issues, PRs, and project files, then produces categorized questions with suggested actions.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install context-aware-questions@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

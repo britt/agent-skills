@@ -5,15 +5,6 @@ description: "Interactive daily planning across work and personal life dimension
 
 Interactive morning practice that helps you plan your entire day holistically through a reflective conversation across your work and personal life. It guides you through your calendar, email, and your own planning notes so you can create a realistic plan for the day.
 
-### Installation
-
-This skill is available through the full `agent-skills` bundle, not as a standalone plugin:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Platform | Supported |

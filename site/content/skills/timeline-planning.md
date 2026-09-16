@@ -5,21 +5,6 @@ description: "Generate Mermaid Gantt charts for project timelines with phases, d
 
 Generate Mermaid Gantt charts that visualize project timelines, task scheduling, phases, and milestones based on GitHub issues and their estimates. This skill converts T-shirt size estimates to durations, respects blocking dependencies, groups tasks into phases, and highlights the critical path.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install timeline-planning@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported agents
 
 | Coding agent | Supported |

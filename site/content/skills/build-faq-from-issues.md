@@ -5,21 +5,6 @@ description: "Extract common questions from closed GitHub issues and generate an
 
 Extract common questions from closed GitHub issues and generate a structured FAQ document with answers and source links. This skill turns your resolved support history into reusable documentation that reduces repeat questions.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install build-faq-from-issues@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

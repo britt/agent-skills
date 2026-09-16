@@ -5,21 +5,6 @@ description: "Research topics via web search, synthesize detailed summaries with
 
 Conduct thorough web research on a topic, synthesize findings into a detailed summary, and capture screenshots of key visuals. This skill produces research reports with background context, key findings, comparisons, source citations, and actionable recommendations.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install research-topic-summarize@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

@@ -5,21 +5,6 @@ description: "Author CLAUDE.md and AGENTS.md with project purpose, tech stack, a
 
 Author the instruction files that define your project's purpose, tech stack, and development practices before any code is written — CLAUDE.md for Claude Code and a separately tuned AGENTS.md for Codex CLI, OpenCode, and Cursor. It surveys the repository first, then interviews you one question at a time to fill the gaps and establish development conventions before scaffolding code.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install setting-up-a-project@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

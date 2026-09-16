@@ -5,21 +5,6 @@ description: "Compose GOAL.md files for SGAI workspaces through interactive conv
 
 Compose GOAL.md files for SGAI workspaces through interactive conversation. This skill detects your tech stack, selects the right developer and reviewer agents, and interviews you to build a complete goal file with an agent flow graph, model preferences, a completion gate, and outcome-based success criteria.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install sgai-goal@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

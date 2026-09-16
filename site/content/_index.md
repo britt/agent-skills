@@ -3,9 +3,27 @@ title: "Agent Skills"
 description: "Learn how to install and use Agent Skills across supported coding agents"
 ---
 
-## Getting Started
+Coding agents are smart, but left alone they improvise: skipping verification, inventing their own project structure, redoing work you already explained last week. Agent Skills fixes that by giving agents a library of proven workflows to follow instead of guessing — how to set up a project, break down issues into stories, plan a timeline, run a verification pass — so the process stays consistent whoever's driving and whichever agent is doing the work. Install just the bundle your team needs, across Claude Code, Codex CLI, Cursor, or OpenCode, and stop re-teaching the same playbook every session.
 
-Skills are reusable instruction sets that extend supported coding agents for specific tasks. Choose the installation path that matches the tool in use.
+---
+
+## Bundles
+
+### All Skills (`agent-skills`)
+
+Every skill bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more.
+
+### Project Foundations (`project-foundations`)
+
+A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
+
+### LLPM (`llpm`)
+
+LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning.
+
+Browse the [Skills](./skill-list/) index for the full catalog of individual skills.
+
+---
 
 ## Installation Methods
 
@@ -58,13 +76,3 @@ Claude.ai uses project knowledge uploads.
 1. Download the skill zip from the [Releases page](https://github.com/britt/agent-skills/releases/)
 2. Open the target project in Claude.ai
 3. Upload the zip file under **Project knowledge**
-
-Browse the [Skills](./skill-list/) index for the full catalog.
-
-## Rules
-
-The repository also includes reusable rule sets in the `rules/` directory. The most notable is **TDD.rules.md** which enforces strict Test-Driven Development practices.
-
-## Creating Your Own Skills
-
-See the [Contributing Guide](https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md) for details on creating new skills.

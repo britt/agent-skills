@@ -5,21 +5,6 @@ description: "Generate Mermaid dependency graphs showing issue relationships, bl
 
 Generate Mermaid flowcharts that visualize GitHub issue dependencies, blocking relationships, and critical paths through your project. This skill parses issue descriptions and labels for dependency keywords, builds a relationship map, and produces clear diagrams with phases and critical path highlighting.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install dependency-mapping@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

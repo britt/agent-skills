@@ -5,21 +5,6 @@ description: "Format AI outputs into consistent, readable Markdown for PRs, issu
 
 Apply consistent Markdown formatting to all outputs, structuring content for readability and professionalism. This skill ensures that PR descriptions, issue bodies, documentation, and notes all follow the same formatting conventions with proper headings, lists, code blocks, and emphasis.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install markdown-formatting@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

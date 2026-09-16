@@ -5,21 +5,6 @@ description: "Proactively identify at-risk issues and PRs: stale items, blocked 
 
 Proactively scan GitHub issues and pull requests to identify at-risk items before they become problems. This skill detects stale items, blocked work, deadline risks, scope creep, and unassigned high-priority issues, then provides actionable suggestions for each.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install at-risk-detection@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

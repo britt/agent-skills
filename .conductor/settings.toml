@@ -1,0 +1,7 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts.run.hugo]
+available_in = [ "local" ]
+command = "cd site && hugo server --bind 0.0.0.0 --port $CONDUCTOR_PORT --baseURL http://localhost:$CONDUCTOR_PORT/"
+default = true
+icon = "play"

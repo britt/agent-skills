@@ -5,21 +5,6 @@ description: "Generate meeting agendas from recent issues, PRs, and notes for sp
 
 Generate structured meeting agendas by gathering context from recent project activity including issues, PRs, and notes. This skill supports sprint planning, retrospectives, standups, project check-ins, and any recurring team meeting with time-boxed topics and assigned owners.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install prepare-meeting-agenda@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

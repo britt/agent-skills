@@ -5,21 +5,6 @@ description: "Summarize GitHub issue and PR threads into key decisions, action i
 
 Read long GitHub issue or PR threads and produce concise summaries highlighting what matters. This skill extracts key decisions, action items with owners, open questions, and next steps from lengthy discussions so you can catch up quickly or prepare to contribute.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install summarize-conversation-thread@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Platform | Supported |

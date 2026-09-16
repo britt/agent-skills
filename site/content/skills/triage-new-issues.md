@@ -5,22 +5,6 @@ description: "Review new GitHub issues, assess priority and urgency, suggest lab
 
 Review new or untriaged GitHub issues, assess priority based on urgency signals, suggest labels, and recommend owners. This skill scans issue titles, descriptions, and labels for priority keywords to classify issues from P0 (critical) to P3 (low), then provides a structured triage report with recommendations.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install triage-new-issues@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
-
 ## Supported coding agents
 
 | Agent | Supported |

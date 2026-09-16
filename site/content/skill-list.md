@@ -3,8 +3,6 @@ title: "Skills"
 description: "Browse the complete skills library and read a short description under every skill"
 ---
 
-## Skills index
-
 This page maps every skill page in the site, and each entry below includes a short description. The `Project Foundations` bundle appears in its own section for quick access.
 
 ### Development Workflow

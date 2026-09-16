@@ -5,21 +5,6 @@ description: "Guide for creating syntactically correct Mermaid diagrams that ren
 
 Create clear, maintainable Mermaid diagrams directly in Markdown that render correctly on GitHub, GitLab, and documentation tools. This skill covers flowcharts, sequence diagrams, class diagrams, state diagrams, entity relationship diagrams, Gantt charts, and git graphs with proper syntax that avoids common rendering pitfalls.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install mermaid-diagrams@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

@@ -5,21 +5,6 @@ description: "Analyze project codebase structure, architecture, key files, and d
 
 Perform comprehensive analysis of a project codebase to understand its structure, architecture, key files, and dependencies. This skill scans the codebase, identifies the project type and architectural patterns, reads key configuration files, and produces a detailed analysis report.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install project-analysis@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Agent | Supported |

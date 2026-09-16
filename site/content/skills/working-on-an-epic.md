@@ -5,21 +5,6 @@ description: "Coordinate an epic through parallel Conductor workspaces, one per 
 
 Drive a GitHub epic from one Conductor session without implementing any of it yourself: the coordinator reads the epic, maps the dependencies between child issues, spawns a separate Conductor cloud workspace per child running `working-on-an-issue`, watches them to completion, and reports back on the epic with every PR, deep link, and required merge order.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install working-on-an-epic@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

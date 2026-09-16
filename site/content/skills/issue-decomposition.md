@@ -5,21 +5,6 @@ description: "Decompose project descriptions into well-structured GitHub issues 
 
 Transform high-level project descriptions into well-structured GitHub issues. Each issue includes a user story, acceptance criteria, dependencies, labels, and effort estimates. The skill follows the INVEST principles to ensure issues are independent, negotiable, valuable, estimable, small, and testable.
 
-### Installation
-
-Add the marketplace and install this skill:
-
-```bash
-/plugin marketplace add britt/agent-skills
-/plugin install issue-decomposition@britt
-```
-
-Or install all skills at once:
-
-```bash
-/plugin install agent-skills@britt
-```
-
 ## Supported coding agents
 
 | Coding agent | Supported |

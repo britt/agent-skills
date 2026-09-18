@@ -60,9 +60,23 @@ Open Questions
 
 Add, remove, or reorder questions to match your reflection style. Claude chooses which one to pose based on the shape of your day; you don't pick. If your doc has no question section at all, the skill simply skips this step rather than inventing a question.
 
-### Life Dimensions
+### Areas of Life
 
-The conversation walks through life dimensions — **work, fitness, relationship, social, and adventure by default**. That set is a starting point, not a fixed taxonomy. To change it, either say so during the ritual ("skip social today, but ask me about studio time") or name your dimensions in your notes doc; the skill drops defaults that don't apply to you and picks up the ones you use instead. Keep the list short enough that the whole ritual still fits in 5-10 minutes.
+The whole ritual is organized by **areas of life**: the first read of your day, the questions, the balance check, and the "Where the day goes" section of the plan. By default the areas are **work, life projects, relationships, friendships, self, and fitness**.
+
+To use your own, add a section to your doc that names them. Any heading that clearly means "areas" works (`Areas`, `Areas of my life`, `Dimensions`, `What matters`, `Buckets`), and so does a section whose body is simply a short list of areas rather than tasks or questions:
+
+```markdown
+Areas of my life
+- Work
+- Studio
+- Sam and the kids
+- Friends
+- Garden
+- Body
+```
+
+Your list replaces the default set entirely, in your order and with your names. Every area shows up in the plan every day, including the ones that get nothing, so an empty area is visible rather than forgotten. Keep the list short enough that the whole ritual still fits in 5-10 minutes.
 
 ## Relationship to the Skill
 

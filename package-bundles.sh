@@ -23,6 +23,11 @@ MARKETPLACE=".claude-plugin/marketplace.json"
 DIST="$(pwd)/dist"
 STAGE="$DIST/.stage"
 
+# Bundles that also carry a zip per skill at the archive root, alongside
+# skills/. Chat agents take skills one at a time as uploads, so shipping them
+# pre-zipped saves unpacking and re-zipping by hand.
+NESTED_SKILL_ZIPS=(chat)
+
 # What goes into the full-library archive (source "./"). The repo root also
 # holds site/, docs/, and .github/, which have no place in a plugin install.
 # .agents/ is omitted deliberately: it is a symlink farm pointing back into
@@ -62,6 +67,18 @@ while IFS=$'\t' read -r name source; do
   else
     cp -RL "$source/." "$stage_dir/"
   fi
+
+  # Nested per-skill zips, each holding <skill>/ at its root so it can be
+  # uploaded to a chat agent as-is.
+  for nested in "${NESTED_SKILL_ZIPS[@]}"; do
+    if [ "$name" = "$nested" ]; then
+      for skill_path in "$stage_dir"/skills/*/; do
+        [ -d "$skill_path" ] || continue
+        skill=$(basename "$skill_path")
+        (cd "$stage_dir/skills" && zip -rq "../$skill.zip" "$skill")
+      done
+    fi
+  done
 
   archive="$name-$version.zip"
   rm -f "$DIST/$archive"

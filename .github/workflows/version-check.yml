@@ -1,0 +1,29 @@
+# Fails a PR whose bundle versions have drifted out of lockstep.
+#
+# Each bundle declares its version in three plugin manifests plus its
+# marketplace entry (the root bundle adds the marketplace's own top-level
+# version). CONTRIBUTING.md says to bump them together; this enforces it.
+#
+# The check compares sources for agreement, not for a bump, so a PR that
+# changes no versions passes.
+
+name: Check bundle version lockstep
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check bundle version lockstep
+        run: ./check-versions.sh

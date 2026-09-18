@@ -43,6 +43,11 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name || inputs.tag }}
 
+      # Archive filenames come from the manifests, so drifted versions would
+      # ship mislabeled assets. Fail before anything is uploaded.
+      - name: Check bundle version lockstep
+        run: ./check-versions.sh
+
       - name: Build bundle archives
         run: ./package-bundles.sh
 

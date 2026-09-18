@@ -121,6 +121,8 @@ New skills are picked up automatically by the Codex/Cursor full-bundle plugins (
 
 The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
 
+Run `./check-versions.sh` to verify a bundle's sources agree before opening a PR. The same check runs on every pull request and again in the release workflow before any asset is built.
+
 A bundle's `skills/` directory holds only symlinks back into the canonical `skills/` tree — `ln -s ../../../skills/<name> bundles/<bundle>/skills/<name>`. Never copy a skill into a bundle; a bundle is a curation, not a fork.
 
 ## Building Skill Archives
@@ -140,6 +142,8 @@ To build the per-bundle archives that get attached to a release:
 ```
 
 This writes one zip per bundle to `dist/`, named `<bundle>-<version>.zip` using the version from that bundle's own `.claude-plugin/plugin.json` — e.g. `agent-skills-5.1.0.zip`, `llpm-1.3.0.zip`. Bundles are discovered from `.claude-plugin/marketplace.json` (any plugin entry whose `source` is not a single skill under `./skills/`), so a new bundle needs no change to the script. Skill symlinks are dereferenced, so each archive unzips standalone.
+
+The `chat` bundle additionally carries a zip per skill at its archive root, alongside `skills/` — each one holding `<skill>/` at its root so it can be uploaded to a chat agent as-is. Bundles opted into this are listed in `NESTED_SKILL_ZIPS` in the script.
 
 ## Releasing
 

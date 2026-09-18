@@ -119,7 +119,9 @@ New skills are picked up automatically by the Codex/Cursor full-bundle plugins (
 
 ### 5. Bumping the Bundle Version (Required when releasing)
 
-The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. The `project-foundations` bundle has the same set under `bundles/project-foundations/`.
+The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
+
+A bundle's `skills/` directory holds only symlinks back into the canonical `skills/` tree — `ln -s ../../../skills/<name> bundles/<bundle>/skills/<name>`. Never copy a skill into a bundle; a bundle is a curation, not a fork.
 
 ## Building Skill Archives
 
@@ -130,6 +132,20 @@ To create zip archives of all skills for distribution:
 ```
 
 This creates a `dist/` directory containing zip files for each skill (e.g., `dist/writing-user-stories.zip`).
+
+To build the per-bundle archives that get attached to a release:
+
+```bash
+./package-bundles.sh
+```
+
+This writes one zip per bundle to `dist/`, named `<bundle>-<version>.zip` using the version from that bundle's own `.claude-plugin/plugin.json` — e.g. `agent-skills-5.1.0.zip`, `llpm-1.3.0.zip`. Bundles are discovered from `.claude-plugin/marketplace.json` (any plugin entry whose `source` is not a single skill under `./skills/`), so a new bundle needs no change to the script. Skill symlinks are dereferenced, so each archive unzips standalone.
+
+## Releasing
+
+Publishing a GitHub release triggers `.github/workflows/release-artifacts.yml`, which checks out the released tag, runs `package-bundles.sh`, and uploads the archives to the release. Bump the bundle versions (see above) before tagging — the archive filenames come from the manifests, not the tag.
+
+To rebuild assets for an existing release, run the workflow manually from the Actions tab with that tag as input. This only works for tags that already contain `package-bundles.sh`.
 
 ## Testing Skills
 

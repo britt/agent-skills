@@ -22,6 +22,11 @@
       "name": "llpm",
       "source": "./bundles/llpm",
       "description": "LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning"
+    },
+    {
+      "name": "chat",
+      "source": "./bundles/chat",
+      "description": "Skills for chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning - no repository, git, or gh CLI required"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "britt",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "A collection of skills for Claude Code to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
@@ -43,6 +43,18 @@
       "source": "./bundles/llpm",
       "category": "productivity",
       "tags": ["bundle", "project-management", "product-management", "planning", "stakeholders", "requirements"]
+    },
+    {
+      "name": "chat",
+      "description": "Skills for chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning - no repository, git, or gh CLI required",
+      "version": "1.0.0",
+      "author": {
+        "name": "Britt Crawford",
+        "email": "britt@brittcrawford.com"
+      },
+      "source": "./bundles/chat",
+      "category": "productivity",
+      "tags": ["bundle", "chat", "writing", "research", "diagrams", "requirements", "planning"]
     },
     {
       "name": "architecture-diagramming",

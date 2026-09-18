@@ -51,3 +51,4 @@ This page maps every skill page in the site, and each entry below includes a sho
 
 - [Project Foundations (Bundle)]({{< relref "skills/project-foundations.md" >}}) — A curated bundle for taking a new project from concept to a diagrammed, story-driven plan.
 - [LLPM (Bundle)]({{< relref "skills/llpm.md" >}}) — A curated bundle of LLPM's product-management and project-management skills.
+- [Chat (Bundle)]({{< relref "skills/chat.md" >}}) — A curated bundle for chat agents rather than coding agents: writing, research, diagrams, requirements, and daily planning.

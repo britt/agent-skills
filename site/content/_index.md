@@ -21,6 +21,10 @@ A curated bundle for taking a new project from concept to a diagrammed, story-dr
 
 LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning.
 
+### Chat (`chat`)
+
+For chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning. Nothing in it needs a repository, `git`, or the `gh` CLI.
+
 Browse the [Skills](./skill-list/) index for the full catalog of individual skills.
 
 ---
@@ -36,6 +40,7 @@ Claude Code installs skills through the plugin marketplace.
 /plugin install agent-skills@britt
 /plugin install project-foundations@britt
 /plugin install llpm@britt
+/plugin install chat@britt
 ```
 
 ### Codex CLI
@@ -47,6 +52,7 @@ codex plugin marketplace add britt/agent-skills
 codex plugin install agent-skills@britt
 codex plugin install project-foundations@britt
 codex plugin install llpm@britt
+codex plugin install chat@britt
 ```
 
 ### Cursor
@@ -55,7 +61,7 @@ Cursor adds the repository through its dashboard based marketplace flow and inst
 
 1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
 2. Point it at `britt/agent-skills`
-3. Install `agent-skills`, `project-foundations`, or `llpm` from **Customize**
+3. Install `agent-skills`, `project-foundations`, `llpm`, or `chat` from **Customize**
 
 ### Shared `.agents/skills/` Path
 

@@ -84,6 +84,11 @@ Add this repository as a plugin marketplace:
 # stories, stakeholders, meetings, triage, risk, timeline/dependency planning,
 # and the project-planning orchestrator (add architecture-diagramming separately)
 /plugin install llpm@britt
+
+# chat: for chat agents rather than coding agents - writing and
+# communication, research, diagrams, requirements, specs, and daily planning.
+# Nothing in it needs a repository, git, or the gh CLI.
+/plugin install chat@britt
 ```
 
 **Install individual skills:**
@@ -112,7 +117,7 @@ Add this repository as a plugin marketplace:
 /plugin install working-on-an-epic@britt
 ```
 
-**Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, or `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`.
+**Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britt` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.
 
 ### Claude Code: Manual Installation
 
@@ -142,11 +147,13 @@ This repo is a Codex plugin marketplace (`.codex-plugin/plugin.json` + the exist
 codex plugin marketplace add britt/agent-skills
 codex plugin install agent-skills@britt        # all skills
 codex plugin install project-foundations@britt       # curated bundle only
+codex plugin install llpm@britt                      # curated bundle only
+codex plugin install chat@britt                      # curated bundle only
 ```
 
 ### Cursor
 
-This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/agent-skills`, then install `agent-skills` (or `project-foundations`) from **Customize** in the sidebar.
+This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/agent-skills`, then install `agent-skills` (or `project-foundations`, `llpm`, `chat`) from **Customize** in the sidebar.
 
 ### Codex CLI, OpenCode, and Cursor: Manual Installation
 

@@ -1,0 +1,51 @@
+# Attaches one zip archive per bundle to a GitHub release.
+#
+# Bundles are discovered from .claude-plugin/marketplace.json by
+# package-bundles.sh, so adding a new bundle needs no change here.
+#
+# Two ways it runs:
+#   - release published: the normal path, triggered when you publish a release
+#   - workflow_dispatch: rebuild and re-upload archives for an existing tag
+#
+# The checkout is pinned to the released tag rather than the default branch, so
+# the archives contain the code that was actually released. That means the
+# workflow_dispatch path only works for tags that already carry
+# package-bundles.sh -- releases cut before this workflow landed cannot be
+# backfilled without re-tagging.
+
+name: Attach bundle archives to release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to build and upload archives for
+        required: true
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  attach-bundles:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - name: Check out the released tag
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+
+      - name: Build bundle archives
+        run: ./package-bundles.sh
+
+      - name: Upload archives to the release
+        # --clobber so a re-run replaces assets instead of failing on conflict
+        run: gh release upload "$TAG" dist/*.zip --clobber

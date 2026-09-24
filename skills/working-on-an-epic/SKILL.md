@@ -9,9 +9,11 @@ description: Use when asked to work on, implement, drive, or coordinate a GitHub
 
 ## Overview
 
-You are the **coordinator**, not the implementer. Each child issue is implemented by its own Conductor cloud workspace running the `working-on-an-issue` skill. Your job is to read the epic, map the dependencies, fan the children out, watch them, unblock them, link dependent PRs into GitHub stacks, and report. You never implement a child yourself and you never merge.
+You are the **coordinator**, not the implementer. Each child issue is implemented by its own Conductor cloud workspace running the `working-on-an-issue` skill. Your job is to read the epic, map the dependencies, fan the children out, watch them, unblock them, link dependent PRs into GitHub stacks, keep those stacks linear, and report. You never implement a child yourself and you never merge.
 
 **Core principle:** Understand → Map dependencies → Fan out → Watch → Unblock → Verify → Report
+
+**The stack model, stated once.** GitHub merges a stack only when "the stack has a linear history" ([Merging stacked pull requests](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-stacked-pull-requests)): every layer is exactly **one squashed commit whose parent is the current head of the layer below**. A stack stops being linear "after changes were pushed to a lower branch or after the trunk moved ahead", and the fix is a cascading rebase, bottom-up, pushed with `--force-with-lease`. A layer must therefore **never** merge its base branch or the trunk into itself ("Update branch", `git merge origin/main`, `git merge <below>`): each such merge commit makes the stack unmergeable as a stack, and undoing it later means rewriting every layer above. Rebases are normal and expected here; merges are the mistake.
 
 **Create todos (TodoWrite, if available) for the pre-flight checklist and each numbered step below.**
 
@@ -36,7 +38,7 @@ You are the **coordinator**, not the implementer. Each child issue is implemente
 - [ ] `conductor auth whoami` reports `✓ authenticated`
 - [ ] `CONDUCTOR_WORKSPACE_ID` is set (so `workspace create` inherits this project), or you know the `--repo-url` to pass
 - [ ] `gh auth status` succeeds
-- [ ] `gh stack --version` succeeds (install with `gh extension install github/gh-stack`); dependent PRs are linked into GitHub stacks
+- [ ] `gh stack --version` succeeds (install with `gh extension install github/gh-stack`), and `gh stack link --help` and `gh stack rebase --help` both print usage — some builds hide these from the top-level help while still shipping them. A `gh` wrapper (Conductor installs one) can swallow the extension's output, so treat silence as "unknown" and verify stack state through the API (step 7)
 - [ ] Base branch known: `gh repo view --json defaultBranchRef -q .defaultBranchRef.name`, unless the epic thread names a different integration branch
 - [ ] Scratch directory created outside the repo: `mkdir -p /tmp/epic-<number>`
 
@@ -75,7 +77,8 @@ From each child's body and comments, collect `Blocked by #N`, `Depends on #N`, `
 
 Then turn the graph into **chains**. A chain is one connected component of the dependency graph, ordered by repeatedly taking the lowest-numbered child whose blockers are all already placed. Each chain becomes one GitHub stack, bottom to top, and each child in a chain is spawned only when the child below it is `done`, based on that child's branch. Children with no dependency edges are standalone: spawned immediately against the base branch and never stacked.
 
-- A child with two blockers does not fit a linear stack, so its whole component is linearised into one chain. The cost is that a child with no blocker of its own, which is in the chain only because something above depends on it too, is spawned in sequence instead of in parallel. Accept that cost: it means no child ever rebases onto a sibling and no force-push cascades through a stack. Say which children were serialised this way in the kickoff comment.
+- A child with two blockers does not fit a linear stack, so its whole component is linearised into one chain. The cost is that a child with no blocker of its own, which is in the chain only because something above depends on it too, is spawned in sequence instead of in parallel. Accept that cost: it means no child ever has to be rebased onto a *sibling*, and the only cascades are the ordinary bottom-up ones in step 7. Say which children were serialised this way in the kickoff comment.
+- Every layer above the bottom is rebuilt on top of the layer below whenever that layer moves (review fixes, a trunk rebase). Budget for it: a chain of N layers costs up to N-1 short rebase rounds each time the bottom changes, so keep chains short and land them promptly.
 - A blocker that is `skipped`, `blocked`, or `failed` never resolves; everything above it in the chain is recorded as `not-started: blocked by #N` and never spawned against the base branch to "work around" it.
 - **Concurrency cap: 4 children in flight** unless the developer states a different number. `running` and `asking` children hold a slot; every other phase frees one. The bottom of every chain and every standalone child is ready at once; queued children start in chain order, then issue-number order.
 - **Wall-clock budget: 6 hours**, or the developer's stated deadline if they gave one. At the deadline, report whatever state exists; a child still `working` is listed as in progress with its deep link, not cancelled.
@@ -99,6 +102,13 @@ Constraints from the epic:
 - Branch name: issue-<child>-<short-slug>, based on <base branch>. Push it as soon as it exists.
 - PR base: <base branch>. The PR body must contain "Fixes #<child>", "Part of #<epic>", a "## Assumptions"
   section, and a "## Verification" section with the verification log.
+- History contract (the PR is part of a GitHub stack, which only merges when its history is linear):
+  before opening the PR, and again after every round of review fixes, squash your branch to EXACTLY ONE
+  commit whose parent is the current head of origin/<base branch> (`git fetch origin && git rebase
+  origin/<base branch>` then `git reset --soft origin/<base branch> && git commit`), and push with
+  `--force-with-lease`. NEVER merge <base branch> or the trunk into your branch — no "Update branch",
+  no `git merge origin/main`. If <base branch> moves while you work, rebase onto its new head; do not
+  merge it. The commit message is the PR title plus a body summarising the change.
 - Do not touch work owned by sibling issues: <#N: area or paths derived from its acceptance criteria, ...>.
 - No human will answer questions in this session. Do not stop to ask. Resolve ambiguity with the narrowest
   reading that satisfies the issue text and record it under Assumptions. Assumptions resolve how, never
@@ -110,7 +120,7 @@ When the PR is open, end your turn with the single line (full PR URL, not a numb
 EPIC-CHILD-DONE issue=<child> branch=<branch> pr=<https://github.com/owner/repo/pull/N>
 ```
 
-For a child above the bottom of a chain (step 7), `<base branch>` is the head branch of the child directly below it, and the prompt adds: "Your workspace is based on branch `<below-branch>` (PR `<url>`, not yet merged). It already contains the work from <every issue below in the chain, e.g. #41 and #42>; import it, do not recreate or modify it. Open your PR against `<below-branch>`. The coordinator will link it into a GitHub stack; do not retarget it, rebase it, or write merge-order notes yourself."
+For a child above the bottom of a chain (step 7), `<base branch>` is the head branch of the child directly below it, and the prompt adds: "Your workspace is based on branch `<below-branch>` (PR `<url>`, not yet merged). It already contains the work from <every issue below in the chain, e.g. #41 and #42>; import it, do not recreate or modify it. Open your PR against `<below-branch>`. The coordinator will link it into a GitHub stack; do not retarget it or write merge-order notes yourself. When the coordinator tells you `<below-branch>` has moved, rebase your single commit onto its new head (`git rebase --onto origin/<below-branch> <old base sha>`), resolve any conflict in your own code, keep it one commit, and push with `--force-with-lease`."
 
 ### 5. Fan Out
 
@@ -195,7 +205,21 @@ gh stack link <bottom PR URL> <next PR URL>
 gh stack link <stack-number> <next PR URL>
 ```
 
-Pass `--base <integration branch>` when the epic named one other than the repository default. Take the stack number from the command output; if it is not printed, it is shown in the stack panel of either PR on GitHub. Append `stack=<number>` to the `notes` of every PR in the chain. If the link command fails, record the error in `notes`, keep spawning, and retry the link during step 9 with the same URLs. Never put two chains, or a standalone PR, into one stack: a stack merges atomically and in order, so stacking unrelated work makes one blocked review hold all of them.
+Pass `--base <integration branch>` when the epic named one other than the repository default. Do not trust the command's output, or its silence, to tell you what GitHub recorded; read it back:
+
+```bash
+gh api graphql -f query='{ repository(owner:"<owner>",name:"<repo>"){ pullRequest(number:<bottom PR>){ stack { number baseRefName size entries(first:20){ nodes { position pullRequest { number headRefName baseRefName } } } } } } }'
+```
+
+`stack.number` is the stack number; `entries` must list every PR of the chain in order. (`added_to_stack` also appears on each PR's issue timeline.) Append `stack=<number>` to the `notes` of every PR in the chain. If the link command fails or the stack is missing a PR, record it in `notes`, keep spawning, and retry the link during step 9 with the same URLs. Never put two chains, or a standalone PR, into one stack: a stack merges atomically and in order, so stacking unrelated work makes one blocked review hold all of them.
+
+**Keep the stack linear.** Whenever a layer's head moves — review fixes, a rebase onto a moved trunk — every layer above it is now non-linear and must be rebuilt, bottom-up, one at a time:
+
+1. Record the moved layer's old and new head SHAs.
+2. Message the child directly above it: "`<below-branch>` moved from `<old sha>` to `<new sha>`. Rebase your single commit onto it: `git fetch origin && git rebase --onto origin/<below-branch> <old sha>`, resolve conflicts in your own code only, keep it one commit, push with `--force-with-lease`, then end with the EPIC-CHILD-DONE line again." Set its phase to `running`.
+3. When it reports done, verify (step 9), then repeat for the next layer up, with this layer's old and new SHAs.
+
+Only the bottom layer ever rebases onto the trunk, and only when the trunk has moved in a way GitHub reports as non-linear or a ruleset requires an up-to-date branch; it does so the same way (rebase, one commit, lease), and then the cascade above runs. If every child in a chain is idle and the layers are single commits, the coordinator may run the cascade itself with `gh stack rebase` followed by `gh stack push` from a checkout that has the branches; a conflict stops it and lists files — do not resolve those yourself, hand them to the layer's child.
 
 ### 8. Unblock
 
@@ -211,6 +235,8 @@ A child in `asking` stopped without a sentinel line. Read the assistant text at 
 
 Every relay is a decision made on the developer's behalf — it goes in `notes` and in the report. Never `session cancel` a child for asking; cancel only a session still `working` past the wall-clock budget with no pushed commits, and say so.
 
+**Review fixes go into the layer's single commit.** When findings are relayed to a child, its instruction ends with the history contract from step 4: squash the fixes into the one commit, rebase onto the current head of the layer below, push with `--force-with-lease`, then the sentinel. A layer that moves this way triggers the cascade in step 7 for everything above it, so relay review findings to lower layers first and let each cascade finish before relaying to the next layer up.
+
 ### 9. Verify
 
 For each `done` PR:
@@ -222,13 +248,24 @@ gh pr diff <url> --name-only | sort > /tmp/epic-<number>/files-<child>.txt
 
 Checks: open, not draft, expected base, body contains `Fixes #<child>` (a `Refs #<child>` means the child is **incomplete** — report it that way), `## Assumptions`, and `## Verification`. Read CI status once; do not wait on it.
 
-Then intersect the changed-file lists pairwise (`comm -12`), skipping pairs that are both in the same chain, since those already build on each other. Two PRs that touch the same file are a dependency the issues did not declare, so treat them as a chain: pick the landing order (a chain member before a standalone PR; otherwise the smaller change goes second; a standalone joining a chain rebases onto the chain's top) and message the second PR's session — "Rebase your branch onto `origin/<first headRefName>` with `--force-with-lease`, retarget the PR base to that branch with `gh pr edit --base`, then end with the EPIC-CHILD-DONE line again" — set its phase back to `running` so the loop catches the second sentinel, then link the pair with `gh stack link` as in step 7. The child does the rebase, not you: it has the context to resolve conflicts in code you never read. This is the only rebase the skill ever asks for.
+Then intersect the changed-file lists pairwise (`comm -12`), skipping pairs that are both in the same chain, since those already build on each other. Two PRs that touch the same file are a dependency the issues did not declare, so treat them as a chain: pick the landing order (a chain member before a standalone PR; otherwise the smaller change goes second; a standalone joining a chain rebases onto the chain's top) and message the second PR's session — "Rebase your single commit onto `origin/<first headRefName>` with `--force-with-lease`, retarget the PR base to that branch with `gh pr edit --base`, then end with the EPIC-CHILD-DONE line again" — set its phase back to `running` so the loop catches the second sentinel, then link the pair with `gh stack link` as in step 7. The child does the rebase, not you: it has the context to resolve conflicts in code you never read.
 
-Finally confirm every chain with verified commands: for each PR above the bottom, `gh pr view <url> --json baseRefName` must equal the `headRefName` of the PR below it, or the base branch if the PR below is `MERGED`; and every `gh stack link` must have exited 0. Any other mismatch goes back to the PR's session with a retarget message.
+Then confirm every chain is **linear**, with git, not with the PR page:
+
+```bash
+git fetch origin <trunk> <every layer branch>
+# for each layer, bottom to top: exactly one commit beyond the layer below, whose parent IS the layer below's head
+git rev-list --count origin/<below>..origin/<layer>          # must print 1
+git rev-parse origin/<layer>^                                 # must equal: git rev-parse origin/<below>
+```
+
+Any layer that fails either check has a merge commit or a stale base; run the cascade from step 7 starting at the lowest failing layer. Also confirm, for each PR above the bottom, that `gh pr view <url> --json baseRefName` equals the `headRefName` of the PR below it (or the trunk if the PR below is `MERGED`), and re-read the stack through the GraphQL query in step 7 so `entries` lists every PR. Any mismatch goes back to the PR's session with a retarget message.
+
+Read the trunk's rulesets once (`gh api repos/<owner>/<repo>/rules/branches/<trunk>`): a `required_status_checks` rule with `strict_required_status_checks_policy: true` means the bottom PR must also contain the trunk's current head before it can merge, so if the trunk has moved, the bottom layer rebases onto it and the cascade runs before you report the stack as ready.
 
 ### 10. Report
 
-Post one new comment on the epic containing, per child: issue, PR link, base branch, CI state, Conductor deep link, stack number (or "standalone"), and the `notes` (assumptions, relayed decisions, open questions, blocked reasons). For each stack, give the one-line landing instruction: `gh stack merge <stack-number>` merges the whole chain atomically and in order. Standalone PRs merge individually in any order. Then reply to the developer with the same table.
+Post one new comment on the epic containing, per child: issue, PR link, base branch, CI state, Conductor deep link, stack number (or "standalone"), and the `notes` (assumptions, relayed decisions, open questions, blocked reasons). For each stack, give the one-line landing instruction: `gh stack merge <stack-number> --squash` merges the whole chain atomically and in order, one squash commit per layer on the trunk (match the repository's usual merge method if it differs; every layer is already a single commit, so the content is the same either way). Standalone PRs merge individually in any order. Then reply to the developer with the same table.
 
 - Deep links, not raw ids — they are clickable.
 - Leave child workspaces and sessions alive. Reviewers send follow-ups to the session that wrote the PR; archive only when the developer asks.
@@ -241,6 +278,8 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 - **One workspace per child**: never sessions sharing a checkout
 - **Never merge**: the PR is the approval gate for each child, exactly as in `working-on-an-issue`; a standing "don't merge" instruction on the epic outranks any urgency in the request. `gh stack merge` is for the reviewer, never for you
 - **One stack per dependency chain**: independent PRs stay standalone
+- **One commit per layer, always linear**: a layer is a single squashed commit on the current head of the layer below; a layer never merges its base or the trunk into itself
+- **Cascade bottom-up, with lease**: when a layer moves, every layer above is rebased onto it in order, each push `--force-with-lease`; never leave a chain half-cascaded
 - **Stopped is not done**: only the `EPIC-CHILD-DONE` line plus a verified PR counts
 - **Answer how, escalate what**: relayed decisions are logged; product decisions are not invented
 - **Report honestly**: skipped, blocked, stalled, and failed children are listed, not summarised away
@@ -258,9 +297,12 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 | Assistant text in a transcript | `.data[] \| select(.type=="agent" and .content.rawPayload.type=="assistant") \| .content.rawPayload.message.content[].text` | other `rawPayload.type` values: `system`, `user` (tool results), `result` (turn ended), `command_lifecycle`, `rate_limit_event` |
 | Talk to a child | `conductor message create --session <sid> --message "…"` | message record |
 | Children issues | GraphQL `issue(number){subIssues{nodes{number}}}` | resolves on GitHub today |
-| Stack existing PRs | `gh stack link <PR URL> <PR URL> …` (bottom to top) or `gh stack link <stack-number> <PR URL>` | creates or grows the stack on GitHub; no local tracking needed |
+| Stack existing PRs | `gh stack link <PR URL> <PR URL> …` (bottom to top) or `gh stack link <stack-number> <PR URL>` | creates or grows the stack on GitHub; no local tracking needed; may print nothing through a `gh` wrapper |
+| Read a stack back | GraphQL `pullRequest(number){ stack { number size entries(first:20){ nodes { position pullRequest { number } } } } }` | the stack number and ordered members GitHub actually recorded |
 | Confirm a chain | `gh pr view <url> --json baseRefName,headRefName` per layer | each base equals the head below it |
-| Land a stack (reviewer, not you) | `gh stack merge <stack-number>` | atomic, in order, all or nothing |
+| Confirm linearity | `git rev-list --count origin/<below>..origin/<layer>` and `git rev-parse origin/<layer>^` | `1`, and the head of `<below>` |
+| Cascade after a layer moved | child: `git rebase --onto origin/<below> <old base sha>` + `--force-with-lease`; coordinator fallback: `gh stack rebase` then `gh stack push` | bottom-up, one layer at a time |
+| Land a stack (reviewer, not you) | `gh stack merge <stack-number> --squash` | atomic, in order, all or nothing; requires a linear stack |
 
 ## Common Mistakes
 
@@ -269,10 +311,13 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 | Treating `idle` as finished | `idle` is the normal stopped state; only the sentinel line plus `gh pr view` is done, everything else is `asking` or `stalled` |
 | Reading one page of the transcript | Pages cap at 100 events; page on `hasMore` or the sentinel is missed |
 | Starting a chain member from the base branch because the layer below is "basically done" | Wait for its verified `done` and its branch on origin, then base on that branch |
-| Running a linearised sibling in parallel and rebasing it later | Spawn along the chain; a rebase across sessions force-pushes through every layer above it |
+| Running a linearised sibling in parallel and rebasing it later | Spawn along the chain; an out-of-order rebase across sessions has to be repeated for every layer above it |
 | Stacking independent PRs "to keep things together" | One stack per dependency chain; a stack merges atomically, so unrelated work would block each other |
+| Letting a layer merge its base or the trunk into itself ("Update branch", `git merge origin/main`) | The stack is no longer linear and GitHub refuses to merge it; the fix is a rebase cascade through every layer above. Rebase onto the moved base instead, one commit, `--force-with-lease` |
 | Passing branch names to `gh stack link` | PR URLs only; branch arguments are pushed from your checkout, which lacks them |
-| Rebasing a child's branch yourself to fix a stack | Message the child's session; it has the context to resolve conflicts |
+| Trusting `gh stack link`'s output, or its silence | Read the stack back through the GraphQL `stack` field; a `gh` wrapper can swallow the extension's output |
+| Rebasing a child's branch yourself to fix a stack | Message the child's session; it has the context to resolve conflicts. `gh stack rebase` is a fallback only when every layer is one clean commit |
+| Relaying review findings to an upper layer while a lower layer is still being fixed | Fix bottom-up; every lower move re-cascades the layers above it, so upper fixes done first are rebased twice |
 | Running `gh stack checkout` in the coordinator's workspace | It switches your checkout and creates local tracking you do not need; confirm chains with `gh pr view` |
 | Reading transcripts with `conductor sql` | Use `session message --after`; the SQL endpoint is optional and rate-limited |
 | Polling with dozens of separate tool calls, or a loop that never returns | One background loop that exits on the first phase change |

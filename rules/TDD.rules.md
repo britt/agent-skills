@@ -67,35 +67,9 @@ convention:
 - ✅ Build succeeds with ZERO errors
 - ✅ NO linter errors or warnings
 - ✅ Coverage meets minimum thresholds ({{COVERAGE_THRESHOLD}}%+)
-- ✅ Progress documented in PROGRESS.md
 - ✅ Work committed, following the Git Commit Rules in CLAUDE.md / AGENTS.md
 
 A task with failing tests, build errors, or linter warnings is INCOMPLETE. Period.
-
-### 8. Progress Documentation
-
-**MANDATORY RULE**: YOU MUST REPORT YOUR PROGRESS IN `PROGRESS.md`
-
-After completing EACH task:
-1. Create `PROGRESS.md` if it doesn't exist
-2. Document:
-   - Task completed
-   - Tests written/passed
-   - Coverage achieved
-   - Any issues encountered
-   - Timestamp
-
-Format:
-```markdown
-## Task X: [Name] - [COMPLETE/IN PROGRESS]
-- Started: [timestamp]
-- Tests: X passing, 0 failing
-- Coverage: Lines: X%, Functions: X%, Branches: X%, Statements: X%
-- Build: ✅ Successful / ❌ Failed
-- Linting: ✅ Clean / ❌ X errors
-- Completed: [timestamp]
-- Notes: [any relevant notes]
-```
 
 ## Development Workflow
 
@@ -166,8 +140,7 @@ Before marking ANY task complete, verify:
 5. ✓ Coverage maintained ({{COVERAGE_THRESHOLD}}%+)?
 6. ✓ Build succeeds (`{{BUILD_COMMAND}}`)?
 7. ✓ No linter errors?
-8. ✓ Progress documented in PROGRESS.md?
-9. ✓ Work committed?
+8. ✓ Work committed?
 
 Missing ANY ✓ = Task is NOT complete. Fix it first.
 

@@ -11,7 +11,7 @@ A short morning conversation (5-10 minutes) that ends in a plan for the day. The
 
 1. **Gather context** (silent) - Pull calendar, reminders, emails, Drive docs, and the planning notes doc, then sort what you found by area
 2. **Converse** - Open with a read of the day and ask how the user feels, shape it together while learning how they want to feel and what matters most, then check the balance
-3. **Draft plan** - Poetic opening, agenda, where the day goes, notes-doc sections
+3. **Draft plan** - Poetic opening, agenda, where the day goes
 4. **Refine** - Iterate, restating the balance whenever it shifts
 5. **Finalize** - Write or present the final plan when approved
 
@@ -48,13 +48,12 @@ Every part of this ritual is organized by **area**: the first read, the question
 
 ### Reading the planning notes doc
 
-The notes doc is the user's configuration file for this ritual, so **read whatever sections it actually contains — never assume a particular set of section names.**
+The notes doc is the user's configuration file for this ritual, so **read whatever sections it actually contains — never assume a particular set of section names.** It is an input to the conversation, not content for the plan: its goals and priorities inform the first read and the questions you ask, and two kinds of section have a specific job.
 
-- Capture every section: its heading exactly as written, its body exactly as written, and its position in the document.
-- Do not rename, merge, reorder, split, or skip sections, and do not expect any section to be present.
 - Note which section (if any) names the user's **areas of life** (see Areas of Life above). It replaces the default areas.
 - Note which sections (if any) hold **reflective questions** — headings like `Open Questions`, `Reflections`, or `Things to sit with`, or bodies that are a list of questions. These are the pool for the Question of the Day.
 - If the document cannot be found, say so once, briefly explain that it is how the user customizes this ritual without editing the skill, and continue without it.
+- Nothing from the doc is copied into the plan. The plan has exactly the parts listed in Step 3.
 
 ### Sort what you found by area
 
@@ -130,24 +129,15 @@ Where the day goes
 * [Area] — nothing today
 * ...
 [One sentence: the balance read, tied to the desired feeling]
-
-[Then reproduce the planning notes doc's sections here]
 ```
+
+The plan ends there. The planning notes doc's sections (goals, priorities, questions) are not reproduced in it; the Question of the Day is the only thing from the doc that reaches the plan, and only through the conversation.
 
 ### Where the day goes
 
 - **One line per area in play**, in the order the areas are defined. Areas with nothing get an explicit "nothing today" so absence is visible.
 - **Shares are in words**, not clock times or percentages: "most of the day," "the morning," "an hour before dinner," "a phone call between meetings," "the evening."
 - **The closing sentence restates the outcome of the balance check**: what the day is weighted toward and whether that is by choice. Example: "Weighted to work by choice; the morning run and the drawers tonight keep it from being only that."
-
-### Notes-doc sections
-
-Mirror the notes doc exactly:
-
-- Reproduce **every** section it contains, in the document's own order, each under its own heading copied verbatim.
-- Copy the body of each section as-is. This content is the user's, not yours to summarize or improve.
-- Add no section the doc doesn't have, and omit none that it does.
-- If the doc was unavailable, leave this part out and note the gap in one line under the agenda.
 
 ### Crafting the Poetic Opening
 
@@ -195,5 +185,5 @@ When the user indicates they're satisfied, write the plan to a markdown file (e.
 - How the user wants to feel and what matters most are learned in conversation, not asked as a fixed sequence. Pick them up from what the user says; ask directly for whichever has not surfaced, starting no later than the third exchange.
 - The balance check is not optional and not an afterthought on the draft. It happens before the plan exists, and again whenever the shape changes.
 - Empty areas stay visible in the plan. Seeing "Friendships — nothing today" is the point.
-- The user changes their areas, goals, and questions by editing the notes doc. Sections are reproduced exactly as-is, headings and all; this skill only ever reads that doc, never edits it.
+- The user changes their areas, goals, and questions by editing the notes doc. This skill only ever reads that doc, never edits it, and never copies its sections into the plan.
 - Total process should feel contemplative, not rushed, but stay within 5-10 minutes.

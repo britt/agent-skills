@@ -4,16 +4,15 @@ The Daily Planning Ritual skill reads persistent content from a **Google Doc nam
 
 ## How It Works
 
-During Step 1 (Gather Context), the skill finds the `Daily Planning Notes` doc and reads **whatever sections it contains** — it has no built-in list of section names. Every section is then reproduced in the day's plan under its own heading, in the document's own order, with its content copied exactly as written.
+During Step 1 (Gather Context), the skill finds the `Daily Planning Notes` doc and reads **whatever sections it contains** — it has no built-in list of section names. The doc shapes the conversation rather than the plan: goals and priorities inform the first read of the day and the questions Claude asks, a section naming your areas of life replaces the default areas, and a section of reflective questions feeds the Question of the Day. The doc's sections are never copied into the plan itself.
 
 That means:
 
-- **Rename a section** → the new name shows up in your next plan.
-- **Add a section** → it appears in your next plan, in the position you put it.
-- **Remove a section** → it stops appearing.
-- **Reorder sections** → your plan follows the new order.
+- **Add or change a goal** → Claude reads the day against it, but the goal does not appear in the plan.
+- **Change your areas** → the "Where the day goes" section follows the new list.
+- **Add or remove questions** → the Question of the Day pool changes.
 
-None of these require touching `SKILL.md`. If the document can't be found, the skill says so once and proceeds without the persistent sections.
+None of these require touching `SKILL.md`. If the document can't be found, the skill says so once and proceeds with the default areas and no Question of the Day.
 
 ## Creating the Daily Planning Notes Doc
 

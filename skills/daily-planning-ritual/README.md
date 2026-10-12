@@ -48,7 +48,7 @@ Edit, rename, add, remove, or reorder sections in the doc whenever your prioriti
 
 ### The Question of the Day
 
-Near the end of the conversation the skill poses one reflective question for you to sit with. It draws that question from any section of your doc that holds reflective questions — recognized by a heading such as `Open Questions`, `Reflections`, or `Things to sit with`, or by a body that is simply a list of questions.
+Near the end of the conversation the skill poses one reflective question for you to sit with. It draws on any section of your doc that holds reflective questions — recognized by a heading such as `Open Questions`, `Reflections`, or `Things to sit with`, or by a body that is simply a list of questions — and either picks one of yours or writes one of its own in the same spirit when the day calls for something more specific.
 
 ```markdown
 Open Questions
@@ -58,7 +58,7 @@ Open Questions
 - How can I be more present with others?
 ```
 
-Add, remove, or reorder questions to match your reflection style. Claude chooses which one to pose based on the shape of your day; you don't pick. If your doc has no question section at all, the skill simply skips this step rather than inventing a question.
+Add, remove, or reorder questions to match your reflection style. Claude chooses which one to pose based on the shape of your day; you don't pick. Your questions set the register for any it crafts, so the more you add, the more the crafted ones sound like you. If your doc has no question section, the skill still poses a question drawn from the conversation, and mentions once that a section of questions in the doc gives it material to work from.
 
 ### Areas of Life
 

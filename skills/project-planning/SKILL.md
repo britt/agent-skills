@@ -82,7 +82,7 @@ Use the issue-decomposition skill to generate 5-15 well-structured issues with:
 - User stories
 - Acceptance criteria
 - Dependencies
-- Estimates
+- Estimates: points on the powers-of-two scale from `estimating-work-items`, 8 or less per issue
 - Labels
 
 **Give each proposed issue a plan-local id — `P1`, `P2`, `P3`...** Real issue numbers do not exist until Step 8, and `#1` style placeholders are indistinguishable from real references. Express every dependency between proposals with these ids ("blocked by P1"). Keep the decomposition in the conversation; nothing is written to GitHub yet.
@@ -119,7 +119,7 @@ Use the timeline-planning skill to create a Gantt chart with:
 
 **Input:** the same Step 3 decomposition and the Step 5 graph — again, not `gh issue list`. Supply the estimates and blocking relationships directly. Use the start date from Step 1 if the user gave one, otherwise today.
 
-Inline fallback: a `gantt` block with one section per phase and Small/Medium/Large/XL mapped to 1d/3d/5d/10d, ordering blocked tasks `after` their blockers.
+Inline fallback: a `gantt` block with one section per phase, one point mapped to one day (1/2/4/8 points to 1d/2d/4d/8d), ordering blocked tasks `after` their blockers.
 
 ### Step 7: Preview and Confirm
 
@@ -129,10 +129,10 @@ This is the workflow's only confirmation gate. Before creating anything:
 ## Project Plan Preview
 
 ### Issues to Create (X total)
-| Plan id | Title | Estimate | Labels | Dependencies |
-|---------|-------|----------|--------|--------------|
-| P1 | Setup | Small | chore | None |
-| P2 | Core feature | Medium | feature | Blocked by P1 |
+| Plan id | Title | Points | Labels | Dependencies |
+|---------|-------|--------|--------|--------------|
+| P1 | Setup | 2 | chore, points-2 | None |
+| P2 | Core feature | 4 | feature, points-4 | Blocked by P1 |
 ...
 
 ### Architecture
@@ -201,10 +201,10 @@ Save to `docs/plans/<project-slug>-plan.md`:
 - [Risk or assumption 2]
 
 ## Issues Created
-| Issue | Title | Status | Estimate |
-|-------|-------|--------|----------|
-| #201 | [Title] | Open | Small |
-| #202 | [Title] | Open | Medium |
+| Issue | Title | Status | Points |
+|-------|-------|--------|--------|
+| #201 | [Title] | Open | 2 |
+| #202 | [Title] | Open | 4 |
 ...
 ```
 

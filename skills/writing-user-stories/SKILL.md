@@ -53,8 +53,8 @@ Before finalizing a story, verify it is:
 - [ ] **Independent** - Can be developed separately from other stories
 - [ ] **Negotiable** - Details can be discussed and refined
 - [ ] **Valuable** - Delivers clear value to users or business
-- [ ] **Estimable** - Effort can be estimated reasonably
-- [ ] **Small** - Can be completed in one sprint (typically)
+- [ ] **Estimable** - You can say what done looks like; size it with the `estimating-work-items` skill
+- [ ] **Small** - 8 points or less on the powers-of-two scale; 16 or more is an epic to decompose
 - [ ] **Testable** - Success criteria are clear and verifiable
 
 ## Common Pitfalls

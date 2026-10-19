@@ -25,6 +25,7 @@ You are the **coordinator**, not the implementer. Each child issue is implemente
 
 - A single, non-epic issue → `working-on-an-issue`
 - The epic has no child issues yet → run `issue-decomposition` to create them, then come back to this skill
+- A child is estimated at 16 or more (`points-16`, `points-32`, or `epic` label) → it is an epic itself; decompose it with `issue-decomposition` before spawning anything for it
 - `conductor` is missing or not authenticated → stop and tell the developer; do not fall back to implementing the children serially yourself
 - Developer explicitly wants the work done in this one session → `working-on-an-issue` per child, in sequence
 

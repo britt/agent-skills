@@ -112,6 +112,17 @@
       "tags": ["dependencies", "graphs", "mermaid", "critical-path"]
     },
     {
+      "name": "estimating-work-items",
+      "description": "Size GitHub issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field",
+      "version": "1.0.0",
+      "author": {
+        "name": "Britt Crawford"
+      },
+      "source": "./skills/estimating-work-items",
+      "category": "productivity",
+      "tags": ["estimation", "story-points", "issues", "epics", "project-management"]
+    },
+    {
       "name": "idea-to-design",
       "description": "Turn an idea note into a design document, plan an idea, or make an idea real",
       "version": "1.1.0",

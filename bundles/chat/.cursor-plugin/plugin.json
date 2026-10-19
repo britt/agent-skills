@@ -2,7 +2,7 @@
   "name": "chat",
   "displayName": "Chat",
   "description": "Skills for chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning - no repository, git, or gh CLI required",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"

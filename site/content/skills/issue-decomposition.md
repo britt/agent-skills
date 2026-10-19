@@ -25,13 +25,13 @@ Use this skill when:
 ## Features
 
 **Complete issue templates**
-Each generated issue includes a user story, description, acceptance criteria with checkboxes, dependency mapping, labels, and T-shirt size estimates.
+Each generated issue includes a user story, description, acceptance criteria with checkboxes, dependency mapping, labels, and a story-point estimate on the powers-of-two scale from the Estimating Work Items skill.
 
 **Structured decomposition process**
 Walks through understanding scope, identifying major components, generating issues, mapping dependencies, and previewing before creation.
 
 **Label taxonomy and estimation guidelines**
-Uses a consistent label system for type, area, and priority, with T-shirt sizing mapped to typical durations from half a day to a full week.
+Uses a consistent label system for type, area, priority, and `points-<n>` estimates. Issues are capped at 8 points; anything at 16 or 32 becomes an epic and is decomposed into children.
 
 **Preview before creating**
 Always shows a summary table of proposed issues with titles, estimates, and dependencies before creating anything in GitHub.

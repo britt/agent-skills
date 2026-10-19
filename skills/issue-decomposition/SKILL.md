@@ -1,11 +1,11 @@
 ---
 name: issue-decomposition
-description: "Use when the user says 'create issues for...', 'break this into tasks', or 'decompose this feature', or when converting a project description into GitHub issues - produces 5-15 INVEST-quality issues with user stories, acceptance criteria, dependencies, labels, and T-shirt estimates"
+description: "Use when the user says 'create issues for...', 'break this into tasks', or 'decompose this feature', or when converting a project description into GitHub issues - produces 5-15 INVEST-quality issues with user stories, acceptance criteria, dependencies, labels, and powers-of-two point estimates"
 ---
 
 # Issue Decomposition Skill
 
-Transform high-level project descriptions into well-structured GitHub issues. Each issue includes a user story, acceptance criteria, dependencies, labels, and effort estimates.
+Transform high-level project descriptions into well-structured GitHub issues. Each issue includes a user story, acceptance criteria, dependencies, labels, and a story-point estimate on the powers-of-two scale from the `estimating-work-items` skill.
 
 ## When to Use
 
@@ -40,10 +40,13 @@ As a [persona/role], I want [goal/action] so that [benefit/value].
 - Blocks: #[number] - [what depends on this]
 
 ## Labels
-`[type]`, `[area]`, `[priority]`
+`[type]`, `[area]`, `[priority]`, `points-[n]`
 
 ## Estimate
-[T-shirt size: Small/Medium/Large/XL with rough duration]
+**[n] points**
+
+Compared with: [smaller reference] ([n]) and [larger reference] ([n]) - [why it is closer to one than the other].
+Main unknown: [the one thing most likely to make this bigger], or "none".
 ```
 
 ## Decomposition Process
@@ -68,8 +71,8 @@ For each component, create issues that are:
 - **Independent**: Minimal dependencies on other issues
 - **Negotiable**: Clear what, flexible how
 - **Valuable**: Delivers user or technical value
-- **Estimable**: Can be sized with reasonable confidence
-- **Small**: Completable in 1-5 days
+- **Estimable**: Passes the estimability gate in `estimating-work-items` (you can say what done looks like)
+- **Small**: 8 points or less on the powers-of-two scale; anything bigger is an epic with its own children
 - **Testable**: Has clear acceptance criteria
 
 ### Step 4: Map Dependencies
@@ -84,10 +87,10 @@ Always show the user a summary before creating issues:
 ```markdown
 ## Proposed Issues (N total)
 
-| # | Title | Estimate | Dependencies |
-|---|-------|----------|--------------|
-| 1 | Setup project structure | Small | None |
-| 2 | Implement core feature X | Medium | Blocked by #1 |
+| # | Title | Points | Dependencies |
+|---|-------|--------|--------------|
+| 1 | Setup project structure | 2 | None |
+| 2 | Implement core feature X | 4 | Blocked by #1 |
 ...
 
 Proceed with creation? (y/n)
@@ -103,15 +106,18 @@ Check existing repo labels first (`gh label list`) and prefer them over this def
 - **Type**: `feature`, `enhancement`, `bug`, `chore`, `docs`, `test`
 - **Area**: `frontend`, `backend`, `database`, `infrastructure`, `security`
 - **Priority**: `priority:high`, `priority:medium`, `priority:low`
+- **Estimate**: `points-1`, `points-2`, `points-4`, `points-8` (issues); `points-16`, `points-32` plus `epic` (epics)
 
 ## Estimation Guidelines
 
-| Size | Typical Duration | Complexity |
-|------|------------------|------------|
-| Small | 0.5-1 day | Single file, clear implementation |
-| Medium | 2-3 days | Multiple files, some unknowns |
-| Large | 4-5 days | Multiple components, integration |
-| XL | 1+ week | Consider breaking down further |
+Size every issue with the `estimating-work-items` skill: score effort, complexity, and uncertainty, triangulate against reference stories, and pick one bucket on the powers-of-two scale.
+
+| Points | Kind | Rule |
+|--------|------|------|
+| 1, 2, 4, 8 | issue | 8 is the ceiling for a single issue |
+| 16, 32 | epic | Never created as a plain issue. Label it `epic` and decompose it into children of 8 or less; a child that lands at 16 is decomposed again |
+
+After decomposing an epic, add up the children. If the sum lands in a different bucket, change the epic's estimate. Points are relative size, not days; `timeline-planning` owns the conversion to durations.
 
 ## Best Practices
 
@@ -119,13 +125,13 @@ Check existing repo labels first (`gh label list`) and prefer them over this def
 2. **One concern per issue** - Each issue does one thing well
 3. **Clear acceptance criteria** - Know when it's done
 4. **Explicit dependencies** - Note what blocks what
-5. **Realistic estimates** - Include buffer for unknowns
+5. **Honest estimates** - Name the main unknown in the Estimate section instead of padding the number
 6. **Consistent labels** - Use established taxonomy
 7. **Link related issues** - Cross-reference for context
 
 ## Example Decomposition
 
-See [example.md](example.md) for a worked decomposition of "Build a user authentication system" into 7 issues.
+See [example.md](example.md) for a worked decomposition of "Build a user authentication system" (a 16-point epic) into 7 issues.
 
 ## After Decomposition
 

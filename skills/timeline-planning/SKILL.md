@@ -73,22 +73,41 @@ same issue can never appear twice under two ids. Prefix the visible name with `#
 
 Look in this order and stop at the first hit:
 
-1. **A size/effort label.** Lowercase it, strip a leading `size` / `effort` / `estimate` /
+1. **A `points-<n>` label** (`points-4`, `points-8`), written by `estimating-work-items`. The number
+   after the dash is the estimate; look it up in the points table below.
+2. **A size/effort label.** Lowercase it, strip a leading `size` / `effort` / `estimate` /
    `t-shirt` token *and the one separator that follows it*, and look the remainder up in the table
    below: `effort/large` → `large`, `size/M` → `m`, `size:medium` → `medium`,
    `effort/x-large` → `x-large`. Do **not** split on every `-`, or `x-large` collapses to `large`
    and an XL task gets sized as an L.
-2. **The issue body.** `issue-decomposition` — the upstream skill in this chain — writes the
-   estimate into the body under an `## Estimate` heading, *not* into a label. Read the first
-   word of that section.
-3. **A numeric points field** in the body (`Story points: 5`), if the project uses one: treat
-   points as days only if the user confirms the mapping; otherwise ask.
-4. **Nothing found** → fall through to the No Estimates edge case below.
+3. **The issue body.** `issue-decomposition` and `estimating-work-items` write the estimate into
+   the body under an `## Estimate` heading. The first line of that section is `**<n> points**`;
+   older issues may carry a T-shirt word there instead. Read whichever it is.
+4. **A numeric points field** in the body (`Story points: 5`) or on the repo's GitHub Project, if
+   the project uses one: look it up in the points table below, and if the number is not on the
+   powers-of-two scale, round it up to the next bucket and say so.
+5. **Nothing found** → fall through to the No Estimates edge case below.
 
 Never assume a repo uses the words "Small/Medium/Large/XL" verbatim. Run `gh label list` first to
 see the vocabulary in play; most repos use something else.
 
-### Conversion table
+### Points table
+
+Points are relative size, not time, so this mapping is a planning default, not a fact. Use it,
+state it in the mapping report, and change it if the user gives a different velocity.
+
+| Points | Duration | Notes |
+|---|---|---|
+| 1 | 1d | |
+| 2 | 2d | |
+| 4 | 4d | |
+| 8 | 8d | Largest single issue |
+| 16 | 16d | Epic: draw the children instead if they exist, and the epic as a milestone |
+| 32 | 32d | Epic: same as 16 |
+
+### T-shirt table (legacy)
+
+For repos that still size with words:
 
 | Estimate (normalized) | Also written as | Duration | Notes |
 |---|---|---|---|
@@ -97,8 +116,8 @@ see the vocabulary in play; most repos use something else.
 | Large | `l`, `large` | 5d | Almost a week |
 | XL | `xl`, `xxl`, `x-large`, `huge` | 8d | Full week+ |
 
-These upper bounds match `issue-decomposition`'s estimation table, so a decomposition and its
-timeline agree. Adjust for team velocity, complexity indicators, and buffer for unknowns.
+Adjust either table for team velocity, complexity indicators, and buffer for unknowns, and say
+what you adjusted.
 
 Report the mapping you used — issue, estimate, source, duration — so the user can correct a bad
 label read before you draw anything.
@@ -156,9 +175,10 @@ If `gh` is unavailable, ask the user to paste the issue list instead.
 Apply the rules in Estimate to Duration Conversion above, then show the table you derived:
 
 ```
-#101  effort/small        → 1d   (label)
-#102  ## Estimate: Medium → 3d   (body)
-#103  none                → 3d   (default, flagged)
+#100  points-4                  → 4d   (label)
+#101  effort/small              → 1d   (label, legacy T-shirt)
+#102  ## Estimate: **8 points** → 8d   (body)
+#103  none                      → 4d   (default, flagged)
 ```
 
 ### Step 4: Respect Dependencies
@@ -280,10 +300,10 @@ gantt
 ### No Estimates
 
 If issues lack estimates after checking every source in Estimate to Duration Conversion:
-- Use Medium (3d) as default
+- Use 4 points (4d) as default
 - List exactly which issues were defaulted, and say the timeline is a guess until they are sized
 - If *most* issues are unestimated, say so before drawing — an all-3d chart tells the user nothing
-  they didn't already know, and `issue-decomposition` can size the work first
+  they didn't already know, and `estimating-work-items` can size the work first
 
 ### Circular Dependencies
 

@@ -26,6 +26,7 @@ Most skills in this library assume a repository, a `git` history, and an authent
 | [Writing Product Specs]({{< relref "skills/writing-product-specs.md" >}}) | Write comprehensive product specification documents. |
 | [Requirement Elicitation]({{< relref "skills/requirement-elicitation.md" >}}) | Adaptive conversational wizard for eliciting project requirements across functional, nonfunctional, and edge-case dimensions. |
 | [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
+| [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field. |
 | [Context-Aware Questions]({{< relref "skills/context-aware-questions.md" >}}) | Identify information gaps in project context and generate actionable questions to surface missing requirements. |
 | [Summarize Conversation Thread]({{< relref "skills/summarize-conversation-thread.md" >}}) | Summarize GitHub issue and PR threads into key decisions, action items, and next steps. |
 | [Research Topic and Summarize]({{< relref "skills/research-topic-summarize.md" >}}) | Research topics via web search, synthesize detailed summaries with sources and screenshots. |

@@ -20,6 +20,7 @@ A curated bundle for taking a new project from concept to a diagrammed, story-dr
 |-------|-------------|
 | [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. |
 | [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
+| [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field. |
 | [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
 | [Writing Verification Plans]({{< relref "skills/writing-verification-plans.md" >}}) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. |
 | [Architecture Diagramming]({{< relref "skills/architecture-diagramming.md" >}}) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. |

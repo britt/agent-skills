@@ -23,6 +23,7 @@ A curated bundle of LLPM's product-management and project-management skills: req
 | [Dependency Mapping]({{< relref "skills/dependency-mapping.md" >}}) | Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths. |
 | [Idea to Design]({{< relref "skills/idea-to-design.md" >}}) | Transform raw idea notes into comprehensive design documents with research and decisions. |
 | [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
+| [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field. |
 | [Prepare Meeting Agenda]({{< relref "skills/prepare-meeting-agenda.md" >}}) | Generate meeting agendas from recent issues, PRs, and notes for sprint planning, retros, and standups. |
 | [Project Planning]({{< relref "skills/project-planning.md" >}}) | Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines. |
 | [Requirement Elicitation]({{< relref "skills/requirement-elicitation.md" >}}) | Adaptive conversational wizard for eliciting project requirements across functional, nonfunctional, and edge-case dimensions. |

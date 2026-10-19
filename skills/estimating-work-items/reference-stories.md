@@ -47,7 +47,7 @@ Triangulate: pick one story slightly smaller than your item and one slightly lar
 
 | Epic | Why it is a 32, and a sketch of sub-epics |
 |---|---|
-| Add multi-tenant support to a single-tenant app | Sub-epics: tenant model and scoped data access (16), per-tenant billing (16). Member management UI (8) and per-tenant SSO (16) are separate epics that depend on the first. |
+| Add multi-tenant support to a single-tenant app | Sub-epics: tenant model and scoped data access (16), per-tenant billing (16). Member management UI (8) is a plain issue and per-tenant SSO (16) is a separate epic, both depending on the first. |
 | Move from a monolithic deploy to independently deployable services for two bounded contexts | Sub-epics: extract service A (16), extract service B (16); shared infrastructure work is its own epic. |
 
 ## Not estimable

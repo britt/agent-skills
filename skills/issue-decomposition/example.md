@@ -2,7 +2,7 @@
 
 **User Request**: "Build a user authentication system"
 
-**Estimate of the whole**: 16 points, so it is an epic (`epic`, `points-16`) and is decomposed below. The children sum to 18, which rounds to the 16 bucket, so the epic estimate stands.
+**Estimate of the whole**: bigger than 8 points, so it is an epic (`epic`) and is decomposed below. The children sum to 18, so the epic is 18 points.
 
 **Generated Issues** (points in parentheses):
 

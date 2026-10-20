@@ -36,19 +36,15 @@ Triangulate: pick one story slightly smaller than your item and one slightly lar
 | Migrate password reset from a hand-rolled token to a signed, expiring token, keeping old links valid for 24 hours | Security-sensitive, backward compatibility window, migration of live data |
 | Add rate limiting to the public API with per-key limits and `Retry-After` headers | Middleware, storage for counters, config, operational concerns, load-tested edge cases |
 
-## 16 points (epic)
+## Epics
 
-| Epic | Why it is a 16, and a sketch of children |
+Epics are not sized by comparison. Their points are the exact sum of their child issues, with no rounding and no upper limit. These examples show the shape of a decomposition and the sum it produces.
+
+| Epic | Children and sum |
 |---|---|
-| Add SAML single sign-on for one tenant | Children: IdP metadata config (4), assertion consumer endpoint (8), SSO enforcement setting and login routing (4). Sum 16. |
-| Replace the client-side search index with a hosted search service | Children: indexing pipeline (8), query API and client (4), rollout behind a flag and removal of the old index (4). Sum 16. |
-
-## 32 points (epic)
-
-| Epic | Why it is a 32, and a sketch of sub-epics |
-|---|---|
-| Add multi-tenant support to a single-tenant app | Sub-epics: tenant model and scoped data access (16), per-tenant billing (16). Member management UI (8) is a plain issue and per-tenant SSO (16) is a separate epic, both depending on the first. |
-| Move from a monolithic deploy to independently deployable services for two bounded contexts | Sub-epics: extract service A (16), extract service B (16); shared infrastructure work is its own epic. |
+| Add SAML single sign-on for one tenant | IdP metadata config (4), SP metadata endpoint (2), assertion consumer endpoint (8), SSO-only login setting (1). Sum 15. |
+| Replace the client-side search index with a hosted search service | Indexing pipeline (8), query API and client (4), rollout behind a flag (4), removal of the old index (2). Sum 18. |
+| Add multi-tenant support to a single-tenant app | Sub-epic: tenant model and scoped data access (tenant table 4, scoping middleware 8, backfill migration 8, cross-tenant leak tests 4; sum 24). Sub-epic: per-tenant billing (billing account model 4, Stripe customer per tenant 8, invoice routing 4; sum 16). Member management UI (8). Sum 24 + 16 + 8 = 48. |
 
 ## Not estimable
 

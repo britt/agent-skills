@@ -84,8 +84,9 @@ Look in this order and stop at the first hit:
    the body under an `## Estimate` heading. The first line of that section is `**<n> points**`;
    older issues may carry a T-shirt word there instead. Read whichever it is.
 4. **A numeric points field** in the body (`Story points: 5`) or on the repo's GitHub Project, if
-   the project uses one: look it up in the points table below, and if the number is not on the
-   powers-of-two scale, round it up to the next bucket and say so.
+   the project uses one: look it up in the points table below, and if an issue's number is not on
+   the powers-of-two scale, round it up to the next bucket and say so. Never round an epic's
+   points: they are the exact sum of its children.
 5. **Nothing found** → fall through to the No Estimates edge case below.
 
 Never assume a repo uses the words "Small/Medium/Large/XL" verbatim. Run `gh label list` first to
@@ -102,8 +103,7 @@ state it in the mapping report, and change it if the user gives a different velo
 | 2 | 2d | |
 | 4 | 4d | |
 | 8 | 8d | Largest single issue |
-| 16 | 16d | Epic: draw the children instead if they exist, and the epic as a milestone |
-| 32 | 32d | Epic: same as 16 |
+| Epic (any sum) | Sum of children | An epic's points are the sum of its children, with no upper limit. Draw the children and the epic as a milestone |
 
 ### T-shirt table (legacy)
 

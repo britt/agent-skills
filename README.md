@@ -16,7 +16,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |
-| **estimating-work-items** | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field | * | * |
+| **estimating-work-items** | Size issues with story points on a powers-of-two scale and total epics from their children, recorded as a label, an Estimate section, and a project field | * | * |
 | **dependency-mapping** | Generate Mermaid dependency graphs showing issue relationships and critical paths | * | * |
 | **timeline-planning** | Generate Mermaid Gantt charts for project timelines with phases and milestones | * | * |
 

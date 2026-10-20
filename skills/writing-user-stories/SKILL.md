@@ -54,7 +54,7 @@ Before finalizing a story, verify it is:
 - [ ] **Negotiable** - Details can be discussed and refined
 - [ ] **Valuable** - Delivers clear value to users or business
 - [ ] **Estimable** - You can say what done looks like; size it with the `estimating-work-items` skill
-- [ ] **Small** - 8 points or less on the powers-of-two scale; 16 or more is an epic to decompose
+- [ ] **Small** - 8 points or less on the powers-of-two scale; anything bigger is an epic to decompose
 - [ ] **Testable** - Success criteria are clear and verifiable
 
 ## Common Pitfalls

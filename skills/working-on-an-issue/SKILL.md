@@ -22,7 +22,7 @@ A hands-off workflow for implementing GitHub issues. There are no approval gates
 
 ## When NOT to Use
 
-- Issue is epic-sized (estimated 16 or more by `estimating-work-items`, or labelled `epic`) or bundles multiple independent changes → run `issue-decomposition` first
+- Issue is epic-sized (bigger than 8 points by `estimating-work-items`, or labelled `epic`) or bundles multiple independent changes → run `issue-decomposition` first
 - Issue is too vague to restate as testable acceptance criteria → run `requirement-elicitation`, or comment on the issue with your questions, and stop
 - Triaging or labeling incoming issues → `triage-new-issues`
 

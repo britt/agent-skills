@@ -106,7 +106,7 @@ Check existing repo labels first (`gh label list`) and prefer them over this def
 - **Type**: `feature`, `enhancement`, `bug`, `chore`, `docs`, `test`
 - **Area**: `frontend`, `backend`, `database`, `infrastructure`, `security`
 - **Priority**: `priority:high`, `priority:medium`, `priority:low`
-- **Estimate**: `points-1`, `points-2`, `points-4`, `points-8` (issues); `points-16`, `points-32` plus `epic` (epics)
+- **Estimate**: `points-1`, `points-2`, `points-4`, `points-8` (issues); `epic` with no `points-*` label (epics, whose points are the sum of their children)
 
 ## Estimation Guidelines
 
@@ -115,9 +115,9 @@ Size every issue with the `estimating-work-items` skill: score effort, complexit
 | Points | Kind | Rule |
 |--------|------|------|
 | 1, 2, 4, 8 | issue | 8 is the ceiling for a single issue |
-| 16, 32 | epic | Never created as a plain issue. Label it `epic` and decompose it into children of 8 or less; a child that lands at 16 is decomposed again |
+| Sum of children, no limit | epic | Anything bigger than 8. Never created as a plain issue. Label it `epic` and decompose it into children of 8 or less; a child bigger than 8 is decomposed again |
 
-After decomposing an epic, add up the children. If the sum lands in a different bucket, change the epic's estimate. Points are relative size, not days; `timeline-planning` owns the conversion to durations.
+An epic is not estimated directly. After decomposing it, add up the children: the exact sum, unrounded and uncapped, is the epic's points. Points are relative size, not days; `timeline-planning` owns the conversion to durations.
 
 ## Best Practices
 
@@ -131,7 +131,7 @@ After decomposing an epic, add up the children. If the sum lands in a different 
 
 ## Example Decomposition
 
-See [example.md](example.md) for a worked decomposition of "Build a user authentication system" (a 16-point epic) into 7 issues.
+See [example.md](example.md) for a worked decomposition of "Build a user authentication system" (an epic) into 7 issues totalling 18 points.
 
 ## After Decomposition
 

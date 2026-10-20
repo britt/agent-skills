@@ -31,7 +31,7 @@ Each generated issue includes a user story, description, acceptance criteria wit
 Walks through understanding scope, identifying major components, generating issues, mapping dependencies, and previewing before creation.
 
 **Label taxonomy and estimation guidelines**
-Uses a consistent label system for type, area, priority, and `points-<n>` estimates. Issues are capped at 8 points; anything at 16 or 32 becomes an epic and is decomposed into children.
+Uses a consistent label system for type, area, priority, and `points-<n>` estimates. Issues are capped at 8 points; anything bigger becomes an epic, is decomposed into children, and takes the sum of their points.
 
 **Preview before creating**
 Always shows a summary table of proposed issues with titles, estimates, and dependencies before creating anything in GitHub.

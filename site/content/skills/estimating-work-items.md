@@ -1,9 +1,9 @@
 ---
 title: "Estimating Work Items"
-description: "Size GitHub issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field"
+description: "Size GitHub issues with story points on a powers-of-two scale and total epics from their children, recorded as a label, an Estimate section, and a project field"
 ---
 
-Give every issue or epic one story-point estimate on a powers-of-two scale: 1, 2, 4, and 8 for issues, 16 and 32 for epics. The agent estimates alone while it writes or refines the item, comparing it against reference stories rather than guessing at hours. An item that lands at 16 or 32 is an epic and is decomposed into children of 8 or less before anything is implemented.
+Give every issue one story-point estimate on a powers-of-two scale: 1, 2, 4, or 8. The agent estimates alone while it writes or refines the item, comparing it against reference stories rather than guessing at hours. Anything bigger than 8 is an epic: it is decomposed into children of 8 or less, and its points are simply the sum of theirs, with no upper limit.
 
 ## Supported coding agents
 
@@ -25,7 +25,7 @@ Use this skill when:
 ## Features
 
 **One number, one scale**
-Exactly one value from 1, 2, 4, 8, 16, or 32. No ranges, half points, or off-scale numbers, and 8 is the ceiling for a single issue.
+Exactly one value from 1, 2, 4, or 8 for an issue. No ranges, half points, or off-scale numbers, and 8 is the ceiling for a single issue.
 
 **Estimability gate**
 Items that describe a goal with no observable outcome get a question back to the author or a time-boxed spike, never a number with a disclaimer.
@@ -36,11 +36,11 @@ Effort, complexity, and uncertainty are scored before any number is chosen, then
 **Bundled reference stories**
 Ships with reference stories for every bucket, and prefers a repo-local `docs/estimation/reference-stories.md` when the team has one.
 
-**Epics are decomposed, not implemented**
-A 16 or 32 gets the `epic` label and is handed to Issue Decomposition. Children must each be 8 or less, and the epic's points are re-checked against their sum.
+**Epics are the sum of their children**
+An epic is never estimated directly. It gets the `epic` label and is handed to Issue Decomposition, its children must each be 8 or less, and its points are the exact sum of theirs: 15, 48, or 300, with no rounding and no size limit.
 
-**Recorded in three places**
-A `points-<n>` label, an `## Estimate` section whose first line is machine-readable, and a GitHub Project number field when the repo has one. Timeline Planning reads these to build Gantt charts.
+**Recorded where tools can read it**
+A `points-<n>` label on issues, an `## Estimate` section whose first line is machine-readable, and a GitHub Project number field when the repo has one. Epics carry their sum in the section and the field, not in a label. Timeline Planning reads these to build Gantt charts.
 
 **Splitting patterns and anti-patterns**
 Includes the Humanizing Work story-splitting patterns for oversized items and a table of estimation anti-patterns such as points-as-hours and re-estimating finished work.

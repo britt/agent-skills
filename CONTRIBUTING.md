@@ -117,6 +117,19 @@ Add the new skill to `.claude-plugin/marketplace.json`:
 
 New skills are picked up automatically by the Codex/Cursor full-bundle plugins (they reference the whole `skills/` directory) — no per-skill entry needed there. Granular per-skill installs are currently a Claude Code-only feature.
 
+A skill that needs to know its own version at runtime (for example, `estimating-work-items` records it in every estimate) declares it in its frontmatter under `metadata`, not as a top-level key, which the Claude and Codex skill validators reject:
+
+```markdown
+---
+name: your-skill-name
+description: ...
+metadata:
+  version: "1.0.0"
+---
+```
+
+That value must match the skill's `version` in `.claude-plugin/marketplace.json`. Bump both together; `./check-versions.sh` fails if they differ.
+
 ### 5. Bumping the Bundle Version (Required when releasing)
 
 The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.

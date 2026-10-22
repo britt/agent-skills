@@ -165,7 +165,7 @@ The last line of every Estimate section, for issues and epics alike, records who
 Estimated by: <model> in <harness>, estimating-work-items <version>
 ```
 
-- **Model**: the exact model ID you are running as, for example `claude-opus-5-5`, not "Opus" or "Claude". If you cannot tell, write `unknown-model`. Never guess.
+- **Model**: the exact model ID you are running as, for example `claude-opus-5-5`, not "Opus" or "Claude". Drop context-window suffixes such as `[1m]`; they mark a variant, not a different model. If you cannot tell, write `unknown-model`. Never guess.
 - **Harness**: what you are running in. That can be a coding agent (Claude Code, Codex CLI, Cursor, OpenCode) or anything else (claude.ai, an SDK app, a CI job). Add its version only if you can find it, for example from `claude --version`; otherwise give the name alone. If an outer tool is driving the harness, add `(via <tool>)`, for example `(via Conductor)` when `CONDUCTOR_*` environment variables are set.
 - **Version**: `metadata.version` from this skill's frontmatter, copied as written.
 - **A person's estimate**: when a person gives the number and you record it, the model is `human`, with their handle if you know it, and there is no harness: `Estimated by: human (@britt), estimating-work-items 1.2.0`.

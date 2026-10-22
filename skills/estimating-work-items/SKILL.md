@@ -1,6 +1,8 @@
 ---
 name: estimating-work-items
 description: Use when writing or refining a GitHub issue, epic, or other work item that needs a size, when asked to estimate, point, or size work, or when deciding whether an item is an issue or an epic - gives an issue one story-point estimate on a powers-of-two scale (1, 2, 4, 8) and an epic the sum of its children's points, with no upper limit, recorded as a label, an Estimate section, and a project field
+metadata:
+  version: "1.2.0"
 ---
 
 # Estimating Work Items

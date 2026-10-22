@@ -42,5 +42,8 @@ An epic is never estimated directly. It gets the `epic` label and is handed to I
 **Recorded where tools can read it**
 A `points-<n>` label on issues, an `## Estimate` section whose first line is machine-readable, and a GitHub Project number field when the repo has one. Epics carry their sum in the section and the field, not in a label. Timeline Planning reads these to build Gantt charts.
 
+**Every estimate says where it came from**
+The Estimate section ends with an `Estimated by:` line that names the model that made the estimate, the harness it ran in (with its version and any outer orchestrator, such as Claude Code via Conductor), and the version of this skill it followed, so estimates can be compared across models and skill revisions. An estimate a person gives is recorded as `human`.
+
 **Splitting patterns and anti-patterns**
 Includes the Humanizing Work story-splitting patterns for oversized items and a table of estimation anti-patterns such as points-as-hours and re-estimating finished work.

@@ -122,7 +122,7 @@ If you are writing the epic inline without `issue-decomposition`, list the propo
    gh issue edit <n> --remove-label points-2 --add-label points-4
    ```
 
-2. **Body**: an `## Estimate` section using the contract below. Put it after the acceptance criteria.
+2. **Body**: an `## Estimate` section using the contract below, ending with the `Estimated by:` line. Put it after the acceptance criteria. When re-estimating, rewrite the section, including the `Estimated by:` line; do not keep the old one.
 3. **Project field**: if the repo has a GitHub Project with a number field named Estimate, Points, or Story Points, set it. For an epic, set it to the sum and update it whenever the sum changes; leave it empty until the epic has children. If there is no project or no such field, say so and skip it.
 
    ```bash
@@ -132,7 +132,7 @@ If you are writing the epic inline without `issue-decomposition`, list the propo
 
 ### Estimate section contract
 
-The first line after the heading starts with `**<n> points**` so that `timeline-planning` and other tools can read it without parsing prose. An epic adds ` (epic)` after it.
+The first line after the heading starts with `**<n> points**` so that `timeline-planning` and other tools can read it without parsing prose. An epic adds ` (epic)` after it. The last line is always the [provenance line](#provenance-line).
 
 ```markdown
 ## Estimate
@@ -140,6 +140,7 @@ The first line after the heading starts with `**<n> points**` so that `timeline-
 
 Compared with: "Add a --verbose flag to an existing command" (2) and "Add a new subcommand with its own query" (8). Closer to the 2: one flag, one output path. More than a 2 because the JSON field names become a public contract and need their own tests.
 Main unknown: whether `render.Table` formats values that the JSON should carry raw.
+Estimated by: claude-opus-5-5 in Claude Code 2.1.304 (via Conductor), estimating-work-items 1.2.0
 ```
 
 For an epic the first line is `**<sum> points** (epic)`, where the sum is exact and unrounded, followed by a `Children:` line that lists each child with its points:
@@ -149,11 +150,28 @@ For an epic the first line is `**<sum> points** (epic)`, where the sum is exact 
 **15 points** (epic)
 
 Children: #41 IdP metadata config (4), #42 SP metadata endpoint (2), #43 assertion consumer endpoint (8), #44 SSO-only login setting (1)
+Estimated by: gpt-5.6-sol in Codex CLI, estimating-work-items 1.2.0
 ```
 
 A child epic is listed with its own sum, for example `#50 Per-tenant billing (16, epic)`. Children that do not have issue numbers yet are listed by title.
 
-An epic that has not been decomposed yet has no first line of points. Its Estimate section says `**Not yet estimated** (epic, awaiting decomposition)`.
+An epic that has not been decomposed yet has no first line of points. Its Estimate section says `**Not yet estimated** (epic, awaiting decomposition)`, followed by the `Estimated by:` line for whoever made that call.
+
+### Provenance line
+
+The last line of every Estimate section, for issues and epics alike, records who made the estimate and under which rules:
+
+```markdown
+Estimated by: <model> in <harness>, estimating-work-items <version>
+```
+
+- **Model**: the exact model ID you are running as, for example `claude-opus-5-5`, not "Opus" or "Claude". If you cannot tell, write `unknown-model`. Never guess.
+- **Harness**: what you are running in. That can be a coding agent (Claude Code, Codex CLI, Cursor, OpenCode) or anything else (claude.ai, an SDK app, a CI job). Add its version only if you can find it, for example from `claude --version`; otherwise give the name alone. If an outer tool is driving the harness, add `(via <tool>)`, for example `(via Conductor)` when `CONDUCTOR_*` environment variables are set.
+- **Version**: `metadata.version` from this skill's frontmatter, copied as written.
+- **A person's estimate**: when a person gives the number and you record it, the model is `human`, with their handle if you know it, and there is no harness: `Estimated by: human (@britt), estimating-work-items 1.2.0`.
+- **One line, always current**: the line describes the estimate it sits under. On a re-estimate, or when an epic's sum is recomputed, replace it; never stack old lines.
+
+Tools parse the line this way: it starts with `Estimated by: ` and ends with `, estimating-work-items <version>`. The model is everything before the first ` in ` (model IDs contain no spaces), and the harness is everything between that ` in ` and the last `, `. A line with no ` in ` is a person's estimate: everything before the last `, ` names them, and there is no harness.
 
 ## Reference Stories
 
@@ -193,6 +211,7 @@ Prefer the split that produces children of similar size and that lets the lowest
 | Estimating the goal instead of the work ("improve search": 8) | Nothing observable to size | Fail the estimability gate. Ask, or write a spike. |
 | Re-estimating finished work | Rewrites history to fix velocity | Leave done work alone. Fix the reference stories instead. |
 | Fitting the number to the plan ("it has to be a 4 to fit the sprint") | The estimate stops being information | Estimate first, then split if it does not fit. |
+| Guessing the model or harness version in the `Estimated by:` line | The provenance stops being evidence | Write `unknown-model`, or the harness name without a version. |
 | Comparing teams or people by points | Each team's scale is its own; comparison inflates estimates | Compare an item only with the same team's reference stories. |
 
 ## Worked Example
@@ -204,7 +223,7 @@ Item: "Add a `--json` flag to `shiplog list` so the output can be piped to jq. T
 - **Complexity: Medium.** The JSON keys become a public contract; stdout must carry only JSON.
 - **Uncertainty: Low.** The data is already fetched; only the rendering changes.
 - **Triangulate:** smaller reference "Add a `--verbose` flag to an existing command" (2); larger "Add a new subcommand with its own store query" (8). Closer to the 2 than the 8, but more than a 2: the flag itself is one half of the work, and the output contract with its tests is the other half. Two 2s make a 4. **Bucket: 4.**
-- **Record:** label `points-4`, Estimate section as in the contract above, project field set to 4.
+- **Record:** label `points-4`, Estimate section as in the contract above ending with its `Estimated by:` line, project field set to 4.
 
 ## Integration
 

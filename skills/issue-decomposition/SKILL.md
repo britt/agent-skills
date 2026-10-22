@@ -47,6 +47,7 @@ As a [persona/role], I want [goal/action] so that [benefit/value].
 
 Compared with: [smaller reference] ([n]) and [larger reference] ([n]) - [why it is closer to one than the other].
 Main unknown: [the one thing most likely to make this bigger], or "none".
+Estimated by: [model] in [harness], estimating-work-items [version]
 ```
 
 ## Decomposition Process

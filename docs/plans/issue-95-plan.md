@@ -25,6 +25,7 @@
 - **`metadata.version`, not a top-level `version`.** The issue left this open. Both the Claude and Codex `skill-creator` validators (`quick_validate.py`) reject unknown top-level keys and allow `metadata`, so the version lives at `metadata.version`. It is quoted so YAML keeps it as a string, as the Agent Skills spec expects for `metadata` values.
 - **issue-decomposition's template gets the line too.** It copies the Estimate section contract into its own issue-body template, and it writes most estimated issues. Without the line there, issues produced through decomposition would lack provenance, contradicting the issue's first acceptance criterion. This is one template line plus a version bump.
 - **Humans keep the skill version.** The contract example in the issue shows `Estimated by: human (@britt), estimating-work-items 1.2.0`, so the skill version stays on human estimates recorded through the skill.
+- **Model IDs drop context-window suffixes** (added during verification). The test agent's model ID was `claude-opus-5-5[1m]`, and the skill didn't say whether `[1m]` belongs in the line. It is a context variant of the same model, so the skill now says to drop it.
 - **No repo CLAUDE.md.** The repo has none; setting one up is out of scope for this issue.
 - Work happens on the Conductor-provided branch rather than a new `issue-95-*` branch, because Conductor tracks the checked-out branch.
 

@@ -23,7 +23,7 @@ mid-run.
 | Create workspaces for the listed issues | Stop; there is nothing to do |
 | Resolve conflicts and push merge commits to PR branches | Report conflicts, don't touch branches |
 | Tell agents to squash-merge green PRs | Report green PRs, don't message |
-| Archive workspaces after their PR merges | Leave them, list them at the end |
+| Archive workspaces after their PR merges | Run the watcher with `AUTO_ARCHIVE=0`; leave them, list them at the end |
 
 ## How you work
 

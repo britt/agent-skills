@@ -13,6 +13,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **repairing-project-setup** | Audit a repo against what setting-up-a-project would generate and repair only the gaps | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
 | **working-on-an-epic** | Coordinate an epic from a Conductor session: child issues run in parallel Conductor workspaces, tracked to reviewable PRs | * | |
+| **supervising-conductor-workspaces** | Dispatch one Conductor workspace per issue and supervise their PRs to merge: keep them current, resolve conflicts, rerun flaky CI, archive when merged | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |
@@ -117,6 +118,7 @@ Add this repository as a plugin marketplace:
 /plugin install triage-new-issues@britt
 /plugin install working-on-an-issue@britt
 /plugin install working-on-an-epic@britt
+/plugin install supervising-conductor-workspaces@britt
 ```
 
 **Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britt` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.

@@ -30,6 +30,7 @@ You are the **coordinator**, not the implementer. Each child issue is implemente
 - A child is bigger than 8 points or carries the `epic` label → it is an epic itself; decompose it with `issue-decomposition` before spawning anything for it
 - `conductor` is missing or not authenticated → stop and tell the developer; do not fall back to implementing the children serially yourself
 - Developer explicitly wants the work done in this one session → `working-on-an-issue` per child, in sequence
+- A list of issues that aren't one epic's children, or supervising open PRs until they merge (keeping them current with the base branch, telling green PRs to merge, archiving workspaces) → `supervising-conductor-workspaces`. This skill never merges or archives
 
 **"Spawn the rest, but do #N yourself":** decline the hybrid and spawn #N like the others. Your checkout is on the coordinator's branch, a child costs you nothing while slots are free, and a coordinator that implements stops watching. Say why in your reply.
 

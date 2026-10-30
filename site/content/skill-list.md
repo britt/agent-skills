@@ -16,6 +16,7 @@ This page maps every skill page in the site, and each entry below includes a sho
 - [Project Planning]({{< relref "skills/project-planning.md" >}}) — Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines.
 - [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) — Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates.
 - [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) — Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field.
+- [Estimating Change Footprint]({{< relref "skills/estimating-change-footprint.md" >}}) — Estimate the lines an issue will change and the files an agent must read, to predict its token spend.
 - [Dependency Mapping]({{< relref "skills/dependency-mapping.md" >}}) — Generate Mermaid dependency graphs showing issue relationships, blocking chains, and critical paths.
 - [Timeline Planning]({{< relref "skills/timeline-planning.md" >}}) — Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones.
 

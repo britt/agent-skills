@@ -18,6 +18,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |
 | **estimating-work-items** | Size issues with story points on a powers-of-two scale and total epics from their children, recorded as a label, an Estimate section, and a project field | * | * |
+| **estimating-change-footprint** | Estimate an issue's change footprint (lines changed and files read, each bucketed) to predict coding-agent token spend, recorded as labels, a Footprint section, and a project field | * | |
 | **dependency-mapping** | Generate Mermaid dependency graphs showing issue relationships and critical paths | * | * |
 | **timeline-planning** | Generate Mermaid Gantt charts for project timelines with phases and milestones | * | * |
 
@@ -101,6 +102,7 @@ Add this repository as a plugin marketplace:
 /plugin install build-faq-from-issues@britt
 /plugin install context-aware-questions@britt
 /plugin install dependency-mapping@britt
+/plugin install estimating-change-footprint@britt
 /plugin install estimating-work-items@britt
 /plugin install idea-to-design@britt
 /plugin install issue-decomposition@britt

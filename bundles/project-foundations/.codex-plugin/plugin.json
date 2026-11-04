@@ -1,7 +1,7 @@
 {
   "name": "project-foundations",
-  "description": "A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams",
-  "version": "2.6.0",
+  "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and Conductor-driven work on issues and epics",
+  "version": "2.7.0",
   "author": {
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"
@@ -9,6 +9,6 @@
   "homepage": "https://github.com/britt/agent-skills",
   "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
-  "keywords": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues"],
+  "keywords": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues", "estimation", "conductor"],
   "skills": "./skills/"
 }

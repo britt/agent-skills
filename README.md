@@ -79,8 +79,10 @@ Add this repository as a plugin marketplace:
 **Install a curated bundle:**
 
 ```bash
-# project-foundations: setup, issue decomposition, user stories,
-# verification plans, and architecture/dependency/Mermaid diagrams
+# project-foundations: setup and analysis, issue decomposition, story-point
+# and change-footprint estimates, user stories, verification plans,
+# architecture/dependency/Mermaid diagrams, and Conductor-driven work on
+# issues and epics
 /plugin install project-foundations@britt
 
 # llpm: product/project-management skills - requirements, specs, user

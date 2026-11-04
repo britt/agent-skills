@@ -25,6 +25,7 @@ A curated bundle for taking a project from concept to merged work: project setup
 | [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose projects into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
 | [Mermaid Diagrams]({{< relref "skills/mermaid-diagrams.md" >}}) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. |
 | [Project Analysis]({{< relref "skills/project-analysis.md" >}}) | Analyze project codebase structure, architecture, key files, and dependencies. |
+| [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) | Audit a repo's agent setup against what Setting Up a Project would generate today and repair only the gaps, preserving existing content. |
 | [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. |
 | [Supervising Conductor Workspaces]({{< relref "skills/supervising-conductor-workspaces.md" >}}) | Dispatch a Conductor workspace per issue and supervise their PRs until every one has merged. |
 | [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) | Coordinate an epic through parallel Conductor workspaces, one per child issue. |

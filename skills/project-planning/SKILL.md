@@ -37,10 +37,11 @@ No single bundle ships this skill together with all four. Check what you have be
 | Install path | What it provides |
 |---|---|
 | `llpm` bundle | This skill plus issue-decomposition, dependency-mapping, timeline-planning. **Does not include architecture-diagramming** — install it standalone or skip to the inline fallback for Step 4. |
+| `project-foundations` bundle | issue-decomposition, architecture-diagramming, dependency-mapping. **Does not include this skill or timeline-planning** — install both standalone, or install just this skill and use the inline fallback for Step 6. |
 | `agent-skills` bundle | Everything. |
 | Standalone plugins | All five are individually installable: `project-planning`, `issue-decomposition`, `architecture-diagramming`, `dependency-mapping`, `timeline-planning`. |
 
-The `project-foundations` bundle does **not** contain this skill or timeline-planning. It covers the earlier, adjacent ground — project setup, user stories, verification plans, and the diagramming skills — so the two bundles complement each other rather than overlap: `project-foundations` sets a repo up, this skill plans the work inside it.
+Beyond those three sub-skills, `project-foundations` covers the ground on either side of planning: setting up, repairing, and analyzing a repo before it, and estimating and implementing the planned issues after it — through `estimating-work-items`, `estimating-change-footprint`, `working-on-an-issue`, `working-on-an-epic`, and `supervising-conductor-workspaces`. Add `project-planning` and `timeline-planning` standalone to a `project-foundations` install to get the full workflow.
 
 ### Inline fallback
 

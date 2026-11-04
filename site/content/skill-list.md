@@ -13,6 +13,7 @@ This page maps every skill page in the site, and each entry below includes a sho
 - [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) — Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates.
 - [Project Analysis]({{< relref "skills/project-analysis.md" >}}) — Analyze project codebase structure, architecture, key files, and dependencies.
 - [Project Planning]({{< relref "skills/project-planning.md" >}}) — Orchestrate comprehensive project planning with issues, architecture diagrams, dependency maps, and timelines.
+- [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) — Audit a repo's agent setup against what Setting Up a Project would generate and repair only the gaps.
 - [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Author CLAUDE.md with project purpose, tech stack, and development practices.
 - [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) — Compose GOAL.md files for SGAI workspaces through interactive conversation.
 - [Supervising Conductor Workspaces]({{< relref "skills/supervising-conductor-workspaces.md" >}}) — Dispatch a Conductor workspace per issue and supervise their PRs until every one has merged.

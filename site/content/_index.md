@@ -15,7 +15,7 @@ Every skill bundled together for AI-assisted development: project setup, product
 
 ### Project Foundations (`project-foundations`)
 
-A curated bundle for taking a new project from concept to a diagrammed, story-driven plan: project setup, issue decomposition, user stories, verification plans, and architecture/dependency/Mermaid diagrams.
+A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and Conductor-driven work on issues and epics.
 
 ### LLPM (`llpm`)
 

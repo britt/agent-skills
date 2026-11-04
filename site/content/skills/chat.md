@@ -18,19 +18,19 @@ Most skills in this library assume a repository, a `git` history, and an authent
 
 | Skill | Description |
 |-------|-------------|
-| [Stakeholder Updates]({{< relref "skills/stakeholder-updates.md" >}}) | Craft clear, concise stakeholder communications with appropriate context and framing. |
+| [Architecture Diagramming]({{< relref "skills/architecture-diagramming.md" >}}) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. |
+| [Context-Aware Questions]({{< relref "skills/context-aware-questions.md" >}}) | Identify information gaps in project context and generate actionable questions to surface missing requirements. |
+| [Daily Planning Ritual]({{< relref "skills/daily-planning-ritual.md" >}}) | Interactive daily planning across work and personal life dimensions. |
+| [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field. |
+| [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
 | [Markdown Formatting]({{< relref "skills/markdown-formatting.md" >}}) | Format AI outputs into consistent, readable Markdown for PRs, issues, docs, and notes. |
 | [Mermaid Diagrams]({{< relref "skills/mermaid-diagrams.md" >}}) | Guide for creating syntactically correct Mermaid diagrams that render properly on GitHub. |
-| [Architecture Diagramming]({{< relref "skills/architecture-diagramming.md" >}}) | Generate Mermaid architecture diagrams showing system components, layers, and data flows. |
-| [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
-| [Writing Product Specs]({{< relref "skills/writing-product-specs.md" >}}) | Write comprehensive product specification documents. |
 | [Requirement Elicitation]({{< relref "skills/requirement-elicitation.md" >}}) | Adaptive conversational wizard for eliciting project requirements across functional, nonfunctional, and edge-case dimensions. |
-| [Issue Decomposition]({{< relref "skills/issue-decomposition.md" >}}) | Decompose project descriptions into well-structured GitHub issues with user stories, acceptance criteria, and estimates. |
-| [Estimating Work Items]({{< relref "skills/estimating-work-items.md" >}}) | Size issues and epics with story points on a powers-of-two scale, recorded as a label, an Estimate section, and a project field. |
-| [Context-Aware Questions]({{< relref "skills/context-aware-questions.md" >}}) | Identify information gaps in project context and generate actionable questions to surface missing requirements. |
-| [Summarize Conversation Thread]({{< relref "skills/summarize-conversation-thread.md" >}}) | Summarize GitHub issue and PR threads into key decisions, action items, and next steps. |
 | [Research Topic and Summarize]({{< relref "skills/research-topic-summarize.md" >}}) | Research topics via web search, synthesize detailed summaries with sources and screenshots. |
-| [Daily Planning Ritual]({{< relref "skills/daily-planning-ritual.md" >}}) | Interactive daily planning across work and personal life dimensions. |
+| [Stakeholder Updates]({{< relref "skills/stakeholder-updates.md" >}}) | Craft clear, concise stakeholder communications with appropriate context and framing. |
+| [Summarize Conversation Thread]({{< relref "skills/summarize-conversation-thread.md" >}}) | Summarize GitHub issue and PR threads into key decisions, action items, and next steps. |
+| [Writing Product Specs]({{< relref "skills/writing-product-specs.md" >}}) | Write comprehensive product specification documents. |
+| [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
 
 ## How to use it
 

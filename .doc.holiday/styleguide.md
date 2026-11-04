@@ -95,7 +95,7 @@ This is the **source of truth** for all skills. Each skill lives in its own subd
 | `research-topic-summarize` | Researches topics via web search |
 | `daily-planning-ritual` | Interactive morning planning across life dimensions |
 
-Also see `bundles/project-foundations/` — a curated bundle plugin that groups related skills (setup, issue decomposition, user stories, verification plans, and diagrams) via symlinks back to the canonical `skills/` directories.
+Also see `bundles/project-foundations/` — a curated bundle plugin that groups related skills (setup and analysis, issue decomposition, estimation, user stories, verification plans, diagrams, and Conductor-driven work on issues and epics) via symlinks back to the canonical `skills/` directories.
 
 ### `/site/` - GitHub Pages Site
 

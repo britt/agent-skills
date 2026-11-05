@@ -1,4 +1,4 @@
-# Agent Skills
+# Britt's Agent Skills
 
 A collection of skills for coding agents to enhance AI-assisted development workflows.
 

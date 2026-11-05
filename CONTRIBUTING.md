@@ -7,7 +7,7 @@ Guidelines for contributing to this skills repository.
 ## Repository Structure
 
 ```
-claude-code-skills/
+agent-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
 ├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks and the rules/ mirror in sync with skills/
@@ -107,7 +107,7 @@ Add the new skill to `.claude-plugin/marketplace.json`:
   "author": {
     "name": "Your Name"
   },
-  "repository": "https://github.com/britt/claude-code-skills",
+  "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
   "keywords": ["keyword1", "keyword2"],
   "category": "workflow|productivity|documentation",
@@ -132,7 +132,9 @@ That value must match the skill's `version` in `.claude-plugin/marketplace.json`
 
 ### 5. Bumping the Bundle Version (Required when releasing)
 
-The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `claude-code-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
+The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `agent-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
+
+The bundle's `displayName` ("Britt's Agent Skills") lives in those same manifests, plus the `agent-skills` entry in `.cursor-plugin/marketplace.json`. It is display text only — the plugin's `name` stays `agent-skills`, because every skill is namespaced under it (`agent-skills:issue-decomposition`) and install ids are `agent-skills@britt`.
 
 Run `./check-versions.sh` to verify a bundle's sources agree before opening a PR. The same check runs on every pull request and again in the release workflow before any asset is built.
 

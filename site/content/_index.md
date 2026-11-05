@@ -1,15 +1,15 @@
 ---
-title: "Agent Skills"
-description: "Learn how to install and use Agent Skills across supported coding agents"
+title: "Britt's Agent Skills"
+description: "Learn how to install and use Britt's Agent Skills across supported coding agents"
 ---
 
-Coding agents are smart, but left alone they improvise: skipping verification, inventing their own project structure, redoing work you already explained last week. Agent Skills fixes that by giving agents a library of proven workflows to follow instead of guessing — how to set up a project, break down issues into stories, plan a timeline, run a verification pass — so the process stays consistent whoever's driving and whichever agent is doing the work. Install just the bundle your team needs, across Claude Code, Codex CLI, Cursor, or OpenCode, and stop re-teaching the same playbook every session.
+Coding agents are smart, but left alone they improvise: skipping verification, inventing their own project structure, redoing work you already explained last week. Britt's Agent Skills fixes that by giving agents a library of proven workflows to follow instead of guessing — how to set up a project, break down issues into stories, plan a timeline, run a verification pass — so the process stays consistent whoever's driving and whichever agent is doing the work. Install just the bundle your team needs, across Claude Code, Codex CLI, Cursor, or OpenCode, and stop re-teaching the same playbook every session.
 
 ---
 
 ## Bundles
 
-### All Skills (`agent-skills`)
+### Britt's Agent Skills (`agent-skills`)
 
 Every skill bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more.
 

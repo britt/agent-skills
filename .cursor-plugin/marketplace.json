@@ -5,11 +5,12 @@
     "email": "britt@brittcrawford.com"
   },
   "metadata": {
-    "description": "A collection of skills for Claude Code to enhance AI-assisted development workflows"
+    "description": "Britt's Agent Skills - a collection of skills for coding agents to enhance AI-assisted development workflows"
   },
   "plugins": [
     {
       "name": "agent-skills",
+      "displayName": "Britt's Agent Skills",
       "source": "./",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more"
     },

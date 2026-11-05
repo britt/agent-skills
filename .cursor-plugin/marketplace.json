@@ -17,7 +17,7 @@
     {
       "name": "project-foundations",
       "source": "./bundles/project-foundations",
-      "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and Conductor-driven work on issues and epics"
+      "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and agent-driven work on issues and epics"
     },
     {
       "name": "llpm",

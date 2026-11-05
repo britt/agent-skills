@@ -16,8 +16,9 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **setting-up-a-project** | Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices | * | |
 | **repairing-project-setup** | Audit a repo against what setting-up-a-project would generate and repair only the gaps | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
-| **working-on-an-epic** | Coordinate an epic from a Conductor session: child issues run in parallel Conductor workspaces, tracked to reviewable PRs | * | |
-| **supervising-conductor-workspaces** | Dispatch one Conductor workspace per issue and supervise their PRs to merge: keep them current, resolve conflicts, rerun flaky CI, archive when merged | * | |
+| **working-on-an-epic** | Coordinate an epic: child issues run in parallel Paradev workspaces, tracked to reviewable PRs | * | |
+| **supervising-conductor-workspaces** | Dispatch one agent workspace per issue and supervise their PRs to merge: keep them current, resolve conflicts, rerun flaky CI, archive when merged | * | |
+| **supervising-paradev-workspaces** | The same fleet supervision driven by the Paradev CLI: one Paradev workspace per issue, watched to merge | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |
 | **project-planning** | Orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines | * | * |
 | **issue-decomposition** | Decompose projects into well-structured GitHub issues with user stories and estimates | * | * |
@@ -103,7 +104,7 @@ Add this repository as a plugin marketplace:
 ```bash
 # project-foundations: setup and analysis, issue decomposition, story-point
 # and change-footprint estimates, user stories, verification plans,
-# architecture/dependency/Mermaid diagrams, and Conductor-driven work on
+# architecture/dependency/Mermaid diagrams, and agent-driven work on
 # issues and epics
 /plugin install project-foundations@britts-agent-skills
 
@@ -145,6 +146,7 @@ Add this repository as a plugin marketplace:
 /plugin install working-on-an-issue@britts-agent-skills
 /plugin install working-on-an-epic@britts-agent-skills
 /plugin install supervising-conductor-workspaces@britts-agent-skills
+/plugin install supervising-paradev-workspaces@britts-agent-skills
 ```
 
 **Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `britts-agent-skills@britts-agent-skills` to get all of these, `project-foundations@britts-agent-skills` for the project-setup and user-story/verification skills, `llpm@britts-agent-skills` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britts-agent-skills` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.

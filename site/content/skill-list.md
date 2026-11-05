@@ -17,8 +17,9 @@ This page maps every skill page in the site, and each entry below includes a sho
 - [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) — Author CLAUDE.md with project purpose, tech stack, and development practices.
 - [SGAI Goal Authoring]({{< relref "skills/sgai-goal.md" >}}) — Compose GOAL.md files for SGAI workspaces through interactive conversation.
 - [Supervising Conductor Workspaces]({{< relref "skills/supervising-conductor-workspaces.md" >}}) — Dispatch a Conductor workspace per issue and supervise their PRs until every one has merged.
+- [Supervising Paradev Workspaces]({{< relref "skills/supervising-paradev-workspaces.md" >}}) — Dispatch a Paradev workspace per issue and supervise their PRs until every one has merged.
 - [Timeline Planning]({{< relref "skills/timeline-planning.md" >}}) — Generate Mermaid Gantt charts for project timelines with phases, dependencies, and milestones.
-- [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) — Coordinate an epic through parallel Conductor workspaces, one per child issue.
+- [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) — Coordinate an epic through parallel agent workspaces, one per child issue.
 - [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) — Hands-off implementation of GitHub issues, reviewed at the PR.
 
 ### Requirements & Planning

@@ -3,7 +3,7 @@ title: "Project Foundations (Bundle)"
 description: "A curated bundle for taking a project from concept to merged work with supported coding agents"
 ---
 
-A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and Conductor-driven work on issues and epics.
+A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and agent-driven work on issues and epics.
 
 ## Supported coding agents
 
@@ -28,7 +28,8 @@ A curated bundle for taking a project from concept to merged work: project setup
 | [Repairing Project Setup]({{< relref "skills/repairing-project-setup.md" >}}) | Audit a repo's agent setup against what Setting Up a Project would generate today and repair only the gaps, preserving existing content. |
 | [Setting Up a Project]({{< relref "skills/setting-up-a-project.md" >}}) | Authors a CLAUDE.md file that defines your project's purpose, tech stack, and development practices before any code is written. |
 | [Supervising Conductor Workspaces]({{< relref "skills/supervising-conductor-workspaces.md" >}}) | Dispatch a Conductor workspace per issue and supervise their PRs until every one has merged. |
-| [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) | Coordinate an epic through parallel Conductor workspaces, one per child issue. |
+| [Supervising Paradev Workspaces]({{< relref "skills/supervising-paradev-workspaces.md" >}}) | Dispatch a Paradev workspace per issue and supervise their PRs until every one has merged. |
+| [Working on an Epic]({{< relref "skills/working-on-an-epic.md" >}}) | Coordinate an epic through parallel agent workspaces, one per child issue. |
 | [Working on an Issue]({{< relref "skills/working-on-an-issue.md" >}}) | Hands-off implementation of GitHub issues, reviewed at the PR. |
 | [Writing User Stories]({{< relref "skills/writing-user-stories.md" >}}) | Write properly formatted user stories with Given-When-Then acceptance criteria and an INVEST quality checklist. |
 | [Writing Verification Plans]({{< relref "skills/writing-verification-plans.md" >}}) | Create verification plans for real-world acceptance testing with concrete scenarios and success criteria. |

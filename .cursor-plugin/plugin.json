@@ -9,6 +9,7 @@
   },
   "homepage": "https://github.com/britt/agent-skills",
   "repository": "https://github.com/britt/agent-skills",
+  "icon": "./assets/icon.png",
   "license": "MIT",
   "keywords": ["skills", "tdd", "project-setup", "product-specs", "user-stories", "verification", "planning"],
   "category": "productivity",

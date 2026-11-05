@@ -48,6 +48,19 @@ esac
 EOF
 chmod +x "$STUBS/gh" "$STUBS/conductor"
 
+# `timeout` is GNU coreutils and absent on stock macOS. Fall back to a bounded wait on a
+# known PID (never an unbounded `wait`), so a hung watcher still fails instead of blocking.
+tmo() { # tmo <seconds> <command...>
+  local secs=$1; shift
+  if command -v timeout  >/dev/null 2>&1; then timeout  "$secs" "$@"; return $?; fi
+  if command -v gtimeout >/dev/null 2>&1; then gtimeout "$secs" "$@"; return $?; fi
+  "$@" &
+  local pid=$! n=0
+  while kill -0 "$pid" 2>/dev/null && [ "$n" -lt $((secs * 10)) ]; do sleep 0.1; n=$((n + 1)); done
+  if kill -0 "$pid" 2>/dev/null; then kill -9 "$pid" 2>/dev/null; wait "$pid" 2>/dev/null; return 124; fi
+  wait "$pid"
+}
+
 pass=0; fail=0
 # check STATUS NAME [DETAIL]: pass if STATUS is 0, else fail and print DETAIL.
 # Call as `cond; check $? ...` — $? must be expanded before DETAIL's command substitutions run.
@@ -68,8 +81,11 @@ new_fixture() {
 
 # One watcher pass. Extra env goes in front: run DRY_RUN=1
 run() {
-  env PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 STATE="$STATE" "$@" \
-    timeout 10 "$WATCHER" 2>/dev/null
+  (
+    export PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 STATE="$STATE"
+    for kv in "$@"; do export "$kv"; done
+    tmo 10 "$WATCHER" 2>/dev/null
+  )
 }
 
 open_pr() { # number branch head mergeState title
@@ -173,13 +189,13 @@ open_pr 1 issue-11-add-thing aaaa0001 BEHIND "Add thing" | set_open
   workspace w25 "Issue 25" 2026-10-01T00:00:00Z; } | set_ws
 merged_pr 36 issue-25-fix "Fix (#25)" 2026-10-11T00:00:00Z | set_merged
 # Default STATE (under TMPDIR), as a user would run it.
-dry() { env PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 TMPDIR="$FIX" DRY_RUN=1 timeout 10 "$WATCHER" 2>/dev/null; }
+dry() { ( export PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 TMPDIR="$FIX" DRY_RUN=1; tmo 10 "$WATCHER" 2>/dev/null ); }
 out=$(dry)
 [ -z "$(calls)" ]; check $? "DRY_RUN=1 sends no message and archives nothing" "$(calls)"
 grep -q "^BEHIND pr=1 .*(dry run) would message" <<<"$out" && grep -q "^MERGED pr=36 -> (dry run) would archive workspace 'Issue 25'$" <<<"$out"; check $? "DRY_RUN=1 reports what it would do" "$out"
 out=$(dry)
 [ -z "$out" ]; check $? "a second dry run repeats nothing" "$out"
-out=$(env PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 TMPDIR="$FIX" timeout 10 "$WATCHER" 2>/dev/null)
+out=$( export PATH="$STUBS:$PATH" REPO=acme/widgets BASE=main ONCE=1 TMPDIR="$FIX"; tmo 10 "$WATCHER" 2>/dev/null )
 grep -q "^BEHIND pr=1 .*messaged workspace" <<<"$out" && grep -q "^archive w25$" "$FIX/calls.log"; check $? "a dry run does not suppress the next real run" "$out"$'\n'"$(calls)"
 
 # --- failures -----------------------------------------------------------------

@@ -1,15 +1,15 @@
 ---
 name: working-on-an-epic
-description: Use when asked to work on, implement, drive, or coordinate a GitHub epic, parent issue, or tracking issue whose work is split into child issues, and the `conductor` CLI is available - the child issues are implemented by separate Conductor sessions, not by you
+description: Use when asked to work on, implement, drive, or coordinate a GitHub epic, parent issue, or tracking issue whose work is split into child issues, and the `paradev` CLI is available - the child issues are implemented by separate Paradev workspaces, not by you
 ---
 
 # Working on an Epic
 
-**Announce at start:** "I'm using the working-on-an-epic skill to coordinate this epic through Conductor."
+**Announce at start:** "I'm using the working-on-an-epic skill to coordinate this epic through Paradev."
 
 ## Overview
 
-You are the **coordinator**, not the implementer. Each child issue is implemented by its own Conductor cloud workspace running the `working-on-an-issue` skill. Your job is to read the epic, map the dependencies, fan the children out, watch them, unblock them, link dependent PRs into GitHub stacks, keep those stacks linear, and report. You never implement a child yourself and you never merge.
+You are the **coordinator**, not the implementer. Each child issue is implemented by its own Paradev workspace running the `working-on-an-issue` skill. Your job is to read the epic, map the dependencies, fan the children out, watch them, unblock them, link dependent PRs into GitHub stacks, keep those stacks linear, and report. You never implement a child yourself and you never merge.
 
 **Core principle:** Understand → Map dependencies → Fan out → Watch → Unblock → Verify → Report
 
@@ -21,26 +21,26 @@ You are the **coordinator**, not the implementer. Each child issue is implemente
 
 - Developer asks to work on, implement, or "get done" an epic, parent issue, or tracking issue
 - The issue's work is split into separate child issues (sub-issues, a task list of `#N` references, or issues that say "Part of #epic")
-- `conductor auth whoami` succeeds on this machine
+- `paradev auth whoami` succeeds on this machine
 
 ## When NOT to Use
 
 - A single, non-epic issue → `working-on-an-issue`
 - The epic has no child issues yet → run `issue-decomposition` to create them, then come back to this skill
 - A child is bigger than 8 points or carries the `epic` label → it is an epic itself; decompose it with `issue-decomposition` before spawning anything for it
-- `conductor` is missing or not authenticated → stop and tell the developer; do not fall back to implementing the children serially yourself
+- `paradev` is missing or not authenticated → stop and tell the developer; do not fall back to implementing the children serially yourself
 - Developer explicitly wants the work done in this one session → `working-on-an-issue` per child, in sequence
-- A list of issues that aren't one epic's children, or supervising open PRs until they merge (keeping them current with the base branch, telling green PRs to merge, archiving workspaces) → `supervising-conductor-workspaces`. This skill never merges or archives
+- A list of issues that aren't one epic's children, or supervising open PRs until they merge (keeping them current with the base branch, telling green PRs to merge, archiving workspaces) → `supervising-paradev-workspaces`. This skill never merges or archives
 
 **"Spawn the rest, but do #N yourself":** decline the hybrid and spawn #N like the others. Your checkout is on the coordinator's branch, a child costs you nothing while slots are free, and a coordinator that implements stops watching. Say why in your reply.
 
 ## Pre-flight Checklist
 
 - [ ] Epic URL or number obtained
-- [ ] `conductor auth whoami` reports `✓ authenticated`
-- [ ] `CONDUCTOR_WORKSPACE_ID` is set (so `workspace create` inherits this project), or you know the `--repo-url` to pass
+- [ ] `paradev auth whoami` reports the expected user and organization
+- [ ] `SUPERSET_WORKSPACE_ID` is set (you are inside a Paradev workspace), so `paradev workspaces get "$SUPERSET_WORKSPACE_ID" --local --json` gives you the `projectId` to create children under; otherwise look it up with `paradev projects list --local --json`
 - [ ] `gh auth status` succeeds
-- [ ] `gh stack --version` succeeds (install with `gh extension install github/gh-stack`), and `gh stack link --help` and `gh stack rebase --help` both print usage — some builds hide these from the top-level help while still shipping them. A `gh` wrapper (Conductor installs one) can swallow the extension's output, so treat silence as "unknown" and verify stack state through the API (step 7)
+- [ ] `gh stack --version` succeeds (install with `gh extension install github/gh-stack`), and `gh stack link --help` and `gh stack rebase --help` both print usage — some builds hide these from the top-level help while still shipping them. A `gh` wrapper, which some workspace managers install, can swallow the extension's output, so treat silence as "unknown" and verify stack state through the API (step 7)
 - [ ] Base branch known: `gh repo view --json defaultBranchRef -q .defaultBranchRef.name`, unless the epic thread names a different integration branch
 - [ ] Scratch directory created outside the repo: `mkdir -p /tmp/epic-<number>`
 
@@ -68,10 +68,10 @@ For every open child: `gh issue view <n> --comments`. Then run the same **sizing
 ```bash
 gh pr list --state all --search "Fixes #<child> in:body" --json number,url,state,headRefName
 gh pr list --state all --limit 200 --json number,url,state,headRefName | jq '.[] | select(.headRefName | startswith("issue-<child>-"))'
-conductor --json workspace list --mine --name "-<child>" --limit 100
+paradev workspaces list --local --project "$P" --search "<child>" --json
 ```
 
-An existing open or merged PR means the child is done — record it. An existing workspace means adopt it: list its sessions with `conductor --json workspace session <id>` and poll that session instead of creating a duplicate.
+An existing open or merged PR means the child is done — record it. An existing workspace means adopt it: find its agent terminal with `paradev snapshot --workspace <id> --json` (the pane whose `agent` is not null) and poll that terminal instead of creating a duplicate.
 
 ### 2. Map Dependencies
 
@@ -129,28 +129,27 @@ For a child above the bottom of a chain (step 7), `<base branch>` is the head br
 One **workspace** per child — never sessions inside one workspace, because sessions share a checkout and a branch. Name the workspace `<short-slug>-<child-number>`.
 
 ```bash
-conductor --json workspace create \
-  --branch <base branch> \
+ws=$(paradev workspaces create --local --project "$P" \
   --name "<short-slug>-<child>" \
-  --session-name "Implement #<child>" \
+  --branch "issue-<child>-<short-slug>" \
+  --base-branch <base branch> \
   --agent claude \
-  --message-file /tmp/epic-<number>/prompt-<child>.md \
-  > /tmp/epic-<number>/create-<child>.json
-ws=$(jq -r '.id' /tmp/epic-<number>/create-<child>.json)
-sid=$(conductor --json workspace session "$ws" | jq -r '.data[0].id')
-link=$(conductor --json workspace session "$ws" | jq -r '.data[0].deepLink')   # session-level link
-printf '%s\t%s\t%s\t%s\t-\t%s\t-\t%s\n' "<child>" "$ws" "$sid" "$link" "running" "base=<base branch>" >> /tmp/epic-<number>/ledger.tsv
+  --prompt "$(cat /tmp/epic-<number>/prompt-<child>.md)" \
+  --quiet)
+term=$(paradev snapshot --workspace "$ws" --json | jq -r '[.workspaces[]?.layout.tabs[]?.panes[]? | select(.agent != null) | .terminalId][0]')
+link=$(paradev workspaces get "$ws" --local --json | jq -r '.url')   # superset:// deep link; .webUrl for the browser
+printf '%s\t%s\t%s\t%s\t-\t%s\t-\t%s\n' "<child>" "$ws" "$term" "$link" "running" "base=<base branch>" >> /tmp/epic-<number>/ledger.tsv
 ```
 
-Omit `--model` and `--effort` unless the developer chose them; the project defaults apply. Pass `--project-id` or `--repo-url` only when `CONDUCTOR_WORKSPACE_ID` is unset. Children get `gh` credentials from the project's workspace setup, not from you; a child without them takes the blocked off-ramp and you report it.
+`--quiet` prints the new workspace's id and nothing else, so nothing depends on the JSON shape. `--prompt` takes a string, not a file, hence `"$(cat …)"`. Omit `--model` and `--effort` unless the developer chose them; the project defaults apply. **Scope every `paradev` call with `--local` or `--host`** — unscoped, an account with cloud workspaces creates and lists children in the cloud instead (`snapshot` is the exception: this machine is its default and it has no `--local`). Children get `gh` credentials from the project's workspace setup, not from you; a child without them takes the blocked off-ramp and you report it.
 
-**Ledger columns:** `issue  workspaceId  sessionId  deepLink  lastMessageId  phase  prUrl  notes`, tab-separated, with `-` for an empty cell (bash collapses empty tab-separated fields otherwise). Phases: `running`, `asking`, `stalled`, `done`, `blocked`, `failed`, `skipped`, `not-started`. `notes` holds relayed decisions and merge-order facts, appended with `; `. The ledger is the only record of message cursors and decisions until the final report is posted; keep it current.
+**Ledger columns:** `issue  workspaceId  terminalId  deepLink  lastSeen  phase  prUrl  notes`, tab-separated, with `-` for an empty cell (bash collapses empty tab-separated fields otherwise). `lastSeen` is a checksum of the transcript as of the last sweep, which is how the loop tells "nothing new" from "new output" without a server-side cursor. Phases: `running`, `asking`, `stalled`, `done`, `blocked`, `failed`, `skipped`, `not-started`. `notes` holds relayed decisions and merge-order facts, appended with `; `. The ledger is the only record of transcript checksums and decisions until the final report is posted; keep it current.
 
-Confirm each workspace provisioned: poll `conductor --json workspace status <ws>` every 10 seconds until `.status` is `ready`, for at most 10 minutes. If it never is, retry `workspace create` once, then record `failed`.
+Confirm each workspace provisioned and its branch is the one you asked for: `paradev workspaces get "$ws" --local --json` must show `worktreeExists: true` and the expected `branch`. Paradev namespaces new branches under the project's branch prefix unless `--skip-branch-prefix` is passed, so read the branch back rather than assuming it; every prompt, stack link and rebase instruction downstream uses the real name. If the workspace never provisions, retry `workspaces create` once, then record `failed`.
 
 ### 6. Watch
 
-Poll from **one** background Bash loop, not a stream of individual tool calls. Save it as `/tmp/epic-<number>/poll-epic.sh`. Session status is `working` while the child is busy and `idle` when it has stopped. **Idle means stopped, not done** — classify it from the transcript. The loop exits after the first sweep that changes any phase, so you are woken to act; it may print several lines. Relaunch it after acting.
+Poll from **one** background Bash loop, not a stream of individual tool calls. Save it as `/tmp/epic-<number>/poll-epic.sh`. An agent's state is `starting` or `working` while the child is busy, and `idle`, `blocked` or `exited` when it has stopped — `blocked` meaning it is waiting for input. **Stopped is not done** — classify it from the transcript. The loop exits after the first sweep that changes any phase, so you are woken to act; it may print several lines. Relaunch it after acting.
 
 ```bash
 #!/bin/bash
@@ -158,31 +157,24 @@ Poll from **one** background Bash loop, not a stream of individual tool calls. S
 L=/tmp/epic-$1/ledger.tsv
 changed=0
 while [ $changed = 0 ] && grep -q $'\trunning\t' "$L"; do
-  while IFS=$'\t' read -r n ws sid link last phase pr notes; do
+  while IFS=$'\t' read -r n ws term link seen phase pr notes; do
     [ "$phase" = running ] || continue
-    [ "$last" = - ] && last=
-    status=$(conductor --json session status "$sid" | jq -r .status) || status=error
-    [ "$status" = working ] && continue
-    # page the transcript since the cursor; a page holds at most 100 events
-    : > /tmp/epic-$1/msgs-$n.jsonl; cur=$last
-    while :; do
-      conductor --json session message "$sid" ${cur:+--after "$cur"} --limit 100 > /tmp/epic-$1/page-$n.json
-      jq -c '.data[]' /tmp/epic-$1/page-$n.json >> /tmp/epic-$1/msgs-$n.jsonl
-      cur=$(jq -r '.data[-1].id // empty' /tmp/epic-$1/page-$n.json)
-      [ "$(jq -r .hasMore /tmp/epic-$1/page-$n.json)" = true ] && [ -n "$cur" ] || break
-    done
-    newest=$(jq -rs '.[-1].id // empty' /tmp/epic-$1/msgs-$n.jsonl)
-    # idle with nothing new since the cursor (e.g. just after a relay): still running. Any other status with nothing new: stalled.
-    [ -z "$newest" ] && [ "$status" = idle ] && continue
-    # assistant text only: tool results could quote a sentinel line without meaning it
-    text=$(jq -rs '[.[] | select(.type=="agent" and .content.rawPayload.type=="assistant")
-                   | .content.rawPayload.message.content[]? | .text? // empty] | join("\n")' /tmp/epic-$1/msgs-$n.jsonl)
-    if   [ -z "$text" ];                                      then phase=stalled
-    elif grep -q "^EPIC-CHILD-DONE issue=$n "    <<<"$text"; then phase=done; pr=$(grep -oE '^EPIC-CHILD-DONE.* pr=\S+' <<<"$text" | tail -1 | sed 's/.* pr=//')
-    elif grep -q "^EPIC-CHILD-BLOCKED issue=$n " <<<"$text"; then phase=blocked
+    state=$(paradev agents explain --local --workspace "$ws" --terminal "$term" --json | jq -r .state) || state=error
+    case "$state" in starting|working) continue ;; esac
+    # No server-side cursor: read the whole transcript and checksum it to tell new output from none.
+    paradev agents read --local --workspace "$ws" --terminal "$term" > /tmp/epic-$1/transcript-$n.txt 2>/dev/null
+    now=$(shasum /tmp/epic-$1/transcript-$n.txt | cut -d" " -f1)
+    # stopped with nothing new since the last sweep (e.g. just after a relay): still running
+    [ "$now" = "$seen" ] && [ "$state" != exited ] && continue
+    text=$(tail -200 /tmp/epic-$1/transcript-$n.txt)
+    if   [ ! -s /tmp/epic-$1/transcript-$n.txt ];               then phase=stalled
+    elif grep -q "EPIC-CHILD-DONE issue=$n "    <<<"$text"; then phase=done
+         pr=$(grep -oE "EPIC-CHILD-DONE issue=$n [^\"]*pr=[^ \"]+" <<<"$text" | tail -1 | sed "s/.*pr=//")
+    elif grep -q "EPIC-CHILD-BLOCKED issue=$n " <<<"$text"; then phase=blocked
+    elif [ "$state" = exited ];                             then phase=stalled
     else phase=asking; fi
-    echo "$(date -u +%FT%TZ) #$n status=$status -> $phase ${pr:--}"
-    awk -F'\t' -v OFS='\t' -v n="$n" -v m="${newest:-${last:--}}" -v p="$phase" -v u="${pr:--}" \
+    echo "$(date -u +%FT%TZ) #$n state=$state -> $phase ${pr:--}"
+    awk -F'\t' -v OFS='\t' -v n="$n" -v m="$now" -v p="$phase" -v u="${pr:--}" \
       '$1==n{$5=m;$6=p;$7=u}1' "$L" > "$L.tmp" && mv "$L.tmp" "$L"
     changed=1
   done < "$L"
@@ -190,13 +182,15 @@ while [ $changed = 0 ] && grep -q $'\trunning\t' "$L"; do
 done
 ```
 
-Run it with `run_in_background`; act on every line it prints; relaunch. The `--after <messageId>` cursor keeps each fetch incremental. Do not use `conductor sql` for transcripts; the message endpoint is the supported path.
+Run it with `run_in_background`; act on every line it prints; relaunch.
 
-Cross-check a `done` report before trusting it: `gh pr view <url> --json state,baseRefName,headRefName` must show an open PR. Take the real branch name from `headRefName`, not from the prompt. A `done` with no findable PR becomes `asking`; message the child: "No open PR found for your branch. Push the branch, open the PR, and end with the EPIC-CHILD-DONE line again."
+`paradev agents read` returns the agent's own transcript with no `--after` cursor, so each sweep re-reads it whole and compares checksums; keep `tail -200` as the classification window rather than scanning the entire history. The sentinel match is therefore weaker than a cursor-paged one — a tool result that quotes `EPIC-CHILD-DONE` would match — which is exactly why **every `done` is cross-checked against `gh pr view` below** before it is believed. For a single child you can block instead of polling: `paradev agents wait --local --workspace <ws> --terminal <term> --until settled --timeout 900`.
+
+Cross-check a `done` report before trusting it: `gh pr view <url> --json state,baseRefName,headRefName` must show an open PR. Take the real branch name from `headRefName`, not from the prompt. A `done` with no findable PR becomes `asking` — this is also the guard against a sentinel the agent merely quoted; message the child: "No open PR found for your branch. Push the branch, open the PR, and end with the EPIC-CHILD-DONE line again."
 
 ### 7. Grow Each Chain and Link the Stack
 
-When a chain member's phase becomes `done` (verified, step 6) and `git ls-remote --heads origin <headRefName>` shows its branch, link first (below), then spawn the next child in that chain (step 4 and 5) with `--branch <headRefName>`. If the branch is not on origin, message the child: "Your branch is not on origin. Push it and end with the EPIC-CHILD-DONE line again," and set it back to `running`. The next child's PR targets that branch because waiting for a human to merge the layer below would outlive this session. If `gh pr view` shows the layer below already `MERGED`, base the next child on the base branch instead; merged layers are left out of `gh stack link`, and if every layer below has merged the child is standalone. A layer that merges *after* the child above was spawned is fine: GitHub retargets the child's PR to the base branch on its own.
+When a chain member's phase becomes `done` (verified, step 6) and `git ls-remote --heads origin <headRefName>` shows its branch, link first (below), then spawn the next child in that chain (step 4 and 5) with `--base-branch <headRefName>` — the layer below is what the new workspace *starts from*; `--branch` is still the child's own new branch. If the branch is not on origin, message the child: "Your branch is not on origin. Push it and end with the EPIC-CHILD-DONE line again," and set it back to `running`. The next child's PR targets that branch because waiting for a human to merge the layer below would outlive this session. If `gh pr view` shows the layer below already `MERGED`, base the next child on the base branch instead; merged layers are left out of `gh stack link`, and if every layer below has merged the child is standalone. A layer that merges *after* the child above was spawned is fine: GitHub retargets the child's PR to the base branch on its own.
 
 Each child opens its PR against the right base itself, so `gh stack link` only has to record the chain. Link as soon as the second PR in a chain is verified `done`, **PR URLs only** (branch-name arguments make `gh stack link` push branches from your checkout, which does not have them):
 
@@ -229,13 +223,14 @@ A child in `asking` stopped without a sentinel line. Read the assistant text at 
 
 - **How-question** (file location, naming, which pattern, whether to proceed without approval, PR base, which existing signal to use for a concept like "new user"): answer from the epic thread, the child issue, sibling transcripts, and repo conventions:
   ```bash
-  conductor message create --session <sid> --message "<answer>. Record this under Assumptions in the plan and PR body. Do not ask again; keep going and end with the EPIC-CHILD-DONE line."
+  paradev terminals send --local --workspace <ws> --terminal <term> \
+    --text "<answer>. Record this under Assumptions in the plan and PR body. Do not ask again; keep going and end with the EPIC-CHILD-DONE line."
   ```
   Set the phase back to `running` and append `relayed: <question> → <answer>` to `notes`.
 - **What-question** (product behaviour or scope the issues do not settle): do not invent an answer. Tell the child to implement only what the issue text states, list the open question in the PR body under "Open questions for reviewer", and finish. If it truly cannot proceed, tell it to take the blocked off-ramp.
-- **`stalled`** (stopped with no assistant text, or an error status): retry once with `conductor session create --workspace <ws> --agent claude --message-file <same prompt>`, replace `sessionId` and reset the cursor to `-`; a second stall is `failed`.
+- **`stalled`** (an empty transcript, an `exited` agent, or an error state): retry once with `paradev agents create --local --workspace <ws> --agent claude --prompt "$(cat <same prompt file>)"`, replace `terminalId` in the ledger and reset `lastSeen` to `-`; a second stall is `failed`. The worktree and branch survive, so the new agent picks up where the old one left off.
 
-Every relay is a decision made on the developer's behalf — it goes in `notes` and in the report. Never `session cancel` a child for asking; cancel only a session still `working` past the wall-clock budget with no pushed commits, and say so.
+Every relay is a decision made on the developer's behalf — it goes in `notes` and in the report. Never close a child's session for asking; close one (`paradev sessions close`, or `paradev terminals close` for a terminal agent) only when it is still `working` past the wall-clock budget with no pushed commits, and say so.
 
 **Review fixes go into the layer's single commit.** When findings are relayed to a child, its instruction ends with the history contract from step 4: squash the fixes into the one commit, rebase onto the current head of the layer below, push with `--force-with-lease`, then the sentinel. A layer that moves this way triggers the cascade in step 7 for everything above it, so relay review findings to lower layers first and let each cascade finish before relaying to the next layer up.
 
@@ -267,17 +262,17 @@ Read the trunk's rulesets once (`gh api repos/<owner>/<repo>/rules/branches/<tru
 
 ### 10. Report
 
-Post one new comment on the epic containing, per child: issue, PR link, base branch, CI state, Conductor deep link, stack number (or "standalone"), and the `notes` (assumptions, relayed decisions, open questions, blocked reasons). For each stack, give the one-line landing instruction: `gh stack merge <stack-number> --squash` merges the whole chain atomically and in order, one squash commit per layer on the trunk (match the repository's usual merge method if it differs; every layer is already a single commit, so the content is the same either way). Standalone PRs merge individually in any order. Then reply to the developer with the same table.
+Post one new comment on the epic containing, per child: issue, PR link, base branch, CI state, Paradev deep link, stack number (or "standalone"), and the `notes` (assumptions, relayed decisions, open questions, blocked reasons). For each stack, give the one-line landing instruction: `gh stack merge <stack-number> --squash` merges the whole chain atomically and in order, one squash commit per layer on the trunk (match the repository's usual merge method if it differs; every layer is already a single commit, so the content is the same either way). Standalone PRs merge individually in any order. Then reply to the developer with the same table.
 
 - Deep links, not raw ids — they are clickable.
-- Leave child workspaces and sessions alive. Reviewers send follow-ups to the session that wrote the PR; archive only when the developer asks.
+- Leave child workspaces and agents alive. Reviewers send follow-ups to the agent that wrote the PR; archive only when the developer asks — archiving a workspace deletes its worktree and any uncommitted work in it.
 - Do not tick the epic's task list by hand; `Fixes #<child>` closes each child on merge.
 - If any child is `blocked`, `failed`, `skipped`, `stalled`, or `not-started`, the epic is not done. Say so plainly.
 
 ## Absolute Rules
 
 - **Coordinate, never implement**: a child issue is always done by a child session, even the "quick" one
-- **One workspace per child**: never sessions sharing a checkout
+- **One workspace per child**: never two agents sharing a worktree
 - **Never merge**: the PR is the approval gate for each child, exactly as in `working-on-an-issue`; a standing "don't merge" instruction on the epic outranks any urgency in the request. `gh stack merge` is for the reviewer, never for you
 - **One stack per dependency chain**: independent PRs stay standalone
 - **One commit per layer, always linear**: a layer is a single squashed commit on the current head of the layer below; a layer never merges its base or the trunk into itself
@@ -290,14 +285,18 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 
 | Need | Command | Shape |
 |------|---------|-------|
-| Am I in Conductor? | `echo $CONDUCTOR_WORKSPACE_ID`, `conductor auth whoami` | id; `✓ authenticated` |
-| Spawn a child | `conductor --json workspace create --branch … --name … --agent claude --message-file …` | workspace record with `id` |
-| Session id of a workspace | `conductor --json workspace session <ws>` | `{"data":[{"id","deepLink","name","model"}]}` |
-| Provisioned? | `conductor --json workspace status <ws>` | `{"workspaceId","status":"ready",…}` |
-| Busy or stopped? | `conductor --json session status <sid>` | `{"sessionId","status":"working"\|"idle",…}` |
-| New transcript since cursor | `conductor --json session message <sid> --after <id> --limit 100` | `{"data":[…],"hasMore"}`, oldest first, 100 max per page |
-| Assistant text in a transcript | `.data[] \| select(.type=="agent" and .content.rawPayload.type=="assistant") \| .content.rawPayload.message.content[].text` | other `rawPayload.type` values: `system`, `user` (tool results), `result` (turn ended), `command_lifecycle`, `rate_limit_event` |
-| Talk to a child | `conductor message create --session <sid> --message "…"` | message record |
+| Am I in Paradev? | `echo $SUPERSET_WORKSPACE_ID`, `paradev auth whoami` | workspace uuid; user and organization |
+| This workspace's project | `paradev workspaces get "$SUPERSET_WORKSPACE_ID" --local --json` | `{"id","name","branch","projectId","projectName","worktreePath","url","webUrl",…}` |
+| Projects on this machine | `paradev projects list --local --json` | bare array of `{"name","repo","path","id"}` |
+| Spawn a child | `paradev workspaces create --local --project … --name … --branch … --base-branch … --agent claude --prompt "$(cat …)" --quiet` | the new workspace id, alone |
+| Agent terminal of a workspace | `paradev snapshot --workspace <ws> --json` | `.workspaces[].layout.tabs[].panes[]` — take the one whose `agent` is not null, its `terminalId` |
+| Provisioned? | `paradev workspaces get <ws> --local --json` | `worktreeExists: true` and the branch it actually got |
+| Busy or stopped? | `paradev agents explain --local --workspace <ws> --terminal <term> --json` | `{"state":"starting"\|"working"\|"blocked"\|"idle"\|"exited","headline","because",…}` |
+| Block until it settles | `paradev agents wait --local --workspace <ws> --terminal <term> --until settled --timeout 900` | returns when the turn ends or input is needed |
+| Transcript | `paradev agents read --local --workspace <ws> --terminal <term>` | the agent's own transcript; **no cursor** — re-read and checksum to detect new output |
+| Talk to a child | `paradev terminals send --local --workspace <ws> --terminal <term> --text "…"` | add `--wait --until settled` to block for the reply |
+| Restart a dead child | `paradev agents create --local --workspace <ws> --agent claude --prompt "…"` | new terminal id; worktree and branch survive |
+| Archive a child | `paradev workspaces archive <ws> --local` | removes the worktree **and uncommitted work**; the branch stays |
 | Children issues | GraphQL `issue(number){subIssues{nodes{number}}}` | resolves on GitHub today |
 | Stack existing PRs | `gh stack link <PR URL> <PR URL> …` (bottom to top) or `gh stack link <stack-number> <PR URL>` | creates or grows the stack on GitHub; no local tracking needed; may print nothing through a `gh` wrapper |
 | Read a stack back | GraphQL `pullRequest(number){ stack { number size entries(first:20){ nodes { position pullRequest { number } } } } }` | the stack number and ordered members GitHub actually recorded |
@@ -311,7 +310,10 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 | Mistake | Fix |
 |---------|-----|
 | Treating `idle` as finished | `idle` is the normal stopped state; only the sentinel line plus `gh pr view` is done, everything else is `asking` or `stalled` |
-| Reading one page of the transcript | Pages cap at 100 events; page on `hasMore` or the sentinel is missed |
+| Treating Paradev's `blocked` as GitHub's `BLOCKED` | Paradev's agent `blocked` means "waiting for input" (classify it as `asking`); GitHub's `BLOCKED` merge state usually means CI is still running |
+| Trusting a sentinel found in the transcript | `agents read` has no cursor and returns tool output too, so a quoted `EPIC-CHILD-DONE` can match; only the sentinel **plus** a verified `gh pr view` is `done` |
+| Running a `paradev` command without `--local` or `--host` | An account with cloud workspaces silently targets the cloud; children are created or listed in the wrong fleet (`snapshot` is the exception) |
+| Assuming the branch you asked for is the branch you got | Paradev prefixes new branches with the project's branch prefix unless `--skip-branch-prefix`; read it back with `workspaces get` before using it anywhere |
 | Starting a chain member from the base branch because the layer below is "basically done" | Wait for its verified `done` and its branch on origin, then base on that branch |
 | Running a linearised sibling in parallel and rebasing it later | Spawn along the chain; an out-of-order rebase across sessions has to be repeated for every layer above it |
 | Stacking independent PRs "to keep things together" | One stack per dependency chain; a stack merges atomically, so unrelated work would block each other |
@@ -321,7 +323,7 @@ Post one new comment on the epic containing, per child: issue, PR link, base bra
 | Rebasing a child's branch yourself to fix a stack | Message the child's session; it has the context to resolve conflicts. `gh stack rebase` is a fallback only when every layer is one clean commit |
 | Relaying review findings to an upper layer while a lower layer is still being fixed | Fix bottom-up; every lower move re-cascades the layers above it, so upper fixes done first are rebased twice |
 | Running `gh stack checkout` in the coordinator's workspace | It switches your checkout and creates local tracking you do not need; confirm chains with `gh pr view` |
-| Reading transcripts with `conductor sql` | Use `session message --after`; the SQL endpoint is optional and rate-limited |
+| Scraping a child's screen with `terminals read` | That returns only the visible pane; use `agents read` for the agent's own transcript |
 | Polling with dozens of separate tool calls, or a loop that never returns | One background loop that exits on the first phase change |
 | Merging because the developer said "get it landed" | Landed means reviewable PRs; a standing "don't merge" comment on the epic outranks urgency |
 | Implementing "just the small one" yourself | Spawn it; the coordinator that implements stops coordinating |

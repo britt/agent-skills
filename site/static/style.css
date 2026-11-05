@@ -1,0 +1,639 @@
+/* ==========================================================================
+   Britt's Agent Skills — vaporwave restyle
+   --------------------------------------------------------------------------
+   Loaded by layouts/partials/head.html after the compiled re-terminal CSS, so
+   plain selectors here beat the theme at equal specificity. Palette tokens live
+   in assets/css/color/vaporwave.scss.
+
+   The design quotes assets/icon.png directly: a glitched terminal window over an
+   infinite neon grid. Three devices carry it —
+     1. a perspective grid horizon fixed to the bottom of the viewport
+     2. a CRT scanline wash over the whole page
+     3. code blocks drawn as the icon's own window, chrome and all
+   Everything else stays quiet so those three land.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Ground
+   -------------------------------------------------------------------------- */
+
+html:root {
+  /* variables.scss computes --background off --accent; we want the flat void so
+     the fixed grid behind the content reads cleanly. */
+  --background: transparent;
+}
+
+html {
+  background-color: var(--vw-void);
+  /* Vertical haze: violet at the horizon line, void everywhere else. */
+  background-image: radial-gradient(
+    120% 55% at 50% 100%,
+    var(--vw-horizon) 0%,
+    rgba(28, 6, 45, 0.55) 35%,
+    transparent 70%
+  );
+  background-attachment: fixed;
+}
+
+body {
+  background: transparent;
+  color: var(--vw-pale);
+}
+
+/* --------------------------------------------------------------------------
+   2. Signature — the grid horizon
+   Injected as a real element by layouts/partials/extended_footer.html. It needs a
+   perspective parent plus a transformed child, which pseudo-elements alone can't
+   give us without putting `perspective` on <body> and trapping fixed descendants.
+   -------------------------------------------------------------------------- */
+
+.vw-horizon {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 38vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -2;
+  /* Atmosphere, not a layer that competes with the text above it. Long content
+     pages scroll text across the whole floor, so this stays low. */
+  opacity: 0.4;
+  /* The floor hinges at this box's top edge, which reads as the horizon, and
+     falls toward the viewer. Perspective must stay comfortably larger than the
+     plane's depth (height x sin(tilt) = ~43vh) or the near rows cross the eye
+     plane and project inverted — lines fan up across the page instead of
+     converging. 60vh leaves the margin. */
+  perspective: 60vh;
+  perspective-origin: 50% 0%;
+}
+
+.vw-horizon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  /* Hinged at the horizon; rows below it swell toward the viewer. */
+  transform-origin: 50% 0%;
+  transform: rotateX(75deg);
+  background-image:
+    /* verticals converge on the vanishing point: cyan, as in the icon */
+    linear-gradient(to right, var(--vw-grid-far) 1px, transparent 1px),
+    /* horizontals rush the viewer: magenta, as in the icon */
+      linear-gradient(to bottom, var(--vw-grid-near) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  /* Fades the far rows into the haze at the horizon. Applied in the plane's own
+     coordinate space, before the transform, so "top" here is the far distance. */
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
+  animation: vw-drift 5.5s linear infinite;
+}
+
+/* The glow sitting on the horizon line itself. Radial, not a rectangle: a linear
+   gradient in a clipped box leaves a hard top edge ruled across the page. */
+.vw-horizon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    80% 42% at 50% 0%,
+    rgba(45, 232, 255, 0.22) 0%,
+    rgba(152, 114, 229, 0.1) 45%,
+    transparent 75%
+  );
+}
+
+@keyframes vw-drift {
+  to {
+    background-position:
+      0 0,
+      0 4rem;
+  }
+}
+
+/* Veil between the floor and the content. Without it, body copy that scrolls over
+   the near rows loses contrast against the brightest part of the grid. Sits above
+   .vw-horizon (-2) and below the content (auto). */
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 38vh;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(8, 5, 48, 0.82) 0%,
+    rgba(8, 5, 48, 0.62) 45%,
+    transparent 100%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   3. CRT scanlines
+   The icon's text and window are ruled with fine horizontal lines. Kept at very
+   low alpha: visible as texture, never as stripes over body copy.
+   -------------------------------------------------------------------------- */
+
+.vw-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(8, 5, 48, 0.22) 0px,
+    rgba(8, 5, 48, 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* --------------------------------------------------------------------------
+   4. Masthead — the glitched title
+   The icon's wordmark is defined by its chromatic aberration, not its letterforms.
+   Reproduced with offset cyan/magenta shadows. Static by default; it only moves on
+   interaction, because a looping glitch is noise, not design.
+   -------------------------------------------------------------------------- */
+
+.logo {
+  background: linear-gradient(
+    180deg,
+    rgba(152, 114, 229, 0.22),
+    rgba(8, 5, 48, 0.9)
+  );
+  color: var(--vw-pale);
+  border: 1px solid var(--vw-violet);
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 800;
+  padding: 7px 14px;
+  text-shadow:
+    -1px 0 var(--vw-magenta),
+    1px 0 var(--vw-cyan);
+  box-shadow:
+    0 0 18px rgba(45, 232, 255, 0.28),
+    inset 0 0 22px rgba(152, 114, 229, 0.18);
+  transition: text-shadow 120ms steps(2, end);
+}
+
+.header__logo a:hover .logo,
+.header__logo a:focus-visible .logo {
+  text-shadow:
+    -3px 0 var(--vw-magenta),
+    3px 0 var(--vw-cyan);
+}
+
+/* The theme's dashed rule beside the logo, recoloured to the grid's two neons. */
+.header__logo:after {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--vw-magenta),
+    var(--vw-magenta) 2px,
+    transparent 0,
+    transparent 7px,
+    var(--vw-cyan) 7px,
+    var(--vw-cyan) 9px,
+    transparent 0,
+    transparent 14px
+  );
+  opacity: 0.75;
+  height: 2px;
+  align-self: center;
+}
+
+/* --------------------------------------------------------------------------
+   5. Navigation
+   -------------------------------------------------------------------------- */
+
+.navigation-menu__inner > li > a,
+.menu__trigger {
+  color: var(--vw-pale);
+  text-decoration: none;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(152, 114, 229, 0.45);
+  transition:
+    color 140ms ease,
+    border-color 140ms ease;
+}
+
+.navigation-menu__inner > li > a:hover,
+.menu__trigger:hover {
+  color: var(--vw-cyan);
+  border-bottom-color: var(--vw-magenta);
+}
+
+.menu__dropdown {
+  background: var(--vw-surface);
+  border: 1px solid var(--vw-violet);
+  color: var(--vw-pale);
+  box-shadow: 0 0 24px rgba(8, 5, 48, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   6. Headings
+   One size across h1–h6 is the theme's choice (oneHeadingSize); we differentiate
+   by colour and rule weight instead of scale.
+   -------------------------------------------------------------------------- */
+
+.post-title,
+.post-title a {
+  color: var(--vw-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  text-shadow: 0 0 22px rgba(45, 232, 255, 0.38);
+}
+
+/* Replaces the theme's dotted border with the grid's cyan→magenta sweep. */
+.post-title {
+  --border: none;
+  border-bottom: none;
+  padding-bottom: 18px;
+}
+
+.post-title:after {
+  border-bottom: none;
+  height: 2px;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    var(--vw-cyan),
+    var(--vw-magenta) 55%,
+    transparent
+  );
+  opacity: 0.9;
+}
+
+.post-content h2,
+.index-content h2 {
+  color: var(--vw-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.post-content h3,
+.index-content h3 {
+  color: var(--vw-violet);
+  letter-spacing: 0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   7. Body copy and links
+   -------------------------------------------------------------------------- */
+
+.post-content,
+.index-content {
+  color: var(--vw-pale);
+}
+
+.post-content a,
+.index-content a {
+  color: var(--vw-cyan);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 76, 240, 0.65);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 140ms ease;
+}
+
+.post-content a:hover,
+.index-content a:hover {
+  color: var(--vw-magenta);
+  text-decoration-color: var(--vw-cyan);
+}
+
+hr {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--vw-violet) 20%,
+    var(--vw-magenta) 50%,
+    var(--vw-cyan) 80%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+/* Inline code: the icon's prompt text, cyan on a dim violet plate. */
+code,
+kbd {
+  background: rgba(152, 114, 229, 0.16);
+  color: var(--vw-cyan);
+  border: 1px solid rgba(152, 114, 229, 0.3);
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Signature — code blocks as the icon's terminal window
+   Every code block on this site is an install command you paste into a terminal,
+   so drawing them as the icon's window is structural, not decorative: the chrome
+   marks "this is a thing you run".
+   -------------------------------------------------------------------------- */
+
+/* Prism wraps every highlighted block in div.code-toolbar, and the theme already
+   frames that wrapper. So the wrapper is the window — not the inner <pre>, which
+   would otherwise nest a second box inside the frame. */
+.code-toolbar,
+pre.vw-window {
+  position: relative;
+  /* Not fully opaque: the grid glowing faintly through the window is the one
+     place the icon's own layering shows up in the UI. */
+  background: rgba(8, 5, 48, 0.93);
+  border: 1px solid var(--vw-violet);
+  border-radius: 4px;
+  padding: 2.75rem 1.1rem 1.1rem;
+  box-shadow:
+    0 0 26px rgba(45, 232, 255, 0.1),
+    inset 0 0 40px rgba(152, 114, 229, 0.08);
+}
+
+/* The theme butts consecutive blocks together into one frame; each window here
+   is its own object, so restore the gap and the top edge. */
+.code-toolbar + .code-toolbar,
+.code-toolbar + .highlight,
+.code-toolbar + .highlight .code-toolbar {
+  border-top: 1px solid var(--vw-violet);
+  margin-top: var(--code-margin, 40px);
+}
+
+/* Title bar: the violet→cyan gradient off the icon's window chrome. */
+.code-toolbar::before,
+pre.vw-window::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1.95rem;
+  background: linear-gradient(
+    90deg,
+    var(--vw-violet),
+    var(--vw-cyan) 85%,
+    var(--vw-pale)
+  );
+  border-radius: 3px 3px 0 0;
+}
+
+/* Minimise / maximise / close, lifted straight off the icon. */
+.code-toolbar::after,
+pre.vw-window::after {
+  content: "_  □  ×";
+  position: absolute;
+  top: 0;
+  right: 0.75rem;
+  height: 1.95rem;
+  line-height: 1.95rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--vw-void);
+}
+
+/* Inside the window the <pre> is just the terminal body. */
+.code-toolbar pre,
+.code-toolbar pre[class*="language-"] {
+  background: transparent !important;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Copy button docks into the title bar, to the left of the window buttons.
+   Prism hides it until hover; in a chrome bar that just reads as broken.
+   Selectors are matched to prism.scss's own `div.code-toolbar > .toolbar`, which
+   otherwise outranks a bare class selector and keeps opacity at 0. */
+div.code-toolbar > .toolbar {
+  top: 0;
+  right: 5.1rem;
+  height: 1.95rem;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Colour comes from --syntax-code-copy-button-* (syntax.scss sets those with
+   !important). Only the geometry has no variable, so only that is forced here —
+   the theme's 10px padding makes the button taller than the title bar. */
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  border: none;
+  font-weight: 700;
+  font-size: 0.68rem !important;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px !important;
+  margin: 0 !important;
+  border-radius: 2px !important;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:hover {
+  color: var(--vw-cyan) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Blockquotes, tables, lists
+   -------------------------------------------------------------------------- */
+
+blockquote {
+  border-top: 1px solid var(--vw-magenta);
+  border-bottom: 1px solid var(--vw-magenta);
+  background: rgba(152, 114, 229, 0.07);
+}
+
+blockquote p:first-of-type:before {
+  color: var(--vw-magenta);
+}
+
+table,
+th,
+td {
+  border: 1px solid rgba(152, 114, 229, 0.35);
+}
+
+th {
+  color: var(--vw-cyan);
+  background: rgba(152, 114, 229, 0.14);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.86rem;
+}
+
+tbody tr:nth-child(even) td {
+  background: rgba(152, 114, 229, 0.05);
+}
+
+/* Bullets become the icon's prompt glyph. */
+.post ul li:not(:empty):before,
+.terms ul li:not(:empty):before {
+  content: ">";
+  color: var(--vw-magenta);
+}
+
+ol > li:before {
+  color: var(--vw-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   10. Post list, buttons, footer
+   -------------------------------------------------------------------------- */
+
+.post:not(:last-of-type) {
+  border-bottom: 1px solid rgba(152, 114, 229, 0.25);
+}
+
+.post-meta {
+  color: var(--vw-violet);
+  letter-spacing: 0.04em;
+}
+
+a.read-more,
+a.read-more:hover,
+a.read-more:active {
+  color: var(--vw-magenta);
+}
+
+button,
+.button,
+a.button {
+  background: transparent;
+  color: var(--vw-cyan);
+  border: 1px solid var(--vw-cyan);
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    color 140ms ease;
+}
+
+button:hover,
+.button:hover,
+a.button:hover {
+  background: rgba(45, 232, 255, 0.12);
+  color: var(--vw-pale);
+  box-shadow: 0 0 18px rgba(45, 232, 255, 0.35);
+}
+
+.pagination__title-h {
+  background: transparent;
+  color: var(--vw-violet);
+}
+
+.footer {
+  opacity: 1;
+  color: var(--vw-dim);
+  border-top: 1px solid rgba(152, 114, 229, 0.22);
+  margin-top: 40px;
+  font-size: 0.86rem;
+}
+
+.footer a {
+  color: var(--vw-violet);
+}
+
+.footer a:hover {
+  color: var(--vw-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   11. Quality floor — focus, motion, mobile
+   -------------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible,
+.menu__trigger:focus-visible {
+  outline: 2px solid var(--vw-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--vw-magenta);
+  color: var(--vw-void);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vw-horizon::before {
+    animation: none;
+  }
+
+  .logo,
+  .post-content a,
+  .index-content a,
+  button,
+  .button,
+  a.button {
+    transition: none;
+  }
+}
+
+@media (max-width: 684px) {
+  /* A phone viewport is nearly all content, so the floor sits under text the
+     whole way down rather than below it. Pull it back to a hint. */
+  .vw-horizon {
+    height: 26vh;
+    opacity: 0.3;
+  }
+
+  body::after {
+    height: 26vh;
+  }
+
+  .code-toolbar,
+  pre.vw-window {
+    padding: 2.6rem 0.8rem 0.9rem;
+  }
+
+  /* Prism's `pre[class*="language-"] { white-space: pre }` outranks the theme's
+     mobile wrap rule, so long install commands run off the screen with no
+     scrollbar. Wrapping beats horizontal scroll here: these are commands people
+     need to read in full. */
+  .code-toolbar pre,
+  .code-toolbar pre[class*="language-"],
+  .code-toolbar code,
+  .code-toolbar code[class*="language-"] {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Keep the copy button clear of the window buttons in the narrow title bar. */
+  div.code-toolbar > .toolbar {
+    right: 4.4rem;
+  }
+
+  div.code-toolbar > .toolbar > .toolbar-item > a,
+  div.code-toolbar > .toolbar > .toolbar-item > button {
+    font-size: 0.62rem !important;
+    padding: 3px 7px !important;
+  }
+
+  /* The logo wraps to two lines at this width; tighten it so it stays a plate. */
+  .logo {
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+  }
+
+  /* Wide tables scroll rather than overflow the page. No `nowrap`: tables with a
+     prose column would turn into one very long horizontal scroll. */
+  .post-content table,
+  .index-content table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media print {
+  .vw-horizon,
+  .vw-scanlines {
+    display: none;
+  }
+}

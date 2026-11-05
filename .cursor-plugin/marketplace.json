@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "agent-skills",
+      "name": "britts-agent-skills",
       "displayName": "Britt's Agent Skills",
       "source": "./",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more"

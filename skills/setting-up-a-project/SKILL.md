@@ -167,7 +167,7 @@ TDD is mandatory. **Read `TDD.rules.md` before writing any code.**
 
 The `@` line is a Claude Code auto-import. The sentence above it is what makes the rules reachable in every other agent, which read the file as plain text - never rely on `@` alone.
 
-If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/rules/TDD.rules.md`.
+If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/britts-agent-skills/refs/heads/main/rules/TDD.rules.md`.
 
 **Verify no placeholder survives:** `grep -n '{{' TDD.rules.md` must return nothing.
 
@@ -191,7 +191,7 @@ Claude Code repeats certain mistakes because its training data lags the tools it
 
 This file is Claude Code-specific - do not reference it from `AGENTS.md`. The other agents don't share Claude's training data, so the entries would be dead text there.
 
-If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/rules/CLAUDE-specific-fuckups.md`.
+If the bundled file is missing, fall back to fetching `https://raw.githubusercontent.com/britt/britts-agent-skills/refs/heads/main/rules/CLAUDE-specific-fuckups.md`.
 
 #### Git and Pull Request Workflow
 

@@ -3,12 +3,12 @@
 Acceptance procedure for the `project-planning` skill revision. Every scenario is run
 against the real repository and the real `gh` CLI. No mocks, with one exception recorded
 in Prerequisites: `gh issue create` is routed to a dry-run shim, because creating issues in
-`britt/agent-skills` is forbidden by the epic and the token cannot create a scratch repo.
+`britt/britts-agent-skills` is forbidden by the epic and the token cannot create a scratch repo.
 
 ## Prerequisites
 
-- Working copy of `britt/agent-skills` on branch `issue-48-update-project-planning`.
-- `gh` CLI authenticated against `britt/agent-skills` (read access is sufficient).
+- Working copy of `britt/britts-agent-skills` on branch `issue-48-update-project-planning`.
+- `gh` CLI authenticated against `britt/britts-agent-skills` (read access is sufficient).
 - `python3` for JSON assertions.
 - Dry-run shim at `.context/e2e-48/bin/gh` that records `argv` and creates nothing.
   The active `gh` is a shell wrapper pinned to `/conductor/bin/gh`, so the shim is invoked
@@ -54,7 +54,7 @@ in Prerequisites: `gh issue create` is routed to a dry-run shim, because creatin
 
 ### Scenario 3: The issue-creation batch runs, with labels reconciled first
 
-**Context**: Revised Step 8; `britt/agent-skills` label set.
+**Context**: Revised Step 8; `britt/britts-agent-skills` label set.
 
 **Steps**:
 1. Run `gh label list` against the real repo.
@@ -68,7 +68,7 @@ in Prerequisites: `gh issue create` is routed to a dry-run shim, because creatin
 - [ ] The revised Step 8 requires reconciling labels before the batch runs.
 - [ ] The revised Step 8 states what to do when the batch fails partway.
 - [ ] `argv` capture shows well-formed `gh issue create` invocations.
-- [ ] `gh issue list --state all` shows no new issues in `britt/agent-skills`.
+- [ ] `gh issue list --state all` shows no new issues in `britt/britts-agent-skills`.
 
 **If Blocked**: if the shim is bypassed, abort — do not fall through to the real `gh`.
 
@@ -115,4 +115,4 @@ the `mermaid-diagrams` rules and say so in the log.
 - Never use mocks or fakes; the single dry-run shim is scoped to `gh issue create` and is
   declared in Prerequisites.
 - If any success criterion fails, verification fails.
-- No issue, PR, or label may be created, edited, or closed in `britt/agent-skills`.
+- No issue, PR, or label may be created, edited, or closed in `britt/britts-agent-skills`.

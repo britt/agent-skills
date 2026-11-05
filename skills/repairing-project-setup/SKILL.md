@@ -32,9 +32,9 @@ Read the current `setting-up-a-project` SKILL.md - via the Skill tool, or from t
 
 The canonical rule files sit next to that SKILL.md: `TDD.rules.md`, `git-commit-rules.md`, `CLAUDE-specific-fuckups.md`. If you cannot find them locally, fetch:
 
-- `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/rules/TDD.rules.md`
-- `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/rules/CLAUDE-specific-fuckups.md`
-- `https://raw.githubusercontent.com/britt/agent-skills/refs/heads/main/skills/setting-up-a-project/git-commit-rules.md`
+- `https://raw.githubusercontent.com/britt/britts-agent-skills/refs/heads/main/rules/TDD.rules.md`
+- `https://raw.githubusercontent.com/britt/britts-agent-skills/refs/heads/main/rules/CLAUDE-specific-fuckups.md`
+- `https://raw.githubusercontent.com/britt/britts-agent-skills/refs/heads/main/skills/setting-up-a-project/git-commit-rules.md`
 
 ### 2. Audit - Before Touching Anything
 

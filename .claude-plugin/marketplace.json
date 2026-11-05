@@ -7,9 +7,12 @@
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"
   },
+  "renames": {
+    "agent-skills": "britts-agent-skills"
+  },
   "plugins": [
     {
-      "name": "agent-skills",
+      "name": "britts-agent-skills",
       "displayName": "Britt's Agent Skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
       "version": "7.0.0",

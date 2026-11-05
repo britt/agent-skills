@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/icon.png" alt="Britt's Agent Skills" width="320">
+</p>
+
 # Britt's Agent Skills
 
 A collection of skills for coding agents to enhance AI-assisted development workflows.

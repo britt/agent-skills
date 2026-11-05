@@ -1,0 +1,27 @@
+# Paradev workspace configuration.
+#
+# Converted from the older config.json format. Paradev reads config.toml first
+# and ignores config.json when both exist, so the old file was removed in the
+# same change rather than left to rot.
+#
+# There is no [install] table on purpose. [install] is for cacheable,
+# workspace-independent prep, and everything this repo needs at startup is
+# per-workspace: the Hugo theme submodule is checked out under this worktree's
+# own .git/worktrees/<name>/modules, and .agents/skills/ is a tree of symlinks
+# inside the worktree. Both belong in [setup].
+
+[setup]
+# Runs once at creation locally, and on every boot/resume in the cloud, so it
+# has to be safe to repeat. setup.sh is: submodule update, the skills re-sync,
+# and a non-fatal hugo version check — all idempotent.
+run = ["./.paradev/setup.sh"]
+
+[terminals.dev]
+# The Run button. hugo server picks a free port when 1313 is taken, so parallel
+# workspaces don't collide.
+run = "./.paradev/run.sh"
+default = true
+
+[archive]
+# Best-effort cleanup before the worktree is removed; never blocks the archive.
+run = ["./.paradev/teardown.sh"]

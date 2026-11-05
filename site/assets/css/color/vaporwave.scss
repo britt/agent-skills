@@ -1,0 +1,55 @@
+// Vaporwave palette, sampled directly from assets/icon.png.
+//
+// The icon is a glitched terminal window floating over an infinite neon grid.
+// Every value below is an actual colour out of that image, so the site and the
+// favicon read as one artifact. Sampling notes are on each token.
+//
+// re-terminal picks this file up via `themeColor = 'vaporwave'` in hugo.toml and
+// concatenates it ahead of the theme's own SCSS. `html:root` (not `:root`) is the
+// theme's convention here: it outranks the `:root` block in variables.scss, which
+// would otherwise recompute --background off --accent.
+
+html:root {
+  // --- Core palette ------------------------------------------------------
+  --vw-void: #080530; // the deep indigo field behind the grid
+  --vw-horizon: #1c062d; // warmer violet haze at the vanishing point
+  --vw-surface: #140a38; // raised panel, sits between void and horizon
+  --vw-cyan: #2de8ff; // the "BAS" glow and the far grid lines
+  --vw-magenta: #ff4cf0; // near grid lines and the chromatic glitch bars
+  --vw-violet: #9872e5; // the window title-bar gradient
+  --vw-pale: #c8f6ff; // pale cyan-white, the brightest text in the icon
+
+  // --- Derived ------------------------------------------------------------
+  --vw-grid-near: #{rgba(#ff4cf0, 0.8)};
+  --vw-grid-far: #{rgba(#2de8ff, 0.62)};
+  --vw-dim: #{rgba(#c8f6ff, 0.62)}; // de-emphasised body copy
+
+  // --- Wiring into re-terminal's own variables ----------------------------
+  // The theme drives nearly everything off --accent. Cyan is the icon's loudest
+  // colour and the one with the most headroom on a dark field, so it carries the
+  // accent role; magenta is kept in reserve for the signature moments only.
+  --accent: var(--vw-cyan);
+  --accent-contrast-color: var(--vw-void);
+  --color: var(--vw-pale);
+  --menu-color: var(--vw-pale);
+  --border-color: #{rgba(#9872e5, 0.26)};
+  --article-link-color: var(--vw-cyan);
+
+  // Syntax highlighting, recoloured off the same six values rather than the
+  // theme's greys so code blocks stay inside the palette.
+  // --syntax-func-color also sets the base colour of all code text
+  // (`code[class*="language-"]` in syntax.scss), so it has to stay legible —
+  // violet here drops plain commands to roughly 2:1 on the window background.
+  --syntax-func-color: var(--vw-pale);
+  --syntax-var-color: var(--vw-cyan);
+  --syntax-punctuation-color: #{rgba(#c8f6ff, 0.75)};
+  --syntax-value-color: var(--vw-magenta);
+  --syntax-comment-color: #{rgba(#9872e5, 0.7)};
+  --syntax-code-border-color: #{rgba(#9872e5, 0.3)};
+  // The copy button sits on the bright title bar of the code window, so it needs
+  // a dark plate and light text — the inverse of the usual dark-background case.
+  // syntax.scss locks these with !important, so the variables are the only way in.
+  --syntax-code-copy-button-background: #{rgba(#080530, 0.82)};
+  --syntax-code-copy-button-color: #c8f6ff;
+  --syntax-code-copy-button-box-shadow-color: transparent;
+}

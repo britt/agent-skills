@@ -1,0 +1,11 @@
+{{/*
+  Vaporwave atmosphere layers (see static/style.css).
+
+  These are two purely decorative elements the stylesheet can't produce on its
+  own: the grid needs a `perspective` parent plus a transformed child, and doing
+  that with pseudo-elements alone would mean putting `perspective` on <body>,
+  which traps every fixed-position descendant. Both are aria-hidden and are
+  dropped at print size.
+*/}}
+<div class="vw-horizon" aria-hidden="true"></div>
+<div class="vw-scanlines" aria-hidden="true"></div>

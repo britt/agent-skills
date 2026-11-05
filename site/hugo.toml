@@ -13,7 +13,13 @@ copyright = '© 2026 Snugglebear Team Company'
   # re-terminal reads the homepage/OG description from subtitle
   subtitle = 'A collection of skills to enhance AI-assisted development workflows'
   keywords = 'agent skills, claude code, codex, cursor, hugo, ai coding agents'
-  themeColor = 'green'
+  # re-terminal's head.html reads params.favicon as the og:image source. It does
+  # NOT affect the favicon <link> tags, which take the static/favicon.ico branch.
+  # Without this the theme falls back to img/favicon/<themeColor>.png, which the
+  # theme does not ship at all — so the share card was 404ing.
+  favicon = 'og-image.png'
+  # Palette lives in assets/css/color/vaporwave.scss, sampled from assets/icon.png
+  themeColor = 'vaporwave'
   contentTypeName = 'skills'
   showMenuItems = 3
   fullWidthTheme = false

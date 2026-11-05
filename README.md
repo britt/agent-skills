@@ -70,10 +70,23 @@ Add this repository as a plugin marketplace:
 /plugin marketplace add britt/agent-skills
 ```
 
+> **Migrating from `@britt`:** the marketplace is now named `britts-agent-skills`, so install
+> ids that used to read `agent-skills@britt` are now `agent-skills@britts-agent-skills`. Claude
+> Code registers one marketplace per name, so remove the old registration and add it again:
+>
+> ```bash
+> /plugin marketplace remove britt
+> /plugin marketplace add britt/agent-skills
+> /plugin install agent-skills@britts-agent-skills
+> ```
+>
+> The repository, the plugin names, and every skill name are unchanged — only the part after
+> the `@` moves.
+
 **Install all skills:**
 
 ```bash
-/plugin install agent-skills@britt
+/plugin install agent-skills@britts-agent-skills
 ```
 
 **Install a curated bundle:**
@@ -83,49 +96,49 @@ Add this repository as a plugin marketplace:
 # and change-footprint estimates, user stories, verification plans,
 # architecture/dependency/Mermaid diagrams, and Conductor-driven work on
 # issues and epics
-/plugin install project-foundations@britt
+/plugin install project-foundations@britts-agent-skills
 
 # llpm: product/project-management skills - requirements, specs, user
 # stories, stakeholders, meetings, triage, risk, timeline/dependency planning,
 # and the project-planning orchestrator (add architecture-diagramming separately)
-/plugin install llpm@britt
+/plugin install llpm@britts-agent-skills
 
 # chat: for chat agents rather than coding agents - writing and
 # communication, research, diagrams, requirements, specs, and daily planning.
 # Nothing in it needs a repository, git, or the gh CLI.
-/plugin install chat@britt
+/plugin install chat@britts-agent-skills
 ```
 
 **Install individual skills:**
 
 ```bash
-/plugin install architecture-diagramming@britt
-/plugin install at-risk-detection@britt
-/plugin install build-faq-from-issues@britt
-/plugin install context-aware-questions@britt
-/plugin install dependency-mapping@britt
-/plugin install estimating-change-footprint@britt
-/plugin install estimating-work-items@britt
-/plugin install idea-to-design@britt
-/plugin install issue-decomposition@britt
-/plugin install markdown-formatting@britt
-/plugin install mermaid-diagrams@britt
-/plugin install prepare-meeting-agenda@britt
-/plugin install project-analysis@britt
-/plugin install project-planning@britt
-/plugin install requirement-elicitation@britt
-/plugin install research-topic-summarize@britt
-/plugin install stakeholder-tracking@britt
-/plugin install stakeholder-updates@britt
-/plugin install summarize-conversation-thread@britt
-/plugin install timeline-planning@britt
-/plugin install triage-new-issues@britt
-/plugin install working-on-an-issue@britt
-/plugin install working-on-an-epic@britt
-/plugin install supervising-conductor-workspaces@britt
+/plugin install architecture-diagramming@britts-agent-skills
+/plugin install at-risk-detection@britts-agent-skills
+/plugin install build-faq-from-issues@britts-agent-skills
+/plugin install context-aware-questions@britts-agent-skills
+/plugin install dependency-mapping@britts-agent-skills
+/plugin install estimating-change-footprint@britts-agent-skills
+/plugin install estimating-work-items@britts-agent-skills
+/plugin install idea-to-design@britts-agent-skills
+/plugin install issue-decomposition@britts-agent-skills
+/plugin install markdown-formatting@britts-agent-skills
+/plugin install mermaid-diagrams@britts-agent-skills
+/plugin install prepare-meeting-agenda@britts-agent-skills
+/plugin install project-analysis@britts-agent-skills
+/plugin install project-planning@britts-agent-skills
+/plugin install requirement-elicitation@britts-agent-skills
+/plugin install research-topic-summarize@britts-agent-skills
+/plugin install stakeholder-tracking@britts-agent-skills
+/plugin install stakeholder-updates@britts-agent-skills
+/plugin install summarize-conversation-thread@britts-agent-skills
+/plugin install timeline-planning@britts-agent-skills
+/plugin install triage-new-issues@britts-agent-skills
+/plugin install working-on-an-issue@britts-agent-skills
+/plugin install working-on-an-epic@britts-agent-skills
+/plugin install supervising-conductor-workspaces@britts-agent-skills
 ```
 
-**Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britt` to get all of these, `project-foundations@britt` for the project-setup and user-story/verification skills, `llpm@britt` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britt` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.
+**Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `agent-skills@britts-agent-skills` to get all of these, `project-foundations@britts-agent-skills` for the project-setup and user-story/verification skills, `llpm@britts-agent-skills` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britts-agent-skills` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.
 
 ### Claude Code: Manual Installation
 
@@ -153,10 +166,10 @@ This repo is a Codex plugin marketplace (`.codex-plugin/plugin.json` + the exist
 
 ```bash
 codex plugin marketplace add britt/agent-skills
-codex plugin install agent-skills@britt        # all skills
-codex plugin install project-foundations@britt       # curated bundle only
-codex plugin install llpm@britt                      # curated bundle only
-codex plugin install chat@britt                      # curated bundle only
+codex plugin install agent-skills@britts-agent-skills        # all skills
+codex plugin install project-foundations@britts-agent-skills       # curated bundle only
+codex plugin install llpm@britts-agent-skills                      # curated bundle only
+codex plugin install chat@britts-agent-skills                      # curated bundle only
 ```
 
 ### Cursor
@@ -181,7 +194,7 @@ done
 
 Codex CLI also reads `~/.codex/AGENTS.md` / project `AGENTS.md`, OpenCode reads `AGENTS.md` and natively falls back to `.claude/skills/`, and Cursor also reads `.cursor/skills/` — so a plain `git clone` into any of those tool-specific directories works too. Restart the tool after installation to load new skills.
 
-**Note:** Some skills (like `sgai-goal`) reference Claude Code-specific tooling (e.g. `CLAUDE.md`, `TodoWrite`) and may need minor adaptation to work identically in other tools; most skills are plain instructional markdown and are unaffected. `setting-up-a-project` is multi-agent aware — it writes both a `CLAUDE.md` and an `AGENTS.md` adapted for Codex CLI, OpenCode, and Cursor. Granular per-skill plugin installs (like `/plugin install architecture-diagramming@britt` for Claude Code) aren't set up for Codex/Cursor yet — only the two bundles above; use the manual `.agents/skills/` installation for individual-skill granularity on those tools.
+**Note:** Some skills (like `sgai-goal`) reference Claude Code-specific tooling (e.g. `CLAUDE.md`, `TodoWrite`) and may need minor adaptation to work identically in other tools; most skills are plain instructional markdown and are unaffected. `setting-up-a-project` is multi-agent aware — it writes both a `CLAUDE.md` and an `AGENTS.md` adapted for Codex CLI, OpenCode, and Cursor. Granular per-skill plugin installs (like `/plugin install architecture-diagramming@britts-agent-skills` for Claude Code) aren't set up for Codex/Cursor yet — only the two bundles above; use the manual `.agents/skills/` installation for individual-skill granularity on those tools.
 
 ### Claude.ai (Web and iOS)
 

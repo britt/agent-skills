@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "britt",
+  "name": "britts-agent-skills",
   "version": "7.0.0",
   "description": "Britt's Agent Skills - a collection of skills for coding agents to enhance AI-assisted development workflows",
   "owner": {

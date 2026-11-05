@@ -37,10 +37,10 @@ Claude Code installs skills through the plugin marketplace.
 
 ```bash
 /plugin marketplace add britt/agent-skills
-/plugin install agent-skills@britt
-/plugin install project-foundations@britt
-/plugin install llpm@britt
-/plugin install chat@britt
+/plugin install agent-skills@britts-agent-skills
+/plugin install project-foundations@britts-agent-skills
+/plugin install llpm@britts-agent-skills
+/plugin install chat@britts-agent-skills
 ```
 
 ### Codex CLI
@@ -49,10 +49,10 @@ Codex CLI installs the repository through its plugin marketplace.
 
 ```bash
 codex plugin marketplace add britt/agent-skills
-codex plugin install agent-skills@britt
-codex plugin install project-foundations@britt
-codex plugin install llpm@britt
-codex plugin install chat@britt
+codex plugin install agent-skills@britts-agent-skills
+codex plugin install project-foundations@britts-agent-skills
+codex plugin install llpm@britts-agent-skills
+codex plugin install chat@britts-agent-skills
 ```
 
 ### Cursor

@@ -17,9 +17,10 @@
 # refuses to validate a marketplace whose entry version and plugin.json version
 # disagree, so these two belong in the same lockstep check as the rest.
 #
-# The root agent-skills bundle has a fifth: the top-level "version" in
+# The root (full-library) bundle has two more: the top-level "version" in
 # .claude-plugin/marketplace.json, which describes the marketplace itself but
-# has always tracked the full bundle.
+# has always tracked the full bundle, and ./plugin.json, the Agent Plugins
+# 1.0.0 manifest at the repo root.
 #
 # This checks that those agree — not that a bump happened — so it is safe to
 # run on every pull request. Bundles version independently of one another;
@@ -69,11 +70,19 @@ while IFS=$'\t' read -r name source; do
           ".cursor-plugin/plugin.json" "$MARKETPLACE ($name entry)" \
           "$PARADEV_MARKETPLACE ($name entry)" "${pd_source:-<no paradev entry>}/plugin.json")
 
-  # The marketplace's own version tracks the root bundle
+  # The marketplace's own version and the root Agent Plugins manifest track
+  # the root bundle
   if [ "$source" = "./" ]; then
     top=$(jq -r '.version // "MISSING"' "$MARKETPLACE")
     versions+=("$top")
     labels+=("$MARKETPLACE (top-level)")
+    if [ -f plugin.json ]; then
+      root=$(jq -r '.version // "MISSING"' plugin.json)
+    else
+      root=MISSING
+    fi
+    versions+=("$root")
+    labels+=("plugin.json (repo root)")
   fi
 
   status=ok

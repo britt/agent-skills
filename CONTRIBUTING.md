@@ -10,6 +10,7 @@ Guidelines for contributing to this skills repository.
 agent-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
+├── plugin.json               # Agent Plugins 1.0.0 manifest (full bundle)
 ├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks and the rules/ mirror in sync with skills/
 ├── .claude-plugin/
 │   ├── marketplace.json      # Claude Code plugin marketplace configuration
@@ -138,9 +139,11 @@ That value must match the skill's `version` in `.claude-plugin/marketplace.json`
 
 ### 5. Bumping the Bundle Version (Required when releasing)
 
-The full-bundle skill archive is described in four places that must stay in lockstep: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, and the `agent-skills` entry in `.claude-plugin/marketplace.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
+The full-bundle skill archive is described in places that must stay in lockstep: the root `plugin.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, the `britts-agent-skills` entry and top-level `version` in `.claude-plugin/marketplace.json`, and the `britts-agent-skills` entry in `.agent-marketplace.json` with its `bundles/britts-agent-skills/plugin.json`. Each curated bundle has its own set of three manifests under `bundles/<name>/` (`project-foundations`, `llpm`, `chat`), versioned independently of the full bundle, plus a matching entry in `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json`.
 
 The bundle's `displayName` ("Britt's Agent Skills") lives in those same manifests, plus the `britts-agent-skills` entry in `.cursor-plugin/marketplace.json`. The bundle's `icon` (`./assets/icon.png`) sits beside it in the same three plugin manifests. Claude Code ignores `icon` at load time — it is read by Anthropic's plugin directory — and it belongs only in a plugin manifest: `claude plugin validate` reports it as an unknown field in `marketplace.json`, at the top level and in a plugin entry alike. The display name is display text only. The plugin's `name` is `britts-agent-skills`: it namespaces every skill (`britts-agent-skills:issue-decomposition`) and forms the install id (`britts-agent-skills@britts-agent-skills`), so renaming it again means adding another entry to the marketplace's `renames` map, which migrates existing installs
+
+The root `plugin.json` is the full library's [Agent Plugins 1.0.0](https://agent-plugins.org/specification) manifest; the spec requires one at the plugin root, and `package-bundles.sh` puts it at the root of the full-library zip. The spec's manifest schema is closed (`additionalProperties: false`), so it holds only spec fields: no `displayName`, `icon`, `category`, or `skills`. Those stay in the client-specific manifests. A conforming client finds the skills at the default `skills/<name>/SKILL.md` location.
 
 Each `bundles/<name>/plugin.json` is an [Agent Plugins 1.0.0](https://agent-plugins.org/specification) manifest, so its `$schema` must be exactly `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`. The published schema enforces that value with `const`, and a conforming client rejects a plugin whose `$schema` it does not recognize, loading none of its skills. Do not put Paradev's own schema URL (`https://paradev.com/schemas/plugin/1.0.0.json`, formerly `https://superset.sh/schemas/plugin/1.0.0.json`) there: Paradev's schema accepts any string for `$schema`, so the Agent Plugins URL satisfies both.
 

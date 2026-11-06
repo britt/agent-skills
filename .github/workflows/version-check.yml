@@ -2,7 +2,7 @@
 #
 # Each bundle declares its version in three plugin manifests plus its
 # marketplace entry (the root bundle adds the marketplace's own top-level
-# version). CONTRIBUTING.md says to bump them together; this enforces it.
+# version and the repo-root Agent Plugins plugin.json). CONTRIBUTING.md says to bump them together; this enforces it.
 #
 # The check compares sources for agreement, not for a bump, so a PR that
 # changes no versions passes.

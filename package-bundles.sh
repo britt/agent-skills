@@ -36,7 +36,11 @@ NESTED_SKILL_ZIPS=(chat)
 # assets/ carries icon.png, which every plugin manifest names as its icon and
 # README.md embeds. Leaving it out shipped archives whose icon path and README
 # image both pointed at nothing.
+#
+# plugin.json is the Agent Plugins 1.0.0 manifest for the full library. A
+# conforming client requires it at the plugin root, so the archive carries it.
 ROOT_INCLUDES=(
+  plugin.json
   .claude-plugin
   .codex-plugin
   .cursor-plugin

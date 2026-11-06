@@ -43,3 +43,8 @@ for f in TDD.rules.md CLAUDE-specific-fuckups.md; do
   cp "skills/setting-up-a-project/$f" "rules/$f"
   echo "Mirrored rules/$f from skills/setting-up-a-project/."
 done
+
+# Materialize the bundles under bundles/ from skills/ and assets/. Bundles hold
+# real copies, not symlinks: each bundle is its own plugin root, and Agent
+# Plugins rejects symlinks that escape it. See sync-bundles.sh.
+./sync-bundles.sh

@@ -12,8 +12,9 @@
 # bundle's own .claude-plugin/plugin.json — bundle versions move independently
 # of the repo's release tags.
 #
-# Skills inside bundles/ are symlinks into skills/. They are dereferenced here
-# so each archive carries real files and unzips standalone.
+# Bundles under bundles/ hold real copies of their skills and icon, generated
+# by sync-bundles.sh, so they are copied as-is. Run ./check-bundles.sh first if
+# you need to be sure those copies match skills/.
 
 set -euo pipefail
 
@@ -68,7 +69,8 @@ while IFS=$'\t' read -r name source; do
   stage_dir="$STAGE/$name"
   mkdir -p "$stage_dir"
 
-  # -L dereferences the skill symlinks inside bundles/
+  # -L dereferences symlinks. Bundles no longer contain any; the root
+  # includes do not either, but -L keeps an archive standalone regardless.
   if [ "$source" = "./" ]; then
     for item in "${ROOT_INCLUDES[@]}"; do
       cp -RL "$item" "$stage_dir/"

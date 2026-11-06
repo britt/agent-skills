@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "britts-agent-skills",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Britt's Agent Skills - a collection of skills for coding agents to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
@@ -15,7 +15,7 @@
       "name": "britts-agent-skills",
       "displayName": "Britt's Agent Skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-      "version": "7.2.0",
+      "version": "7.3.0",
       "author": {
         "name": "Britt Crawford",
         "email": "britt@brittcrawford.com"
@@ -27,7 +27,7 @@
     {
       "name": "project-foundations",
       "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and agent-driven work on issues and epics",
-      "version": "2.9.0",
+      "version": "2.10.0",
       "author": {
         "name": "Britt Crawford",
         "email": "britt@brittcrawford.com"
@@ -118,7 +118,7 @@
     {
       "name": "estimating-change-footprint",
       "description": "Estimate an issue's change footprint (expected lines changed and files read, each in a bucket) to predict coding-agent token spend, recorded as labels, a Footprint section, and a project field",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Britt Crawford"
       },

@@ -16,7 +16,7 @@ A collection of skills for coding agents to enhance AI-assisted development work
 | **setting-up-a-project** | Author CLAUDE.md and AGENTS.md with project purpose, tech stack, and development practices | * | |
 | **repairing-project-setup** | Audit a repo against what setting-up-a-project would generate and repair only the gaps | * | |
 | **working-on-an-issue** | Implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate | * | |
-| **working-on-an-epic** | Coordinate an epic: child issues run in parallel Paradev workspaces, tracked to reviewable PRs | * | |
+| **working-on-an-epic** | Coordinate an epic: child issues run in parallel agent workspaces, tracked to reviewable PRs | * | |
 | **supervising-conductor-workspaces** | Dispatch one agent workspace per issue and supervise their PRs to merge: keep them current, resolve conflicts, rerun flaky CI, archive when merged | * | |
 | **supervising-paradev-workspaces** | The same fleet supervision driven by the Paradev CLI: one Paradev workspace per issue, watched to merge | * | |
 | **project-analysis** | Analyze project codebase structure, architecture, key files, and dependencies | * | * |

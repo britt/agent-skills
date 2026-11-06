@@ -315,14 +315,14 @@
     },
     {
       "name": "working-on-an-epic",
-      "description": "Coordinate a GitHub epic from a Paradev workspace: fan child issues out to separate Paradev workspaces, track them to reviewable PRs, and report on the epic",
-      "version": "2.0.0",
+      "description": "Coordinate a GitHub epic: fan child issues out to separate agent workspaces, track them to reviewable PRs in linear GitHub stacks, and report on the epic",
+      "version": "3.0.0",
       "author": {
         "name": "Britt Crawford"
       },
       "source": "./skills/working-on-an-epic",
       "category": "development",
-      "tags": ["epics", "issues", "paradev", "orchestration", "github"]
+      "tags": ["epics", "issues", "orchestration", "github", "stacked-prs"]
     },
     {
       "name": "working-on-an-issue",

@@ -140,7 +140,7 @@ The first line after the heading starts with `**<n> points**` so that `timeline-
 
 Compared with: "Add a --verbose flag to an existing command" (2) and "Add a new subcommand with its own query" (8). Closer to the 2: one flag, one output path. More than a 2 because the JSON field names become a public contract and need their own tests.
 Main unknown: whether `render.Table` formats values that the JSON should carry raw.
-Estimated by: claude-opus-5-5 in Claude Code 2.1.304 (via Paradev), estimating-work-items 1.3.0
+Estimated by: claude-opus-5-5 in Claude Code 2.1.304, estimating-work-items 1.3.0
 ```
 
 For an epic the first line is `**<sum> points** (epic)`, where the sum is exact and unrounded, followed by a `Children:` line that lists each child with its points:
@@ -166,7 +166,7 @@ Estimated by: <model> in <harness>, estimating-work-items <version>
 ```
 
 - **Model**: the exact model ID you are running as, for example `claude-opus-5-5`, not "Opus" or "Claude". Drop context-window suffixes such as `[1m]`; they mark a variant, not a different model. If you cannot tell, write `unknown-model`. Never guess.
-- **Harness**: what you are running in. That can be a coding agent (Claude Code, Codex CLI, Cursor, OpenCode) or anything else (claude.ai, an SDK app, a CI job). Add its version only if you can find it, for example from `claude --version`; otherwise give the name alone. If an outer tool is driving the harness — a workspace manager or orchestrator that launched it — add `(via <tool>)`, for example `(via Paradev)`. Look for the tool's own environment variables or a marker directory in the workspace root; if nothing identifies one, leave it off.
+- **Harness**: what you are running in. That can be a coding agent (Claude Code, Codex CLI, Cursor, OpenCode) or anything else (claude.ai, an SDK app, a CI job). Add its version only if you can find it, for example from `claude --version`; otherwise give the name alone. If an outer tool is driving the harness — a workspace manager or orchestrator that launched it — add `(via <tool>)`, naming the tool as it names itself. Look for the tool's own environment variables or a marker directory in the workspace root; if nothing identifies one, leave it off.
 - **Version**: `metadata.version` from this skill's frontmatter, copied as written.
 - **A person's estimate**: when a person gives the number and you record it, the model is `human`, with their handle if you know it, and there is no harness: `Estimated by: human (@britt), estimating-work-items 1.3.0`.
 - **One line, always current**: the line describes the estimate it sits under. On a re-estimate, or when an epic's sum is recomputed, replace it; never stack old lines.

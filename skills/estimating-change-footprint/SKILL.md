@@ -2,8 +2,8 @@
 name: estimating-change-footprint
 description: Use when writing or refining a GitHub issue that needs a cost estimate, when asked to estimate, size, budget or forecast agent spend on work, or when deciding whether an item is an issue or an epic - gives an issue a change footprint (expected lines changed and expected files read, each in a bucket) that predicts coding-agent token spend, recorded as labels, a Footprint section, and a project field
 metadata:
-  version: "0.1.1"
-  calibration: "2026-10 · sandgardenhq/gloria.dev · 77 issues"
+  version: "0.2.0"
+  calibration: "2026-11 · sandgardenhq/gloria.dev · 103 issues"
 ---
 
 # Estimating Change Footprint
@@ -17,11 +17,11 @@ A footprint has two dimensions, recorded separately:
 - **Diff size** — expected lines added plus deleted in the merged change.
 - **Read scope** — expected distinct files the agent must read to make the change correctly: the files it edits, plus the callers, tests, types, configs and docs it has to understand first.
 
-Each dimension goes in a bucket. The two buckets are reported side by side and never collapsed into one combined size (no `lines × files`); expected tokens come from a calibration table that weights diff size heavily and read scope lightly.
+Each dimension goes in a bucket, and the two buckets are recorded side by side as separate labels. Expected tokens come from the numbers behind the buckets: the calibration fit takes the product of expected lines and expected files read, so a large diff with a small read scope and a small diff with a wide read scope can cost the same.
 
 Only issues get a footprint. An epic's footprint is the sum of its children's diff sizes and the sum of their read scopes, recomputed whenever a child changes.
 
-**Why this and not points.** On 77 closed issues in `sandgardenhq/gloria.dev` with merged PRs, a log-log fit of tokens on lines changed explained 61% of the variance in log spend; adding files read brought it to 65%; story points explained 29% and added nothing once lines were known. Points and footprint can coexist (see Integration), but when the question is "what will this cost," footprint is the estimate to trust.
+**Why this and not points.** On 117 closed issues in `sandgardenhq/gloria.dev` with merged PRs (November 2026), the calibration fit's prediction explained 51% of the variance in log token spend and landed within 2× of the actual for 78% of issues; story points explained 37%. Points and footprint can coexist (see Integration), but when the question is "what will this cost," footprint is the estimate to trust.
 
 This skill is for an agent estimating on its own while it writes or refines a work item. It is not a planning-poker facilitator.
 
@@ -113,7 +113,13 @@ Read scope is where the estimate is most often wrong, in the same direction: a c
 
 ### Step 4: Derive expected tokens
 
-Look up the diff bucket in the calibration table and apply the read-scope multiplier. Record the result as a single expected-tokens figure plus the band from the calibration file.
+Put the line count from Step 2 and the file count from Step 3 into the calibration fit:
+
+```
+expected tokens = 373,785 × (lines × files)^0.432
+```
+
+Use the numbers you enumerated, not the bucket midpoints; the buckets are for the labels. Round to the nearest million (the nearest 0.5M below 5M) and record it with its band, the prediction divided and multiplied by the band factor (1.9 in the default calibration). The [grid](#expected-tokens-by-bucket) is a sanity check, and the fallback when only the buckets are known.
 
 ### Step 5: Issue or epic
 
@@ -156,7 +162,7 @@ The first line after the heading starts with `**Footprint:**` and carries both b
 ```markdown
 ## Footprint
 **Footprint: M · R2** — ~310 lines changed, ~7 files read
-**Expected tokens: ~14M** (band 8M–23M, calibration 2026-10)
+**Expected tokens: ~10M** (band 5M–20M, calibration 2026-11)
 
 Change:
 - packages/core/src/cost/usage-statements.ts +60 (new statement builder)
@@ -167,7 +173,7 @@ Change:
 
 Read: the five above, plus usage-schema.ts and the existing getUserSpendForPeriod as the pattern to follow.
 Main unknown: whether page.tsx needs a new component or extends UsageTable.
-Estimated by: claude-opus-5-5 in Claude Code 2.1.310, estimating-change-footprint 0.1.1
+Estimated by: claude-opus-5-5 in Claude Code 2.1.310, estimating-change-footprint 0.2.0
 ```
 
 For an epic the first line is `**Footprint: epic** — ~N lines changed, ~M files read (sum of children)`, followed by a `Children:` line listing each child with its buckets:
@@ -175,10 +181,10 @@ For an epic the first line is `**Footprint: epic** — ~N lines changed, ~M file
 ```markdown
 ## Footprint
 **Footprint: epic** — ~4,200 lines changed, ~38 files read (sum of children)
-**Expected tokens: ~63M** (sum of children)
+**Expected tokens: ~52M** (sum of children)
 
 Children: #41 IdP metadata config (M · R2), #42 SP metadata endpoint (S · R1), #43 assertion consumer (L · R3), #44 SSO-only login setting (XS · R1)
-Estimated by: gpt-5.6-sol in Codex CLI, estimating-change-footprint 0.1.1
+Estimated by: gpt-5.6-sol in Codex CLI, estimating-change-footprint 0.2.0
 ```
 
 An epic that has not been decomposed yet says `**Footprint: not yet estimated** (epic, awaiting decomposition)` followed by the provenance line.
@@ -189,40 +195,33 @@ An epic that has not been decomposed yet says `**Footprint: not yet estimated** 
 Estimated by: <model> in <harness>, estimating-change-footprint <version>
 ```
 
-Same rules as `estimating-work-items`: the exact model ID (never a marketing name; `unknown-model` if you cannot tell), the harness with its version if findable and `(via <tool>)` if an outer tool is driving it, and this skill's `metadata.version` copied as written. A person's estimate is `Estimated by: human (@handle), estimating-change-footprint 0.1.1`. One line, always current; replace it on re-estimate.
+Same rules as `estimating-work-items`: the exact model ID (never a marketing name; `unknown-model` if you cannot tell), the harness with its version if findable and `(via <tool>)` if an outer tool is driving it, and this skill's `metadata.version` copied as written. A person's estimate is `Estimated by: human (@handle), estimating-change-footprint 0.2.0`. One line, always current; replace it on re-estimate.
 
 Tools parse it the same way as the points skill's line: it starts with `Estimated by: ` and ends with `, estimating-change-footprint <version>`.
 
 ## Calibration
 
-The default table was fitted on 77 closed issues in `sandgardenhq/gloria.dev` (one developer, Claude Code, Aug–Oct 2026) with merged PRs and Miranda session data. The fit is
+The default fit was made on 103 closed issues in `sandgardenhq/gloria.dev` with a merged PR (Claude Code, Oct–Nov 2026, fitted 2026-11-02), regressing the issue's actual tokens from coding sessions on its **estimated** lines and files read, as written in the Footprint section:
 
 ```
-tokens ≈ 0.083M × lines^0.755 × files^0.207
+tokens ≈ 373,785 × (lines × files)^0.432
 ```
 
-with a residual band of ±1.65× (68% of issues land within that factor of the prediction). That is the default; a repo should replace it with its own numbers as soon as it has 30+ closed issues with `Actual:` lines.
+`lines` and `files` are the estimate's `~N lines changed` and `~M files read`; tokens are uncached input + cache read + cache write + output. Because the fit is on estimates, it already absorbs how far estimates tend to drift from the merged diff and from what the agent actually reads. The residual band is ×/÷1.9 (68% of issues land within that factor; 78% within 2×). The prediction is a median: on a log-log fit the mean is about 20% higher, so the actual total over many issues runs about 20% above the sum of their predictions. A repo should replace the default with its own fit as soon as it has 30+ closed issues with a footprint and measured tokens.
 
-### Expected tokens by diff bucket, at R1
+### Expected tokens by bucket
 
-| Bucket | Midpoint lines | Expected tokens |
-|---|---|---|
-| XS | 50 | ~2M |
-| S | 175 | ~5M |
-| M | 550 | ~11M |
-| L | 1,700 | ~26M |
-| XL | 5,500 | ~63M |
+At each bucket's midpoint (lines 50, 175, 550, 1,700, 5,500; files 2, 6, 18, 50):
 
-### Read-scope multiplier
+| Diff \ Reads | R1 | R2 | R3 | R4 |
+|---|---|---|---|---|
+| XS | ~2.5M | ~4.5M | ~7M | ~11M |
+| S | ~5M | ~8M | ~12M | ~19M |
+| M | ~8M | ~12M | ~20M | ~31M |
+| L | ~13M | ~20M | ~32M | ~50M |
+| XL | ~21M | ~34M | ~54M | ~84M |
 
-| Bucket | Midpoint files | Multiplier |
-|---|---|---|
-| R1 | 2 | ×1.0 |
-| R2 | 6 | ×1.25 |
-| R3 | 18 | ×1.6 |
-| R4 | 50 | ×2.0 |
-
-So an M · R2 issue is ~11M × 1.25 ≈ 14M, with a band of roughly 8M–23M.
+So an M · R2 issue at its midpoints (550 lines, 6 files) is ~12M, band 6M–24M.
 
 ### Recalibrating
 
@@ -256,17 +255,21 @@ lines AS (
           WHERE s.work_item_key <> 0 AND p.merged_at IS NOT NULL)
     GROUP BY 1
 )
-SELECT i.issue_number, l.lines, f.files_read, t.tokens
+SELECT i.issue_number,
+       i.footprint_lines, i.footprint_files_read,   -- the estimate: what the fit uses
+       l.lines, f.files_read,                        -- the actuals: how far the estimate drifted
+       t.tokens
 FROM dim_issue i
 JOIN tokens t USING (issue_key)
 JOIN lines  l USING (issue_key)
 LEFT JOIN files f USING (issue_key)
-WHERE i.issue_state = 'closed';
+WHERE i.issue_state = 'closed'
+  AND i.footprint_lines > 0 AND i.footprint_files_read > 0;
 ```
 
 Miranda's warehouse docs carry the same query with the estimates beside the actuals ("Footprint vs actual per closed issue"). `files_read` counts only the agent's file-read tools; a file read through the shell (`cat`, `sed -n`) is not counted.
 
-Fit `ln(tokens)` on `ln(lines)` and `ln(files_read)`, write the coefficients, the band, the date and the sample size into the calibration file, and regenerate the two tables above. Keep the previous table in the file under a dated heading so estimates made against it can still be read.
+Fit `ln(tokens)` on `ln(footprint_lines × footprint_files_read)`, write the coefficient, the exponent, the band (`exp` of the residual standard deviation), the date and the sample size into the calibration file, and regenerate the grid above. Leave out epics, whose sessions are mostly planning and whose numbers sum their children's. To fit on coding sessions only, restrict the `tokens` CTE with Miranda's session-type classification (the Session Types dive); in practice it changes the fit very little, because a session that opens a PR counts as coding. Keep the previous table in the file under a dated heading so estimates made against it can still be read.
 
 The calibration file also records repo conventions: whether generated files count toward lines, which directories are excluded, and what counts as a "read" (the agent's `Read` tool only, or `cat`/`sed` in a shell too).
 
@@ -291,7 +294,7 @@ Prefer the split where the children's read scopes don't overlap much; overlappin
 |---|---|---|
 | Estimating from the title ("add a flag, so XS · R1") | Skips the enumeration that finds the ten callers | Open the files; `grep -rl` the importers (Steps 2–3) |
 | Counting the agent's edits instead of the merged diff | A file written five times is not five files' worth of diff | Estimate the final diff; the PR's additions + deletions is the ground truth |
-| Multiplying lines by files into one size | Files read matter far less than lines; a raw product over-weights them | Record both; use the calibration table, which weights them, for the combined figure |
+| Computing tokens from bucket midpoints when you enumerated the files | Throws away the line and file counts you just worked out | Put the enumerated `~N` and `~M` into the fit; use the grid only as a check |
 | Converting footprint to hours | Nothing here predicts duration; it predicts spend | Leave duration to points and `timeline-planning` |
 | Skipping the `Actual:` line | The calibration never improves and the estimate never gets checked | Close the loop at merge, by hand or automation |
 | Re-estimating merged work | Rewrites history | Leave it; fix the calibration file instead |
@@ -305,8 +308,8 @@ Item: "Add a `--json` flag to `shiplog list` so the output can be piped to jq. T
 - **Files named:** `cmd/shiplog/list.go`, its test, and the render package's `Table` helper — the gate passes.
 - **Change:** `list.go` +40 (flag, branch), `list_test.go` +70 (JSON shape, empty case), `render/json.go` +45 (new), `docs/cli.md` +10. Sum ~165 → **S**.
 - **Read:** the four above, plus `render/table.go` (to learn the value-formatting rules), `cmd/shiplog/root.go` (flag registration pattern), and one existing `--json` implementation elsewhere in the repo as the canonical example. Seven files → **R2**.
-- **Expected tokens:** S at R1 is ~5M; × 1.25 for R2 ≈ **6M**, band 4M–10M.
-- **Record:** labels `diff-S`, `reads-R2`; Footprint section with the file list and the unknown ("does `render.Table` format values the JSON should carry raw?"); project field 6.
+- **Expected tokens:** 373,785 × (165 × 7)^0.432 ≈ **8M**, band 4M–15M.
+- **Record:** labels `diff-S`, `reads-R2`; Footprint section with the file list and the unknown ("does `render.Table` format values the JSON should carry raw?"); project field 8.
 
 ## Integration
 

@@ -34,8 +34,8 @@ Diff size (lines added plus deleted: XS, S, M, L, XL) and read scope (distinct f
 **Estimated from the code, not the title**
 An estimability gate requires naming the files the change will touch. The agent then lists every file it expects to create or modify with a rough line count, and counts the callers, tests, types, and docs it must read, using `grep -rl` rather than guessing. An item that can't be pinned to files gets questions back or becomes a spike.
 
-**Expected tokens from a calibration table**
-A default fit from 77 closed issues (`tokens ≈ 0.083M × lines^0.755 × files^0.207`, band ±1.65×) turns the buckets into an expected-tokens figure. A repo-local `docs/estimation/footprint-calibration.md` overrides it, and the skill includes the query to rebuild it from Miranda data.
+**Expected tokens from a calibration fit**
+A default fit from 103 closed issues (`tokens ≈ 373,785 × (lines × files)^0.432`, band ×/÷1.9) turns the estimated lines and files read into an expected-tokens figure. A repo-local `docs/estimation/footprint-calibration.md` overrides it, and the skill includes the query to rebuild it from Miranda data.
 
 **Recorded where tools can read it**
 `diff-<bucket>` and `reads-<bucket>` labels, a `## Footprint` section whose first two lines are machine-readable, and a GitHub Project number field for expected tokens when the repo has one. Epics carry the sum of their children in the section and the field.

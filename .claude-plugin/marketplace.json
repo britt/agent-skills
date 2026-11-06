@@ -118,7 +118,7 @@
     {
       "name": "estimating-change-footprint",
       "description": "Estimate an issue's change footprint (expected lines changed and files read, each in a bucket) to predict coding-agent token spend, recorded as labels, a Footprint section, and a project field",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "author": {
         "name": "Britt Crawford"
       },

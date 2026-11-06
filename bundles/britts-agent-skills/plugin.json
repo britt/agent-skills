@@ -1,0 +1,21 @@
+{
+  "$schema": "https://superset.sh/schemas/plugin/1.0.0.json",
+  "name": "britts-agent-skills",
+  "version": "7.1.0",
+  "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
+  "author": {
+    "name": "Britt Crawford",
+    "url": "https://github.com/britt"
+  },
+  "homepage": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/britts-agent-skills",
+  "license": "MIT",
+  "extensions": {
+    "superset": {
+      "interface": {
+        "displayName": "Britt's Agent Skills",
+        "category": "Developer tools"
+      }
+    }
+  }
+}

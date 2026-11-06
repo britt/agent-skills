@@ -3,11 +3,19 @@
 # Verify that every bundle's version is in lockstep across the places that
 # declare it.
 #
-# A bundle's version lives in four files:
+# A bundle's version lives in six files:
 #   <source>/.claude-plugin/plugin.json
 #   <source>/.codex-plugin/plugin.json
 #   <source>/.cursor-plugin/plugin.json
 #   the bundle's entry in .claude-plugin/marketplace.json
+#   <paradev-source>/plugin.json
+#   the bundle's entry in .agent-marketplace.json
+#
+# Paradev's source differs for the full library: it cannot publish from "./",
+# so that bundle lives at ./bundles/britts-agent-skills. The Paradev source is
+# therefore looked up by plugin name, not reused from the Claude entry. Paradev
+# refuses to validate a marketplace whose entry version and plugin.json version
+# disagree, so these two belong in the same lockstep check as the rest.
 #
 # The root agent-skills bundle has a fifth: the top-level "version" in
 # .claude-plugin/marketplace.json, which describes the marketplace itself but
@@ -30,13 +38,14 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 MARKETPLACE=".claude-plugin/marketplace.json"
+PARADEV_MARKETPLACE=".agent-marketplace.json"
 
 command -v jq >/dev/null || { echo "error: jq is required" >&2; exit 1; }
 
 failed=0
 
-printf '%-22s %-10s %-10s %-10s %-12s %s\n' \
-  BUNDLE CLAUDE CODEX CURSOR MARKETPLACE STATUS
+printf '%-22s %-10s %-10s %-10s %-12s %-10s %s\n' \
+  BUNDLE CLAUDE CODEX CURSOR MARKETPLACE PARADEV STATUS
 
 while IFS=$'\t' read -r name source; do
   claude=$(jq -r '.version // "MISSING"' "$source/.claude-plugin/plugin.json")
@@ -45,9 +54,20 @@ while IFS=$'\t' read -r name source; do
   entry=$(jq -r --arg n "$name" \
     '(.plugins[] | select(.name == $n) | .version) // "MISSING"' "$MARKETPLACE")
 
-  versions=("$claude" "$codex" "$cursor" "$entry")
+  pd_entry=$(jq -r --arg n "$name" \
+    '(.plugins[] | select(.name == $n) | .version) // "MISSING"' "$PARADEV_MARKETPLACE")
+  pd_source=$(jq -r --arg n "$name" \
+    '(.plugins[] | select(.name == $n) | .source) // ""' "$PARADEV_MARKETPLACE")
+  if [ -n "$pd_source" ] && [ -f "$pd_source/plugin.json" ]; then
+    pd_plugin=$(jq -r '.version // "MISSING"' "$pd_source/plugin.json")
+  else
+    pd_plugin=MISSING
+  fi
+
+  versions=("$claude" "$codex" "$cursor" "$entry" "$pd_entry" "$pd_plugin")
   labels=(".claude-plugin/plugin.json" ".codex-plugin/plugin.json" \
-          ".cursor-plugin/plugin.json" "$MARKETPLACE ($name entry)")
+          ".cursor-plugin/plugin.json" "$MARKETPLACE ($name entry)" \
+          "$PARADEV_MARKETPLACE ($name entry)" "${pd_source:-<no paradev entry>}/plugin.json")
 
   # The marketplace's own version tracks the root bundle
   if [ "$source" = "./" ]; then
@@ -64,8 +84,8 @@ while IFS=$'\t' read -r name source; do
     fi
   done
 
-  printf '%-22s %-10s %-10s %-10s %-12s %s\n' \
-    "$name" "$claude" "$codex" "$cursor" "$entry" "$status"
+  printf '%-22s %-10s %-10s %-10s %-12s %-10s %s\n' \
+    "$name" "$claude" "$codex" "$cursor" "$entry" "$pd_entry" "$status"
 
   if [ "$status" = MISMATCH ]; then
     for i in "${!versions[@]}"; do

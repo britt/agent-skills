@@ -1,0 +1,21 @@
+{
+  "$schema": "https://superset.sh/schemas/plugin/1.0.0.json",
+  "name": "chat",
+  "version": "1.3.0",
+  "description": "Skills for chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning - no repository, git, or gh CLI required",
+  "author": {
+    "name": "Britt Crawford",
+    "url": "https://github.com/britt"
+  },
+  "homepage": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/britts-agent-skills",
+  "license": "MIT",
+  "extensions": {
+    "superset": {
+      "interface": {
+        "displayName": "Chat Skills",
+        "category": "Developer tools"
+      }
+    }
+  }
+}

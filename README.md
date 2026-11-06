@@ -199,7 +199,7 @@ paradev plugins install llpm@britts-agent-skills                   # curated bun
 paradev plugins install chat@britts-agent-skills                   # curated bundle only
 ```
 
-Paradev requires every plugin to live in its own directory inside the marketplace root, so the full library is published from `bundles/britts-agent-skills/` (a single `skills` symlink back to the canonical `skills/`) rather than from `./` the way the Claude, Codex, and Cursor manifests do. The skills are the same either way.
+Paradev requires every plugin to live in its own directory inside the marketplace root, so the full library is published from `bundles/britts-agent-skills/` (generated copies of every skill in the canonical `skills/`, kept in sync by `./sync-bundles.sh` and checked in CI) rather than from `./` the way the Claude, Codex, and Cursor manifests do. The skills are the same either way.
 
 ### Codex CLI, OpenCode, and Cursor: Manual Installation
 

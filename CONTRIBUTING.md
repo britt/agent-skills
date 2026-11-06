@@ -11,7 +11,9 @@ agent-skills/
 ├── README.md                 # Installation and usage guide
 ├── CONTRIBUTING.md           # This file
 ├── plugin.json               # Agent Plugins 1.0.0 manifest (full bundle)
-├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks and the rules/ mirror in sync with skills/
+├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks, the rules/ mirror, and the bundle copies in sync with skills/
+├── sync-bundles.sh           # Regenerates the real skill and icon copies under bundles/ (run by sync-agents-skills.sh)
+├── check-bundles.sh          # Fails if a bundle copy has drifted from skills/ or assets/, or holds a symlink (runs in CI)
 ├── .claude-plugin/
 │   ├── marketplace.json      # Claude Code plugin marketplace configuration
 │   └── plugin.json           # Claude Code plugin manifest (full bundle)
@@ -22,8 +24,8 @@ agent-skills/
 │   └── plugin.json           # Cursor plugin manifest (full bundle)
 ├── .agent-marketplace.json   # Paradev plugin marketplace configuration
 ├── bundles/
-│   ├── britts-agent-skills/  # Paradev-only source for the full library: plugin.json + a skills symlink
-│   ├── project-foundations/  # Curated bundle: per-agent manifests, plugin.json, skill symlinks
+│   ├── britts-agent-skills/  # Paradev-only source for the full library: plugin.json + generated copies of every skill
+│   ├── project-foundations/  # Curated bundle: per-agent manifests, plugin.json, generated skill copies
 │   ├── llpm/
 │   └── chat/
 ├── .agents/
@@ -43,7 +45,7 @@ agent-skills/
         └── SKILL.md
 ```
 
-`skills/` is the single canonical copy of every skill. `.agents/skills/` holds only symlinks back into it (read natively by Codex CLI, OpenCode, and Cursor) — never commit real files there.
+`skills/` is the canonical copy of every skill. `.agents/skills/` holds only symlinks back into it (read natively by Codex CLI, OpenCode, and Cursor) — never commit real files there. `bundles/<name>/skills/` holds generated copies, not symlinks (see [Bundle contents](#bundle-contents)) — never edit them by hand.
 
 ## Creating a New Skill
 
@@ -99,6 +101,8 @@ Optional elements:
 
 Run `./sync-agents-skills.sh` to add the `.agents/skills/<name>` symlink for your new skill (and clean up any stale ones). This is what makes the skill discoverable by Codex CLI, OpenCode, and Cursor — commit the symlink, not a copy of the file.
 
+The same script runs `./sync-bundles.sh`, which copies the new skill into `bundles/britts-agent-skills/skills/` (the full library) and refreshes every other bundle's copies. Commit those copies too. Re-run it after any edit to a skill that a bundle carries; CI fails otherwise.
+
 The same script refreshes `rules/`, which mirrors rule sets bundled inside skills so they stay fetchable by raw URL. Edit the copy inside the skill; never edit `rules/` directly. Skills must stay self-contained — single-skill installs use `"source": "./skills/<name>"`, so a symlink out of the skill directory would dangle.
 
 ### 4. Update Marketplace (Required)
@@ -151,11 +155,18 @@ Each `bundles/<name>/plugin.json` is an [Agent Plugins 1.0.0](https://agent-plug
 
 Paradev keeps its own icon, at `extensions.superset.interface.icon` in each `bundles/<name>/plugin.json`. Its schema says only `"type": "string"`, so the convention is ours to set: all four bundles name the file, `./assets/icon.png`, matching the three Claude/Codex/Cursor manifests. Paradev's own plugins instead put a brand slug there (`"icon": "github"`), which works only because the app compiles their artwork in by plugin name; a slug from this repo would resolve to nothing. The icon belongs only in a plugin manifest: the Paradev marketplace schema sets `additionalProperties: false` on a plugin entry and has no `icon`, so `.agent-marketplace.json` would fail validation.
 
-A relative icon path has to resolve inside the bundle, so each `bundles/<name>/assets/icon.png` is a symlink back to the canonical `assets/icon.png`, the same arrangement the skills use, dereferenced by `package-bundles.sh` into every archive. `assets/` is in that script's `ROOT_INCLUDES` for the same reason. Today's Paradev desktop still draws a puzzle glyph for any plugin it does not ship artwork for, so the field changes nothing on the Plugins page yet; what it does guarantee is that the path it names is real.
+A relative icon path has to resolve inside the bundle, so each `bundles/<name>/assets/icon.png` is a generated copy of the canonical `assets/icon.png`, the same arrangement the skills use (see [Bundle contents](#bundle-contents)). `assets/` is in that script's `ROOT_INCLUDES` for the same reason. Today's Paradev desktop still draws a puzzle glyph for any plugin it does not ship artwork for, so the field changes nothing on the Plugins page yet; what it does guarantee is that the path it names is real.
 
 Run `./check-versions.sh` to verify a bundle's sources agree before opening a PR. The same check runs on every pull request and again in the release workflow before any asset is built.
 
-A bundle's `skills/` directory holds only symlinks back into the canonical `skills/` tree — `ln -s ../../../skills/<name> bundles/<bundle>/skills/<name>`. Never copy a skill into a bundle; a bundle is a curation, not a fork.
+### Bundle contents
+
+Each `bundles/<name>/` is its own plugin root, and [Agent Plugins 1.0.0 §4.1.3–4.1.4](https://agent-plugins.org/specification) rejects any symlink that resolves outside a plugin root: a conforming client installing a symlinked bundle from a git checkout loads none of its skills. So a bundle's `skills/<name>/` directories and its `assets/icon.png` are real copies of the canonical `skills/<name>/` and `assets/icon.png`, generated by `./sync-bundles.sh` and committed. A bundle is still a curation, not a fork: edit the canonical copy, never the one under `bundles/`, then run the script.
+
+- `britts-agent-skills` carries every skill in `skills/`, so new skills land there automatically. It is listed in `FULL_LIBRARY_BUNDLES` in both `sync-bundles.sh` and `check-bundles.sh`.
+- Every other bundle carries exactly the skills whose directories exist under its `skills/`. To add one, `mkdir bundles/<bundle>/skills/<name>` and run `./sync-bundles.sh`; to drop one, delete that directory.
+
+`./check-bundles.sh` fails if any bundle contains a symlink, if a bundled skill or icon differs from its canonical copy (contents or executable bit), or if the full-library bundle's skill set differs from `skills/`. It runs on every pull request; the fix is always `./sync-bundles.sh` and a commit.
 
 ## Building Skill Archives
 
@@ -173,7 +184,7 @@ To build the per-bundle archives that get attached to a release:
 ./package-bundles.sh
 ```
 
-This writes one zip per bundle to `dist/`, named `<bundle>-<version>.zip` using the version from that bundle's own `.claude-plugin/plugin.json` — e.g. `agent-skills-5.1.0.zip`, `llpm-1.3.0.zip`. Bundles are discovered from `.claude-plugin/marketplace.json` (any plugin entry whose `source` is not a single skill under `./skills/`), so a new bundle needs no change to the script. Skill symlinks are dereferenced, so each archive unzips standalone.
+This writes one zip per bundle to `dist/`, named `<bundle>-<version>.zip` using the version from that bundle's own `.claude-plugin/plugin.json` — e.g. `agent-skills-5.1.0.zip`, `llpm-1.3.0.zip`. Bundles are discovered from `.claude-plugin/marketplace.json` (any plugin entry whose `source` is not a single skill under `./skills/`), so a new bundle needs no change to the script. Bundles hold real copies of their skills, so each archive unzips standalone.
 
 The `chat` bundle additionally carries a zip per skill at its archive root, alongside `skills/` — each one holding `<skill>/` at its root so it can be uploaded to a chat agent as-is. Bundles opted into this are listed in `NESTED_SKILL_ZIPS` in the script.
 

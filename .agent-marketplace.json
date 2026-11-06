@@ -14,7 +14,7 @@
       "homepage": "https://github.com/britt/britts-agent-skills",
       "category": "productivity",
       "source": "./bundles/britts-agent-skills",
-      "version": "7.3.0"
+      "version": "7.4.0"
     },
     {
       "name": "project-foundations",
@@ -23,7 +23,7 @@
       "homepage": "https://github.com/britt/britts-agent-skills",
       "category": "productivity",
       "source": "./bundles/project-foundations",
-      "version": "2.10.0"
+      "version": "2.11.0"
     },
     {
       "name": "llpm",
@@ -32,7 +32,7 @@
       "homepage": "https://github.com/britt/britts-agent-skills",
       "category": "productivity",
       "source": "./bundles/llpm",
-      "version": "1.8.0"
+      "version": "1.9.0"
     },
     {
       "name": "chat",
@@ -41,7 +41,7 @@
       "homepage": "https://github.com/britt/britts-agent-skills",
       "category": "productivity",
       "source": "./bundles/chat",
-      "version": "1.4.0"
+      "version": "1.5.0"
     }
   ],
   "featured": ["britts-agent-skills", "project-foundations"],

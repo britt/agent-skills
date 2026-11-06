@@ -1,0 +1,21 @@
+{
+  "$schema": "https://superset.sh/schemas/plugin/1.0.0.json",
+  "name": "project-foundations",
+  "version": "2.8.0",
+  "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and agent-driven work on issues and epics",
+  "author": {
+    "name": "Britt Crawford",
+    "url": "https://github.com/britt"
+  },
+  "homepage": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/britts-agent-skills",
+  "license": "MIT",
+  "extensions": {
+    "superset": {
+      "interface": {
+        "displayName": "Project Foundations",
+        "category": "Developer tools"
+      }
+    }
+  }
+}

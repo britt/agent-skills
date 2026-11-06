@@ -19,6 +19,12 @@ agent-skills/
 ├── .cursor-plugin/
 │   ├── marketplace.json      # Cursor plugin marketplace configuration
 │   └── plugin.json           # Cursor plugin manifest (full bundle)
+├── .agent-marketplace.json   # Paradev plugin marketplace configuration
+├── bundles/
+│   ├── britts-agent-skills/  # Paradev-only source for the full library: plugin.json + a skills symlink
+│   ├── project-foundations/  # Curated bundle: per-agent manifests, plugin.json, skill symlinks
+│   ├── llpm/
+│   └── chat/
 ├── .agents/
 │   └── skills/                       # Symlinks only — read by Codex CLI, OpenCode, Cursor
 │       ├── daily-planning-ritual -> ../../skills/daily-planning-ritual

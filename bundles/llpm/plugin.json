@@ -1,0 +1,21 @@
+{
+  "$schema": "https://superset.sh/schemas/plugin/1.0.0.json",
+  "name": "llpm",
+  "version": "1.7.0",
+  "description": "LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning",
+  "author": {
+    "name": "Britt Crawford",
+    "url": "https://github.com/britt"
+  },
+  "homepage": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/britts-agent-skills",
+  "license": "MIT",
+  "extensions": {
+    "superset": {
+      "interface": {
+        "displayName": "LLPM",
+        "category": "Developer tools"
+      }
+    }
+  }
+}

@@ -187,6 +187,20 @@ codex plugin install chat@britts-agent-skills                      # curated bun
 
 This repo ships a native Cursor plugin manifest (`.cursor-plugin/plugin.json`) and marketplace catalog (`.cursor-plugin/marketplace.json`). Cursor's marketplace-add flow is dashboard-based (no CLI yet): **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, pointing at `britt/britts-agent-skills`, then install `agent-skills` (or `project-foundations`, `llpm`, `chat`) from **Customize** in the sidebar.
 
+### Paradev
+
+This repo is also a Paradev plugin marketplace (`.agent-marketplace.json`, plus a `plugin.json` in each bundle under `bundles/`):
+
+```bash
+paradev plugins marketplace add britt/britts-agent-skills
+paradev plugins install britts-agent-skills@britts-agent-skills    # all skills
+paradev plugins install project-foundations@britts-agent-skills    # curated bundle only
+paradev plugins install llpm@britts-agent-skills                   # curated bundle only
+paradev plugins install chat@britts-agent-skills                   # curated bundle only
+```
+
+Paradev requires every plugin to live in its own directory inside the marketplace root, so the full library is published from `bundles/britts-agent-skills/` (a single `skills` symlink back to the canonical `skills/`) rather than from `./` the way the Claude, Codex, and Cursor manifests do. The skills are the same either way.
+
 ### Codex CLI, OpenCode, and Cursor: Manual Installation
 
 All three also discover skills the same way Claude Code does — a `SKILL.md` with `name`/`description` frontmatter, auto-triggered by relevance — under the shared `.agents/skills/` path. This repo already exposes every skill there (`.agents/skills/<name>` symlinked to `skills/<name>`, so there's only ever one copy of each skill's content). This is the option to use for OpenCode, which has no marketplace, or if you'd rather not use Codex's/Cursor's plugin flow above.

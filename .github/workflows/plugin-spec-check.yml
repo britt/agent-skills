@@ -1,0 +1,36 @@
+# Fails a PR whose plugin roots (the repo root and each bundles/<name>/) break
+# the Agent Plugins 1.0.0 spec or the Agent Skills SKILL.md frontmatter rules.
+#
+# check-bundles.sh (bundle-drift-check.yml) keeps the bundle copies in step
+# with skills/; this checks what a conforming client sees in each plugin root:
+# plugin.json against the vendored schema, skills that resolve inside the
+# root, SKILL.md frontmatter, and mcp.json if one is ever added. The schemas
+# are vendored under schemas/agent-plugins/, so nothing is fetched at run time.
+
+name: Check Agent Plugins conformance
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-plugin-spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned check dependencies
+        run: pip install -r requirements-check.txt
+
+      - name: Check plugin roots against Agent Plugins 1.0.0
+        run: ./check-plugin-spec.py

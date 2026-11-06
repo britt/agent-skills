@@ -14,6 +14,9 @@ agent-skills/
 ├── sync-agents-skills.sh     # Keeps .agents/skills/ symlinks, the rules/ mirror, and the bundle copies in sync with skills/
 ├── sync-bundles.sh           # Regenerates the real skill and icon copies under bundles/ (run by sync-agents-skills.sh)
 ├── check-bundles.sh          # Fails if a bundle copy has drifted from skills/ or assets/, or holds a symlink (runs in CI)
+├── check-plugin-spec.py      # Fails if a plugin root breaks the Agent Plugins 1.0.0 or Agent Skills spec (runs in CI)
+├── requirements-check.txt    # Pinned Python dependencies for check-plugin-spec.py
+├── schemas/agent-plugins/1.0.0/  # Vendored Agent Plugins schemas (plugin.schema.json, mcp.schema.json)
 ├── .claude-plugin/
 │   ├── marketplace.json      # Claude Code plugin marketplace configuration
 │   └── plugin.json           # Claude Code plugin manifest (full bundle)
@@ -167,6 +170,26 @@ Each `bundles/<name>/` is its own plugin root, and [Agent Plugins 1.0.0 §4.1.3�
 - Every other bundle carries exactly the skills whose directories exist under its `skills/`. To add one, `mkdir bundles/<bundle>/skills/<name>` and run `./sync-bundles.sh`; to drop one, delete that directory.
 
 `./check-bundles.sh` fails if any bundle contains a symlink, if a bundled skill or icon differs from its canonical copy (contents or executable bit), or if the full-library bundle's skill set differs from `skills/`. It runs on every pull request; the fix is always `./sync-bundles.sh` and a commit.
+
+### Checking spec conformance
+
+`./check-plugin-spec.py` checks every Agent Plugins-facing plugin root, which means the repo root and each `bundles/<name>/`, against [Agent Plugins 1.0.0](https://agent-plugins.org/specification) and the [Agent Skills spec](https://agentskills.io/specification). Client-specific manifests and marketplaces (`.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.agent-marketplace.json`) are not covered. It fails if:
+
+- `plugin.json` is missing or does not validate against the manifest schema. The schema is closed, so an unknown top-level field fails too.
+- an immediate child of `skills/` holding a `SKILL.md` resolves outside the plugin root (a `realpath` prefix check), or its `SKILL.md` is not a regular file;
+- a `SKILL.md` frontmatter has a field other than `name`, `description`, `license`, `compatibility`, `metadata` and `allowed-tools`; a `name` that does not match its directory or the pattern (1–64 characters of `a-z`, `0-9` and single hyphens, no leading or trailing hyphen); a `description` outside 1–1024 characters; a `compatibility` outside 1–500 characters; or `metadata` that is not a string-to-string map. Quote numeric-looking values such as `version: "1.0"`, because YAML would otherwise read them as numbers.
+- an `mcp.json` exists and does not validate against the MCP schema, or its `$schema` names a different Agent Plugins version from `plugin.json`.
+
+Run it locally before opening a PR:
+
+```bash
+pip install -r requirements-check.txt   # jsonschema and PyYAML, pinned
+./check-plugin-spec.py                  # or pass plugin roots to check only those
+```
+
+It runs on every pull request through `.github/workflows/plugin-spec-check.yml`. `check-bundles.sh` covers a different failure: it checks that the bundle copies still match `skills/` and `assets/`.
+
+The schemas are vendored under `schemas/agent-plugins/1.0.0/`, copied verbatim from `https://agent-plugins.org/schemas/1.0.0/`. The spec says clients must not fetch a schema while loading a plugin, and the check never fetches one either. To move to a new spec version, add a `schemas/agent-plugins/<version>/` directory beside the old one, update `SPEC_VERSION` in the script, and change `$schema` in every `plugin.json` in the same PR.
 
 ## Building Skill Archives
 

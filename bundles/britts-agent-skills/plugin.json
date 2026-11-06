@@ -15,7 +15,7 @@
       "interface": {
         "displayName": "Britt's Agent Skills",
         "category": "Developer tools",
-        "icon": "britts-agent-skills"
+        "icon": "./assets/icon.png"
       }
     }
   }

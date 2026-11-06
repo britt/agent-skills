@@ -15,7 +15,7 @@
       "interface": {
         "displayName": "Chat Skills",
         "category": "Developer tools",
-        "icon": "britts-agent-skills"
+        "icon": "./assets/icon.png"
       }
     }
   }

@@ -15,7 +15,7 @@
       "interface": {
         "displayName": "LLPM",
         "category": "Developer tools",
-        "icon": "britts-agent-skills"
+        "icon": "./assets/icon.png"
       }
     }
   }

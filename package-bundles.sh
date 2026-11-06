@@ -32,12 +32,17 @@ NESTED_SKILL_ZIPS=(chat)
 # holds site/, docs/, and .github/, which have no place in a plugin install.
 # .agents/ is omitted deliberately: it is a symlink farm pointing back into
 # skills/, and dereferencing it would duplicate every skill in the archive.
+#
+# assets/ carries icon.png, which every plugin manifest names as its icon and
+# README.md embeds. Leaving it out shipped archives whose icon path and README
+# image both pointed at nothing.
 ROOT_INCLUDES=(
   .claude-plugin
   .codex-plugin
   .cursor-plugin
   skills
   rules
+  assets
   README.md
   LICENSE
 )

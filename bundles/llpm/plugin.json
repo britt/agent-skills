@@ -14,7 +14,8 @@
     "superset": {
       "interface": {
         "displayName": "LLPM",
-        "category": "Developer tools"
+        "category": "Developer tools",
+        "icon": "./assets/icon.png"
       }
     }
   }

@@ -14,7 +14,8 @@
     "superset": {
       "interface": {
         "displayName": "Project Foundations",
-        "category": "Developer tools"
+        "category": "Developer tools",
+        "icon": "./assets/icon.png"
       }
     }
   }

@@ -14,7 +14,8 @@
     "superset": {
       "interface": {
         "displayName": "Britt's Agent Skills",
-        "category": "Developer tools"
+        "category": "Developer tools",
+        "icon": "./assets/icon.png"
       }
     }
   }

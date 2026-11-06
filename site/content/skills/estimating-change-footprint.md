@@ -28,7 +28,7 @@ It does not estimate time. Story points from Estimating Work Items can sit along
 
 ## Features
 
-**Two dimensions, never multiplied**
+**Two dimensions, side by side**
 Diff size (lines added plus deleted: XS, S, M, L, XL) and read scope (distinct files read: R1 to R4) are recorded side by side, exactly one bucket each. Anything over 10,000 lines is an epic.
 
 **Estimated from the code, not the title**

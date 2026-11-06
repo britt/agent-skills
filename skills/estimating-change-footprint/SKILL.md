@@ -2,7 +2,7 @@
 name: estimating-change-footprint
 description: Use when writing or refining a GitHub issue that needs a cost estimate, when asked to estimate, size, budget or forecast agent spend on work, or when deciding whether an item is an issue or an epic - gives an issue a change footprint (expected lines changed and expected files read, each in a bucket) that predicts coding-agent token spend, recorded as labels, a Footprint section, and a project field
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   calibration: "2026-10 · sandgardenhq/gloria.dev · 77 issues"
 ---
 
@@ -17,11 +17,11 @@ A footprint has two dimensions, recorded separately:
 - **Diff size** — expected lines added plus deleted in the merged change.
 - **Read scope** — expected distinct files the agent must read to make the change correctly: the files it edits, plus the callers, tests, types, configs and docs it has to understand first.
 
-Each dimension goes in a bucket. The two buckets are never multiplied into one number; they are reported side by side, and expected tokens come from a calibration table that weights diff size heavily and read scope lightly.
+Each dimension goes in a bucket. The two buckets are reported side by side and never collapsed into one combined size (no `lines × files`); expected tokens come from a calibration table that weights diff size heavily and read scope lightly.
 
 Only issues get a footprint. An epic's footprint is the sum of its children's diff sizes and the sum of their read scopes, recomputed whenever a child changes.
 
-**Why this and not points.** On 77 closed issues in `sandgardenhq/gloria.dev` with merged PRs, a log-log fit of tokens on lines changed explained 61% of the variance in spend; adding files read brought it to 65%; story points explained 29% and added nothing once lines were known. Points and footprint can coexist (see Integration), but when the question is "what will this cost," footprint is the estimate to trust.
+**Why this and not points.** On 77 closed issues in `sandgardenhq/gloria.dev` with merged PRs, a log-log fit of tokens on lines changed explained 61% of the variance in log spend; adding files read brought it to 65%; story points explained 29% and added nothing once lines were known. Points and footprint can coexist (see Integration), but when the question is "what will this cost," footprint is the estimate to trust.
 
 This skill is for an agent estimating on its own while it writes or refines a work item. It is not a planning-poker facilitator.
 
@@ -156,7 +156,7 @@ The first line after the heading starts with `**Footprint:**` and carries both b
 ```markdown
 ## Footprint
 **Footprint: M · R2** — ~310 lines changed, ~7 files read
-**Expected tokens: ~12M** (band 7M–20M, calibration 2026-10)
+**Expected tokens: ~14M** (band 8M–23M, calibration 2026-10)
 
 Change:
 - packages/core/src/cost/usage-statements.ts +60 (new statement builder)
@@ -167,7 +167,7 @@ Change:
 
 Read: the five above, plus usage-schema.ts and the existing getUserSpendForPeriod as the pattern to follow.
 Main unknown: whether page.tsx needs a new component or extends UsageTable.
-Estimated by: claude-opus-5-5 in Claude Code 2.1.310, estimating-change-footprint 0.1.0
+Estimated by: claude-opus-5-5 in Claude Code 2.1.310, estimating-change-footprint 0.1.1
 ```
 
 For an epic the first line is `**Footprint: epic** — ~N lines changed, ~M files read (sum of children)`, followed by a `Children:` line listing each child with its buckets:
@@ -175,10 +175,10 @@ For an epic the first line is `**Footprint: epic** — ~N lines changed, ~M file
 ```markdown
 ## Footprint
 **Footprint: epic** — ~4,200 lines changed, ~38 files read (sum of children)
-**Expected tokens: ~95M** (sum of children)
+**Expected tokens: ~63M** (sum of children)
 
 Children: #41 IdP metadata config (M · R2), #42 SP metadata endpoint (S · R1), #43 assertion consumer (L · R3), #44 SSO-only login setting (XS · R1)
-Estimated by: gpt-5.6-sol in Codex CLI, estimating-change-footprint 0.1.0
+Estimated by: gpt-5.6-sol in Codex CLI, estimating-change-footprint 0.1.1
 ```
 
 An epic that has not been decomposed yet says `**Footprint: not yet estimated** (epic, awaiting decomposition)` followed by the provenance line.
@@ -189,7 +189,7 @@ An epic that has not been decomposed yet says `**Footprint: not yet estimated** 
 Estimated by: <model> in <harness>, estimating-change-footprint <version>
 ```
 
-Same rules as `estimating-work-items`: the exact model ID (never a marketing name; `unknown-model` if you cannot tell), the harness with its version if findable and `(via <tool>)` if an outer tool is driving it, and this skill's `metadata.version` copied as written. A person's estimate is `Estimated by: human (@handle), estimating-change-footprint 0.1.0`. One line, always current; replace it on re-estimate.
+Same rules as `estimating-work-items`: the exact model ID (never a marketing name; `unknown-model` if you cannot tell), the harness with its version if findable and `(via <tool>)` if an outer tool is driving it, and this skill's `metadata.version` copied as written. A person's estimate is `Estimated by: human (@handle), estimating-change-footprint 0.1.1`. One line, always current; replace it on re-estimate.
 
 Tools parse it the same way as the points skill's line: it starts with `Estimated by: ` and ends with `, estimating-change-footprint <version>`.
 
@@ -229,21 +229,42 @@ So an M · R2 issue is ~11M × 1.25 ≈ 14M, with a band of roughly 8M–23M.
 A repo-local `docs/estimation/footprint-calibration.md` overrides the defaults. Build it from closed issues that have an `Actual:` line, or directly from the warehouse where the team runs Miranda:
 
 ```sql
--- tokens on sessions attributed to each closed issue, with merged-PR lines and distinct files read
-SELECT i.issue_number,
-       SUM(p.additions + p.deletions)                         AS lines,
-       COUNT(DISTINCT c.file_path) FILTER (WHERE t.tool_name = 'Read') AS files_read,
-       SUM(s.input_uncached_tokens + s.cache_read_tokens
-         + s.cache_write_tokens + s.output_tokens)            AS tokens
-FROM fct_session s
-JOIN dim_issue i                 ON i.issue_key = s.work_item_key
-JOIN bridge_session_pull_request b USING (session_key)
-JOIN dim_pull_request p          USING (pull_request_key)
-LEFT JOIN fct_tool_call c        USING (session_key)
-LEFT JOIN dim_tool t             USING (tool_key)
-WHERE p.merged_at IS NOT NULL AND i.closed_at IS NOT NULL
-GROUP BY 1;
+-- one row per closed issue: merged-PR lines, distinct files read, attributed tokens.
+-- Each measure is aggregated in its own CTE: joining tool calls or PRs to sessions
+-- before summing would count each session's tokens once per tool call and each PR's
+-- lines once per session.
+WITH tokens AS (
+    SELECT work_item_key AS issue_key,
+           sum(input_uncached_tokens + cache_read_tokens
+             + cache_write_tokens + output_tokens) AS tokens
+    FROM fct_session WHERE work_item_key <> 0 GROUP BY 1
+),
+files AS (
+    SELECT s.work_item_key AS issue_key, count(DISTINCT c.file_path) AS files_read
+    FROM fct_tool_call c
+    JOIN fct_session s        ON s.session_key = c.session_key
+    JOIN dim_tool_category tc ON tc.tool_category_key = c.tool_category_key
+    WHERE s.work_item_key <> 0 AND tc.tool_category = 'read'
+    GROUP BY 1
+),
+lines AS (
+    SELECT issue_key, sum(additions + deletions) AS lines
+    FROM (SELECT DISTINCT s.work_item_key AS issue_key, p.pull_request_key, p.additions, p.deletions
+          FROM fct_session s
+          JOIN bridge_session_pull_request b ON b.session_key = s.session_key
+          JOIN dim_pull_request p            ON p.pull_request_key = b.pull_request_key
+          WHERE s.work_item_key <> 0 AND p.merged_at IS NOT NULL)
+    GROUP BY 1
+)
+SELECT i.issue_number, l.lines, f.files_read, t.tokens
+FROM dim_issue i
+JOIN tokens t USING (issue_key)
+JOIN lines  l USING (issue_key)
+LEFT JOIN files f USING (issue_key)
+WHERE i.issue_state = 'closed';
 ```
+
+Miranda's warehouse docs carry the same query with the estimates beside the actuals ("Footprint vs actual per closed issue"). `files_read` counts only the agent's file-read tools; a file read through the shell (`cat`, `sed -n`) is not counted.
 
 Fit `ln(tokens)` on `ln(lines)` and `ln(files_read)`, write the coefficients, the band, the date and the sample size into the calibration file, and regenerate the two tables above. Keep the previous table in the file under a dated heading so estimates made against it can still be read.
 
@@ -270,7 +291,7 @@ Prefer the split where the children's read scopes don't overlap much; overlappin
 |---|---|---|
 | Estimating from the title ("add a flag, so XS · R1") | Skips the enumeration that finds the ten callers | Open the files; `grep -rl` the importers (Steps 2–3) |
 | Counting the agent's edits instead of the merged diff | A file written five times is not five files' worth of diff | Estimate the final diff; the PR's additions + deletions is the ground truth |
-| Multiplying the buckets into one number | Files read matter far less than lines; a product over-weights them | Record both; use the calibration table for the combined figure |
+| Multiplying lines by files into one size | Files read matter far less than lines; a raw product over-weights them | Record both; use the calibration table, which weights them, for the combined figure |
 | Converting footprint to hours | Nothing here predicts duration; it predicts spend | Leave duration to points and `timeline-planning` |
 | Skipping the `Actual:` line | The calibration never improves and the estimate never gets checked | Close the loop at merge, by hand or automation |
 | Re-estimating merged work | Rewrites history | Leave it; fix the calibration file instead |
@@ -293,4 +314,4 @@ Item: "Add a `--json` flag to `shiplog list` so the output can be piped to jq. T
 - **`issue-decomposition`** runs this skill for every child it produces and keeps each one at XL or below; the epic's footprint is the sum.
 - **`writing-user-stories`** treats a story above XL, or at R4, as a sign the story is too large.
 - **`working-on-an-issue`** reads the `Change:` list as a starting plan and the `Read:` list as the files to load first; it appends the `Actual:` line when it finishes.
-- **Miranda** dashboards read the first two lines of the Footprint section (buckets, expected tokens) and the `Actual:` line to report estimate-vs-actual per issue and to drive recalibration.
+- **Miranda** parses the labels, the first two lines of the Footprint section (buckets, numbers, expected tokens, band, calibration tag) and the provenance line into its warehouse (`dim_issue.footprint_*`), and holds them against measured lines, files read and tokens there. It does not parse the `Actual:` line; the warehouse's own measurements are the comparison.

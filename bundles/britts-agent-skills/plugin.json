@@ -1,5 +1,5 @@
 {
-  "$schema": "https://superset.sh/schemas/plugin/1.0.0.json",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "britts-agent-skills",
   "version": "7.4.0",
   "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",

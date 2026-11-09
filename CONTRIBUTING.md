@@ -129,7 +129,7 @@ Add the new skill to `.claude-plugin/marketplace.json`:
   "author": {
     "name": "Your Name"
   },
-  "repository": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
   "keywords": ["keyword1", "keyword2"],
   "category": "workflow|productivity|documentation",

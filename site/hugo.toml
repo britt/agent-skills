@@ -45,7 +45,7 @@ copyright = '© 2026 Snugglebear Team Company'
 [[menu.main]]
   identifier = 'github'
   name = 'GitHub'
-  url = 'https://github.com/britt/britts-agent-skills'
+  url = 'https://github.com/britt/agent-skills'
   weight = 30
   [menu.main.params]
     newTab = true
@@ -53,7 +53,7 @@ copyright = '© 2026 Snugglebear Team Company'
 [[menu.main]]
   identifier = 'contributing'
   name = 'Contributing'
-  url = 'https://github.com/britt/britts-agent-skills/blob/main/CONTRIBUTING.md'
+  url = 'https://github.com/britt/agent-skills/blob/main/CONTRIBUTING.md'
   weight = 40
   [menu.main.params]
     newTab = true

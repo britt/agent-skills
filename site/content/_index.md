@@ -36,7 +36,7 @@ Browse the [Skills](./skill-list/) index for the full catalog of individual skil
 Claude Code installs skills through the plugin marketplace.
 
 ```bash
-/plugin marketplace add britt/britts-agent-skills
+/plugin marketplace add britt/agent-skills
 /plugin install britts-agent-skills@britts-agent-skills
 /plugin install project-foundations@britts-agent-skills
 /plugin install llpm@britts-agent-skills
@@ -48,7 +48,7 @@ Claude Code installs skills through the plugin marketplace.
 Codex CLI installs the repository through its plugin marketplace.
 
 ```bash
-codex plugin marketplace add britt/britts-agent-skills
+codex plugin marketplace add britt/agent-skills
 codex plugin install britts-agent-skills@britts-agent-skills
 codex plugin install project-foundations@britts-agent-skills
 codex plugin install llpm@britts-agent-skills
@@ -60,7 +60,7 @@ codex plugin install chat@britts-agent-skills
 Cursor adds the repository through its dashboard based marketplace flow and installs the same bundles from there.
 
 1. Open **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**
-2. Point it at `britt/britts-agent-skills`
+2. Point it at `britt/agent-skills`
 3. Install `agent-skills`, `project-foundations`, `llpm`, or `chat` from **Customize**
 
 ### Shared `.agents/skills/` Path
@@ -68,7 +68,7 @@ Cursor adds the repository through its dashboard based marketplace flow and inst
 Codex CLI, OpenCode, and Cursor can also read a shared `.agents/skills/` directory. Use this fallback when a marketplace flow is not available.
 
 ```bash
-git clone https://github.com/britt/britts-agent-skills.git ~/.agent-skills-src
+git clone https://github.com/britt/agent-skills.git ~/.agent-skills-src
 mkdir -p ~/.agents/skills
 for dir in ~/.agent-skills-src/skills/*/; do
   ln -s "$dir" ~/.agents/skills/"$(basename "$dir")"
@@ -79,6 +79,6 @@ done
 
 Claude.ai uses project knowledge uploads.
 
-1. Download the skill zip from the [Releases page](https://github.com/britt/britts-agent-skills/releases/)
+1. Download the skill zip from the [Releases page](https://github.com/britt/agent-skills/releases/)
 2. Open the target project in Claude.ai
 3. Upload the zip file under **Project knowledge**

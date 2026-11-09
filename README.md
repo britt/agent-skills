@@ -151,6 +151,12 @@ Add this repository as a plugin marketplace:
 
 **Some skills are only available via a bundle**, not standalone: `daily-planning-ritual`, `repairing-project-setup`, `setting-up-a-project`, `sgai-goal`, `writing-product-specs`, `writing-user-stories`, `writing-verification-plans`. Install `britts-agent-skills@britts-agent-skills` to get all of these, `project-foundations@britts-agent-skills` for the project-setup and user-story/verification skills, `llpm@britts-agent-skills` for `writing-product-specs`, `writing-user-stories`, and `writing-verification-plans`, or `chat@britts-agent-skills` for `daily-planning-ritual`, `writing-product-specs`, and `writing-user-stories`.
 
+### Claude.ai, Cowork, and Claude Code: Anthropic's Plugin Directory
+
+The full library is submitted to [Anthropic's plugin directory](https://claude.com/docs/directory/publish) from the `claude-plugin/` folder, a single-plugin copy of this repository that holds only what the directory needs: the Claude plugin manifest, every skill, the icon, a README, and the license. Once listed, add it from **Customize > Plugins > Discover** in claude.ai; it then also loads in Claude Code as a synced plugin.
+
+`claude-plugin/` is generated. Its skills are copied from `skills/` by `./sync-claude-plugin.sh`, which a GitHub Actions workflow runs and commits on every push to `main`, so a merged PR is what ships a new version to the directory. Never edit the copies by hand; see [CONTRIBUTING.md](CONTRIBUTING.md#the-plugin-directory-folder).
+
 ### Claude Code: Manual Installation
 
 Skills can be installed globally or per-project.

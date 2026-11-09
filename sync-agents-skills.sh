@@ -48,3 +48,8 @@ done
 # real copies, not symlinks: each bundle is its own plugin root, and Agent
 # Plugins rejects symlinks that escape it. See sync-bundles.sh.
 ./sync-bundles.sh
+
+# Materialize claude-plugin/, the single-plugin folder submitted to Anthropic's
+# plugin directory. CI regenerates and commits it on every push to main, so
+# this is for local parity only; see sync-claude-plugin.sh.
+./sync-claude-plugin.sh

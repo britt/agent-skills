@@ -1,0 +1,15 @@
+{
+  "name": "britts-agent-skills",
+  "displayName": "Britt's Agent Skills",
+  "description": "Skills for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
+  "version": "7.4.0",
+  "author": {
+    "name": "Britt Crawford",
+    "email": "britt@brittcrawford.com"
+  },
+  "homepage": "https://github.com/britt/britts-agent-skills",
+  "repository": "https://github.com/britt/britts-agent-skills",
+  "icon": "./assets/icon.png",
+  "license": "MIT",
+  "keywords": ["skills", "tdd", "project-setup", "product-specs", "user-stories", "verification", "planning"]
+}

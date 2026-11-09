@@ -1,0 +1,94 @@
+# Regenerates claude-plugin/, the folder submitted to Anthropic's plugin
+# directory, from skills/ and the root manifests on every push to main, and
+# commits the result back to main when anything changed.
+#
+# The directory tracks main with "Plugin path" set to claude-plugin/, so this
+# commit is what delivers a new version to the directory: merging a PR that
+# touches a skill is enough, and no PR has to carry regenerated copies.
+#
+# Pushes made with the built-in GITHUB_TOKEN do not start other workflows, so
+# this cannot loop, and the Pages deploy does not depend on claude-plugin/.
+# The directory's own GitHub webhook still fires on the push.
+
+name: Sync the directory plugin folder
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - skills/**
+      - assets/icon.png
+      - LICENSE
+      - .claude-plugin/plugin.json
+      - claude-plugin/**
+      - sync-claude-plugin.sh
+      - check-claude-plugin.sh
+      - .github/workflows/sync-claude-plugin.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# One run at a time, and never cancel one that is about to push.
+concurrency:
+  group: sync-claude-plugin
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Regenerate claude-plugin/ from skills/ and the root manifests
+        run: ./sync-claude-plugin.sh
+
+      - name: Check the regenerated folder against the directory rules
+        run: ./check-claude-plugin.sh
+
+      - name: Commit and push when anything changed
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- claude-plugin)" ]; then
+            echo "claude-plugin/ already matches main; nothing to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A claude-plugin
+          git commit -m "Sync claude-plugin/ with skills/ at ${GITHUB_SHA::7}"
+
+          # Another merge may land between checkout and push. Rebase onto it
+          # and retry rather than fail; the generated files are deterministic,
+          # so a rebase conflict only happens if that merge also synced them,
+          # in which case regenerating on top of it resolves it.
+          for attempt in 1 2 3 4; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push failed (attempt $attempt); fetching main and retrying."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              git reset --hard origin/main
+              ./sync-claude-plugin.sh
+              ./check-claude-plugin.sh
+              if [ -z "$(git status --porcelain -- claude-plugin)" ]; then
+                echo "main now carries the synced folder; nothing left to push."
+                exit 0
+              fi
+              git add -A claude-plugin
+              git commit -m "Sync claude-plugin/ with skills/ at ${GITHUB_SHA::7}"
+            fi
+            sleep $((attempt * 5))
+          done
+          echo "error: could not push the synced claude-plugin/ to main after 4 attempts" >&2
+          exit 1

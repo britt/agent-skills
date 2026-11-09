@@ -1,0 +1,43 @@
+# Fails a PR whose changes would leave claude-plugin/, the folder submitted to
+# Anthropic's plugin directory, in a state the directory rejects.
+#
+# claude-plugin/ is regenerated and committed on main by
+# sync-claude-plugin.yml, so a PR does not have to carry regenerated copies.
+# This instead regenerates the folder in the runner from the PR's skills/ and
+# manifests, then checks what main would end up publishing: the local
+# directory rules in check-claude-plugin.sh, and the Claude Code CLI's own
+# plugin validation, which runs a subset of the directory's checks.
+
+name: Check the directory plugin folder
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-claude-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Regenerate claude-plugin/ from this PR's skills/ and manifests
+        run: ./sync-claude-plugin.sh
+
+      - name: Check the folder against the directory rules
+        run: ./check-claude-plugin.sh
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Install the Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Validate the plugin folder with claude plugin validate
+        run: claude plugin validate --strict ./claude-plugin

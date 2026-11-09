@@ -14,7 +14,7 @@
       "homepage": "https://github.com/britt/agent-skills",
       "category": "productivity",
       "source": "./bundles/britts-agent-skills",
-      "version": "7.4.0"
+      "version": "7.4.1"
     },
     {
       "name": "project-foundations",

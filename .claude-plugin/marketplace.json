@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "britts-agent-skills",
-  "version": "7.4.0",
+  "version": "7.4.1",
   "description": "Britt's Agent Skills - a collection of skills for coding agents to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
@@ -15,7 +15,7 @@
       "name": "britts-agent-skills",
       "displayName": "Britt's Agent Skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
-      "version": "7.4.0",
+      "version": "7.4.1",
       "author": {
         "name": "Britt Crawford",
         "email": "britt@brittcrawford.com"

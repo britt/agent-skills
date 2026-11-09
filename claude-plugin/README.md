@@ -1,6 +1,6 @@
 # Britt's Agent Skills
 
-A library of 32 skills that teach Claude how to run a software project the way
+A library of 30 skills that teach Claude how to run a software project the way
 an experienced engineering lead would: set up a repository, turn an idea into a
 spec and user stories, break work into estimated GitHub issues, map
 dependencies and timelines, work issues and epics through to reviewable pull
@@ -22,8 +22,6 @@ in sync automatically on every merge to `main`.
 - `repairing-project-setup`: audit a repo against what setting-up-a-project would generate and repair only the gaps
 - `working-on-an-issue`: implement a GitHub issue hands-off, with scoped recon and a PR as the approval gate
 - `working-on-an-epic`: coordinate an epic by running child issues in parallel agent workspaces, tracked to reviewable PRs
-- `supervising-conductor-workspaces`: dispatch one Conductor workspace per issue and supervise their PRs to merge
-- `supervising-paradev-workspaces`: the same fleet supervision driven by the Paradev CLI
 - `project-analysis`: analyze a codebase's structure, architecture, key files, and dependencies
 - `project-planning`: orchestrate end-to-end project planning with issues, diagrams, dependencies, and timelines
 - `issue-decomposition`: decompose projects into well-structured GitHub issues with user stories and estimates
@@ -86,11 +84,11 @@ else works from a conversation alone.
 
 ## What the plugin runs, sends, and stores
 
-- **Runs:** nothing on install or at startup. There are no hooks, MCP servers,
-  or executables. Two skills (`supervising-conductor-workspaces` and
-  `supervising-paradev-workspaces`) ship a shell script, `scripts/pr-watcher.sh`,
-  that Claude may run when you ask it to supervise a fleet of workspaces; it
-  polls `gh pr list` and prints JSON events, and nothing else.
+- **Runs:** nothing. There are no hooks, MCP servers, scripts, or
+  executables; every file is Markdown, text, JSON, or an image. The two
+  fleet-supervision skills in the repository (`supervising-conductor-workspaces`
+  and `supervising-paradev-workspaces`) ship a shell script, so they are left
+  out of this folder; install them from the repository's marketplace instead.
 - **Sends:** nothing to any service of its own. When a skill instructs Claude
   to use `gh`, `git`, Conductor, Paradev, or web search, that traffic goes to
   the services you already use, with your own credentials, and only in the

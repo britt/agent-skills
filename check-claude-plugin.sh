@@ -7,7 +7,12 @@
 # (https://claude.com/docs/plugins/pre-submission-checklist) is the source of
 # the rules below. This checks that:
 #   - the generated parts match their sources file for file, including the
-#     executable bit (the fix is ./sync-claude-plugin.sh);
+#     executable bit, apart from the skills sync-claude-plugin.sh leaves out
+#     (the fix is ./sync-claude-plugin.sh);
+#   - every file is Markdown, text, JSON, YAML or a PNG, JPEG, GIF, WebP or ICO
+#     image; none starts with #!; none is a package manager configuration; and
+#     every text file is UTF-8 with no NUL bytes (the directory refuses all of
+#     these from organizations that are not Verified);
 #   - nothing in the folder is a symlink (the directory wants regular files);
 #   - no .DS_Store, Thumbs.db, desktop.ini or __MACOSX entry is present;
 #   - .claude-plugin/plugin.json parses, names the plugin, and carries a
@@ -28,6 +33,14 @@ PLUGIN=claude-plugin
 MANIFEST=.claude-plugin/plugin.json
 ICON=assets/icon.png
 
+# The skills the sync leaves out, read from the sync script so the two lists
+# cannot disagree.
+eval "$(grep '^EXCLUDED_SKILLS=' sync-claude-plugin.sh)"
+exclude_args=()
+for skill in "${EXCLUDED_SKILLS[@]}"; do
+  exclude_args+=(-x "$skill")
+done
+
 command -v jq >/dev/null || { echo "error: jq is required" >&2; exit 1; }
 
 fail=0
@@ -38,9 +51,14 @@ err() {
 
 [ -d "$PLUGIN" ] || { echo "error: $PLUGIN/ is missing; run ./sync-claude-plugin.sh" >&2; exit 1; }
 
-# "<mode> <relative path>" for every file and directory under a tree.
+# "<mode> <relative path>" for every file and directory under a tree, minus
+# the excluded skills.
 modes() {
-  (cd "$1" && find . -printf '%m %p\n' | LC_ALL=C sort)
+  local prune=()
+  for skill in "${EXCLUDED_SKILLS[@]}"; do
+    prune+=(-path "./$skill" -prune -o)
+  done
+  (cd "$1" && find . "${prune[@]}" -printf '%m %p\n' | LC_ALL=C sort)
 }
 
 # --- generated parts match their sources ------------------------------------
@@ -53,12 +71,16 @@ done
 
 if [ ! -d "$PLUGIN/skills" ]; then
   err "$PLUGIN/skills is missing"
-elif ! diff -r skills "$PLUGIN/skills" >/dev/null; then
+elif ! diff -r "${exclude_args[@]}" skills "$PLUGIN/skills" >/dev/null; then
   err "$PLUGIN/skills differs from skills/:"
-  diff -rq skills "$PLUGIN/skills" | sed 's/^/  /' >&2 || true
+  diff -rq "${exclude_args[@]}" skills "$PLUGIN/skills" | sed 's/^/  /' >&2 || true
 elif [ "$(modes skills)" != "$(modes "$PLUGIN/skills")" ]; then
   err "$PLUGIN/skills file modes differ from skills/"
 fi
+
+for skill in "${EXCLUDED_SKILLS[@]}"; do
+  [ ! -e "$PLUGIN/skills/$skill" ] || err "$PLUGIN/skills/$skill is excluded from the directory copy but present"
+done
 
 # Nothing in the folder beyond the generated parts and the README. An extra
 # file would be published to everyone who installs the plugin.
@@ -84,6 +106,30 @@ if [ -n "$junk" ]; then
     err "$f is an OS system file; the directory blocks a submission that has one"
   done <<< "$junk"
 fi
+
+# Allowed file types, no #! files, no package manager configs, UTF-8 text.
+while IFS= read -r f; do
+  base=$(basename "$f")
+  is_image=0
+  case "$base" in
+    LICENSE|*.md|*.txt|*.json|*.yaml|*.yml) ;;
+    *.png|*.jpg|*.jpeg|*.gif|*.webp|*.ico) is_image=1 ;;
+    *) err "$f is not Markdown, text, JSON, YAML or an allowed image; the directory refuses it" ;;
+  esac
+  case "$base" in
+    package.json|package-lock.json|npm-shrinkwrap.json|pnpm-lock.yaml|pnpm-workspace.yaml|yarn.lock|.yarnrc.yml|bun.lock|bun.lockb|bunfig.toml|deno.json|deno.jsonc|.npmrc|requirements*.txt|pyproject.toml|Pipfile|Pipfile.lock|poetry.lock|uv.lock|Gemfile|Gemfile.lock|go.mod|go.sum|Cargo.toml|Cargo.lock|composer.json|composer.lock)
+      err "$f is a package manager configuration file; the directory refuses it" ;;
+  esac
+  if [ "$(head -c 2 "$f" | tr -d '\000')" = "#!" ]; then
+    err "$f starts with #!; the directory refuses it"
+  fi
+  if [ "$is_image" -eq 0 ]; then
+    iconv -f UTF-8 -t UTF-8 "$f" >/dev/null 2>&1 || err "$f is not valid UTF-8"
+    if LC_ALL=C grep -qaP '\x00' "$f"; then
+      err "$f contains NUL bytes"
+    fi
+  fi
+done < <(find "$PLUGIN" -type f)
 
 total=$(find "$PLUGIN" -type f | wc -l | tr -d ' ')
 if [ "$total" -gt 512 ]; then
@@ -141,7 +187,7 @@ else
   if [ "$words" -lt 40 ]; then
     err "$readme has $words words outside code blocks; the directory requires at least 40"
   fi
-  for dir in skills/*/; do
+  for dir in "$PLUGIN"/skills/*/; do
     skill=$(basename "$dir")
     if ! grep -qF "\`$skill\`" "$readme"; then
       err "$readme does not mention \`$skill\`; add it to the skills list"

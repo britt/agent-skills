@@ -4,14 +4,14 @@
   "description": "Britt's Agent Skills - a collection of skills for coding agents to enhance AI-assisted development workflows",
   "owner": {
     "name": "Britt Crawford",
-    "url": "https://github.com/britt/britts-agent-skills"
+    "url": "https://github.com/britt/agent-skills"
   },
   "plugins": [
     {
       "name": "britts-agent-skills",
       "description": "All skills bundled together for AI-assisted development: project setup, product specs, user stories, verification plans, daily planning, and more",
       "author": { "name": "Britt Crawford", "url": "https://github.com/britt" },
-      "homepage": "https://github.com/britt/britts-agent-skills",
+      "homepage": "https://github.com/britt/agent-skills",
       "category": "productivity",
       "source": "./bundles/britts-agent-skills",
       "version": "7.4.0"
@@ -20,7 +20,7 @@
       "name": "project-foundations",
       "description": "A curated bundle for taking a project from concept to merged work: project setup and analysis, issue decomposition, story-point and change-footprint estimates, user stories, verification plans, architecture/dependency/Mermaid diagrams, and agent-driven work on issues and epics",
       "author": { "name": "Britt Crawford", "url": "https://github.com/britt" },
-      "homepage": "https://github.com/britt/britts-agent-skills",
+      "homepage": "https://github.com/britt/agent-skills",
       "category": "productivity",
       "source": "./bundles/project-foundations",
       "version": "2.11.0"
@@ -29,7 +29,7 @@
       "name": "llpm",
       "description": "LLPM's product-management and project-management skills: requirements, specs, user stories, stakeholders, meetings, triage, risk, timelines, and dependency/critical-path planning",
       "author": { "name": "Britt Crawford", "url": "https://github.com/britt" },
-      "homepage": "https://github.com/britt/britts-agent-skills",
+      "homepage": "https://github.com/britt/agent-skills",
       "category": "productivity",
       "source": "./bundles/llpm",
       "version": "1.9.0"
@@ -38,7 +38,7 @@
       "name": "chat",
       "description": "Skills for chat agents rather than coding agents: writing and communication, research, diagrams, requirements, specs, and daily planning - no repository, git, or gh CLI required",
       "author": { "name": "Britt Crawford", "url": "https://github.com/britt" },
-      "homepage": "https://github.com/britt/britts-agent-skills",
+      "homepage": "https://github.com/britt/agent-skills",
       "category": "productivity",
       "source": "./bundles/chat",
       "version": "1.5.0"

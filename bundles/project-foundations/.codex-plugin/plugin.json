@@ -6,8 +6,8 @@
     "name": "Britt Crawford",
     "email": "britt@brittcrawford.com"
   },
-  "homepage": "https://github.com/britt/britts-agent-skills",
-  "repository": "https://github.com/britt/britts-agent-skills",
+  "homepage": "https://github.com/britt/agent-skills",
+  "repository": "https://github.com/britt/agent-skills",
   "license": "MIT",
   "keywords": ["bundle", "planning", "setup", "user-stories", "diagrams", "verification", "issues", "estimation"],
   "skills": "./skills/"
